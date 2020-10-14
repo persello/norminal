@@ -3,23 +3,43 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0D1D3825324E090056FACA /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0D1D3725324E090056FACA /* SDWebImageSwiftUI */; };
+		8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0D1D6E253351EA0056FACA /* VisualEffects */; };
+		8B0D1D76253363BF0056FACA /* MissionRecapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */; };
+		8B0D1D79253365660056FACA /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D1D78253365660056FACA /* Card.swift */; };
 		8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5802530CE740084E52D /* NorminalApp.swift */; };
-		8B46A5832530CE740084E52D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5822530CE740084E52D /* ContentView.swift */; };
+		8B46A5832530CE740084E52D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5822530CE740084E52D /* MainView.swift */; };
 		8B46A5852530CE760084E52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
 		8B46A5882530CE760084E52D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5872530CE760084E52D /* Preview Assets.xcassets */; };
+		8B46A5922530CF4D0084E52D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5912530CF4D0084E52D /* LaunchView.swift */; };
+		8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59A2530D87F0084E52D /* LaunchListTile.swift */; };
+		8B46A5A0253118160084E52D /* FakeLaunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeLaunches.swift */; };
+		8B46A5B22531EA730084E52D /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5B02531EA730084E52D /* Launch.swift */; };
+		8B46A5B32531EA730084E52D /* SpaceXData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5B12531EA730084E52D /* SpaceXData.swift */; };
+		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
+		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
+		8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8A825375B10002AE62B /* SatelliteKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapCard.swift; sourceTree = "<group>"; };
+		8B0D1D78253365660056FACA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		8B46A57D2530CE740084E52D /* Norminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Norminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B46A5802530CE740084E52D /* NorminalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorminalApp.swift; sourceTree = "<group>"; };
-		8B46A5822530CE740084E52D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8B46A5822530CE740084E52D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8B46A5842530CE760084E52D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B46A5872530CE760084E52D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8B46A5892530CE760084E52D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B46A5912530CF4D0084E52D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		8B46A59A2530D87F0084E52D /* LaunchListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListTile.swift; sourceTree = "<group>"; };
+		8B46A59F253118160084E52D /* FakeLaunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeLaunches.swift; sourceTree = "<group>"; };
+		8B46A5B02531EA730084E52D /* Launch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
+		8B46A5B12531EA730084E52D /* SpaceXData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceXData.swift; sourceTree = "<group>"; };
+		8B69255A253206E900D61C3F /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +47,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */,
+				8B0D1D3825324E090056FACA /* SDWebImageSwiftUI in Frameworks */,
+				8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */,
+				8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,7 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				8B46A57F2530CE740084E52D /* Norminal */,
-				8B46A57E2530CE740084E52D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -47,16 +70,24 @@
 				8B46A57D2530CE740084E52D /* Norminal.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		8B46A57F2530CE740084E52D /* Norminal */ = {
 			isa = PBXGroup;
 			children = (
+				8B46A5AE2531EA730084E52D /* Data */,
 				8B46A5802530CE740084E52D /* NorminalApp.swift */,
-				8B46A5822530CE740084E52D /* ContentView.swift */,
+				8B46A5822530CE740084E52D /* MainView.swift */,
+				8B46A5912530CF4D0084E52D /* LaunchView.swift */,
+				8B69255A253206E900D61C3F /* LaunchDetailView.swift */,
+				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
 				8B46A5842530CE760084E52D /* Assets.xcassets */,
 				8B46A5892530CE760084E52D /* Info.plist */,
+				8B46A57E2530CE740084E52D /* Products */,
 				8B46A5862530CE760084E52D /* Preview Content */,
+				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
+				8B0D1D78253365660056FACA /* Card.swift */,
 			);
 			path = Norminal;
 			sourceTree = "<group>";
@@ -65,8 +96,26 @@
 			isa = PBXGroup;
 			children = (
 				8B46A5872530CE760084E52D /* Preview Assets.xcassets */,
+				8B46A59F253118160084E52D /* FakeLaunches.swift */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8B46A5AE2531EA730084E52D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8B46A5AF2531EA730084E52D /* SpaceX */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		8B46A5AF2531EA730084E52D /* SpaceX */ = {
+			isa = PBXGroup;
+			children = (
+				8B46A5B02531EA730084E52D /* Launch.swift */,
+				8B46A5B12531EA730084E52D /* SpaceXData.swift */,
+			);
+			path = SpaceX;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +134,12 @@
 			dependencies = (
 			);
 			name = Norminal;
+			packageProductDependencies = (
+				8B692557253205E800D61C3F /* NavigationSearchBar */,
+				8B0D1D3725324E090056FACA /* SDWebImageSwiftUI */,
+				8B0D1D6E253351EA0056FACA /* VisualEffects */,
+				8B83E8A825375B10002AE62B /* SatelliteKit */,
+			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +167,12 @@
 				Base,
 			);
 			mainGroup = 8B46A5742530CE740084E52D;
+			packageReferences = (
+				8B692556253205E800D61C3F /* XCRemoteSwiftPackageReference "NavigationSearchBar" */,
+				8B0D1D3625324E090056FACA /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				8B0D1D6D253351EA0056FACA /* XCRemoteSwiftPackageReference "VisualEffects" */,
+				8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */,
+			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,8 +199,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B46A5832530CE740084E52D /* ContentView.swift in Sources */,
+				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
+				8B46A5B32531EA730084E52D /* SpaceXData.swift in Sources */,
+				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
+				8B46A5922530CF4D0084E52D /* LaunchView.swift in Sources */,
+				8B46A5B22531EA730084E52D /* Launch.swift in Sources */,
+				8B46A5A0253118160084E52D /* FakeLaunches.swift in Sources */,
 				8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */,
+				8B0D1D79253365660056FACA /* Card.swift in Sources */,
+				8B0D1D76253363BF0056FACA /* MissionRecapCard.swift in Sources */,
+				8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +349,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.Norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,7 +371,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.Norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -328,6 +397,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B0D1D3625324E090056FACA /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+		8B0D1D6D253351EA0056FACA /* XCRemoteSwiftPackageReference "VisualEffects" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/VisualEffects";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
+		8B692556253205E800D61C3F /* XCRemoteSwiftPackageReference "NavigationSearchBar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markvanwijnen/NavigationSearchBar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gavineadie/SatelliteKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.25;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B0D1D3725324E090056FACA /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B0D1D3625324E090056FACA /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		8B0D1D6E253351EA0056FACA /* VisualEffects */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B0D1D6D253351EA0056FACA /* XCRemoteSwiftPackageReference "VisualEffects" */;
+			productName = VisualEffects;
+		};
+		8B692557253205E800D61C3F /* NavigationSearchBar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B692556253205E800D61C3F /* XCRemoteSwiftPackageReference "NavigationSearchBar" */;
+			productName = NavigationSearchBar;
+		};
+		8B83E8A825375B10002AE62B /* SatelliteKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */;
+			productName = SatelliteKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8B46A5752530CE740084E52D /* Project object */;
 }
