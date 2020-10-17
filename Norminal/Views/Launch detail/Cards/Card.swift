@@ -26,13 +26,14 @@ struct Card<Background : View, Content: View>: View {
                     .scaledToFit()
                 
                 content()
-                    .padding()
+                    .padding(24)
             }
             .clipped()
             .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
             .shadow(radius: 24)
             .aspectRatio(4/5, contentMode: .fill)
             .scaledToFit()
+            
         }
     }
 }
@@ -57,8 +58,10 @@ struct Card_Previews: PreviewProvider {
                     .multilineTextAlignment(.leading)
                     .shadow(radius: 12)
                 Spacer()
-                Text("AAA")
+                Text("Bottom text maybe with a button?")
+                    .fontWeight(.semibold)
                     .foregroundColor(.white)
+                    .padding(.vertical)
             }
         })
         .padding(24)

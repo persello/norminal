@@ -11,7 +11,6 @@ import SDWebImageSwiftUI
 import VisualEffects
 
 struct LaunchDetailView: View {
-    @Environment (\.colorScheme) var colorScheme:ColorScheme
     @State var launch: Launch
     
     var body: some View {
@@ -35,7 +34,7 @@ struct LaunchDetailView: View {
                 VStack(alignment: .leading) {
                     MissionRecapCard(launch: launch)
                         .padding(.top, -50)
-                        .padding(.horizontal, 40)
+                        .padding(.horizontal, 24)
                         .shadow(radius:24)
                     
                     Text("Details")
@@ -45,11 +44,9 @@ struct LaunchDetailView: View {
                         .padding(.top, 24)
                         .padding(.bottom, -8)
                     
-//                    Card {
-//                        Image("sample1")
-//                            .resizable()
-//                    }
-//                    .padding()
+                    if((launch.links?.youtubeID ?? "").count > 0) {
+                        WebcastCard(launch: launch)
+                    }
                     
                     Spacer(minLength: 120)
 

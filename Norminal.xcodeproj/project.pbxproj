@@ -23,6 +23,10 @@
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
 		8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8A825375B10002AE62B /* SatelliteKit */; };
+		8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B025376A5D002AE62B /* WebcastCard.swift */; };
+		8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */; };
+		8B83E8B8253778C8002AE62B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8B7253778C8002AE62B /* Alamofire */; };
+		8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8BD25379B60002AE62B /* AstronautPicture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,9 @@
 		8B46A5B02531EA730084E52D /* Launch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		8B46A5B12531EA730084E52D /* SpaceXData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceXData.swift; sourceTree = "<group>"; };
 		8B69255A253206E900D61C3F /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
+		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
+		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
+		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B83E8B8253778C8002AE62B /* Alamofire in Frameworks */,
 				8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */,
 				8B0D1D3825324E090056FACA /* SDWebImageSwiftUI in Frameworks */,
 				8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */,
@@ -76,18 +84,13 @@
 		8B46A57F2530CE740084E52D /* Norminal */ = {
 			isa = PBXGroup;
 			children = (
+				8B83E8AC253769BD002AE62B /* Views */,
 				8B46A5AE2531EA730084E52D /* Data */,
 				8B46A5802530CE740084E52D /* NorminalApp.swift */,
-				8B46A5822530CE740084E52D /* MainView.swift */,
-				8B46A5912530CF4D0084E52D /* LaunchView.swift */,
-				8B69255A253206E900D61C3F /* LaunchDetailView.swift */,
-				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
 				8B46A5842530CE760084E52D /* Assets.xcassets */,
 				8B46A5892530CE760084E52D /* Info.plist */,
 				8B46A57E2530CE740084E52D /* Products */,
 				8B46A5862530CE760084E52D /* Preview Content */,
-				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
-				8B0D1D78253365660056FACA /* Card.swift */,
 			);
 			path = Norminal;
 			sourceTree = "<group>";
@@ -118,6 +121,46 @@
 			path = SpaceX;
 			sourceTree = "<group>";
 		};
+		8B83E8AB253769AE002AE62B /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				8B0D1D78253365660056FACA /* Card.swift */,
+				8B83E8B025376A5D002AE62B /* WebcastCard.swift */,
+				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		8B83E8AC253769BD002AE62B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B46A5822530CE740084E52D /* MainView.swift */,
+				8B83E8AD253769F4002AE62B /* Launch list */,
+				8B83E8AE25376A07002AE62B /* Launch detail */,
+				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8B83E8AD253769F4002AE62B /* Launch list */ = {
+			isa = PBXGroup;
+			children = (
+				8B46A5912530CF4D0084E52D /* LaunchView.swift */,
+				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
+			);
+			path = "Launch list";
+			sourceTree = "<group>";
+		};
+		8B83E8AE25376A07002AE62B /* Launch detail */ = {
+			isa = PBXGroup;
+			children = (
+				8B83E8AB253769AE002AE62B /* Cards */,
+				8B69255A253206E900D61C3F /* LaunchDetailView.swift */,
+				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
+			);
+			path = "Launch detail";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,6 +182,7 @@
 				8B0D1D3725324E090056FACA /* SDWebImageSwiftUI */,
 				8B0D1D6E253351EA0056FACA /* VisualEffects */,
 				8B83E8A825375B10002AE62B /* SatelliteKit */,
+				8B83E8B7253778C8002AE62B /* Alamofire */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -172,6 +216,7 @@
 				8B0D1D3625324E090056FACA /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				8B0D1D6D253351EA0056FACA /* XCRemoteSwiftPackageReference "VisualEffects" */,
 				8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */,
+				8B83E8B6253778C8002AE62B /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
@@ -204,7 +249,10 @@
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
 				8B46A5922530CF4D0084E52D /* LaunchView.swift in Sources */,
 				8B46A5B22531EA730084E52D /* Launch.swift in Sources */,
+				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
+				8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeLaunches.swift in Sources */,
+				8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */,
 				8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */,
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,
 				8B0D1D76253363BF0056FACA /* MissionRecapCard.swift in Sources */,
@@ -431,6 +479,14 @@
 				minimumVersion = 1.0.25;
 			};
 		};
+		8B83E8B6253778C8002AE62B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -453,6 +509,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */;
 			productName = SatelliteKit;
+		};
+		8B83E8B7253778C8002AE62B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B83E8B6253778C8002AE62B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
