@@ -9,13 +9,13 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct LaunchListTile: View {
-    @Binding var launch: Launch
+    @State var launch: Launch
     
     var body: some View {
         HStack {
             WebImage(url: launch.links?.patch?.large)
                 .resizable()
-                .indicator(Indicator.progress)
+                .indicator(Indicator.activity)
                 .frame(width:70, height:70)
                 .padding(4)
 
@@ -32,7 +32,7 @@ struct LaunchListTile: View {
 
 struct LaunchListTile_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchListTile(launch: .constant(FakeLaunches.shared.crewDragon!))
+        LaunchListTile(launch: FakeLaunches.shared.crewDragon!)
             .previewLayout(.sizeThatFits)
     }
 }

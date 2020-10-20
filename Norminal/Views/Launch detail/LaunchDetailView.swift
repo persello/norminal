@@ -30,7 +30,7 @@ struct LaunchDetailView: View {
                                    height: geometry.size.height
                                     + geometry.frame(in: .global).minY)
                     }
-                }.frame(height: UIScreen.main.bounds.height / 2)
+                }.frame(height: UIScreen.main.bounds.height/16*10)
                 VStack(alignment: .leading) {
                     MissionRecapCard(launch: launch)
                         .padding(.top, -50)

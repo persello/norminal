@@ -9,15 +9,17 @@ import SwiftUI
 import NavigationSearchBar
 
 struct LaunchView: View {
+    @ObservedObject private var data = SpaceXData()
+    
     var body: some View {
         NavigationView {
-            List(0..<10) {_ in
-                NavigationLink(
-                    destination: LaunchDetailView(launch: FakeLaunches.shared.crewDragon!)
-                        
-                ) {
-                    LaunchListTile(launch: .constant(FakeLaunches.shared.crewDragon!))
+            List {
+                ForEach(data.launches) { launch in
+                    NavigationLink(destination: LaunchDetailView(launch: launch)) {
+                        LaunchListTile(launch: launch)
+                    }
                 }
+                
             }
             .navigationBarTitle("Launches")
             .navigationSearchBar(text: .constant(""))
