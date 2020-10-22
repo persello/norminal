@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PageView
 import SDWebImageSwiftUI
 import VisualEffects
 
@@ -48,6 +47,12 @@ struct LaunchDetailView: View {
                         WebcastCard(launch: launch)
                     }
                     
+                    VStack {
+                        AstronautPicture(astronaut: FakeData.shared.robertBehnken!)
+                            .frame(width: 200, height: 200, alignment: .center)
+                        Text(FakeData.shared.robertBehnken?.name ?? "")
+                    }
+                    
                     Spacer(minLength: 120)
 
                 }
@@ -61,7 +66,7 @@ struct LaunchDetailView: View {
 struct LaunchDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LaunchDetailView(launch: FakeLaunches.shared.crewDragon!)
+            LaunchDetailView(launch: FakeData.shared.crewDragon!)
         }
     }
 }

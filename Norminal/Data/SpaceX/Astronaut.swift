@@ -47,7 +47,8 @@ struct Astronaut: Decodable {
     
     /// Returns the initials of the astronaut
     func getInitials() -> String {
-        return self.name.components(separatedBy: " ").reduce("") {"\($0.first!)\($1.first!)"}
+        let components = self.name.components(separatedBy: " ")
+        return "\((components.first?.first)!)\((components.last?.first)!)"
     }
     
     /// Returns the astronaut image in a closure
@@ -68,5 +69,5 @@ struct Astronaut: Decodable {
 }
 
 extension Astronaut: Identifiable {
-    var id: UUID {return UUID(stringWithoutDashes: self.idstring)!}
+    var id: UUID {return UUID(stringWithoutDashes: self.idstring)!;}
 }

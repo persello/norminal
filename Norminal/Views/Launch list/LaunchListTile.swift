@@ -32,7 +32,7 @@ struct LaunchListTile: View {
 
 struct LaunchListTile_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchListTile(launch: FakeLaunches.shared.crewDragon!)
+        LaunchListTile(launch: FakeData.shared.crewDragon!)
             .previewLayout(.sizeThatFits)
     }
 }

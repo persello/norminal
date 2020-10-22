@@ -13,10 +13,10 @@ class FaceCropper {
     
     init() {}
     
-    private var rawImage = UIImage()
-    private var callback: ((UIImage) -> Void)?
+    private var rawImage: UIImage?
+    private var callback: ((UIImage?) -> Void)?
     
-    func startCrop(image input: UIImage, completionHandler: @escaping (UIImage) -> Void) {
+    func startCrop(image input: UIImage, completionHandler: @escaping (UIImage?) -> Void) {
         
         // Setup
         self.rawImage = input
@@ -36,7 +36,6 @@ class FaceCropper {
     private func cropComplete(request: VNRequest, error: Error?) {
         guard let observations = request.results as? [VNFaceObservation] else {
             print(error as Any)
-            // TODO: Error handlers
             return
         }
         
@@ -44,12 +43,15 @@ class FaceCropper {
         
         // Return
         if let c = callback {
-            print("SAS")
-            c(self.cropToFace(face, rawImage))
+            if let i = rawImage {
+                c(self.cropToFace(face, i))
+            } else {
+                c(nil)
+            }
         }
     }
     
-    private func cropToFace(_ face: VNFaceObservation, _ image: UIImage) -> UIImage {
+    private func cropToFace(_ face: VNFaceObservation, _ image: UIImage) -> UIImage? {
         
         let w = face.boundingBox.size.width * image.size.width
         let h = face.boundingBox.size.height * image.size.height
@@ -69,30 +71,42 @@ class FaceCropper {
         
         let extendedFaceRect = CGRect(origin: origin, size: CGSize(width: size, height: size))
         
-        return cropImage(imageToCrop: image, toRect: extendedFaceRect)
+        return cropImage(image, toRect: extendedFaceRect)
     }
     
-    private func cropImage(imageToCrop:UIImage, toRect rect:CGRect) -> UIImage{
+    func cropImage(_ inputImage: UIImage, toRect cropRect: CGRect) -> UIImage?
+    {
+        let imageViewScale = inputImage.scale
         
-        var imageRef: CGImage = imageToCrop.cgImage!
+        // Scale cropRect to handle images larger than shown-on-screen size
+        let cropZone = CGRect(x:cropRect.origin.x * imageViewScale,
+                              y:cropRect.origin.y * imageViewScale,
+                              width:cropRect.size.width * imageViewScale,
+                              height:cropRect.size.height * imageViewScale)
         
-        imageRef = imageRef.cropping(to: rect)!
-        let cropped: UIImage = UIImage(cgImage:imageRef)
-        return cropped
+        // Perform cropping in Core Graphics
+        guard let cutImageRef: CGImage = inputImage.cgImage?.cropping(to:cropZone)
+        else {
+            return nil
+        }
+        
+        // Return image to UIImage
+        let croppedImage: UIImage = UIImage(cgImage: cutImageRef)
+        return croppedImage
     }
 }
 
 struct AstronautPicture: View {
     // Crew member
     @State var croppedImage: UIImage?
-    @State var rawImage: UIImage
+    @State var astronaut: Astronaut
     
     var cropper = FaceCropper()
     
     var body: some View {
         GeometryReader{g in
-            if(nil != croppedImage) {
-                Image(uiImage: croppedImage!)
+            if let image = croppedImage {
+                Image(uiImage: image)
                     .resizable()
                     .cornerRadius(g.size.height / 2)
                     .scaledToFit()
@@ -101,14 +115,25 @@ struct AstronautPicture: View {
                 ZStack {
                     Circle()
                         .fill(LinearGradient(gradient: Gradient(colors: [Color(UIColor.systemGray3), Color(UIColor.systemGray)]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                    Text("RB")
+                    Text(astronaut.getInitials())
                         .foregroundColor(.white)
                         .shadow(radius: 48)
                         .font(.system(size: g.size.height > g.size.width ? g.size.width * 0.45: g.size.height * 0.45, design: .rounded))
                 }
-                .padding()
                 .onAppear(perform: {
-                    cropper.startCrop(image: rawImage, completionHandler: {result in croppedImage = result})
+                    astronaut.getImage({downloadResult in
+                        if let rawImage = downloadResult {
+                            print("Image downloaded \(rawImage).")
+                            // os_log("Got image for astronaut %s. Size f.", log: .ui, type: .info, astronaut.name, rawImage.size.width, rawImage.size.height)
+                            cropper.startCrop(image: rawImage, completionHandler: {cropResult in
+                                if let image = cropResult {
+                                    print("Image cropped \(image).")
+                                    // os_log("Cropped image for astronaut %s. Size %dx%d.", log: .ui, type: .info, astronaut.name, rawImage.size.width, rawImage.size.height)
+                                    croppedImage = image
+                                }
+                            })
+                        }
+                    })
                 })
             }
         }
@@ -117,6 +142,6 @@ struct AstronautPicture: View {
 
 struct AstronautPicture_Previews: PreviewProvider {
     static var previews: some View {
-        AstronautPicture(rawImage: UIImage(named: "behnken")!)
+        AstronautPicture(astronaut: FakeData.shared.robertBehnken!)
     }
 }

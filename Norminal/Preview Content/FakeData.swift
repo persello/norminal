@@ -8,6 +8,20 @@
 import Foundation
 import os
 
+let robertBehnkenJSON = """
+  {
+    "name": "Robert Behnken",
+    "agency": "NASA",
+    "image": "https://imgur.com/0smMgMH.png",
+    "wikipedia": "https://en.wikipedia.org/wiki/Robert_L._Behnken",
+    "launches": [
+      "5eb87d46ffd86e000604b388"
+    ],
+    "status": "active",
+    "id": "5ebf1a6e23a9a60006e03a7a"
+  }
+""".data(using: .utf8)!
+
 let crewDragonJSON = """
   {
     "fairings": null,
@@ -97,16 +111,18 @@ let crewDragonJSON = """
   }
 """.data(using: .utf8)!
 
-struct FakeLaunches {
-    static let shared = FakeLaunches()
+struct FakeData {
+    static let shared = FakeData()
     
     var crewDragon: Launch? = nil
+    var robertBehnken: Astronaut? = nil
     
     init() {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(.iso8601Full)
             self.crewDragon = try decoder.decode(Launch.self, from: crewDragonJSON)
+            self.robertBehnken = try decoder.decode(Astronaut.self, from: robertBehnkenJSON)
         } catch {
             os_log("Unhandled error while initializing fake data: \"%@\".", log: .fakeData, type: .error, String(describing: error))
         }

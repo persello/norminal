@@ -16,18 +16,17 @@ struct MissionRecapCard: View {
         ZStack {
             VisualEffectBlur(blurStyle: .systemThinMaterial, vibrancyStyle: .label) {
                 
-                HStack(alignment: .center, spacing: 0.0) {
+                HStack(alignment: .center, spacing: 8) {
                     WebImage(url: launch.links?.patch?.large)
                         .resizable()
-                        .indicator(Indicator.progress)
+                        .indicator(Indicator.activity)
                         .frame(width:70, height:70)
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 2) {
                         Text(launch.name)
                             .multilineTextAlignment(.leading)
                             .font(.headline)
-                        Text((launch.getNiceDate(usePrecision: true)).uppercased())
-                            .font(.caption)
+
                         HStack(alignment: .center, spacing: 6) {
                             if(launch.success == true) {
                                 Text("\(Image(systemName: "checkmark.seal.fill")) Success")
@@ -41,7 +40,11 @@ struct MissionRecapCard: View {
                             }
                             Text("Launch #\(launch.flightNumber)")
                                 .font(.caption)
+                                .opacity(0.8)
                         }
+                        
+                        Text((launch.getNiceDate(usePrecision: true)).uppercased())
+                            .font(.caption)
                     }
                     .padding(8)
                 }
@@ -54,8 +57,9 @@ struct MissionRecapCard: View {
 
 struct MissionRecapCard_Previews: PreviewProvider {
     static var previews: some View {
-        MissionRecapCard(launch: FakeLaunches.shared.crewDragon!)
+        MissionRecapCard(launch: FakeData.shared.crewDragon!)
             .previewLayout(.sizeThatFits)
+            .padding()
             
     }
 }

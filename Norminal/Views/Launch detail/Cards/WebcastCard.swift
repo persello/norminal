@@ -52,7 +52,7 @@ struct WebcastCard_Previews: PreviewProvider {
     static var previews: some View {
         
         VStack {
-            WebcastCard(launch: FakeLaunches.shared.crewDragon!)
+            WebcastCard(launch: FakeData.shared.crewDragon!)
         }
     }
 }
