@@ -23,7 +23,7 @@ struct Card<Background: View, Content: View>: View {
                 background()
                     .frame(width: geometry.size.width,
                            height: geometry.size.height,
-                           alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                           alignment: .center)
                     .clipped()
                     .scaledToFit()
 

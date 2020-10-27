@@ -35,7 +35,7 @@ struct WebcastCard: View {
                         .fontWeight(.semibold)
                         .foregroundColor(Color(UIColor.label))
                     Spacer()
-                    Button(action: /*@START_MENU_TOKEN@*/ { }/*@END_MENU_TOKEN@*/, label: {
+                    Button(action: { }, label: {
                         Text("Open")
                     })
                         .buttonStyle(RoundedButtonStyle())

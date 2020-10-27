@@ -69,8 +69,9 @@ struct Astronaut: Decodable {
         }
         handler(nil)
     }
+    
 }
 
 extension Astronaut: Identifiable {
-    var id: UUID { return UUID(stringWithoutDashes: self.idstring)!; }
+    var id: UUID { return UUID(stringWithoutDashes: self.idstring)! }
 }
