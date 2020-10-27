@@ -66,7 +66,7 @@ let crewDragonJSON = """
     "window": 0,
     "rocket": "5e9d0d95eda69973a809d1ec",
     "success": true,
-    "details": "SpaceX will launch the second demonstration mission of its Crew Dragon vehicle as part of NASA's Commercial Crew Transportation Capability Program (CCtCap), carrying two NASA astronauts to the International Space Station. Barring unexpected developments, this mission will be the first crewed flight to launch from the United States since the end of the Space Shuttle program in 2011. DM-2 demonstrates the Falcon 9 and Crew Dragon's ability to safely transport crew to the space station and back to Earth and it is the last major milestone for certification of Crew Dragon. Initially the mission duration was planned to be no longer than two weeks, however NASA has been considering an extension to as much as six weeks or three months. The astronauts have been undergoing additional training for the possible longer mission.",
+    "details": "DETAILS DETAILS DETAILS",
     "crew": [
       "5ebf1b7323a9a60006e03a7b",
       "5ebf1a6e23a9a60006e03a7a"
@@ -113,10 +113,10 @@ let crewDragonJSON = """
 
 struct FakeData {
     static let shared = FakeData()
-    
-    var crewDragon: Launch? = nil
-    var robertBehnken: Astronaut? = nil
-    
+
+    var crewDragon: Launch?
+    var robertBehnken: Astronaut?
+
     init() {
         do {
             let decoder = JSONDecoder()
@@ -124,7 +124,10 @@ struct FakeData {
             self.crewDragon = try decoder.decode(Launch.self, from: crewDragonJSON)
             self.robertBehnken = try decoder.decode(Astronaut.self, from: robertBehnkenJSON)
         } catch {
-            os_log("Unhandled error while initializing fake data: \"%@\".", log: .fakeData, type: .error, String(describing: error))
+            os_log("Unhandled error while initializing fake data: \"%@\".",
+                   log: .fakeData,
+                   type: .error,
+                   String(describing: error))
         }
     }
 }

@@ -35,23 +35,23 @@ struct WebcastCard: View {
                         .fontWeight(.semibold)
                         .foregroundColor(Color(UIColor.label))
                     Spacer()
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                    Button(action: /*@START_MENU_TOKEN@*/ { }/*@END_MENU_TOKEN@*/, label: {
                         Text("Open")
                     })
-                    .buttonStyle(RoundedButtonStyle())
-                    
+                        .buttonStyle(RoundedButtonStyle())
+
                 }
-                .padding(.vertical, 8)
-                .background(Rectangle().padding(-24).foregroundColor(Color(UIColor.systemGray6)))
+                    .padding(.vertical, 8)
+                    .background(Rectangle().padding(-24).foregroundColor(Color(UIColor.systemGray6)))
             }
         })
-        .padding()
+            .padding()
     }
 }
 
 struct WebcastCard_Previews: PreviewProvider {
     static var previews: some View {
-        
+
         VStack {
             WebcastCard(launch: FakeData.shared.crewDragon!)
         }

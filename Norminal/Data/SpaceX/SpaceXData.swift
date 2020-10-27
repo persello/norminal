@@ -14,15 +14,15 @@ import os
 extension UUID {
     init?(stringWithoutDashes input: String) {
         var dashed = input
-        while(dashed.count < 32) {
+        while dashed.count < 32 {
             dashed.append("0")
         }
-        
+
         dashed.insert("-", at: input.index(input.startIndex, offsetBy: 20))
         dashed.insert("-", at: input.index(input.startIndex, offsetBy: 16))
         dashed.insert("-", at: input.index(input.startIndex, offsetBy: 12))
         dashed.insert("-", at: input.index(input.startIndex, offsetBy: 8))
-        
+
         self.init(uuidString: dashed.uppercased())
     }
 }
@@ -41,7 +41,7 @@ extension DateFormatter {
 
 class CustomDecoder: JSONDecoder {
     let dateFormatter = DateFormatter.iso8601Full
-    
+
     override init() {
         super.init()
         dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
@@ -52,19 +52,18 @@ class CustomDecoder: JSONDecoder {
 
 /// Contains data obtained from the SpaceX API
 final class SpaceXData: ObservableObject {
-    
+
     // Variables
-    
-    
+
     // SpaceX data sections
     @Published public var launches = [Launch]()
     @Published public var crew = [Astronaut]()
     @Published public var launchpads = [Launchpad]()
     @Published public var landpads = [Landpad]()
-    
+
     // Shared instance
     static var shared = SpaceXData()
-    
+
     // Methods
     func loadLandpads() {
         AF.request("https://api.spacexdata.com/v4/landpads")
@@ -76,9 +75,9 @@ final class SpaceXData: ObservableObject {
                 if let res = response.value {
                     self.landpads = res
                 }
-            }
+        }
     }
-    
+
     func loadLaunchpads() {
         AF.request("https://api.spacexdata.com/v4/launchpads")
             .responseDecodable(of: [Launchpad].self, decoder: CustomDecoder()) { response in
@@ -89,9 +88,9 @@ final class SpaceXData: ObservableObject {
                 if let res = response.value {
                     self.launchpads = res
                 }
-            }
+        }
     }
-    
+
     func loadCrew() {
         AF.request("https://api.spacexdata.com/v4/crew")
             .responseDecodable(of: [Astronaut].self, decoder: CustomDecoder()) { response in
@@ -102,9 +101,9 @@ final class SpaceXData: ObservableObject {
                 if let res = response.value {
                     self.crew = res
                 }
-            }
+        }
     }
-    
+
     func loadLaunches() {
         AF.request("https://api.spacexdata.com/v4/launches")
             .responseDecodable(of: [Launch].self, decoder: CustomDecoder()) { response in
@@ -115,18 +114,18 @@ final class SpaceXData: ObservableObject {
                 if let res = response.value {
                     self.launches = res.sorted(by: {
                         // $0 not launched and $1 launched
-                        if($0.upcoming && !$1.upcoming) {
+                        if $0.upcoming && !$1.upcoming {
                             return false
-                        } else if (!$0.upcoming && $1.upcoming) {
+                        } else if !$0.upcoming && $1.upcoming {
                             return true
                         } else {
                             return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
                         }
                     })
                 }
-            }
+        }
     }
-    
+
     /// Creates a new instance of `SpaceXData`.
     init() {
         loadLaunches()

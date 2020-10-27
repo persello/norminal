@@ -10,22 +10,21 @@ import SDWebImageSwiftUI
 
 struct LaunchListTile: View {
     @State var launch: Launch
-    
+
     var body: some View {
         HStack {
             WebImage(url: launch.links?.patch?.large)
                 .resizable()
                 .placeholder {
-                    if let _ = launch.links?.patch?.large {}
-                    else {
-                    Image(systemName: "xmark.seal").foregroundColor(Color(UIColor.systemGray3))
-                        .font(.system(size: 40, weight: .thin))
+                    if launch.links?.patch?.large == nil {
+                        Image(systemName: "xmark.seal").foregroundColor(Color(UIColor.systemGray3))
+                            .font(.system(size: 40, weight: .thin))
                     }
                 }
                 .indicator(Indicator.activity)
-                .frame(width:70, height:70)
+                .frame(width: 70, height: 70)
                 .padding(4)
-            
+
             VStack(alignment: .leading) {
                 Text(launch.name)
                     .font(.headline)
@@ -40,7 +39,7 @@ struct LaunchListTile: View {
                     }
                 }
             }
-            .padding(.horizontal, 4.0)
+                .padding(.horizontal, 4.0)
         }
     }
 }

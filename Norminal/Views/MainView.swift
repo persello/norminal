@@ -13,7 +13,7 @@ struct MainView: View {
             LaunchView()
                 .tabItem { Image(systemName: "flame")
                     Text("Launches")
-                }
+            }
         }
     }
 }

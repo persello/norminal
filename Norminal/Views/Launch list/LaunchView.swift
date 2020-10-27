@@ -10,7 +10,7 @@ import NavigationSearchBar
 
 struct LaunchView: View {
     @ObservedObject private var data = SpaceXData()
-    
+
     var body: some View {
         NavigationView {
             List {
@@ -19,10 +19,10 @@ struct LaunchView: View {
                         LaunchListTile(launch: launch)
                     }
                 }
-                
+
             }
-            .navigationBarTitle("Launches")
-            .navigationSearchBar(text: .constant(""))
+                .navigationBarTitle("Launches")
+                .navigationSearchBar(text: .constant(""))
         }
         // .onAppear()
     }
