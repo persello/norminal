@@ -29,6 +29,7 @@
 		8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8BD25379B60002AE62B /* AstronautPicture.swift */; };
 		8BB522AC253EE194006A9511 /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB522AB253EE194006A9511 /* Astronaut.swift */; };
 		8BB522B1253EE685006A9511 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB522B0253EE685006A9511 /* AlamofireImage */; };
+		8BB5231825478833006A9511 /* CrewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231725478833006A9511 /* CrewCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
 		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
 		8BB522AB253EE194006A9511 /* Astronaut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astronaut.swift; sourceTree = "<group>"; };
+		8BB5231725478833006A9511 /* CrewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +133,7 @@
 			children = (
 				8B0D1D78253365660056FACA /* Card.swift */,
 				8B83E8B025376A5D002AE62B /* WebcastCard.swift */,
-				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
+				8BB5231725478833006A9511 /* CrewCard.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				8B46A5822530CE740084E52D /* MainView.swift */,
+				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
 				8B83E8AD253769F4002AE62B /* Launch list */,
 				8B83E8AE25376A07002AE62B /* Launch detail */,
 				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
+				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
 				8B46A5B32531EA730084E52D /* SpaceXData.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
 				8BB522AC253EE194006A9511 /* Astronaut.swift in Sources */,

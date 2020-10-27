@@ -14,6 +14,7 @@ struct WebcastCard: View {
         Card(background: {
             WebImage(url: URL(string: "https://img.youtube.com/vi/\((launch.links?.youtubeID)!)/maxresdefault.jpg"))
                 .resizable()
+                .indicator(Indicator.activity(style: .large))
                 .aspectRatio(contentMode: .fill)
         }, content: {
             VStack(alignment: .leading, spacing: 8) {

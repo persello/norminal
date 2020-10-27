@@ -14,6 +14,10 @@ import os
 extension UUID {
     init?(stringWithoutDashes input: String) {
         var dashed = input
+        while(dashed.count < 32) {
+            dashed.append("0")
+        }
+        
         dashed.insert("-", at: input.index(input.startIndex, offsetBy: 20))
         dashed.insert("-", at: input.index(input.startIndex, offsetBy: 16))
         dashed.insert("-", at: input.index(input.startIndex, offsetBy: 12))
@@ -72,7 +76,7 @@ final class SpaceXData: ObservableObject {
                 }
             }
     }
-
+    
     func loadLaunches() {
         AF.request("https://api.spacexdata.com/v4/launches")
             .responseDecodable(of: [Launch].self, decoder: CustomDecoder()) { response in
@@ -81,7 +85,16 @@ final class SpaceXData: ObservableObject {
                     os_log("Error while loading launches: \"%@\".", log: .spaceXData, type: .error, err as CVarArg)
                 }
                 if let res = response.value {
-                    self.launches = res
+                    self.launches = res.sorted(by: {
+                        // $0 not launched and $1 launched
+                        if($0.upcoming && !$1.upcoming) {
+                            return false
+                        } else if (!$0.upcoming && $1.upcoming) {
+                            return true
+                        } else {
+                            return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
+                        }
+                    })
                 }
             }
     }

@@ -306,6 +306,24 @@ struct Launch: Decodable {
     }
     
     // MARK: - Utility methods
+    func getCrew() -> [Astronaut]? {
+        if let crewIdList = crew {
+            var astronauts: [Astronaut] = []
+            for id in crewIdList {
+                if let astronaut = SpaceXData.shared.crew.first(where: {$0.idstring == id}) {
+                    astronauts.append(astronaut)
+                }
+            }
+            if(astronauts.count > 0) {
+                return astronauts
+            } else {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
     func getNiceDate(usePrecision: Bool) -> String {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.autoupdatingCurrent

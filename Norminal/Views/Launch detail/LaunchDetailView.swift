@@ -8,26 +8,89 @@
 import SwiftUI
 import SDWebImageSwiftUI
 import VisualEffects
+import MapKit
 
 struct LaunchDetailView: View {
     @State var launch: Launch
+    @State var mapImage: UIImage?
+    
+    func getMapSnapshot(geometry: GeometryProxy) {
+        let options = MKMapSnapshotter.Options()
+        options.scale = UIScreen.main.scale
+        options.showsBuildings = true
+        options.pointOfInterestFilter = .excludingAll
+        options.size = geometry.size
+        options.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 46, longitude: 13), latitudinalMeters: 4000, longitudinalMeters: 4000)
+        
+        let mapSnapshotter = MKMapSnapshotter(options: options)
+        mapSnapshotter.start { (snap, error) in
+            if let image = snap?.image {
+                mapImage = image
+            }
+        }
+    }
     
     var body: some View {
         ScrollView(.vertical) {
             VStack {
                 GeometryReader { (geometry: GeometryProxy) in
                     if geometry.frame(in: .global).minY <= 0 {
-                        WebImage(url: launch.links?.flickr?.originalImages![0]).resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width,
-                                   height: geometry.size.height)
+                        if let imageURL = launch.links?.flickr?.originalImages?.first {
+                            WebImage(url: imageURL).resizable()
+                                .indicator(Indicator.activity(style: .large))
+                                .aspectRatio(contentMode: .fill)
+                                .offset(y: -0.1 * geometry.frame(in: .global).minY)
+                                .frame(width: geometry.size.width,
+                                       height: geometry.size.height)
+                        } else {
+                            if let mi = mapImage {
+                                Image(uiImage: mi)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .offset(y: -0.1 * geometry.frame(in: .global).minY)
+                                    .frame(width: geometry.size.width,
+                                           height: geometry.size.height)
+                            } else {
+                                ProgressView()
+                                    .frame(width: geometry.size.width,
+                                           height: geometry.size.height)
+                                    .onAppear(perform: {
+                                        if let _ = launch.links?.flickr?.originalImages?.first {} else {
+                                            getMapSnapshot(geometry: geometry)
+                                        }
+                                    })
+                            }
+                        }
                     } else {
-                        WebImage(url: launch.links?.flickr?.originalImages![0]).resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .offset(y: -geometry.frame(in: .global).minY)
-                            .frame(width: geometry.size.width,
-                                   height: geometry.size.height
-                                    + geometry.frame(in: .global).minY)
+                        if let imageURL = launch.links?.flickr?.originalImages?.first {
+                            WebImage(url: imageURL).resizable()
+                                .indicator(Indicator.activity(style: .large))
+                                .aspectRatio(contentMode: .fill)
+                                .offset(y: -geometry.frame(in: .global).minY)
+                                .frame(width: geometry.size.width,
+                                       height: geometry.size.height
+                                        + geometry.frame(in: .global).minY)
+                            
+                        } else {
+                            if let mi = mapImage {
+                                Image(uiImage: mi)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .offset(y: -geometry.frame(in: .global).minY)
+                                    .frame(width: geometry.size.width,
+                                           height: geometry.size.height
+                                            + geometry.frame(in: .global).minY)
+                            } else {
+                                ProgressView()
+                                    .frame(width: geometry.size.width,
+                                           height: geometry.size.height)
+                                    .onAppear(perform: {
+                                        if let _ = launch.links?.flickr?.originalImages?.first {} else {
+                                            getMapSnapshot(geometry: geometry)
+                                        }
+                                    })
+                            }
+                        }
                     }
                 }.frame(height: UIScreen.main.bounds.height/16*10)
                 VStack(alignment: .leading) {
@@ -47,19 +110,16 @@ struct LaunchDetailView: View {
                         WebcastCard(launch: launch)
                     }
                     
-                    VStack {
-                        AstronautPicture(astronaut: FakeData.shared.robertBehnken!)
-                            .frame(width: 200, height: 200, alignment: .center)
-                        Text(FakeData.shared.robertBehnken?.name ?? "")
+                    if let crew = launch.getCrew() {
+                        CrewCard(crew: crew)
                     }
                     
                     Spacer(minLength: 120)
-
+                    
                 }
             }
         }
         .edgesIgnoringSafeArea(.all)
-        
     }
 }
 

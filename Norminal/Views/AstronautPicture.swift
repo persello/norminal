@@ -101,16 +101,15 @@ struct AstronautPicture: View {
     @State var croppedImage: UIImage?
     @State var astronaut: Astronaut
     
+    static var cache = NSCache<NSString, UIImage>()
     var cropper = FaceCropper()
-    
+
     var body: some View {
         GeometryReader{g in
             if let image = croppedImage {
                 Image(uiImage: image)
                     .resizable()
                     .cornerRadius(g.size.height / 2)
-                    .scaledToFit()
-                    .padding()
             } else {
                 ZStack {
                     Circle()
@@ -121,19 +120,22 @@ struct AstronautPicture: View {
                         .font(.system(size: g.size.height > g.size.width ? g.size.width * 0.45: g.size.height * 0.45, design: .rounded))
                 }
                 .onAppear(perform: {
-                    astronaut.getImage({downloadResult in
-                        if let rawImage = downloadResult {
-                            print("Image downloaded \(rawImage).")
-                            // os_log("Got image for astronaut %s. Size f.", log: .ui, type: .info, astronaut.name, rawImage.size.width, rawImage.size.height)
-                            cropper.startCrop(image: rawImage, completionHandler: {cropResult in
-                                if let image = cropResult {
-                                    print("Image cropped \(image).")
-                                    // os_log("Cropped image for astronaut %s. Size %dx%d.", log: .ui, type: .info, astronaut.name, rawImage.size.width, rawImage.size.height)
-                                    croppedImage = image
-                                }
-                            })
-                        }
-                    })
+                    if let cachedImage = AstronautPicture.cache.object(forKey: astronaut.idstring as NSString) {
+                        croppedImage = cachedImage
+                        print("Astronaut picture cache hit")
+                    } else {
+                        print("Astronaut picture cache miss")
+                        astronaut.getImage({downloadResult in
+                            if let rawImage = downloadResult {
+                                cropper.startCrop(image: rawImage, completionHandler: {cropResult in
+                                    if let image = cropResult {
+                                        AstronautPicture.cache.setObject(image, forKey: astronaut.idstring as NSString)
+                                        croppedImage = image
+                                    }
+                                })
+                            }
+                        })
+                    }
                 })
             }
         }
