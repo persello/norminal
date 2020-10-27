@@ -30,6 +30,8 @@
 		8BB522AC253EE194006A9511 /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB522AB253EE194006A9511 /* Astronaut.swift */; };
 		8BB522B1253EE685006A9511 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB522B0253EE685006A9511 /* AlamofireImage */; };
 		8BB5231825478833006A9511 /* CrewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231725478833006A9511 /* CrewCard.swift */; };
+		8BB5231B25485F09006A9511 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231A25485F09006A9511 /* Launchpad.swift */; };
+		8BB5231E2548908D006A9511 /* Landpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231D2548908D006A9511 /* Landpad.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,10 @@
 		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
 		8BB522AB253EE194006A9511 /* Astronaut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astronaut.swift; sourceTree = "<group>"; };
 		8BB5231725478833006A9511 /* CrewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewCard.swift; sourceTree = "<group>"; };
+		8BB5231A25485F09006A9511 /* Launchpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
+		8BB5231D2548908D006A9511 /* Landpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landpad.swift; sourceTree = "<group>"; };
+		8BB5232025489817006A9511 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8BB5232225489842006A9511 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,8 @@
 		8B46A5742530CE740084E52D = {
 			isa = PBXGroup;
 			children = (
+				8BB5232125489827006A9511 /* res */,
+				8BB5232025489817006A9511 /* README.md */,
 				8B46A57F2530CE740084E52D /* Norminal */,
 			);
 			sourceTree = "<group>";
@@ -121,9 +129,11 @@
 		8B46A5AF2531EA730084E52D /* SpaceX */ = {
 			isa = PBXGroup;
 			children = (
+				8B46A5B12531EA730084E52D /* SpaceXData.swift */,
 				8BB522AB253EE194006A9511 /* Astronaut.swift */,
 				8B46A5B02531EA730084E52D /* Launch.swift */,
-				8B46A5B12531EA730084E52D /* SpaceXData.swift */,
+				8BB5231A25485F09006A9511 /* Launchpad.swift */,
+				8BB5231D2548908D006A9511 /* Landpad.swift */,
 			);
 			path = SpaceX;
 			sourceTree = "<group>";
@@ -167,6 +177,14 @@
 				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
 			);
 			path = "Launch detail";
+			sourceTree = "<group>";
+		};
+		8BB5232125489827006A9511 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				8BB5232225489842006A9511 /* logo.png */,
+			);
+			path = res;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
+				8BB5231E2548908D006A9511 /* Landpad.swift in Sources */,
 				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
 				8B46A5B32531EA730084E52D /* SpaceXData.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
@@ -264,6 +283,7 @@
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
 				8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
+				8BB5231B25485F09006A9511 /* Launchpad.swift in Sources */,
 				8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */,
 				8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */,
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,

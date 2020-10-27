@@ -59,11 +59,39 @@ final class SpaceXData: ObservableObject {
     // SpaceX data sections
     @Published public var launches = [Launch]()
     @Published public var crew = [Astronaut]()
+    @Published public var launchpads = [Launchpad]()
+    @Published public var landpads = [Landpad]()
     
     // Shared instance
     static var shared = SpaceXData()
     
     // Methods
+    func loadLandpads() {
+        AF.request("https://api.spacexdata.com/v4/landpads")
+            .responseDecodable(of: [Landpad].self, decoder: CustomDecoder()) { response in
+                os_log("%d landpads fetched", log: .spaceXData, type: .info, response.value?.count ?? 0)
+                if let err = response.error {
+                    os_log("Error while loading landpads: \"%@\".", log: .spaceXData, type: .error, err as CVarArg)
+                }
+                if let res = response.value {
+                    self.landpads = res
+                }
+            }
+    }
+    
+    func loadLaunchpads() {
+        AF.request("https://api.spacexdata.com/v4/launchpads")
+            .responseDecodable(of: [Launchpad].self, decoder: CustomDecoder()) { response in
+                os_log("%d launchpads fetched", log: .spaceXData, type: .info, response.value?.count ?? 0)
+                if let err = response.error {
+                    os_log("Error while loading launchpads: \"%@\".", log: .spaceXData, type: .error, err as CVarArg)
+                }
+                if let res = response.value {
+                    self.launchpads = res
+                }
+            }
+    }
+    
     func loadCrew() {
         AF.request("https://api.spacexdata.com/v4/crew")
             .responseDecodable(of: [Astronaut].self, decoder: CustomDecoder()) { response in
@@ -103,5 +131,7 @@ final class SpaceXData: ObservableObject {
     init() {
         loadLaunches()
         loadCrew()
+        loadLaunchpads()
+        loadLandpads()
     }
 }
