@@ -4,4 +4,4 @@
 
 ![norminal logo](res/logo.png)
 
-An app for everything about SpaceX.
+An app for everything about SpaceX. You can become a tester [here](https://forms.gle/iV13h3YhravpxaaL9) (iOS >14.0 required, iPads not supported).
