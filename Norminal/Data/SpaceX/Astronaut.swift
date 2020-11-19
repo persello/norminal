@@ -44,6 +44,8 @@ struct Astronaut: Decodable {
         case status = "status"
         case idstring = "id"
     }
+    
+    private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Astronaut")
 
     /// Returns the initials of the astronaut
     func getInitials() -> String {
@@ -57,10 +59,7 @@ struct Astronaut: Decodable {
             AF.request(url, method: .get).responseImage { response in
                 switch response.result {
                 case .failure(let error):
-                    os_log("Error while getting astronaut image: \"%@\".",
-                           log: .ui,
-                           type: .error,
-                           error.errorDescription!)
+                    logger.error("Error while getting astronaut image: \"\(error.localizedDescription)\"")
                     handler(nil)
                 case .success(let data):
                     handler(data)
@@ -68,6 +67,23 @@ struct Astronaut: Decodable {
             }
         }
         handler(nil)
+    }
+    
+    /// Returns the launches in which this astronaut participated
+    func getLaunches() -> [Launch]? {
+        if let launchIdList = launches {
+            var launches: [Launch] = []
+            for launchID in launchIdList {
+                if let launch = SpaceXData.shared.launches.first(where: { $0.idstring ?? "" == launchID }) {
+                    launches.append(launch)
+                }
+            }
+
+            if launches.count > 0 {
+                return launches
+            }
+        }
+        return nil
     }
     
 }

@@ -275,6 +275,9 @@ struct Launch: Decodable {
 
     /// Whether information is automatically updated. Defaults to `true`.
     public var autoUpdate: Bool = true
+    
+    /// UUID string
+    public var idstring: String?
 
     enum CodingKeys: String, CodingKey {
         case flightNumber = "flight_number"
@@ -302,9 +305,29 @@ struct Launch: Decodable {
         case cores = "cores"
         case links = "links"
         case autoUpdate = "auto_update"
+        case idstring = "id"
     }
 
     // MARK: - Utility methods
+    func getLaunchpad() -> Launchpad? {
+        
+        if launchpad != nil {
+            return SpaceXData.shared.launchpads.first(where: { $0.idstring == launchpad! })
+        }
+
+        return nil
+    }
+
+    func getLandpads() -> [(LaunchCore, Landpad?)]? {
+        if cores != nil {
+            return cores!.map { core in
+                (core, SpaceXData.shared.landpads.first(where: { $0.idstring == core.landPad }))
+            }
+        }
+
+        return nil
+    }
+
     func getCrew() -> [Astronaut]? {
         if let crewIdList = crew {
             var astronauts: [Astronaut] = []
@@ -313,14 +336,12 @@ struct Launch: Decodable {
                     astronauts.append(astronaut)
                 }
             }
+
             if astronauts.count > 0 {
                 return astronauts
-            } else {
-                return nil
             }
-        } else {
-            return nil
         }
+        return nil
     }
 
     func getNiceDate(usePrecision: Bool) -> String {
@@ -377,7 +398,7 @@ struct Launch: Decodable {
 
         return result
     }
-    
+
 }
 
 extension Launch: Identifiable {
@@ -386,7 +407,7 @@ extension Launch: Identifiable {
 
 // MARK: - Date extension for getting individual components
 extension Date {
-    
+
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
         return calendar.dateComponents(Set(components), from: self)
     }
@@ -394,5 +415,5 @@ extension Date {
     func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
         return calendar.component(component, from: self)
     }
-    
+
 }

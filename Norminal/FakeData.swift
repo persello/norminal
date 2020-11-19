@@ -116,6 +116,8 @@ struct FakeData {
 
     var crewDragon: Launch?
     var robertBehnken: Astronaut?
+    
+    private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Fake data")
 
     init() {
         do {
@@ -124,10 +126,7 @@ struct FakeData {
             self.crewDragon = try decoder.decode(Launch.self, from: crewDragonJSON)
             self.robertBehnken = try decoder.decode(Astronaut.self, from: robertBehnkenJSON)
         } catch {
-            os_log("Unhandled error while initializing fake data: \"%@\".",
-                   log: .fakeData,
-                   type: .error,
-                   String(describing: error))
+            logger.error("Unhandled error while initializing fake data: \"\(error.localizedDescription)\"")
         }
     }
 }

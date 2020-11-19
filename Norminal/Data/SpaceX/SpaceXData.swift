@@ -54,6 +54,7 @@ class CustomDecoder: JSONDecoder {
 final class SpaceXData: ObservableObject {
 
     // Variables
+    private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "SpaceX Data")
 
     // SpaceX data sections
     @Published public var launches = [Launch]()
@@ -67,10 +68,10 @@ final class SpaceXData: ObservableObject {
     // Methods
     func loadLandpads() {
         AF.request("https://api.spacexdata.com/v4/landpads")
-            .responseDecodable(of: [Landpad].self, decoder: CustomDecoder()) { response in
-                os_log("%d landpads fetched", log: .spaceXData, type: .info, response.value?.count ?? 0)
+            .responseDecodable(of: [Landpad].self, decoder: CustomDecoder()) { [self] response in
+                logger.info("\(response.value?.count ?? 0) landpads fetched.")
                 if let err = response.error {
-                    os_log("Error while loading landpads: \"%@\".", log: .spaceXData, type: .error, err as CVarArg)
+                    logger.error("Error while loading landpads: \"\(err.localizedDescription)\".")
                 }
                 if let res = response.value {
                     self.landpads = res
@@ -80,10 +81,10 @@ final class SpaceXData: ObservableObject {
 
     func loadLaunchpads() {
         AF.request("https://api.spacexdata.com/v4/launchpads")
-            .responseDecodable(of: [Launchpad].self, decoder: CustomDecoder()) { response in
-                os_log("%d launchpads fetched", log: .spaceXData, type: .info, response.value?.count ?? 0)
+            .responseDecodable(of: [Launchpad].self, decoder: CustomDecoder()) { [self] response in
+                logger.info("\(response.value?.count ?? 0) launchpads fetched.")
                 if let err = response.error {
-                    os_log("Error while loading launchpads: \"%@\".", log: .spaceXData, type: .error, err as CVarArg)
+                    logger.error("Error while loading launchpads: \"\(err.localizedDescription)\".")
                 }
                 if let res = response.value {
                     self.launchpads = res
@@ -93,10 +94,10 @@ final class SpaceXData: ObservableObject {
 
     func loadCrew() {
         AF.request("https://api.spacexdata.com/v4/crew")
-            .responseDecodable(of: [Astronaut].self, decoder: CustomDecoder()) { response in
-                os_log("%d astronauts fetched", log: .spaceXData, type: .info, response.value?.count ?? 0)
+            .responseDecodable(of: [Astronaut].self, decoder: CustomDecoder()) { [self] response in
+                logger.info("\(response.value?.count ?? 0) astronauts fetched.")
                 if let err = response.error {
-                    os_log("Error while loading crew: \"%@\".", log: .spaceXData, type: .error, err as CVarArg)
+                    logger.error("Error while loading crew: \"\(err.localizedDescription)\".")
                 }
                 if let res = response.value {
                     self.crew = res
@@ -106,10 +107,10 @@ final class SpaceXData: ObservableObject {
 
     func loadLaunches() {
         AF.request("https://api.spacexdata.com/v4/launches")
-            .responseDecodable(of: [Launch].self, decoder: CustomDecoder()) { response in
-                os_log("%d launches fetched", log: .spaceXData, type: .info, response.value?.count ?? 0)
+            .responseDecodable(of: [Launch].self, decoder: CustomDecoder()) { [self] response in
+                logger.info("\(response.value?.count ?? 0) launches fetched.")
                 if let err = response.error {
-                    os_log("Error while loading launches: \"%@\".", log: .spaceXData, type: .error, err as CVarArg)
+                    logger.error("Error while loading launches: \"\(err.localizedDescription)\".")
                 }
                 if let res = response.value {
                     self.launches = res.sorted(by: {
@@ -128,9 +129,9 @@ final class SpaceXData: ObservableObject {
 
     /// Creates a new instance of `SpaceXData`.
     init() {
-        loadLaunches()
         loadCrew()
         loadLaunchpads()
         loadLandpads()
+        loadLaunches()
     }
 }

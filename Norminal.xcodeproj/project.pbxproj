@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,6 +32,13 @@
 		8BB5231825478833006A9511 /* CrewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231725478833006A9511 /* CrewCard.swift */; };
 		8BB5231B25485F09006A9511 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231A25485F09006A9511 /* Launchpad.swift */; };
 		8BB5231E2548908D006A9511 /* Landpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231D2548908D006A9511 /* Landpad.swift */; };
+		8BB523282549E54F006A9511 /* MapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB523272549E54F006A9511 /* MapCard.swift */; };
+		8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5232A254A009B006A9511 /* CardOverlay.swift */; };
+		8BC7E6CA256728FA005E4304 /* XCDYouTubeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */; };
+		8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7E6CC25672966005E4304 /* WebcastSheet.swift */; };
+		8BC7E6D1256734A4005E4304 /* VideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC7E6D0256734A4005E4304 /* VideoPlayer */; };
+		8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85F82562FE07006144ED /* CrewSheet.swift */; };
+		8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85FC25631B56006144ED /* AstronautSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +65,11 @@
 		8BB5231D2548908D006A9511 /* Landpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landpad.swift; sourceTree = "<group>"; };
 		8BB5232025489817006A9511 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8BB5232225489842006A9511 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		8BB523272549E54F006A9511 /* MapCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCard.swift; sourceTree = "<group>"; };
+		8BB5232A254A009B006A9511 /* CardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverlay.swift; sourceTree = "<group>"; };
+		8BC7E6CC25672966005E4304 /* WebcastSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastSheet.swift; sourceTree = "<group>"; };
+		8BEB85F82562FE07006144ED /* CrewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewSheet.swift; sourceTree = "<group>"; };
+		8BEB85FC25631B56006144ED /* AstronautSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,9 +80,11 @@
 				8B83E8B8253778C8002AE62B /* Alamofire in Frameworks */,
 				8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */,
 				8B0D1D3825324E090056FACA /* SDWebImageSwiftUI in Frameworks */,
+				8BC7E6CA256728FA005E4304 /* XCDYouTubeKit in Frameworks */,
 				8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */,
 				8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */,
 				8BB522B1253EE685006A9511 /* AlamofireImage in Frameworks */,
+				8BC7E6D1256734A4005E4304 /* VideoPlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,9 +94,9 @@
 		8B46A5742530CE740084E52D = {
 			isa = PBXGroup;
 			children = (
+				8B46A57F2530CE740084E52D /* Norminal */,
 				8BB5232125489827006A9511 /* res */,
 				8BB5232025489817006A9511 /* README.md */,
-				8B46A57F2530CE740084E52D /* Norminal */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +117,7 @@
 				8B46A5802530CE740084E52D /* NorminalApp.swift */,
 				8B46A5842530CE760084E52D /* Assets.xcassets */,
 				8B46A5892530CE760084E52D /* Info.plist */,
+				8B46A59F253118160084E52D /* FakeData.swift */,
 				8B46A57E2530CE740084E52D /* Products */,
 				8B46A5862530CE760084E52D /* Preview Content */,
 			);
@@ -113,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				8B46A5872530CE760084E52D /* Preview Assets.xcassets */,
-				8B46A59F253118160084E52D /* FakeData.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -142,8 +156,10 @@
 			isa = PBXGroup;
 			children = (
 				8B0D1D78253365660056FACA /* Card.swift */,
+				8BB5232A254A009B006A9511 /* CardOverlay.swift */,
 				8B83E8B025376A5D002AE62B /* WebcastCard.swift */,
 				8BB5231725478833006A9511 /* CrewCard.swift */,
+				8BB523272549E54F006A9511 /* MapCard.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -173,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				8B83E8AB253769AE002AE62B /* Cards */,
+				8BEB85F72562FDE7006144ED /* Sheets */,
 				8B69255A253206E900D61C3F /* LaunchDetailView.swift */,
 				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
 			);
@@ -187,6 +204,16 @@
 			path = res;
 			sourceTree = "<group>";
 		};
+		8BEB85F72562FDE7006144ED /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				8BEB85F82562FE07006144ED /* CrewSheet.swift */,
+				8BEB85FC25631B56006144ED /* AstronautSheet.swift */,
+				8BC7E6CC25672966005E4304 /* WebcastSheet.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,7 +224,6 @@
 				8B46A5792530CE740084E52D /* Sources */,
 				8B46A57A2530CE740084E52D /* Frameworks */,
 				8B46A57B2530CE740084E52D /* Resources */,
-				8BB523232548A117006A9511 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -211,6 +237,8 @@
 				8B83E8A825375B10002AE62B /* SatelliteKit */,
 				8B83E8B7253778C8002AE62B /* Alamofire */,
 				8BB522B0253EE685006A9511 /* AlamofireImage */,
+				8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */,
+				8BC7E6D0256734A4005E4304 /* VideoPlayer */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -246,6 +274,8 @@
 				8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */,
 				8B83E8B6253778C8002AE62B /* XCRemoteSwiftPackageReference "Alamofire" */,
 				8BB522AF253EE685006A9511 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */,
+				8BC7E6CF256734A4005E4304 /* XCRemoteSwiftPackageReference "VideoPlayer" */,
 			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
@@ -268,27 +298,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		8BB523232548A117006A9511 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		8B46A5792530CE740084E52D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -296,21 +305,26 @@
 			files = (
 				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
 				8BB5231E2548908D006A9511 /* Landpad.swift in Sources */,
+				8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */,
 				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
 				8B46A5B32531EA730084E52D /* SpaceXData.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
 				8BB522AC253EE194006A9511 /* Astronaut.swift in Sources */,
+				8BB523282549E54F006A9511 /* MapCard.swift in Sources */,
 				8B46A5922530CF4D0084E52D /* LaunchView.swift in Sources */,
 				8B46A5B22531EA730084E52D /* Launch.swift in Sources */,
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
 				8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
+				8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */,
+				8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */,
 				8BB5231B25485F09006A9511 /* Launchpad.swift in Sources */,
 				8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */,
 				8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */,
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,
 				8B0D1D76253363BF0056FACA /* MissionRecapCard.swift in Sources */,
 				8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */,
+				8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +453,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -448,7 +463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.persello.Norminal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -461,6 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -470,7 +486,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.persello.Norminal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -549,6 +565,22 @@
 				minimumVersion = 4.1.0;
 			};
 		};
+		8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/0xced/XCDYouTubeKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.15.0;
+			};
+		};
+		8BC7E6CF256734A4005E4304 /* XCRemoteSwiftPackageReference "VideoPlayer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wxxsw/VideoPlayer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -581,6 +613,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BB522AF253EE685006A9511 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
 			productName = AlamofireImage;
+		};
+		8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */;
+			productName = XCDYouTubeKit;
+		};
+		8BC7E6D0256734A4005E4304 /* VideoPlayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BC7E6CF256734A4005E4304 /* XCRemoteSwiftPackageReference "VideoPlayer" */;
+			productName = VideoPlayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

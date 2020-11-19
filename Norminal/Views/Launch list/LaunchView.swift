@@ -9,7 +9,7 @@ import SwiftUI
 import NavigationSearchBar
 
 struct LaunchView: View {
-    @ObservedObject private var data = SpaceXData()
+    @ObservedObject private var data = SpaceXData.shared
 
     var body: some View {
         NavigationView {

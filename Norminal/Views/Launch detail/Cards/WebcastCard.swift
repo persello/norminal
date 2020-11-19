@@ -10,6 +10,8 @@ import SDWebImageSwiftUI
 
 struct WebcastCard: View {
     @State var launch: Launch
+    @State var modalPresented: Bool = false
+    
     var body: some View {
         Card(background: {
             WebImage(url: URL(string: "https://img.youtube.com/vi/\((launch.links?.youtubeID)!)/maxresdefault.jpg"))
@@ -17,35 +19,14 @@ struct WebcastCard: View {
                 .indicator(Indicator.activity(style: .large))
                 .aspectRatio(contentMode: .fill)
         }, content: {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Did it land?".uppercased())
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-                Text("SpaceX Webcast")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.leading)
-                    .shadow(radius: 12)
-                Spacer()
-                HStack {
-                    Text("Watch it now")
-                        .fontWeight(.semibold)
-                        .foregroundColor(Color(UIColor.label))
-                    Spacer()
-                    Button(action: { }, label: {
-                        Text("Open")
-                    })
-                        .buttonStyle(RoundedButtonStyle())
-
-                }
-                    .padding(.vertical, 8)
-                    .background(Rectangle().padding(-24).foregroundColor(Color(UIColor.systemGray6)))
-            }
+            CardOverlay(preamble: "Did it land?", title: "Webcast", bottomText: "Watch now", buttonText: "Open", buttonAction: {
+                self.modalPresented = true
+            })
         })
-            .padding()
+        .padding()
+        .sheet(isPresented: $modalPresented, content: {
+            WebcastSheet(modalShown: self.$modalPresented)
+        })
     }
 }
 
