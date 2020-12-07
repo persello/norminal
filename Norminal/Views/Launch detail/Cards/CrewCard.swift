@@ -31,8 +31,7 @@ struct CrewCard: View {
                     }
                 }
                 .rotationEffect(.degrees(-24))
-                .drawingGroup()
-                
+
                 Rectangle()
                     .fill(LinearGradient(
                             gradient: Gradient(colors: [Color.black.opacity(0.7), .clear]),
@@ -42,7 +41,8 @@ struct CrewCard: View {
                     .clipped()
                 
             }
-            
+            .drawingGroup()
+
         }, content: {
             CardOverlay(preamble: "Inside the Dragon", title: "Capsule Crew", bottomText: "Learn more", buttonText: "Open", buttonAction: {
                 self.modalPresented = true

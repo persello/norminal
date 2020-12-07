@@ -20,6 +20,7 @@
 		8B46A5A0253118160084E52D /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
 		8B46A5B22531EA730084E52D /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5B02531EA730084E52D /* Launch.swift */; };
 		8B46A5B32531EA730084E52D /* SpaceXData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5B12531EA730084E52D /* SpaceXData.swift */; };
+		8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B511097257ED4950097BC0D /* GallerySheet.swift */; };
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
 		8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8A825375B10002AE62B /* SatelliteKit */; };
@@ -33,7 +34,6 @@
 		8BB5231825478833006A9511 /* CrewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231725478833006A9511 /* CrewCard.swift */; };
 		8BB5231B25485F09006A9511 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231A25485F09006A9511 /* Launchpad.swift */; };
 		8BB5231E2548908D006A9511 /* Landpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231D2548908D006A9511 /* Landpad.swift */; };
-		8BB523282549E54F006A9511 /* MapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB523272549E54F006A9511 /* MapCard.swift */; };
 		8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5232A254A009B006A9511 /* CardOverlay.swift */; };
 		8BC7E6CA256728FA005E4304 /* XCDYouTubeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */; };
 		8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7E6CC25672966005E4304 /* WebcastSheet.swift */; };
@@ -56,6 +56,7 @@
 		8B46A59F253118160084E52D /* FakeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
 		8B46A5B02531EA730084E52D /* Launch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		8B46A5B12531EA730084E52D /* SpaceXData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceXData.swift; sourceTree = "<group>"; };
+		8B511097257ED4950097BC0D /* GallerySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySheet.swift; sourceTree = "<group>"; };
 		8B69255A253206E900D61C3F /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
 		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
@@ -67,7 +68,6 @@
 		8BB5231D2548908D006A9511 /* Landpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landpad.swift; sourceTree = "<group>"; };
 		8BB5232025489817006A9511 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8BB5232225489842006A9511 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		8BB523272549E54F006A9511 /* MapCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCard.swift; sourceTree = "<group>"; };
 		8BB5232A254A009B006A9511 /* CardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverlay.swift; sourceTree = "<group>"; };
 		8BC7E6CC25672966005E4304 /* WebcastSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastSheet.swift; sourceTree = "<group>"; };
 		8BEB85F82562FE07006144ED /* CrewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewSheet.swift; sourceTree = "<group>"; };
@@ -161,7 +161,6 @@
 				8BB5232A254A009B006A9511 /* CardOverlay.swift */,
 				8B83E8B025376A5D002AE62B /* WebcastCard.swift */,
 				8BB5231725478833006A9511 /* CrewCard.swift */,
-				8BB523272549E54F006A9511 /* MapCard.swift */,
 				8BA90E12257D9AA200168722 /* GalleryCard.swift */,
 			);
 			path = Cards;
@@ -213,6 +212,7 @@
 				8BEB85F82562FE07006144ED /* CrewSheet.swift */,
 				8BEB85FC25631B56006144ED /* AstronautSheet.swift */,
 				8BC7E6CC25672966005E4304 /* WebcastSheet.swift */,
+				8B511097257ED4950097BC0D /* GallerySheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -335,11 +335,11 @@
 				8B46A5B32531EA730084E52D /* SpaceXData.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
 				8BB522AC253EE194006A9511 /* Astronaut.swift in Sources */,
-				8BB523282549E54F006A9511 /* MapCard.swift in Sources */,
 				8B46A5922530CF4D0084E52D /* LaunchView.swift in Sources */,
 				8B46A5B22531EA730084E52D /* Launch.swift in Sources */,
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
 				8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */,
+				8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
 				8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */,
 				8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */,
@@ -479,7 +479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 66;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -503,7 +503,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 66;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;

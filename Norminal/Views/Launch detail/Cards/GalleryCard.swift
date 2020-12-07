@@ -20,7 +20,7 @@ struct GalleryCard: View {
                 Color(UIColor.systemGray5)
                 
                 LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
-                    // TODO: Use index for filling at least 9 images
+                    // Using index for filling at least 9 images
                     ForEach(0..<20) { index in
                         GeometryReader { gr in
                             let numberOfPictures = launch.links?.flickr?.originalImages?.count ?? 0
@@ -35,8 +35,7 @@ struct GalleryCard: View {
                         .aspectRatio(1, contentMode: .fit)
                     }
                 }
-                .drawingGroup()
-                
+
                 Rectangle()
                     .fill(LinearGradient(
                             gradient: Gradient(colors: [Color.black.opacity(0.7), .clear]),
@@ -45,15 +44,16 @@ struct GalleryCard: View {
                     .frame(width: 1200, height: 240)
                     .clipped()
             }
-            
+            .drawingGroup()
+
         }, content: {
-            CardOverlay(preamble: "", title: "Photo gallery", bottomText: "See more", buttonText: "Open", buttonAction: {
+            CardOverlay(preamble: "Great shots from this mission", title: "Photo gallery", bottomText: "See more", buttonText: "Open", buttonAction: {
                 self.modalPresented = true
             })
         })
         .padding()
         .sheet(isPresented: $modalPresented, content: {
-            // CrewSheet(crew: crew, modalShown: self.$modalPresented)
+            GallerySheet(modalShown: self.$modalPresented, launch: launch)
         })
         
     }
