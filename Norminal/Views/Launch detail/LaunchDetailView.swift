@@ -115,12 +115,16 @@ struct LaunchDetailView: View {
                                 .padding(.top, 24)
                                 .padding(.bottom, -8)
                             
-                            if (launch.links?.youtubeID ?? "").count > 0 {
-                                WebcastCard(launch: launch)
-                            }
-                            
                             if let crew = launch.getCrew() {
                                 CrewCard(crew: crew)
+                            }
+                            
+                            if (launch.links?.flickr?.originalImages?.count ?? 0 > 0) {
+                                GalleryCard(launch: launch)
+                            }
+                            
+                            if (launch.links?.youtubeID ?? "").count > 0 {
+                                WebcastCard(launch: launch)
                             }
                             
                             Spacer(minLength: 120)

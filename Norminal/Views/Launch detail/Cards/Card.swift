@@ -40,6 +40,7 @@ struct Card<Background: View, Content: View>: View {
             .scaleEffect(self.scale)
             .animation(.easeInOut)
             .onTapGesture {} // Otherwise you can't scroll the list anymore
+            .contentShape(Rectangle())
             .onLongPressGesture(minimumDuration: 10, pressing: { inProgress in
                 self.scale = inProgress ? 0.95 : 1
             }, perform: {

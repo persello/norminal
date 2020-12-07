@@ -8,76 +8,97 @@
 import SwiftUI
 import XCDYouTubeKit
 import AVKit
-import VideoPlayer
 import VisualEffects
 
+struct YouTubeVideoQuality {
+    static let hd720 = NSNumber(value: XCDYouTubeVideoQuality.HD720.rawValue)
+    static let medium360 = NSNumber(value: XCDYouTubeVideoQuality.medium360.rawValue)
+    static let small240 = NSNumber(value: XCDYouTubeVideoQuality.small240.rawValue)
+}
+
 struct WebcastSheet: View {
+    var launch: Launch
     @Binding var modalShown: Bool
     
     @State private var play: Bool = true
     @State private var time: CMTime = .zero
     
+    @State private var player: AVPlayer? = nil
+    
+    func getYoutubeLink() {
+        XCDYouTubeClient.default().getVideoWithIdentifier(launch.links?.youtubeID!) { (video, error) in
+            guard video != nil else {
+                // Handle error
+                return
+            }
+            //Do something with video
+            let link = video?.streamURLs[YouTubeVideoQuality.medium360]
+            if let l = link {
+                player = AVPlayer(url: l)
+                player?.automaticallyWaitsToMinimizeStalling = true
+                player?.allowsExternalPlayback = true
+                
+                // Override silent switch
+                try! AVAudioSession.sharedInstance().setCategory(.playback)
+                
+                // Push video title to "Now playing" info
+                var videoInfo = [String : Any]()
+                videoInfo[MPMediaItemPropertyTitle] = video?.title
+                
+                MPNowPlayingInfoCenter.default().nowPlayingInfo = videoInfo
+            }
+        }
+    }
+    
+    
+    
     var body: some View {
         NavigationView {
-            VStack {
-                ZStack {
-                    VideoPlayer(url: URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!, play: $play, time: $time)
-                    
+            Color(UIColor.systemGray6)
+                .ignoresSafeArea(edges: .all)
+                .overlay(
                     VStack {
-                        VisualEffectBlur(blurStyle: .systemThinMaterialDark, vibrancyStyle: .label) {
-                            HStack {
-                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                                    Image(systemName: "arrow.up.backward.and.arrow.down.forward")
+                        if let p = self.player {
+                            VideoPlayer(player: p)
+                                .aspectRatio(16/9, contentMode: .fit)
+                                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                                .padding()
+                                .onAppear(perform: {
+                                    self.player?.play()
                                 })
-                                Spacer()
-                                Text("Launch title")
-                                Spacer()
-                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                                    Image(systemName: "gear")
-                                })
-                            }
-                            .padding(4)
+                        } else {
+                            ProgressView()
+                                .padding()
                         }
-                        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                        .foregroundColor(.white)
-                        .frame(height: 30)
-                        .padding(6)
-
-                        
-                        Spacer()
-                        VisualEffectBlur(blurStyle: .systemThinMaterialDark, vibrancyStyle: .label) {
-                            HStack {
-                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                                    Image(systemName: "play.fill")
-                                })
-                                Slider(value: .constant(0.6))
+                        List {
+                            Section {
                                 
                             }
-                            .padding(4)
+                            Section {
+                                Link(destination: (launch.links?.webcast)!, label: {
+                                    Label("Watch on YouTube", systemImage: "play.rectangle.fill")
+                                })
+                            }
                         }
-                        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-                        .foregroundColor(.white)
-                        .frame(height: 30)
-                        .padding(6)
+                        .listStyle(InsetGroupedListStyle())
+                        Spacer()
                     }
-                }
-                .aspectRatio(1.78, contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                .padding()
-                Spacer()
-            }
-            .navigationBarTitle(Text("Launch webcast"), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                self.modalShown.toggle()
-            }) {
-                Text("Done").bold()
-            })
+                    .navigationBarTitle(Text("Launch webcast"), displayMode: .inline)
+                    .navigationBarItems(trailing: Button(action: {
+                        self.modalShown.toggle()
+                    }) {
+                        Text("Done").bold()
+                    })
+                    .onAppear(perform: {
+                        self.getYoutubeLink()
+                    })
+                )
         }
     }
 }
 
 struct WebcastSheet_Previews: PreviewProvider {
     static var previews: some View {
-        WebcastSheet(modalShown: .constant(true))
+        WebcastSheet(launch: FakeData.shared.crewDragon!, modalShown: .constant(true))
     }
 }

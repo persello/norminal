@@ -27,6 +27,7 @@
 		8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */; };
 		8B83E8B8253778C8002AE62B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8B7253778C8002AE62B /* Alamofire */; };
 		8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8BD25379B60002AE62B /* AstronautPicture.swift */; };
+		8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA90E12257D9AA200168722 /* GalleryCard.swift */; };
 		8BB522AC253EE194006A9511 /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB522AB253EE194006A9511 /* Astronaut.swift */; };
 		8BB522B1253EE685006A9511 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB522B0253EE685006A9511 /* AlamofireImage */; };
 		8BB5231825478833006A9511 /* CrewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231725478833006A9511 /* CrewCard.swift */; };
@@ -59,6 +60,7 @@
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
 		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
 		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
+		8BA90E12257D9AA200168722 /* GalleryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCard.swift; sourceTree = "<group>"; };
 		8BB522AB253EE194006A9511 /* Astronaut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Astronaut.swift; sourceTree = "<group>"; };
 		8BB5231725478833006A9511 /* CrewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewCard.swift; sourceTree = "<group>"; };
 		8BB5231A25485F09006A9511 /* Launchpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				8B83E8B025376A5D002AE62B /* WebcastCard.swift */,
 				8BB5231725478833006A9511 /* CrewCard.swift */,
 				8BB523272549E54F006A9511 /* MapCard.swift */,
+				8BA90E12257D9AA200168722 /* GalleryCard.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				8B46A5792530CE740084E52D /* Sources */,
 				8B46A57A2530CE740084E52D /* Frameworks */,
 				8B46A57B2530CE740084E52D /* Resources */,
+				8BA90E16257DA1B000168722 /* Increment build number */,
 			);
 			buildRules = (
 			);
@@ -298,6 +302,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8BA90E16257DA1B000168722 /* Increment build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increment build number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xcrun agvtool next-version -all\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8B46A5792530CE740084E52D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -319,6 +344,7 @@
 				8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */,
 				8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */,
 				8BB5231B25485F09006A9511 /* Launchpad.swift in Sources */,
+				8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */,
 				8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */,
 				8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */,
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,
@@ -453,7 +479,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -466,7 +492,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -476,7 +503,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -489,7 +516,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
