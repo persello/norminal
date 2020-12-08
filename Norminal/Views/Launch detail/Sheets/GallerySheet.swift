@@ -8,34 +8,10 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct ShareSheet: UIViewControllerRepresentable {
-    typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
-    
-    let activityItems: [Any]
-    let applicationActivities: [UIActivity]? = nil
-    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
-    let callback: Callback? = nil
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        let controller = UIActivityViewController(
-            activityItems: activityItems,
-            applicationActivities: applicationActivities)
-        controller.excludedActivityTypes = excludedActivityTypes
-        controller.completionWithItemsHandler = callback
-        return controller
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-        // nothing to do here
-    }
-}
-
 struct GallerySheet: View {
     @Binding var modalShown: Bool
     var launch: Launch
-    
-    @State var isSharing: Bool = false
-        
+            
     private let threeColumnGrid = Array(repeating: GridItem(.flexible(minimum: 60, maximum: 160), spacing: 2), count: 3)
     
     var body: some View {
@@ -46,17 +22,7 @@ struct GallerySheet: View {
                         ForEach((launch.links?.flickr?.originalImages)!, id: \.absoluteString) { imageURL in
                             GeometryReader { gr in
                                 NavigationLink(
-                                    destination:                                 WebImage(url: imageURL)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .navigationBarItems(trailing: Button(action: {
-                                            self.isSharing.toggle()
-                                        }) {
-                                            Image(systemName: "square.and.arrow.up")
-                                        })
-                                        .sheet(isPresented: $isSharing, content: {
-                                            ShareSheet(activityItems: [imageURL])
-                                        })
+                                    destination: PhotoSheet(imageURL: imageURL)
                                 ) {
                                     WebImage(url: imageURL)
                                         .resizable()
