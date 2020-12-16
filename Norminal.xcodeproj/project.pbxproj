@@ -39,7 +39,6 @@
 		8BBEEBE3258009EC00EA168A /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */; };
 		8BC7E6CA256728FA005E4304 /* XCDYouTubeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */; };
 		8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7E6CC25672966005E4304 /* WebcastSheet.swift */; };
-		8BC7E6D1256734A4005E4304 /* VideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = 8BC7E6D0256734A4005E4304 /* VideoPlayer */; };
 		8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85F82562FE07006144ED /* CrewSheet.swift */; };
 		8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85FC25631B56006144ED /* AstronautSheet.swift */; };
 /* End PBXBuildFile section */
@@ -90,7 +89,6 @@
 				8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */,
 				8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */,
 				8BB522B1253EE685006A9511 /* AlamofireImage in Frameworks */,
-				8BC7E6D1256734A4005E4304 /* VideoPlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +231,6 @@
 				8B46A5792530CE740084E52D /* Sources */,
 				8B46A57A2530CE740084E52D /* Frameworks */,
 				8B46A57B2530CE740084E52D /* Resources */,
-				8BA90E16257DA1B000168722 /* Increment build number */,
 			);
 			buildRules = (
 			);
@@ -248,7 +245,6 @@
 				8B83E8B7253778C8002AE62B /* Alamofire */,
 				8BB522B0253EE685006A9511 /* AlamofireImage */,
 				8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */,
-				8BC7E6D0256734A4005E4304 /* VideoPlayer */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -285,7 +281,6 @@
 				8B83E8B6253778C8002AE62B /* XCRemoteSwiftPackageReference "Alamofire" */,
 				8BB522AF253EE685006A9511 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */,
-				8BC7E6CF256734A4005E4304 /* XCRemoteSwiftPackageReference "VideoPlayer" */,
 			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
@@ -307,27 +302,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		8BA90E16257DA1B000168722 /* Increment build number */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Increment build number";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "xcrun agvtool next-version -all\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8B46A5792530CE740084E52D /* Sources */ = {
@@ -487,7 +461,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 101;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -511,7 +485,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 85;
+				CURRENT_PROJECT_VERSION = 101;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -609,14 +583,6 @@
 				minimumVersion = 2.15.0;
 			};
 		};
-		8BC7E6CF256734A4005E4304 /* XCRemoteSwiftPackageReference "VideoPlayer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/wxxsw/VideoPlayer";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.6;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -654,11 +620,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */;
 			productName = XCDYouTubeKit;
-		};
-		8BC7E6D0256734A4005E4304 /* VideoPlayer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BC7E6CF256734A4005E4304 /* XCRemoteSwiftPackageReference "VideoPlayer" */;
-			productName = VideoPlayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
