@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: increment_build_number" time="1.686727">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: build_app" time="218.792271">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: upload_to_testflight" time="296.973041">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
