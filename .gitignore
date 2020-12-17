@@ -1,0 +1,4 @@
+*.ipa
+*.dSYM.*
+/fastlane/report.xml
+/fastlane/FastlaneRunner

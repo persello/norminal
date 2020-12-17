@@ -309,6 +309,13 @@ struct Launch: Decodable {
     }
 
     // MARK: - Utility methods
+    var isNextLaunch: Bool {
+        if let nl = SpaceXData.shared.getNextLaunch() {
+            return self == nl
+        }
+        return false
+    }
+    
     func getLaunchpad() -> Launchpad? {
         
         if launchpad != nil {
@@ -403,6 +410,12 @@ struct Launch: Decodable {
 
 extension Launch: Identifiable {
     var id: Int { return flightNumber }
+}
+
+extension Launch: Equatable {
+    static func == (lhs: Launch, rhs: Launch) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 // MARK: - Date extension for getting individual components

@@ -66,6 +66,11 @@ final class SpaceXData: ObservableObject {
     static var shared = SpaceXData()
 
     // Methods
+    func getNextLaunch() -> Launch? {
+        return launches.first(where: {$0.upcoming})
+    }
+        
+    // Loading
     func loadLandpads() {
         AF.request("https://api.spacexdata.com/v4/landpads")
             .responseDecodable(of: [Landpad].self, decoder: CustomDecoder()) { [self] response in

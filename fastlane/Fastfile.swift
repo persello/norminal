@@ -11,21 +11,25 @@ import Foundation
 class Fastfile: LaneFile {
     func betaLane() {
         desc("Push a new beta build to TestFlight")
-        incrementBuildNumber(xcodeproj: "Norminal.xcodeproj")
-        buildApp(scheme: "Norminal")
         
         let changelog = prompt(text: "Changelog")
-        setChangelog(appIdentifier: appIdentifier, changelog: changelog)
+
+        incrementBuildNumber(xcodeproj: "Norminal.xcodeproj")
+        buildApp(scheme: "Norminal")
+
         uploadToTestflight(username: "riccardo.persello@icloud.com", groups: ["Group A", "Group B"])
+        setChangelog(appIdentifier: appIdentifier, changelog: changelog)
     }
     
     func alphaLane() {
         desc("Push a new alpha build to TestFlight")
+        
+        let changelog = prompt(text: "Changelog")
+
         incrementBuildNumber(xcodeproj: "Norminal.xcodeproj")
         buildApp(scheme: "Norminal")
         
-        let changelog = prompt(text: "Changelog")
-        setChangelog(appIdentifier: appIdentifier, changelog: changelog)
         uploadToTestflight(username: "riccardo.persello@icloud.com", groups: ["Group A"])
+        setChangelog(appIdentifier: appIdentifier, username: "riccardo.persello@icloud.com", changelog: changelog)
     }
 }

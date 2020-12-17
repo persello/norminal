@@ -14,7 +14,7 @@ struct LaunchView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(data.launches) { launch in
+                ForEach(data.launches.reversed()) { launch in
                     NavigationLink(destination: LaunchDetailView(launch: launch)) {
                         LaunchListTile(launch: launch)
                     }
