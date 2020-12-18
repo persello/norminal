@@ -15,8 +15,21 @@ struct LaunchView: View {
         NavigationView {
             List {
                 ForEach(data.launches.reversed()) { launch in
-                    NavigationLink(destination: LaunchDetailView(launch: launch)) {
-                        LaunchListTile(launch: launch)
+                    if(launch.isNextLaunch) {
+                        // Remove arrow in next launch
+                        ZStack {
+                            LaunchListTile(launch: launch)
+                            NavigationLink(destination: LaunchDetailView(launch:launch)) {
+                                EmptyView()
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .opacity(0.0)
+                        }
+                        
+                    } else {
+                        NavigationLink(destination: LaunchDetailView(launch: launch)) {
+                            LaunchListTile(launch: launch)
+                        }
                     }
                 }
 

@@ -115,6 +115,13 @@ struct LaunchDetailView: View {
                                 .padding(.top, 24)
                                 .padding(.bottom, -8)
                             
+                            if (launch.upcoming && launch.datePrecision == .hour) {
+                                LaunchCountdownView(launch: launch)
+                                    .shadow(radius: 24)
+                                    .scaledToFit()
+                                    .padding()
+                            }
+                            
                             if let crew = launch.getCrew() {
                                 CrewCard(crew: crew)
                             }
