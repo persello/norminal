@@ -10,34 +10,40 @@ import NavigationSearchBar
 
 struct LaunchView: View {
     @ObservedObject private var data = SpaceXData.shared
-
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(data.launches.reversed()) { launch in
-                    if(launch.isNextLaunch) {
-                        // Remove arrow in next launch
+                
+                // Next launch
+                if let nl = data.getNextLaunch() {
+                    Section(header: Text("Next launch")) {
                         ZStack {
-                            LaunchListTile(launch: launch)
-                            NavigationLink(destination: LaunchDetailView(launch:launch)) {
+                            LaunchListTile(launch: nl, showDetails: true)
+                            NavigationLink(destination: LaunchDetailView(launch: nl)) {
                                 EmptyView()
                             }
                             .buttonStyle(PlainButtonStyle())
                             .opacity(0.0)
                         }
-                        
-                    } else {
+                    }
+                }
+                
+                // Launch list
+                Section(header: Text("All launches")) {
+                    ForEach(data.launches.reversed()) { launch in
                         NavigationLink(destination: LaunchDetailView(launch: launch)) {
                             LaunchListTile(launch: launch)
                         }
+                        
                     }
                 }
-
+                
             }
-                .navigationBarTitle("Launches")
-                .navigationSearchBar(text: .constant(""))
+            .listStyle(GroupedListStyle())
+            .navigationBarTitle("Launches")
+            .navigationSearchBar(text: .constant(""))
         }
-        // .onAppear()
     }
 }
 

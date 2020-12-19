@@ -10,11 +10,12 @@ import SDWebImageSwiftUI
 
 struct LaunchListTile: View {
     @State var launch: Launch
-
+    var showDetails: Bool = false
+    
     var body: some View {
         VStack(alignment: .center) {
             HStack {
-            
+                
                 WebImage(url: launch.links?.patch?.large)
                     .resizable()
                     .placeholder {
@@ -29,7 +30,7 @@ struct LaunchListTile: View {
                     .indicator(Indicator.activity)
                     .frame(width: 70, height: 70)
                     .padding(4)
-
+                
                 VStack(alignment: .leading) {
                     Text(launch.name)
                         .font(.headline)
@@ -49,7 +50,7 @@ struct LaunchListTile: View {
                 Spacer()
                 
                 // Show arrow in right place
-                if(launch.isNextLaunch) {
+                if(showDetails) {
                     Image(systemName: "chevron.forward")
                         .font(Font.caption.weight(.semibold))
                         .foregroundColor(Color(UIColor.tertiaryLabel))
@@ -57,8 +58,7 @@ struct LaunchListTile: View {
                 }
             }
             
-            if(launch.isNextLaunch) {
-//            if(true) {
+            if(showDetails) {
                 LaunchCountdownView(launch: launch)
                     .shadow(color: Color.black.opacity(0.2), radius: 12)
                     .padding(.top, 16)
@@ -70,7 +70,7 @@ struct LaunchListTile: View {
 
 struct LaunchListTile_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchListTile(launch: SpaceXData.shared.getNextLaunch() ?? FakeData.shared.crewDragon!)
+        LaunchListTile(launch: SpaceXData.shared.getNextLaunch() ?? FakeData.shared.crewDragon!, showDetails: true)
             .frame(width: 350, height: 150, alignment: .center)
             .previewLayout(.fixed(width: 350, height: 400))
     }
@@ -82,15 +82,77 @@ struct LaunchCountdownView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack(alignment: .lastTextBaseline) {
-                Text("T-")
-                    .lineLimit(1)
-                    .font(.system(size: 24, weight: .bold, design: .rounded))
-                    .foregroundColor(.gray)
-                    .padding(.trailing, -8)
-                Text(launch.dateUTC, style: .timer)
-                    .lineLimit(1)
-                    .font(.system(size: 48, weight: .bold, design: .rounded))
-                    .minimumScaleFactor(0.04)
+                switch launch.datePrecision {
+                case LaunchDatePrecision.year,
+                     LaunchDatePrecision.halfYear,
+                     LaunchDatePrecision.quarterYear:
+                    let years =
+                        abs(ceil(launch.dateUTC.timeIntervalSinceNow/(365*24*3600)))
+                    
+                    if(years != 0) {
+                    Text("\(launch.dateUTC < Date() ? "" : "in")")
+                        .lineLimit(1)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.gray)
+                        Text("\(years, specifier: "%.0f")")
+                            .lineLimit(1)
+                            .font(.system(size: 48, weight: .bold, design: .rounded))
+                            .minimumScaleFactor(0.04)
+                    }
+                    Text("\(years == 0 ? "this " : "")year\(years > 1 ? "s": "") \(launch.dateUTC < Date() && years != 0 ? "ago" : "")")
+                        .lineLimit(1)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.gray)
+                case LaunchDatePrecision.month:
+                    let months =
+                        abs(ceil(launch.dateUTC.timeIntervalSinceNow/(30*24*3600)))
+                    
+                    if(months != 0) {
+                    Text("\(launch.dateUTC < Date() ? "" : "in")")
+                        .lineLimit(1)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.gray)
+                        Text("\(months, specifier: "%.0f")")
+                            .lineLimit(1)
+                            .font(.system(size: 48, weight: .bold, design: .rounded))
+                            .minimumScaleFactor(0.04)
+                    }
+                    Text("\(months == 0 ? "this " : "")month\(months > 1 ? "s": "") \(launch.dateUTC < Date() && months != 0 ? "ago" : "")")
+                        .lineLimit(1)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.gray)
+                    
+                case LaunchDatePrecision.day:
+                    let days =
+                        abs(ceil(launch.dateUTC.timeIntervalSinceNow/(24*3600)))
+                    
+                    if(days != 0) {
+                    Text("\(launch.dateUTC < Date() ? "" : "in")")
+                        .lineLimit(1)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.gray)
+                        Text("\(days, specifier: "%.0f")")
+                            .lineLimit(1)
+                            .font(.system(size: 48, weight: .bold, design: .rounded))
+                            .minimumScaleFactor(0.04)
+                    }
+                    Text("\(days == 0 ? "to" : "")day\(days > 1 ? "s": "") \(launch.dateUTC < Date() && days != 0 ? "ago" : "")")
+                        .lineLimit(1)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.gray)
+                    
+                case LaunchDatePrecision.hour:
+                    Text("T\(launch.dateUTC < Date() ? "+" : "-")")
+                        .lineLimit(1)
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.gray)
+                        .padding(.trailing, -8)
+                    Text(launch.dateUTC, style: .timer)
+                        .lineLimit(1)
+                        .font(.system(size: 48, weight: .bold, design: .rounded))
+                        .minimumScaleFactor(0.04)
+                    
+                }
             }
             .padding([.bottom], -2)
             Divider()
@@ -136,5 +198,8 @@ struct LaunchCountdownView: View {
         .padding(.bottom, 16)
         .background(Color(UIColor.systemGray6))
         .clipShape(RoundedRectangle(cornerRadius: 24.0, style: .continuous))
+        .onAppear {
+            launch.datePrecision = LaunchDatePrecision.year
+        }
     }
 }
