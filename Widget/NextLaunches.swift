@@ -1,6 +1,6 @@
 //
-//  NextLaunches.swift
-//  NextLaunches
+//  NorminalWidget.swift
+//  NorminalWidget
 //
 //  Created by Riccardo Persello on 19/12/2020.
 //
@@ -16,7 +16,7 @@ struct Provider: TimelineProvider {
    Refresh: usually 1 hour,
    1 minute in the half hour before a launch,
    5 minutes in the two hours before and after a launch
-   15 minutes in the 24 hours after a launch, or until a background image is found
+   20 minutes otherwise
    
    Relevance: TBD
    
@@ -26,26 +26,136 @@ struct Provider: TimelineProvider {
    Otherwise, the interesting launch will be active for a day and a half.
    */
   
+  func minimumDateDistance(date: Date, dateList: [Date]) -> Double? {
+    var min: Double?
+    var am: Double?
+    
+    for d in dateList {
+      let m = min ?? .infinity
+      let difference = date.timeIntervalSince(d)
+      if difference < m {
+        min = abs(difference)
+        am = difference
+      }
+    }
+    
+    return am
+  }
+  
+  func generateRefreshDates() -> [Date] {
+    let upcomingLaunchDates = SpaceXData.shared.launches.filter({$0.upcoming}).map({return $0.dateUTC})
+    
+    var refreshDates: [Date] = []
+    
+    // Generate two days of entries
+    for minute in 0..<60*48 {
+      let d = Date() + (Double(minute) * 60.0)
+      
+      if (-30 * 60)...0 ~= minimumDateDistance(date: d, dateList: upcomingLaunchDates) ?? .infinity {
+        
+        // Half hour before a launch
+        refreshDates.append(d)
+        
+      } else if (-120 * 60)...(120 * 60) ~= minimumDateDistance(date: d, dateList: upcomingLaunchDates) ?? .infinity {
+        
+        // Two hours before/after a launch
+        if minute % 5 == 0 {
+          // Append every five minutes
+          refreshDates.append(d)
+        }
+        
+      } else {
+        
+        // Always
+        if minute % 20 == 0 {
+          // Append a minute every 20
+          refreshDates.append(d)
+        }
+      }
+    }
+    
+    return refreshDates
+  }
+  
+  func generateEntry(_ date: Date) -> SimpleEntry {
+    
+    var interestingLaunch: Launch?
+    
+    // MARK: Get two launches
+    let nextLaunch = SpaceXData.shared.getNextLaunch()
+    var launchBefore: Launch?
+    
+    if nextLaunch == nil {
+      // No next: before is last
+      launchBefore = SpaceXData.shared.launches.last
+    } else {
+      if let nlindex = SpaceXData.shared.launches.lastIndex(of: nextLaunch!) {
+        // The real before
+        let lbindex = SpaceXData.shared.launches.index(before: nlindex)
+        launchBefore = SpaceXData.shared.launches[lbindex]
+      } else {
+        // No next: before is last
+        launchBefore = SpaceXData.shared.launches.last
+      }
+    }
+    
+    // MARK: Get interesting launch
+    if nextLaunch?.dateUTC != nil && launchBefore?.dateUTC != nil {
+      let delta = nextLaunch!.dateUTC.timeIntervalSince(launchBefore!.dateUTC)
+      var discriminator: Double = 36 * 3600
+      
+      if delta < 48 * 3600 {
+        // Less than two days between launches
+        discriminator = delta * 2 / 5
+      }
+      
+      if date < (launchBefore?.dateUTC)! + discriminator {
+        // This launch is interesting
+        interestingLaunch = launchBefore
+      } else {
+        interestingLaunch = nextLaunch
+      }
+    }
+    
+    // MARK: Getting bg and patch
+    var bg: UIImage?
+    var patch: UIImage?
+    
+    interestingLaunch?.getPatch { image in
+      patch = image
+    }
+    
+    interestingLaunch?.getImage(atIndex: 0) { image in
+      bg = image
+    }
+    
+    
+    return SimpleEntry(date: date, interestingLaunch: interestingLaunch, backgroundImage: bg, missionPatch: patch)
+  }
+  
   func placeholder(in context: Context) -> SimpleEntry {
     SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: nil, missionPatch: nil)
   }
   
   func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-    let entry = SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch)
+    var entry: Provider.Entry
+    if context.isPreview {
+      entry = SimpleEntry(date: SampleData.shared.launch.dateUTC.addingTimeInterval(-2400), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch)
+    } else {
+     entry = generateEntry(Date())
+    }
     completion(entry)
   }
   
   func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-    var entries: [SimpleEntry] = [SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch)]
+    var entries: [SimpleEntry] = [generateEntry(Date())]
     
-    // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-    let currentDate = Date()
-    for hourOffset in 0 ..< 5 {
-      let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-      let entry = SimpleEntry(date: entryDate, interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch)
-      entries.append(entry)
+    // Generate entries accordingly with generated dates
+    for date in generateRefreshDates() {
+      entries.append(generateEntry(date))
     }
     
+    // Generate timeline every four hours
     let timeline = Timeline(entries: entries, policy: .atEnd)
     completion(timeline)
   }
@@ -58,7 +168,7 @@ struct SimpleEntry: TimelineEntry {
   let missionPatch: UIImage?
 }
 
-struct NextLaunchesEntryView: View {
+struct NorminalWidgetEntryView: View {
   var entry: Provider.Entry
   @Environment(\.widgetFamily) var family
   
@@ -66,7 +176,7 @@ struct NextLaunchesEntryView: View {
   var body: some View {
     //    switch family {
     //      case .systemSmall:
-    NextLaunchesSmallWidget(entry: entry)
+    NorminalWidgetSmallWidget(entry: entry)
     //      case .systemMedium:
     //        EmptyView()
     //      case .systemLarge:
@@ -78,12 +188,12 @@ struct NextLaunchesEntryView: View {
 }
 
 @main
-struct NextLaunches: Widget {
-  let kind: String = "NextLaunches"
+struct NorminalWidget: Widget {
+  let kind: String = "NorminalWidget"
   
   var body: some WidgetConfiguration {
     StaticConfiguration(kind: kind, provider: Provider()) { entry in
-      NextLaunchesEntryView(entry: entry)
+      NorminalWidgetEntryView(entry: entry)
     }
     .configurationDisplayName("Launches")
     .description("Shows recent and upcoming rocket launches.")
@@ -109,27 +219,27 @@ class SampleData {
   }
 }
 
-struct NextLaunches_Previews: PreviewProvider {
+struct NorminalWidget_Previews: PreviewProvider {
   static var previews: some View {
     
     
     Group {
-      NextLaunchesEntryView(entry: SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch))
+      NorminalWidgetEntryView(entry: SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch))
         .previewContext(WidgetPreviewContext(family: .systemSmall))
       
-      NextLaunchesEntryView(entry: SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch))        .previewContext(WidgetPreviewContext(family: .systemSmall))
+      NorminalWidgetEntryView(entry: SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch))        .previewContext(WidgetPreviewContext(family: .systemSmall))
         .colorScheme(.dark)
       
-      NextLaunchesEntryView(entry: SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: nil, missionPatch: SampleData.shared.patch))        .previewContext(WidgetPreviewContext(family: .systemSmall))
+      NorminalWidgetEntryView(entry: SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: nil, missionPatch: SampleData.shared.patch))        .previewContext(WidgetPreviewContext(family: .systemSmall))
       
-      NextLaunchesEntryView(entry: SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch))        .previewContext(WidgetPreviewContext(family: .systemSmall))
+      NorminalWidgetEntryView(entry: SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch))        .previewContext(WidgetPreviewContext(family: .systemSmall))
         .redacted(reason: .placeholder)
     }
   }
 }
 
 // MARK: - Subviews
-struct NextLaunchesSmallWidget: View {
+struct NorminalWidgetSmallWidget: View {
   var entry: Provider.Entry
   
   var body: some View {
@@ -263,7 +373,7 @@ struct SmallBeforeDuringLaunchContent: View {
         
         Spacer()
         
-        ClockCountdownView(launchDate: launch.dateUTC)
+        ClockCountdownView(launch: launch)
       }
       .padding(.all, 12)
       .background(Color(UIColor.systemGray6))
@@ -282,10 +392,12 @@ struct PatchAndDetailsView: View {
           .resizable()
           .frame(width: 52, height: 52)
       } else {
-        Circle()
-          .foregroundColor(Color(UIColor.systemGray5))
-          .redacted(reason: .placeholder)
+        
+        Image(systemName: "xmark.seal")
+          .foregroundColor(.gray)
+          .font(.system(size: 40, weight: .thin))
           .frame(width: 52, height: 52)
+          .background(Circle().foregroundColor(Color(UIColor.systemGray6)))
       }
       
       VStack(alignment: .leading) {
@@ -331,9 +443,11 @@ struct PatchAndDetailsView: View {
 }
 
 struct ClockCountdownView: View {
-  var launchDate: Date
+  var launch: Launch
   
+
   var body: some View {
+    let launchDate = launch.dateUTC
     if(launchDate > Date() - 48*3600 && launchDate < Date() + 3600) {
       // Show countdown two days before and an hour after
       HStack(alignment: .lastTextBaseline) {
@@ -346,7 +460,7 @@ struct ClockCountdownView: View {
           .font(.system(size: 18, weight: .semibold, design: .rounded))
       }
     } else {
-      Text(launchDate, style: .date)
+      Text(launch.getNiceDate(usePrecision: true))
         .font(.system(size: 18, weight: .semibold, design: .rounded))
         .minimumScaleFactor(0.3)
     }

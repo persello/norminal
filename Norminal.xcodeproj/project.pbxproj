@@ -15,7 +15,7 @@
 		8B208B8A258EBC6A009107EC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B208B89258EBC6A009107EC /* SwiftUI.framework */; };
 		8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B208B8C258EBC6A009107EC /* NextLaunches.swift */; };
 		8B208B8F258EBC6C009107EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B208B8E258EBC6C009107EC /* Assets.xcassets */; };
-		8B208B93258EBC6C009107EC /* nextlaunchesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8B208B85258EBC6A009107EC /* nextlaunchesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8B208B93258EBC6C009107EC /* NorminalWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8B208B85258EBC6A009107EC /* NorminalWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8B208B9A258ECBDB009107EC /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
 		8B208B9D258ECC07009107EC /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5B02531EA730084E52D /* Launch.swift */; };
 		8B208BA0258ECC28009107EC /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB522AB253EE194006A9511 /* Astronaut.swift */; };
@@ -56,6 +56,7 @@
 		8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7E6CC25672966005E4304 /* WebcastSheet.swift */; };
 		8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85F82562FE07006144ED /* CrewSheet.swift */; };
 		8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85FC25631B56006144ED /* AstronautSheet.swift */; };
+		8BEC14BD259144A700D8716C /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 8BEC14BC259144A700D8716C /* Sentry */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +76,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8B208B93258EBC6C009107EC /* nextlaunchesExtension.appex in Embed App Extensions */,
+				8B208B93258EBC6C009107EC /* NorminalWidget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +86,7 @@
 /* Begin PBXFileReference section */
 		8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapCard.swift; sourceTree = "<group>"; };
 		8B0D1D78253365660056FACA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		8B208B85258EBC6A009107EC /* nextlaunchesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = nextlaunchesExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B208B85258EBC6A009107EC /* NorminalWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NorminalWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B208B87258EBC6A009107EC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8B208B89258EBC6A009107EC /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		8B208B8C258EBC6A009107EC /* NextLaunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLaunches.swift; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 				8B83E8B8253778C8002AE62B /* Alamofire in Frameworks */,
 				8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */,
 				8B0D1D3825324E090056FACA /* SDWebImageSwiftUI in Frameworks */,
+				8BEC14BD259144A700D8716C /* Sentry in Frameworks */,
 				8BC7E6CA256728FA005E4304 /* XCDYouTubeKit in Frameworks */,
 				8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */,
 				8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */,
@@ -162,14 +164,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8B208B8B258EBC6A009107EC /* nextlaunches */ = {
+		8B208B8B258EBC6A009107EC /* Widget */ = {
 			isa = PBXGroup;
 			children = (
 				8B208B8C258EBC6A009107EC /* NextLaunches.swift */,
 				8B208B8E258EBC6C009107EC /* Assets.xcassets */,
 				8B208B90258EBC6C009107EC /* Info.plist */,
 			);
-			path = nextlaunches;
+			path = Widget;
 			sourceTree = "<group>";
 		};
 		8B46A5742530CE740084E52D = {
@@ -178,7 +180,7 @@
 				8B46A57F2530CE740084E52D /* Norminal */,
 				8BB5232125489827006A9511 /* res */,
 				8BB5232025489817006A9511 /* README.md */,
-				8B208B8B258EBC6A009107EC /* nextlaunches */,
+				8B208B8B258EBC6A009107EC /* Widget */,
 				8B208B86258EBC6A009107EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -187,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				8B46A57D2530CE740084E52D /* Norminal.app */,
-				8B208B85258EBC6A009107EC /* nextlaunchesExtension.appex */,
+				8B208B85258EBC6A009107EC /* NorminalWidget.appex */,
 			);
 			name = Products;
 			path = ..;
@@ -304,9 +306,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8B208B84258EBC6A009107EC /* nextlaunchesExtension */ = {
+		8B208B84258EBC6A009107EC /* NorminalWidget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B208B97258EBC6C009107EC /* Build configuration list for PBXNativeTarget "nextlaunchesExtension" */;
+			buildConfigurationList = 8B208B97258EBC6C009107EC /* Build configuration list for PBXNativeTarget "NorminalWidget" */;
 			buildPhases = (
 				8B208B81258EBC6A009107EC /* Sources */,
 				8B208B82258EBC6A009107EC /* Frameworks */,
@@ -316,7 +318,7 @@
 			);
 			dependencies = (
 			);
-			name = nextlaunchesExtension;
+			name = NorminalWidget;
 			packageProductDependencies = (
 				8B208BA6258ECC4E009107EC /* Alamofire */,
 				8B208BA8258ECC4E009107EC /* AlamofireImage */,
@@ -324,7 +326,7 @@
 				8B208BB3258ED407009107EC /* SDWebImage */,
 			);
 			productName = nextlaunchesExtension;
-			productReference = 8B208B85258EBC6A009107EC /* nextlaunchesExtension.appex */;
+			productReference = 8B208B85258EBC6A009107EC /* NorminalWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		8B46A57C2530CE740084E52D /* Norminal */ = {
@@ -335,6 +337,7 @@
 				8B46A57A2530CE740084E52D /* Frameworks */,
 				8B46A57B2530CE740084E52D /* Resources */,
 				8B208B94258EBC6C009107EC /* Embed App Extensions */,
+				8BEC14C025914D0A00D8716C /* Sentry */,
 			);
 			buildRules = (
 			);
@@ -350,6 +353,7 @@
 				8B83E8B7253778C8002AE62B /* Alamofire */,
 				8BB522B0253EE685006A9511 /* AlamofireImage */,
 				8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */,
+				8BEC14BC259144A700D8716C /* Sentry */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -390,13 +394,14 @@
 				8BB522AF253EE685006A9511 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */,
 				8B208BB2258ED407009107EC /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				8BEC14BB259144A700D8716C /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				8B46A57C2530CE740084E52D /* Norminal */,
-				8B208B84258EBC6A009107EC /* nextlaunchesExtension */,
+				8B208B84258EBC6A009107EC /* NorminalWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -420,6 +425,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8BEC14C025914D0A00D8716C /* Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Sentry;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Assumes you're in a git repository\nexport SENTRY_AUTH_TOKEN=efad303f07e54c3c8d5ff9095ba839e891b3c34b6b6541649abba34dd5cdcf0e\nexport SENTRY_ORG=riccardo-persello\nVERSION=$(sentry-cli releases propose-version)\n\n# Create a release\nsentry-cli releases new -p norminal $VERSION\n\n# Associate commits with the release\nsentry-cli releases set-commits --auto $VERSION\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8B208B81258EBC6A009107EC /* Sources */ = {
@@ -473,7 +499,7 @@
 /* Begin PBXTargetDependency section */
 		8B208B92258EBC6C009107EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8B208B84258EBC6A009107EC /* nextlaunchesExtension */;
+			target = 8B208B84258EBC6A009107EC /* NorminalWidget */;
 			targetProxy = 8B208B91258EBC6C009107EC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -484,10 +510,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 108;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
-				INFOPLIST_FILE = nextlaunches/Info.plist;
+				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -496,6 +523,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -507,10 +535,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 108;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
-				INFOPLIST_FILE = nextlaunches/Info.plist;
+				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -519,6 +548,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -648,7 +678,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 108;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -673,7 +703,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 105;
+				CURRENT_PROJECT_VERSION = 108;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -694,7 +724,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8B208B97258EBC6C009107EC /* Build configuration list for PBXNativeTarget "nextlaunchesExtension" */ = {
+		8B208B97258EBC6C009107EC /* Build configuration list for PBXNativeTarget "NorminalWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8B208B95258EBC6C009107EC /* Debug */,
@@ -788,6 +818,14 @@
 				minimumVersion = 2.15.0;
 			};
 		};
+		8BEC14BB259144A700D8716C /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.12;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -845,6 +883,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */;
 			productName = XCDYouTubeKit;
+		};
+		8BEC14BC259144A700D8716C /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BEC14BB259144A700D8716C /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

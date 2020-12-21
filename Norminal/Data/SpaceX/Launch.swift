@@ -320,6 +320,10 @@ struct Launch: Decodable {
   }
   
   func getImage(atIndex index: Int, handler: @escaping (UIImage) -> Void) {
+    guard index < (links?.flickr?.originalImages?.count ?? 0) - 1 else {
+      return
+    }
+    
     if let imageURL = links?.flickr?.originalImages?[index] {
       AF.request(imageURL).responseImage(inflateResponseImage: false, completionHandler: { response in
         if case .success(let image) = response.result {
