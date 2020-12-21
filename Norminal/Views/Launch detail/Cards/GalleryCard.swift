@@ -25,7 +25,7 @@ struct GalleryCard: View {
                         GeometryReader { gr in
                             let numberOfPictures = launch.links?.flickr?.originalImages?.count ?? 0
                             if(numberOfPictures > 0) {
-                                WebImage(url: launch.links?.flickr?.originalImages![index % numberOfPictures])
+                              WebImage(url: launch.links?.flickr?.originalImages![index % numberOfPictures])
                                     .resizable()
                                     .scaledToFill()
                                     .frame(height: gr.size.width)

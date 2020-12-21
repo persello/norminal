@@ -7,6 +7,7 @@
 
 import SwiftUI
 import os
+import WidgetKit
 
 // MARK: - UI
 
@@ -15,6 +16,9 @@ struct NorminalApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+              .onAppear {
+                WidgetCenter.shared.reloadAllTimelines()
+              }
         }
     }
 }

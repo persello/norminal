@@ -485,6 +485,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 105;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = nextlaunches/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -493,7 +494,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.nextlaunches;
+				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -507,6 +508,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 105;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = nextlaunches/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -515,7 +517,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.nextlaunches;
+				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

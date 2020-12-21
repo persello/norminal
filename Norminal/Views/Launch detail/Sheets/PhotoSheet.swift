@@ -52,7 +52,7 @@ struct PhotoSheet: View {
     }
     
     var body: some View {
-        WebImage(url: imageURL)
+      WebImage(url: imageURL)
             .resizable()
             .scaledToFit()
             .navigationBarItems(trailing: Button(action: {

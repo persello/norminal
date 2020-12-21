@@ -24,7 +24,7 @@ struct GallerySheet: View {
                                 NavigationLink(
                                     destination: PhotoSheet(imageURL: imageURL)
                                 ) {
-                                    WebImage(url: imageURL)
+                                  WebImage(url: imageURL)
                                         .resizable()
                                         .scaledToFill()
                                         .frame(height: gr.size.width)

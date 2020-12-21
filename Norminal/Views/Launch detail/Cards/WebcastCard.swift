@@ -33,7 +33,7 @@ struct WebcastCard: View {
     var body: some View {
         Card(background: {
             if thumbnailLink != nil {
-                WebImage(url: thumbnailLink)
+              WebImage(url: thumbnailLink)
                     .resizable()
                     .placeholder(content: {
                         Color(UIColor.systemGray5)
