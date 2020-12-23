@@ -2,3 +2,4 @@
 *.dSYM.*
 /fastlane/report.xml
 /fastlane/FastlaneRunner
+/GoogleService-Info.plist

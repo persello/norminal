@@ -121,14 +121,21 @@ struct Provider: TimelineProvider {
     var bg: UIImage?
     var patch: UIImage?
     
+    let group = DispatchGroup()
+    
+    group.enter()
     interestingLaunch?.getPatch { image in
       patch = image
+      group.leave()
     }
     
+    group.enter()
     interestingLaunch?.getImage(atIndex: 0) { image in
       bg = image
+      group.leave()
     }
     
+    let _ = group.wait(timeout: DispatchTime.now() + 5.0)
     
     return SimpleEntry(date: date, interestingLaunch: interestingLaunch, backgroundImage: bg, missionPatch: patch)
   }
@@ -156,7 +163,7 @@ struct Provider: TimelineProvider {
     }
     
     // Generate timeline every four hours
-    let timeline = Timeline(entries: entries, policy: .atEnd)
+    let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(3600 * 6)))
     completion(timeline)
   }
 }
@@ -392,12 +399,11 @@ struct PatchAndDetailsView: View {
           .resizable()
           .frame(width: 52, height: 52)
       } else {
-        
         Image(systemName: "xmark.seal")
           .foregroundColor(.gray)
           .font(.system(size: 40, weight: .thin))
           .frame(width: 52, height: 52)
-          .background(Circle().foregroundColor(Color(UIColor.systemGray6)))
+          .background(Circle().foregroundColor(Color(UIColor.systemGray5)))
       }
       
       VStack(alignment: .leading) {
@@ -445,7 +451,6 @@ struct PatchAndDetailsView: View {
 struct ClockCountdownView: View {
   var launch: Launch
   
-
   var body: some View {
     let launchDate = launch.dateUTC
     if(launchDate > Date() - 48*3600 && launchDate < Date() + 3600) {

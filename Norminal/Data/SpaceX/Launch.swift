@@ -282,6 +282,8 @@ struct Launch: Decodable {
   /// UUID string
   public var idstring: String?
   
+  private let imageCache = NSCache<NSString, UIImage>()
+  
   enum CodingKeys: String, CodingKey {
     case flightNumber = "flight_number"
     case name = "name"
@@ -319,25 +321,40 @@ struct Launch: Decodable {
     return false
   }
   
-  func getImage(atIndex index: Int, handler: @escaping (UIImage) -> Void) {
+  func getImage(atIndex index: Int, handler: @escaping (UIImage?) -> Void) {
     guard index < (links?.flickr?.originalImages?.count ?? 0) - 1 else {
       return
     }
-    
+        
     if let imageURL = links?.flickr?.originalImages?[index] {
+      if let image = imageCache.object(forKey: imageURL.absoluteString as NSString) {
+        handler(image)
+        return
+      }
+
       AF.request(imageURL).responseImage(inflateResponseImage: false, completionHandler: { response in
         if case .success(let image) = response.result {
+          imageCache.setObject(image, forKey: imageURL.absoluteString as NSString)
           handler(image)
+        } else {
+          handler(nil)
         }
       })
     }
   }
   
-  func getPatch(_ handler: @escaping (UIImage) -> Void) {
+  func getPatch(_ handler: @escaping (UIImage?) -> Void) {
     if let patchURL = links?.patch?.large {
+      if let image = imageCache.object(forKey: patchURL.absoluteString as NSString) {
+        handler(image)
+        return
+      }
       AF.request(patchURL).responseImage(inflateResponseImage: false, completionHandler: { response in
         if case .success(let image) = response.result {
+          imageCache.setObject(image, forKey: patchURL.absoluteString as NSString)
           handler(image)
+        } else {
+          handler(nil)
         }
       })
     }
@@ -455,5 +472,4 @@ extension Date {
   func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
     return calendar.component(component, from: self)
   }
-  
 }
