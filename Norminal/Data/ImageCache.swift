@@ -74,7 +74,7 @@ struct ImageCache {
     // Try to delete old file
     if let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask).first {
       
-      let filename = cacheDir.appendingPathComponent("\(key).jpeg.cache")
+      let filename = cacheDir.appendingPathComponent("\(key).png.cache")
       if FileManager.default.fileExists(atPath: filename.absoluteString) {
         do {
           try FileManager.default.removeItem(at: filename)
@@ -96,8 +96,8 @@ struct ImageCache {
     
     // Save to disk
     if let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask).first {
-      if let data = image.jpegData(compressionQuality: 0.8) {
-        let filename = cacheDir.appendingPathComponent("\(key).jpeg.cache")
+      if let data = image.pngData() {
+        let filename = cacheDir.appendingPathComponent("\(key).png.cache")
         do {
           try data.write(to: filename)
         } catch {
@@ -120,7 +120,7 @@ struct ImageCache {
     
     // Try from disk
     if let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .allDomainsMask).first {
-      let filename = cacheDir.appendingPathComponent("\(key).jpeg.cache")
+      let filename = cacheDir.appendingPathComponent("\(key).png.cache")
       if let image = UIImage(contentsOfFile: filename.path) {
         return image
       }
