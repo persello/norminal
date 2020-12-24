@@ -37,6 +37,8 @@
 		8B46A5A0253118160084E52D /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
 		8B46A5B22531EA730084E52D /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5B02531EA730084E52D /* Launch.swift */; };
 		8B46A5B32531EA730084E52D /* SpaceXData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5B12531EA730084E52D /* SpaceXData.swift */; };
+		8B4E957F2594F58600F9668E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4E957E2594F58600F9668E /* ImageCache.swift */; };
+		8B4E9582259502C900F9668E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4E957E2594F58600F9668E /* ImageCache.swift */; };
 		8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B511097257ED4950097BC0D /* GallerySheet.swift */; };
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
@@ -103,6 +105,7 @@
 		8B46A59F253118160084E52D /* FakeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
 		8B46A5B02531EA730084E52D /* Launch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		8B46A5B12531EA730084E52D /* SpaceXData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceXData.swift; sourceTree = "<group>"; };
+		8B4E957E2594F58600F9668E /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		8B511097257ED4950097BC0D /* GallerySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySheet.swift; sourceTree = "<group>"; };
 		8B69255A253206E900D61C3F /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
@@ -199,9 +202,9 @@
 				8B83E8AC253769BD002AE62B /* Views */,
 				8B46A5AE2531EA730084E52D /* Data */,
 				8B46A5802530CE740084E52D /* NorminalApp.swift */,
+				8B46A59F253118160084E52D /* FakeData.swift */,
 				8B46A5842530CE760084E52D /* Assets.xcassets */,
 				8B46A5892530CE760084E52D /* Info.plist */,
-				8B46A59F253118160084E52D /* FakeData.swift */,
 				8B46A57E2530CE740084E52D /* Products */,
 				8B46A5862530CE760084E52D /* Preview Content */,
 			);
@@ -220,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				8B46A5AF2531EA730084E52D /* SpaceX */,
+				8B4E957E2594F58600F9668E /* ImageCache.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -253,10 +257,10 @@
 			children = (
 				8B46A5822530CE740084E52D /* MainView.swift */,
 				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
-				8B83E8AD253769F4002AE62B /* Launch list */,
-				8B83E8AE25376A07002AE62B /* Launch detail */,
 				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
 				8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */,
+				8B83E8AD253769F4002AE62B /* Launch list */,
+				8B83E8AE25376A07002AE62B /* Launch detail */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -449,6 +453,7 @@
 			files = (
 				8B208B9A258ECBDB009107EC /* FakeData.swift in Sources */,
 				8B208BA3258ECC28009107EC /* Launchpad.swift in Sources */,
+				8B4E9582259502C900F9668E /* ImageCache.swift in Sources */,
 				8B208BA2258ECC28009107EC /* SpaceXData.swift in Sources */,
 				8B208B9D258ECC07009107EC /* Launch.swift in Sources */,
 				8B208BA1258ECC28009107EC /* Landpad.swift in Sources */,
@@ -475,6 +480,7 @@
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
 				8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */,
 				8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */,
+				8B4E957F2594F58600F9668E /* ImageCache.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
 				8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */,
 				8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */,

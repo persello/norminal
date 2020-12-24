@@ -176,23 +176,23 @@ struct Provider: TimelineProvider {
   func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
     logger.debug("Generating timeline.")
     
-    var entries: [SimpleEntry] = []
+    var entries = Array<SimpleEntry>()
     
-//    let queue = OperationQueue()
-//    queue.name = "com.persello.norminal.widget.concurrentTimelineGeneration"
-//    queue.qualityOfService = .background
-//    queue.maxConcurrentOperationCount = 48
+    let queue = OperationQueue()
+    queue.name = "com.persello.norminal.widget.concurrentTimelineGeneration"
+    queue.qualityOfService = .background
+    queue.maxConcurrentOperationCount = 48
     
     // Generate entries accordingly with generated dates
     for date in generateRefreshDates() {
-      // queue.addOperation {
+      queue.addOperation {
         entries.append(generateEntry(date))
-      // }
+      }
     }
     
-    // queue.waitUntilAllOperationsAreFinished()
+    queue.waitUntilAllOperationsAreFinished()
     
-//    logger.debug("Timeline queue finished.")
+    logger.debug("Timeline queue finished.")
     
     // Generate timeline every four hours
     let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(3600 * 6)))

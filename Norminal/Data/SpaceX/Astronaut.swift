@@ -7,8 +7,6 @@
 
 import Foundation
 import SwiftUI
-import Alamofire
-import AlamofireImage
 import os
 
 /// Represents an astronaut
@@ -51,22 +49,6 @@ struct Astronaut: Decodable {
   func getInitials() -> String {
     let components = self.name.components(separatedBy: " ")
     return "\((components.first?.first)!)\((components.last?.first)!)"
-  }
-  
-  /// Returns the astronaut image in a closure
-  func getImage(_ handler: @escaping (UIImage?) -> Void) {
-    
-    if let url = self.image {
-      if let data = try? Data(contentsOf: url) {
-        if let image = UIImage(data: data) {
-          handler(image)
-        }
-        handler(nil)
-      }
-      handler(nil)
-    } else {
-      handler(nil)
-    }
   }
   
   /// Returns the launches in which this astronaut participated

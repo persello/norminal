@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 import os
 import WidgetKit
 
@@ -106,24 +105,43 @@ final class SpaceXData: ObservableObject {
   
   /// Creates a new instance of `SpaceXData`.
   init() {
-    launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
-    crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
-    launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
-    landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
+    let queue = OperationQueue()
+    queue.name = "com.persello.norminal.widget.concurrentTimelineGeneration"
+    queue.qualityOfService = .userInteractive
+    queue.maxConcurrentOperationCount = 8
     
-    launches = launches.sorted(by: {
-      // $0 not launched and $1 launched
-      if $0.upcoming && !$1.upcoming {
-        return false
-      } else if !$0.upcoming && $1.upcoming {
-        return true
-      } else {
-        // Considering tolerance
-        if let d0 = $0.dateAfterTolerance, let d1 = $1.dateAfterTolerance {
-          return d0.compare(d1) == .orderedAscending
+    queue.addOperation { [self] in
+      launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
+      
+      // Sort launches
+      launches = launches.sorted(by: {
+        // $0 not launched and $1 launched
+        if $0.upcoming && !$1.upcoming {
+          return false
+        } else if !$0.upcoming && $1.upcoming {
+          return true
+        } else {
+          // Considering tolerance
+          if let d0 = $0.dateAfterTolerance, let d1 = $1.dateAfterTolerance {
+            return d0.compare(d1) == .orderedAscending
+          }
+          return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
         }
-        return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
-      }
-    })
+      })
+    }
+    
+    queue.addOperation { [self] in
+      crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
+    }
+    
+    queue.addOperation { [self] in
+      launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
+    }
+    
+    queue.addOperation { [self] in
+      landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
+    }
+    
+    queue.waitUntilAllOperationsAreFinished()
   }
 }

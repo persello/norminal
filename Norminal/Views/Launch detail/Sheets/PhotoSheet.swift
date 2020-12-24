@@ -7,8 +7,6 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
-import Alamofire
-import AlamofireImage
 
 struct ShareSheet: UIViewControllerRepresentable {
     typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void

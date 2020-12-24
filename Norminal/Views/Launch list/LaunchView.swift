@@ -9,46 +9,52 @@ import SwiftUI
 import NavigationSearchBar
 
 struct LaunchView: View {
-    @ObservedObject private var data = SpaceXData.shared
-    
-    var body: some View {
-        NavigationView {
-            List {
-                
-                // Next launch
-                if let nl = data.getNextLaunch() {
-                    Section(header: Text("Next launch")) {
-                        ZStack {
-                            LaunchListTile(launch: nl, showDetails: true)
-                            NavigationLink(destination: LaunchDetailView(launch: nl)) {
-                                EmptyView()
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .opacity(0.0)
-                        }
-                    }
+  @ObservedObject private var data = SpaceXData.shared
+  
+  var body: some View {
+    if data.launches.count != 0 {
+      NavigationView {
+        List {
+          
+          // Next launch
+          if let nl = data.getNextLaunch() {
+            Section(header: Text("Next launch")) {
+              ZStack {
+                LaunchListTile(launch: nl, showDetails: true)
+                NavigationLink(destination: LaunchDetailView(launch: nl)) {
+                  EmptyView()
                 }
-                
-                // Launch list
-                Section(header: Text("All launches")) {
-                    ForEach(data.launches.reversed()) { launch in
-                        NavigationLink(destination: LaunchDetailView(launch: launch)) {
-                            LaunchListTile(launch: launch)
-                        }
-                        
-                    }
-                }
-                
+                .buttonStyle(PlainButtonStyle())
+                .opacity(0.0)
+              }
             }
-            .listStyle(GroupedListStyle())
-            .navigationBarTitle("Launches")
-            .navigationSearchBar(text: .constant(""))
+          }
+          
+          // Launch list
+          Section(header: Text("All launches")) {
+            ForEach(data.launches.reversed()) { launch in
+              NavigationLink(destination: LaunchDetailView(launch: launch)) {
+                LaunchListTile(launch: launch)
+              }
+              
+            }
+          }
+          
         }
+        .listStyle(GroupedListStyle())
+        .navigationBarTitle("Launches")
+        .navigationSearchBar(text: .constant(""))
+      }
+    } else {
+      VStack(alignment: .center) {
+        ProgressView()
+      }
     }
+  }
 }
 
 struct LaunchView_Previews: PreviewProvider {
-    static var previews: some View {
-        LaunchView()
-    }
+  static var previews: some View {
+    LaunchView()
+  }
 }

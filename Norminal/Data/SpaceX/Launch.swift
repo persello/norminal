@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import Alamofire
-import AlamofireImage
 import UIKit
 
 // MARK: Enums
@@ -282,8 +280,6 @@ struct Launch: Decodable {
   /// UUID string
   public var idstring: String?
   
-  private let imageCache = NSCache<NSString, UIImage>()
-  
   enum CodingKeys: String, CodingKey {
     case flightNumber = "flight_number"
     case name = "name"
@@ -327,35 +323,8 @@ struct Launch: Decodable {
       return
     }
     
-    if let imageURL = links?.flickr?.originalImages?[index] {
-      if let image = imageCache.object(forKey: imageURL.absoluteString as NSString) {
-        handler(image)
-        return
-      }
-      
-      URLSession.shared.dataTask(with: imageURL) { data, response, error in
-        if let error = error {
-          // logger.error("Error while loading \(T.Type.self) from \(url.absoluteString) due to \"\(error as NSObject)\".")
-          handler(nil)
-        }
-        
-        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-          // logger.error("Error while loading \(T.Type.self) from \(url.absoluteString): server returned non-200 status code.")
-          handler(nil)
-          return
-        }
-        
-        if let data = data {
-          if let image = UIImage(data: data) {
-            imageCache.setObject(image, forKey: imageURL.absoluteString as NSString)
-            handler(image)
-          } else {
-            handler(nil)
-          }
-        } else {
-          handler(nil)
-        }
-      }.resume()
+    if let url = links?.flickr?.originalImages![index] {
+      ImageCache.shared.get(fromURL: url, withTag: nil, completion: handler)
     } else {
       handler(nil)
     }
@@ -363,34 +332,7 @@ struct Launch: Decodable {
   
   func getPatch(_ handler: @escaping (UIImage?) -> Void) {
     if let patchURL = links?.patch?.large {
-      if let image = imageCache.object(forKey: patchURL.absoluteString as NSString) {
-        handler(image)
-        return
-      }
-      
-      URLSession.shared.dataTask(with: patchURL) { data, response, error in
-        if let error = error {
-          // logger.error("Error while loading \(T.Type.self) from \(url.absoluteString) due to \"\(error as NSObject)\".")
-          handler(nil)
-        }
-        
-        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-          // logger.error("Error while loading \(T.Type.self) from \(url.absoluteString): server returned non-200 status code.")
-          handler(nil)
-          return
-        }
-        
-        if let data = data {
-          if let image = UIImage(data: data) {
-            imageCache.setObject(image, forKey: patchURL.absoluteString as NSString)
-            handler(image)
-          } else {
-            handler(nil)
-          }
-        } else {
-          handler(nil)
-        }
-      }.resume()
+      ImageCache.shared.get(fromURL: patchURL, withTag: nil, completion: handler)
     } else {
       handler(nil)
     }
