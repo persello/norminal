@@ -8,47 +8,113 @@
 import SwiftUI
 import NavigationSearchBar
 
+final class LaunchSearcher: ObservableObject {
+  
+  init(data: SpaceXData) {
+    self.data = data
+    filteredLaunches = data.launches
+  }
+  
+  @ObservedObject private var data: SpaceXData
+  
+  var text: String = "" {
+    didSet {
+      if text != oldValue {
+        updateLaunches()
+      }
+    }
+  }
+  
+  let scopes = ["All", "Upcoming", "Past"]
+  @AppStorage("com.persello.norminal.launchview.searcher.scopeselection") var scopeSelection: Int = 0 {
+    didSet {
+      if scopeSelection != oldValue {
+        updateLaunches()
+      }
+    }
+  }
+  
+  private func launchFilter(_ launch: Launch) -> Bool {
+    let nameMatch = launch.name.uppercased().contains(text.uppercased())
+    
+    var astronautNameMatch: Bool = false
+    if let crew = launch.getCrew() {
+      for astronaut in crew {
+        if astronaut.name.uppercased().contains(text.uppercased()) {
+          astronautNameMatch = true
+        }
+      }
+    }
+    
+    return nameMatch || astronautNameMatch
+  }
+  
+  private func updateLaunches() {
+    
+    // Time filtering
+    var timeFiltered: [Launch]?
+    
+    switch scopeSelection {
+      case 1:
+        // Upcoming
+        timeFiltered = data.launches.filter({$0.upcoming})
+      case 2:
+        timeFiltered = data.launches.filter({!$0.upcoming})
+      default:
+        timeFiltered = data.launches
+    }
+    
+    if text.count > 0 {
+      filteredLaunches = timeFiltered?.filter(launchFilter(_:))
+    } else {
+      filteredLaunches = timeFiltered
+    }
+    
+  }
+  
+  
+  @Published var filteredLaunches: [Launch]?
+}
+
 struct LaunchView: View {
-  @ObservedObject private var data = SpaceXData.shared
+  @ObservedObject private var searcher = LaunchSearcher(data: SpaceXData.shared)
   
   var body: some View {
-    if data.launches.count != 0 {
-      NavigationView {
-        List {
-          
-          // Next launch
-          if let nl = data.getNextLaunch() {
-            Section(header: Text("Next launch")) {
-              ZStack {
-                LaunchListTile(launch: nl, showDetails: true)
-                NavigationLink(destination: LaunchDetailView(launch: nl)) {
-                  EmptyView()
-                }
-                .buttonStyle(PlainButtonStyle())
-                .opacity(0.0)
+    NavigationView {
+      List {
+        
+        // Next launch
+        if let nl = SpaceXData.shared.getNextLaunch(), searcher.text.count == 0, searcher.scopeSelection == 0 {
+          Section(header: Text("Next launch")) {
+            ZStack {
+              LaunchListTile(launch: nl, showDetails: true)
+              NavigationLink(destination: LaunchDetailView(launch: nl)) {
+                EmptyView()
               }
+              .buttonStyle(PlainButtonStyle())
+              .opacity(0.0)
             }
           }
-          
-          // Launch list
-          Section(header: Text("All launches")) {
-            ForEach(data.launches.reversed()) { launch in
-              NavigationLink(destination: LaunchDetailView(launch: launch)) {
-                LaunchListTile(launch: launch)
-              }
-              
-            }
-          }
-          
         }
-        .listStyle(GroupedListStyle())
-        .navigationBarTitle("Launches")
-        .navigationSearchBar(text: .constant(""))
+        
+        // Launch list
+        Section(header: Text("\(searcher.scopes[searcher.scopeSelection]) launches")) {
+          ForEach(searcher.filteredLaunches?.reversed() ?? []) { launch in
+            NavigationLink(destination: LaunchDetailView(launch: launch)) {
+              LaunchListTile(launch: launch)
+            }
+          }
+        }
       }
-    } else {
-      VStack(alignment: .center) {
-        ProgressView()
-      }
+      .listStyle(GroupedListStyle())
+      .navigationBarTitle("Launches")
+      .navigationSearchBar(
+        text: $searcher.text,
+        scopeSelection: $searcher.scopeSelection,
+        options: [
+          .scopeButtonTitles: searcher.scopes
+        ]
+      )
     }
   }
 }
