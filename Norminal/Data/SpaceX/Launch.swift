@@ -431,6 +431,24 @@ struct Launch: Decodable {
     return nil
   }
   
+  /// Use only for ordering! Returns a wrong date useful only for setting the launch order
+  var dateAfterTolerance: Date? {
+    switch datePrecision {
+      case .hour:
+        return Calendar.current.date(byAdding: .hour, value: 1, to: dateUTC)
+      case .halfYear:
+        return Calendar.current.date(byAdding: .month, value: 6, to: dateUTC)
+      case .quarterYear:
+        return Calendar.current.date(byAdding: .month, value: 3, to: dateUTC)
+      case .year:
+        return Calendar.current.date(byAdding: .year, value: 1, to: dateUTC)
+      case .month:
+        return Calendar.current.date(byAdding: .month, value: 1, to: dateUTC)
+      case .day:
+        return Calendar.current.date(byAdding: .day, value: 1, to: dateUTC)
+    }
+  }
+  
   func getNiceDate(usePrecision: Bool) -> String {
     let formatter = DateFormatter()
     formatter.timeZone = TimeZone.autoupdatingCurrent

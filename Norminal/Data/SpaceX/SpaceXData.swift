@@ -118,7 +118,10 @@ final class SpaceXData: ObservableObject {
       } else if !$0.upcoming && $1.upcoming {
         return true
       } else {
-        // TODO: Consider tolerance
+        // Considering tolerance
+        if let d0 = $0.dateAfterTolerance, let d1 = $1.dateAfterTolerance {
+          return d0.compare(d1) == .orderedAscending
+        }
         return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
       }
     })
