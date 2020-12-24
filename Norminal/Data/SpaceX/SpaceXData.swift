@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import os
+import WidgetKit
 
 // MARK: Utility function for UUID from string with no dashes
 extension UUID {
@@ -53,7 +54,7 @@ class CustomDecoder: JSONDecoder {
 /// Contains data obtained from the SpaceX API
 final class SpaceXData: ObservableObject {
   
-  // Variables
+  // Logger
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "SpaceX Data")
   
   // SpaceX data sections
@@ -70,73 +71,56 @@ final class SpaceXData: ObservableObject {
     return launches.first(where: {$0.upcoming})
   }
   
-  // Loading
-  func loadLandpads() {
-    AF.request("https://api.spacexdata.com/v4/landpads")
-      .responseDecodable(of: [Landpad].self, decoder: CustomDecoder()) { [self] response in
-        logger.info("\(response.value?.count ?? 0) landpads fetched.")
-        if let err = response.error {
-          logger.error("Error while loading landpads: \"\(err.localizedDescription)\".")
-        }
-        if let res = response.value {
-          self.landpads = res
+  func loadData<T: Decodable>(url: URL) -> [T] {
+    var result = Array<T>()
+    let semaphore = DispatchSemaphore(value: 0)
+    
+    let task = URLSession.shared.dataTask(with: url) { [self] data, response, error in
+      defer{semaphore.signal()}
+      
+      if let error = error {
+        logger.error("Error while loading \(T.Type.self) from \(url.absoluteString) due to \"\(error as NSObject)\".")
+      }
+      
+      guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+        logger.error("Error while loading \(T.Type.self) from \(url.absoluteString): server returned non-200 status code.")
+        return
+      }
+      
+      if let data = data {
+        do {
+          let res = try CustomDecoder().decode([T].self, from: data)
+          result.append(contentsOf: res)
+          logger.info("Loaded \(res.count) \(T.Type.self).")
+        } catch {
+          logger.error("Error while decoding \(T.Type.self): \(error as NSObject).")
         }
       }
-  }
-  
-  func loadLaunchpads() {
-    AF.request("https://api.spacexdata.com/v4/launchpads")
-      .responseDecodable(of: [Launchpad].self, decoder: CustomDecoder()) { [self] response in
-        logger.info("\(response.value?.count ?? 0) launchpads fetched.")
-        if let err = response.error {
-          logger.error("Error while loading launchpads: \"\(err.localizedDescription)\".")
-        }
-        if let res = response.value {
-          self.launchpads = res
-        }
-      }
-  }
-  
-  func loadCrew() {
-    AF.request("https://api.spacexdata.com/v4/crew")
-      .responseDecodable(of: [Astronaut].self, decoder: CustomDecoder()) { [self] response in
-        logger.info("\(response.value?.count ?? 0) astronauts fetched.")
-        if let err = response.error {
-          logger.error("Error while loading crew: \"\(err.localizedDescription)\".")
-        }
-        if let res = response.value {
-          self.crew = res
-        }
-      }
-  }
-  
-  func loadLaunches() {
-    AF.request("https://api.spacexdata.com/v4/launches")
-      .responseDecodable(of: [Launch].self, decoder: CustomDecoder()) { [self] response in
-        logger.info("\(response.value?.count ?? 0) launches fetched.")
-        if let err = response.error {
-          logger.error("Error while loading launches: \"\(err.localizedDescription)\".")
-        }
-        if let res = response.value {
-          self.launches = res.sorted(by: {
-            // $0 not launched and $1 launched
-            if $0.upcoming && !$1.upcoming {
-              return false
-            } else if !$0.upcoming && $1.upcoming {
-              return true
-            } else {
-              return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
-            }
-          })
-        }
-      }
+    }
+    
+    task.resume()
+    
+    _ = semaphore.wait(timeout: DispatchTime.now() + 10.0)
+    return result
   }
   
   /// Creates a new instance of `SpaceXData`.
   init() {
-    loadCrew()
-    loadLaunchpads()
-    loadLandpads()
-    loadLaunches()
+    launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
+    crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
+    launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
+    landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
+    
+    launches = launches.sorted(by: {
+      // $0 not launched and $1 launched
+      if $0.upcoming && !$1.upcoming {
+        return false
+      } else if !$0.upcoming && $1.upcoming {
+        return true
+      } else {
+        // TODO: Consider tolerance
+        return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
+      }
+    })
   }
 }

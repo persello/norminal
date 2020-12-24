@@ -5,11 +5,10 @@
 //  Created by Riccardo Persello on 19/12/2020.
 //
 
-import WidgetKit
 import SwiftUI
 import SDWebImageSwiftUI
-import Alamofire
-import AlamofireImage
+import os
+import WidgetKit
 
 struct Provider: TimelineProvider {
   /*
@@ -25,6 +24,8 @@ struct Provider: TimelineProvider {
    If two launches are less than 48 hours apart, the interesting launch will be the past one for 2/5 of the time interval, then the next one will take its place.
    Otherwise, the interesting launch will be active for a day and a half.
    */
+  
+  private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Widget provider")
   
   func minimumDateDistance(date: Date, dateList: [Date]) -> Double? {
     var min: Double?
@@ -43,12 +44,16 @@ struct Provider: TimelineProvider {
   }
   
   func generateRefreshDates() -> [Date] {
-    let upcomingLaunchDates = SpaceXData.shared.launches.filter({$0.upcoming}).map({return $0.dateUTC})
+    
+    // Generate two days of entries
+    let numberOfMinutes = 60 * 48
+    let upcomingLaunchDates = SpaceXData.shared.launches.filter({$0.upcoming && $0.dateUTC < Date() + Double(numberOfMinutes) * 60.0}).map({return $0.dateUTC})
+    
+    logger.debug("Generating refresh dates: \(upcomingLaunchDates.count) upcoming launch dates found in the next \(numberOfMinutes / 60) hours.")
     
     var refreshDates: [Date] = []
     
-    // Generate two days of entries
-    for minute in 0..<60*48 {
+    for minute in 0..<numberOfMinutes {
       let d = Date() + (Double(minute) * 60.0)
       
       if (-30 * 60)...0 ~= minimumDateDistance(date: d, dateList: upcomingLaunchDates) ?? .infinity {
@@ -74,10 +79,14 @@ struct Provider: TimelineProvider {
       }
     }
     
+    logger.debug("Successfully generated \(refreshDates.count) refresh dates.")
+    
     return refreshDates
   }
   
   func generateEntry(_ date: Date) -> SimpleEntry {
+    
+    logger.debug("Generating entry @ \(date).")
     
     var interestingLaunch: Launch?
     
@@ -99,6 +108,8 @@ struct Provider: TimelineProvider {
       }
     }
     
+    logger.debug("Next launch is \(String(describing: nextLaunch)), last launch was \(String(describing: launchBefore)).")
+    
     // MARK: Get interesting launch
     if nextLaunch?.dateUTC != nil && launchBefore?.dateUTC != nil {
       let delta = nextLaunch!.dateUTC.timeIntervalSince(launchBefore!.dateUTC)
@@ -117,6 +128,8 @@ struct Provider: TimelineProvider {
       }
     }
     
+    logger.debug("Interesting launch is \(String(describing: interestingLaunch)).")
+    
     // MARK: Getting bg and patch
     var bg: UIImage?
     var patch: UIImage?
@@ -127,24 +140,30 @@ struct Provider: TimelineProvider {
     interestingLaunch?.getPatch { image in
       patch = image
       group.leave()
+      logger.debug("Got patch for \(interestingLaunch!): \(String(describing: image)).")
     }
     
     group.enter()
     interestingLaunch?.getImage(atIndex: 0) { image in
       bg = image
       group.leave()
+      logger.debug("Got image for \(interestingLaunch!): \(String(describing: image)).")
     }
     
-    let _ = group.wait(timeout: DispatchTime.now() + 5.0)
+    let result = group.wait(timeout: DispatchTime.now() + 10.0)
+    logger.debug("Dispatch group wait result is \(String(describing: result)).")
     
     return SimpleEntry(date: date, interestingLaunch: interestingLaunch, backgroundImage: bg, missionPatch: patch)
   }
   
   func placeholder(in context: Context) -> SimpleEntry {
-    SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: nil, missionPatch: nil)
+    logger.debug("Generating placeholder.")
+    return SimpleEntry(date: Date(), interestingLaunch: SampleData.shared.launch, backgroundImage: nil, missionPatch: nil)
   }
   
   func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+    logger.debug("Generating snapshot.")
+    
     var entry: Provider.Entry
     if context.isPreview {
       entry = SimpleEntry(date: SampleData.shared.launch.dateUTC.addingTimeInterval(-2400), interestingLaunch: SampleData.shared.launch, backgroundImage: SampleData.shared.bg, missionPatch: SampleData.shared.patch)
@@ -155,12 +174,25 @@ struct Provider: TimelineProvider {
   }
   
   func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-    var entries: [SimpleEntry] = [generateEntry(Date())]
+    logger.debug("Generating timeline.")
+    
+    var entries: [SimpleEntry] = []
+    
+//    let queue = OperationQueue()
+//    queue.name = "com.persello.norminal.widget.concurrentTimelineGeneration"
+//    queue.qualityOfService = .background
+//    queue.maxConcurrentOperationCount = 48
     
     // Generate entries accordingly with generated dates
     for date in generateRefreshDates() {
-      entries.append(generateEntry(date))
+      // queue.addOperation {
+        entries.append(generateEntry(date))
+      // }
     }
+    
+    // queue.waitUntilAllOperationsAreFinished()
+    
+//    logger.debug("Timeline queue finished.")
     
     // Generate timeline every four hours
     let timeline = Timeline(entries: entries, policy: .after(Date().addingTimeInterval(3600 * 6)))
@@ -209,6 +241,9 @@ struct NorminalWidget: Widget {
 }
 
 class SampleData {
+  
+  private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Widget sample data")
+
   var bg: UIImage?
   var patch: UIImage?
   let launch = FakeData.shared.crewDragon!
@@ -216,13 +251,24 @@ class SampleData {
   static var shared = SampleData()
   
   init() {
-    launch.getPatch { image in
+    let group = DispatchGroup()
+    
+    group.enter()
+    launch.getPatch { [self] image in
       self.patch = image
+      group.leave()
+      logger.debug("Got patch for \(launch): \(String(describing: image)).")
     }
     
-    launch.getImage(atIndex: 0) { image in
+    group.enter()
+    launch.getImage(atIndex: 0) { [self] image in
       self.bg = image
+      group.leave()
+      logger.debug("Got image for \(launch): \(String(describing: image)).")
     }
+    
+    let result = group.wait(timeout: DispatchTime.now() + 10.0)
+    logger.debug("Dispatch group wait result is \(String(describing: result)).")
   }
 }
 

@@ -42,13 +42,13 @@ struct PhotoSheet: View {
     
     func prepareImageForSharing() {
         preparingImage = true
-        AF.request(imageURL).responseImage { response in
-            if case .success(let image) = response.result {
-                sharedImage = image
-                preparingImage = false
-                isSharing = true
-            }
+      if let data = try? Data(contentsOf: imageURL) {
+        if let image = UIImage(data: data) {
+          sharedImage = image
+          preparingImage = false
+          isSharing = true
         }
+      }
     }
     
     var body: some View {

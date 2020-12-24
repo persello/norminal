@@ -13,81 +13,81 @@ import os
 
 /// Represents an astronaut
 struct Astronaut: Decodable {
-
-    /// Name and surname of the astronaut
-    public var name: String
-
-    /// Name of the agency
-    public var agency: String
-
-    /// URL to a picture of the astronaut
-    public var image: URL?
-
-    /// Wikipedia article URL
-    public var wikipedia: URL?
-
-    /// List of launch IDs
-    public var launches: [String]?
-
-    /// Whether this astronaut is active or not
-    public var status: String
-
-    /// Astronaut ID
-    public var idstring: String
-
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case agency = "agency"
-        case image = "image"
-        case wikipedia = "wikipedia"
-        case launches = "launches"
-        case status = "status"
-        case idstring = "id"
-    }
+  
+  /// Name and surname of the astronaut
+  public var name: String
+  
+  /// Name of the agency
+  public var agency: String
+  
+  /// URL to a picture of the astronaut
+  public var image: URL?
+  
+  /// Wikipedia article URL
+  public var wikipedia: URL?
+  
+  /// List of launch IDs
+  public var launches: [String]?
+  
+  /// Whether this astronaut is active or not
+  public var status: String
+  
+  /// Astronaut ID
+  public var idstring: String
+  
+  enum CodingKeys: String, CodingKey {
+    case name = "name"
+    case agency = "agency"
+    case image = "image"
+    case wikipedia = "wikipedia"
+    case launches = "launches"
+    case status = "status"
+    case idstring = "id"
+  }
+  
+  private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Astronaut")
+  
+  /// Returns the initials of the astronaut
+  func getInitials() -> String {
+    let components = self.name.components(separatedBy: " ")
+    return "\((components.first?.first)!)\((components.last?.first)!)"
+  }
+  
+  /// Returns the astronaut image in a closure
+  func getImage(_ handler: @escaping (UIImage?) -> Void) {
     
-    private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Astronaut")
-
-    /// Returns the initials of the astronaut
-    func getInitials() -> String {
-        let components = self.name.components(separatedBy: " ")
-        return "\((components.first?.first)!)\((components.last?.first)!)"
-    }
-
-    /// Returns the astronaut image in a closure
-    func getImage(_ handler: @escaping (UIImage?) -> Void) {
-        if let url = self.image {
-            AF.request(url, method: .get).responseImage { response in
-                switch response.result {
-                case .failure(let error):
-                    logger.error("Error while getting astronaut image: \"\(error.localizedDescription)\"")
-                    handler(nil)
-                case .success(let data):
-                    handler(data)
-                }
-            }
+    if let url = self.image {
+      if let data = try? Data(contentsOf: url) {
+        if let image = UIImage(data: data) {
+          handler(image)
         }
         handler(nil)
+      }
+      handler(nil)
+    } else {
+      handler(nil)
     }
-    
-    /// Returns the launches in which this astronaut participated
-    func getLaunches() -> [Launch]? {
-        if let launchIdList = launches {
-            var launches: [Launch] = []
-            for launchID in launchIdList {
-                if let launch = SpaceXData.shared.launches.first(where: { $0.idstring ?? "" == launchID }) {
-                    launches.append(launch)
-                }
-            }
-
-            if launches.count > 0 {
-                return launches
-            }
+  }
+  
+  /// Returns the launches in which this astronaut participated
+  func getLaunches() -> [Launch]? {
+    if let launchIdList = launches {
+      var launches: [Launch] = []
+      for launchID in launchIdList {
+        if let launch = SpaceXData.shared.launches.first(where: { $0.idstring ?? "" == launchID }) {
+          launches.append(launch)
         }
-        return nil
+      }
+      
+      if launches.count > 0 {
+        return launches
+      }
     }
-    
+    return nil
+  }
+  
 }
 
 extension Astronaut: Identifiable {
-    var id: UUID { return UUID(stringWithoutDashes: self.idstring)! }
+  var id: UUID { return UUID(stringWithoutDashes: self.idstring)! }
 }

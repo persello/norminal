@@ -8,7 +8,6 @@
 import Firebase
 import SwiftUI
 import os
-import WidgetKit
 
 // MARK: - UI
 
@@ -18,9 +17,6 @@ struct NorminalApp: App {
     WindowGroup {
       MainView()
         .onAppear {
-          
-          // Refresh widget
-          WidgetCenter.shared.reloadAllTimelines()
           
           // Firebase
           FirebaseApp.configure()
