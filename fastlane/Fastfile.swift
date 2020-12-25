@@ -20,13 +20,13 @@ class Fastfile: LaneFile {
     
     // let changelog = prompt(text: "Changelog")
     
-    incrementBuildNumber(xcodeproj: "Norminal.xcodeproj")
     buildApp(scheme: "Norminal")
     
     uploadToTestflight(username: "riccardo.persello@icloud.com", groups: ["Group A", "Group B"])
     // setChangelog(appIdentifier: appIdentifier, changelog: changelog)
     
     crashlyticsLane()
+    incrementBuildNumber(xcodeproj: "Norminal.xcodeproj")
   }
   
   func alphaLane() {
@@ -34,12 +34,12 @@ class Fastfile: LaneFile {
     
     // let changelog = prompt(text: "Changelog")
     
-    incrementBuildNumber(xcodeproj: "Norminal.xcodeproj")
     buildApp(scheme: "Norminal")
     
     uploadToTestflight(username: "riccardo.persello@icloud.com", groups: ["Group A"])
     // setChangelog(appIdentifier: appIdentifier, username: "riccardo.persello@icloud.com", changelog: changelog)
     
     crashlyticsLane()
+    incrementBuildNumber(xcodeproj: "Norminal.xcodeproj")
   }
 }
