@@ -11,28 +11,28 @@ import os
 
 /// Represents an astronaut
 struct Astronaut: Decodable {
-  
+
   /// Name and surname of the astronaut
   public var name: String
-  
+
   /// Name of the agency
   public var agency: String
-  
+
   /// URL to a picture of the astronaut
   public var image: URL?
-  
+
   /// Wikipedia article URL
   public var wikipedia: URL?
-  
+
   /// List of launch IDs
   public var launches: [String]?
-  
+
   /// Whether this astronaut is active or not
   public var status: String
-  
+
   /// Astronaut ID
   public var idstring: String
-  
+
   enum CodingKeys: String, CodingKey {
     case name = "name"
     case agency = "agency"
@@ -42,15 +42,15 @@ struct Astronaut: Decodable {
     case status = "status"
     case idstring = "id"
   }
-  
+
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Astronaut")
-  
+
   /// Returns the initials of the astronaut
   func getInitials() -> String {
     let components = self.name.components(separatedBy: " ")
     return "\((components.first?.first)!)\((components.last?.first)!)"
   }
-  
+
   /// Returns the launches in which this astronaut participated
   func getLaunches() -> [Launch]? {
     if let launchIdList = launches {
@@ -60,14 +60,14 @@ struct Astronaut: Decodable {
           launches.append(launch)
         }
       }
-      
+
       if launches.count > 0 {
         return launches
       }
     }
     return nil
   }
-  
+
 }
 
 extension Astronaut: Identifiable {

@@ -10,12 +10,12 @@ import SDWebImageSwiftUI
 
 struct ShareSheet: UIViewControllerRepresentable {
     typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
-    
+
     let activityItems: [Any]
     let applicationActivities: [UIActivity]? = nil
     let excludedActivityTypes: [UIActivity.ActivityType]? = nil
     let callback: Callback? = nil
-    
+
     func makeUIViewController(context: Context) -> UIActivityViewController {
         let controller = UIActivityViewController(
             activityItems: activityItems,
@@ -24,7 +24,7 @@ struct ShareSheet: UIViewControllerRepresentable {
         controller.completionWithItemsHandler = callback
         return controller
     }
-    
+
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
         // nothing to do here
     }
@@ -32,12 +32,12 @@ struct ShareSheet: UIViewControllerRepresentable {
 
 struct PhotoSheet: View {
     @State var imageURL: URL
-    
+
     @State private var isSharing: Bool = false
     @State private var preparingImage: Bool = false
-    
+
     @State private var sharedImage: UIImage?
-    
+
     func prepareImageForSharing() {
         preparingImage = true
       if let data = try? Data(contentsOf: imageURL) {
@@ -48,7 +48,7 @@ struct PhotoSheet: View {
         }
       }
     }
-    
+
     var body: some View {
       WebImage(url: imageURL)
             .resizable()
@@ -56,7 +56,7 @@ struct PhotoSheet: View {
             .navigationBarItems(trailing: Button(action: {
                 prepareImageForSharing()
             }) {
-                if(!isSharing && !preparingImage) {
+                if !isSharing && !preparingImage {
                 Image(systemName: "square.and.arrow.up")
                     .imageScale(.large)
                     .font(.body)

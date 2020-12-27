@@ -47,6 +47,9 @@
 		8B4E95FB259671F000F9668E /* GoogleAppMeasurement.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95EB259671F000F9668E /* GoogleAppMeasurement.xcframework */; };
 		8B4E95FD259671F000F9668E /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95EC259671F000F9668E /* GoogleUtilities.xcframework */; };
 		8B4E9605259671FD00F9668E /* FirebaseCrashlytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */; };
+		8B4E964E2597F3B400F9668E /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4E964D2597F3B400F9668E /* WeatherAPI.swift */; };
+		8B4E96522597F45500F9668E /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B4E96512597F45500F9668E /* Secrets.plist */; };
+		8B4E96562597F54500F9668E /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4E96552597F54500F9668E /* Secrets.swift */; };
 		8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B511097257ED4950097BC0D /* GallerySheet.swift */; };
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
@@ -128,6 +131,9 @@
 		8B4E95EB259671F000F9668E /* GoogleAppMeasurement.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleAppMeasurement.xcframework; sourceTree = "<group>"; };
 		8B4E95EC259671F000F9668E /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleUtilities.xcframework; sourceTree = "<group>"; };
 		8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCrashlytics.xcframework; sourceTree = "<group>"; };
+		8B4E964D2597F3B400F9668E /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		8B4E96512597F45500F9668E /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		8B4E96552597F54500F9668E /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		8B511097257ED4950097BC0D /* GallerySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySheet.swift; sourceTree = "<group>"; };
 		8B69255A253206E900D61C3F /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
@@ -212,9 +218,9 @@
 			isa = PBXGroup;
 			children = (
 				8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */,
+				8BB5232025489817006A9511 /* README.md */,
 				8B46A57F2530CE740084E52D /* Norminal */,
 				8BB5232125489827006A9511 /* res */,
-				8BB5232025489817006A9511 /* README.md */,
 				8B208B8B258EBC6A009107EC /* Widget */,
 				8B208B86258EBC6A009107EC /* Frameworks */,
 			);
@@ -256,8 +262,11 @@
 		8B46A5AE2531EA730084E52D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				8B4E964C2597F39400F9668E /* Weather */,
 				8B46A5AF2531EA730084E52D /* SpaceX */,
 				8B4E957E2594F58600F9668E /* ImageCache.swift */,
+				8B4E96512597F45500F9668E /* Secrets.plist */,
+				8B4E96552597F54500F9668E /* Secrets.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -307,6 +316,25 @@
 			path = FirebaseCrashlytics;
 			sourceTree = "<group>";
 		};
+		8B4E96472597F06600F9668E /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
+				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
+				8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */,
+				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		8B4E964C2597F39400F9668E /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				8B4E964D2597F3B400F9668E /* WeatherAPI.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
 		8B83E8AB253769AE002AE62B /* Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,11 +351,9 @@
 			isa = PBXGroup;
 			children = (
 				8B46A5822530CE740084E52D /* MainView.swift */,
-				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
-				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
-				8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */,
 				8B83E8AD253769F4002AE62B /* Launch list */,
 				8B83E8AE25376A07002AE62B /* Launch detail */,
+				8B4E96472597F06600F9668E /* Support */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -347,7 +373,6 @@
 				8B83E8AB253769AE002AE62B /* Cards */,
 				8BEB85F72562FDE7006144ED /* Sheets */,
 				8B69255A253206E900D61C3F /* LaunchDetailView.swift */,
-				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
 			);
 			path = "Launch detail";
 			sourceTree = "<group>";
@@ -380,6 +405,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B208B97258EBC6C009107EC /* Build configuration list for PBXNativeTarget "NorminalWidget" */;
 			buildPhases = (
+				8B4E965E2599014000F9668E /* Lint */,
 				8B208B81258EBC6A009107EC /* Sources */,
 				8B208B82258EBC6A009107EC /* Frameworks */,
 				8B208B83258EBC6A009107EC /* Resources */,
@@ -401,6 +427,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B46A58C2530CE760084E52D /* Build configuration list for PBXNativeTarget "Norminal" */;
 			buildPhases = (
+				8B4E965D2599012B00F9668E /* Lint */,
 				8B46A5792530CE740084E52D /* Sources */,
 				8B46A57A2530CE740084E52D /* Frameworks */,
 				8B46A57B2530CE740084E52D /* Resources */,
@@ -482,6 +509,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B4E96522597F45500F9668E /* Secrets.plist in Resources */,
 				8B46A5882530CE760084E52D /* Preview Assets.xcassets in Resources */,
 				8B46A5852530CE760084E52D /* Assets.xcassets in Resources */,
 				8B0C25732593C38B00C169E2 /* GoogleService-Info.plist in Resources */,
@@ -508,6 +536,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/res/Crashlytics/run\" -gsp ${SRCROOT}/GoogleService-Info.plist\n";
+		};
+		8B4E965D2599012B00F9668E /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		8B4E965E2599014000F9668E /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -540,6 +604,8 @@
 				8BBEEBE3258009EC00EA168A /* PinchToZoom.swift in Sources */,
 				8BBEEBCE257FFDEF00EA168A /* PhotoSheet.swift in Sources */,
 				8BB522AC253EE194006A9511 /* Astronaut.swift in Sources */,
+				8B4E96562597F54500F9668E /* Secrets.swift in Sources */,
+				8B4E964E2597F3B400F9668E /* WeatherAPI.swift in Sources */,
 				8B46A5922530CF4D0084E52D /* LaunchView.swift in Sources */,
 				8B46A5B22531EA730084E52D /* Launch.swift in Sources */,
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,

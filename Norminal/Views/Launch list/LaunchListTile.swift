@@ -11,11 +11,11 @@ import SDWebImageSwiftUI
 struct LaunchListTile: View {
   @State var launch: Launch
   var showDetails: Bool = false
-  
+
   var body: some View {
     VStack(alignment: .center) {
       HStack {
-        
+
         WebImage(url: launch.links?.patch?.large)
           .resizable()
           .placeholder {
@@ -30,7 +30,7 @@ struct LaunchListTile: View {
           .indicator(Indicator.activity)
           .frame(width: 70, height: 70)
           .padding(4)
-        
+
         VStack(alignment: .leading) {
           Text(launch.name)
             .font(.headline)
@@ -46,19 +46,19 @@ struct LaunchListTile: View {
           }
         }
         .padding(.horizontal, 4.0)
-        
+
         Spacer()
-        
+
         // Show arrow in right place
-        if(showDetails) {
+        if showDetails {
           Image(systemName: "chevron.forward")
             .font(Font.caption.weight(.semibold))
             .foregroundColor(Color(UIColor.tertiaryLabel))
             .padding(.trailing, 0.5)
         }
       }
-      
-      if(showDetails) {
+
+      if showDetails {
         LaunchCountdownView(launch: launch)
           .shadow(color: Color.black.opacity(0.2), radius: 12)
           .padding(.top, 16)
@@ -78,7 +78,7 @@ struct LaunchListTile_Previews: PreviewProvider {
 
 struct LaunchCountdownView: View {
   @State var launch: Launch
-  
+
   var body: some View {
     VStack(alignment: .center) {
       HStack(alignment: .lastTextBaseline) {
@@ -88,8 +88,8 @@ struct LaunchCountdownView: View {
                LaunchDatePrecision.quarterYear:
             let years =
               abs(ceil(launch.dateUTC.timeIntervalSinceNow/(365*24*3600)))
-            
-            if(years != 0) {
+
+            if years != 0 {
               Text("\(launch.dateUTC < Date() ? "" : "in")")
                 .lineLimit(1)
                 .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -106,8 +106,8 @@ struct LaunchCountdownView: View {
           case LaunchDatePrecision.month:
             let months =
               abs(ceil(launch.dateUTC.timeIntervalSinceNow/(30*24*3600)))
-            
-            if(months != 0) {
+
+            if months != 0 {
               Text("\(launch.dateUTC < Date() ? "" : "in")")
                 .lineLimit(1)
                 .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -121,12 +121,12 @@ struct LaunchCountdownView: View {
               .lineLimit(1)
               .font(.system(size: 24, weight: .bold, design: .rounded))
               .foregroundColor(.gray)
-            
+
           case LaunchDatePrecision.day:
             let days =
               abs(ceil(launch.dateUTC.timeIntervalSinceNow/(24*3600)))
-            
-            if(days != 0) {
+
+            if days != 0 {
               Text("\(launch.dateUTC < Date() ? "" : "in")")
                 .lineLimit(1)
                 .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -140,7 +140,7 @@ struct LaunchCountdownView: View {
               .lineLimit(1)
               .font(.system(size: 24, weight: .bold, design: .rounded))
               .foregroundColor(.gray)
-            
+
           case LaunchDatePrecision.hour:
             Text("T\(launch.dateUTC < Date() ? "+" : "-")")
               .lineLimit(1)
@@ -151,7 +151,7 @@ struct LaunchCountdownView: View {
               .lineLimit(1)
               .font(.system(size: 48, weight: .bold, design: .rounded))
               .minimumScaleFactor(0.04)
-            
+
         }
       }
       .padding([.bottom], -2)
@@ -162,12 +162,12 @@ struct LaunchCountdownView: View {
             .font(.system(size: 45, weight: .light))
             .foregroundColor(.gray)
             .padding([.bottom, .top], 8)
-          
+
           Text(launch.getLaunchpad()?.name ?? "Unknown launchpad")
             .multilineTextAlignment(.center)
             .font(.headline)
             .frame(maxWidth: .infinity)
-          
+
           Text(launch.getLaunchpad()?.locality ?? "Unknown location")
             .multilineTextAlignment(.center)
             .font(.footnote)
@@ -180,12 +180,12 @@ struct LaunchCountdownView: View {
             .font(.system(size: 45, weight: .light))
             .foregroundColor(.gray)
             .padding([.bottom, .top], 8)
-          
+
           Text("Generic weather")
             .multilineTextAlignment(.center)
             .font(.headline)
             .frame(maxWidth: .infinity)
-          
+
           Text("Wind and temperature")
             .multilineTextAlignment(.center)
             .font(.footnote)
@@ -196,7 +196,7 @@ struct LaunchCountdownView: View {
     }
     .padding([.top, .leading, .trailing], 24)
     .padding(.bottom, 16)
-    .background(Color(UIColor.systemGray6))
+    .background(Color(UIColor.systemGray5))
     .clipShape(RoundedRectangle(cornerRadius: 24.0, style: .continuous))
   }
 }

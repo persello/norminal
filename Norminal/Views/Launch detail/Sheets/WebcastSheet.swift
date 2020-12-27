@@ -19,39 +19,38 @@ struct YouTubeVideoQuality {
 struct WebcastSheet: View {
     var launch: Launch
     @Binding var modalShown: Bool
-    
+
     @State private var play: Bool = true
     @State private var time: CMTime = .zero
-    
-    @State private var player: AVPlayer? = nil
-    
+
+    @State private var player: AVPlayer?
+
     func getYoutubeLink() {
-        XCDYouTubeClient.default().getVideoWithIdentifier(launch.links?.youtubeID!) { (video, error) in
+        XCDYouTubeClient.default().getVideoWithIdentifier(launch.links?.youtubeID!) { (video, _) in
             guard video != nil else {
                 // Handle error
                 return
             }
             //Do something with video
             let link = video?.streamURLs[YouTubeVideoQuality.medium360]
-            if let l = link {
-                player = AVPlayer(url: l)
+            if let link = link {
+                player = AVPlayer(url: link)
                 player?.automaticallyWaitsToMinimizeStalling = true
                 player?.allowsExternalPlayback = true
-                
+
                 // Override silent switch
+                // swiftlint:disable force_try
                 try! AVAudioSession.sharedInstance().setCategory(.playback)
-                
+
                 // Push video title to "Now playing" info
-                var videoInfo = [String : Any]()
+                var videoInfo = [String: Any]()
                 videoInfo[MPMediaItemPropertyTitle] = video?.title
-                
+
                 MPNowPlayingInfoCenter.default().nowPlayingInfo = videoInfo
             }
         }
     }
-    
-    
-    
+
     var body: some View {
         NavigationView {
             Color(UIColor.systemGray6)
@@ -72,7 +71,7 @@ struct WebcastSheet: View {
                         }
                         List {
                             Section {
-                                
+
                             }
                             Section {
                                 Link(destination: (launch.links?.webcast)!, label: {

@@ -9,14 +9,14 @@ import SwiftUI
 import NavigationSearchBar
 
 final class LaunchSearcher: ObservableObject {
-  
+
   init(data: SpaceXData) {
     self.data = data
     filteredLaunches = data.launches
   }
-  
+
   @ObservedObject private var data: SpaceXData
-  
+
   var text: String = "" {
     didSet {
       if text != oldValue {
@@ -24,7 +24,7 @@ final class LaunchSearcher: ObservableObject {
       }
     }
   }
-  
+
   let scopes = ["All", "Upcoming", "Past"]
   @AppStorage("com.persello.norminal.launchview.searcher.scopeselection") var scopeSelection: Int = 0 {
     didSet {
@@ -33,10 +33,10 @@ final class LaunchSearcher: ObservableObject {
       }
     }
   }
-  
+
   private func launchFilter(_ launch: Launch) -> Bool {
     let nameMatch = launch.name.uppercased().contains(text.uppercased())
-    
+
     var astronautNameMatch: Bool = false
     if let crew = launch.getCrew() {
       for astronaut in crew {
@@ -45,15 +45,15 @@ final class LaunchSearcher: ObservableObject {
         }
       }
     }
-    
+
     return nameMatch || astronautNameMatch
   }
-  
+
   private func updateLaunches() {
-    
+
     // Time filtering
     var timeFiltered: [Launch]?
-    
+
     switch scopeSelection {
       case 1:
         // Upcoming
@@ -63,26 +63,25 @@ final class LaunchSearcher: ObservableObject {
       default:
         timeFiltered = data.launches
     }
-    
+
     if text.count > 0 {
       filteredLaunches = timeFiltered?.filter(launchFilter(_:))
     } else {
       filteredLaunches = timeFiltered
     }
-    
+
   }
-  
-  
+
   @Published var filteredLaunches: [Launch]?
 }
 
 struct LaunchView: View {
   @ObservedObject private var searcher = LaunchSearcher(data: SpaceXData.shared)
-  
+
   var body: some View {
     NavigationView {
       List {
-        
+
         // Next launch
         if let nl = SpaceXData.shared.getNextLaunch(), searcher.text.count == 0, searcher.scopeSelection == 0 {
           Section(header: Text("Next launch")) {
@@ -96,7 +95,7 @@ struct LaunchView: View {
             }
           }
         }
-        
+
         // Launch list
         Section(header: Text("\(searcher.scopes[searcher.scopeSelection]) launches")) {
           ForEach(searcher.filteredLaunches?.reversed() ?? []) { launch in

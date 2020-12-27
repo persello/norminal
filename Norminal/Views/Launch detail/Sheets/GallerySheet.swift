@@ -11,9 +11,9 @@ import SDWebImageSwiftUI
 struct GallerySheet: View {
     @Binding var modalShown: Bool
     var launch: Launch
-            
+
     private let threeColumnGrid = Array(repeating: GridItem(.flexible(minimum: 60, maximum: 160), spacing: 2), count: 3)
-    
+
     var body: some View {
         NavigationView {
             ZStack {

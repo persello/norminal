@@ -59,7 +59,7 @@ struct RubyCommand: RubyCommandable {
                 } else {
                     let dictionary = [
                         "name": name,
-                        "value": someValue,
+                        "value": someValue
                     ]
                     let jsonData = try! JSONSerialization.data(withJSONObject: dictionary, options: [])
                     let jsonString = String(data: jsonData, encoding: .utf8)!

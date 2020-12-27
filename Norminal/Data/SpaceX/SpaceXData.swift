@@ -17,12 +17,12 @@ extension UUID {
     while dashed.count < 32 {
       dashed.append("0")
     }
-    
+
     dashed.insert("-", at: input.index(input.startIndex, offsetBy: 20))
     dashed.insert("-", at: input.index(input.startIndex, offsetBy: 16))
     dashed.insert("-", at: input.index(input.startIndex, offsetBy: 12))
     dashed.insert("-", at: input.index(input.startIndex, offsetBy: 8))
-    
+
     self.init(uuidString: dashed.uppercased())
   }
 }
@@ -41,7 +41,7 @@ extension DateFormatter {
 
 class CustomDecoder: JSONDecoder {
   let dateFormatter = DateFormatter.iso8601Full
-  
+
   override init() {
     super.init()
     dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
@@ -52,40 +52,40 @@ class CustomDecoder: JSONDecoder {
 
 /// Contains data obtained from the SpaceX API
 final class SpaceXData: ObservableObject {
-  
+
   // Logger
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "SpaceX Data")
-  
+
   // SpaceX data sections
   @Published public var launches = [Launch]()
   @Published public var crew = [Astronaut]()
   @Published public var launchpads = [Launchpad]()
   @Published public var landpads = [Landpad]()
-  
+
   // Shared instance
   static var shared = SpaceXData()
-  
+
   // Methods
   func getNextLaunch() -> Launch? {
     return launches.first(where: {$0.upcoming})
   }
-  
+
   func loadData<T: Decodable>(url: URL) -> [T] {
-    var result = Array<T>()
+    var result = [T]()
     let semaphore = DispatchSemaphore(value: 0)
-    
+
     let task = URLSession.shared.dataTask(with: url) { [self] data, response, error in
-      defer{semaphore.signal()}
-      
+      defer {semaphore.signal()}
+
       if let error = error {
         logger.error("Error while loading \(T.Type.self) from \(url.absoluteString) due to \"\(error as NSObject)\".")
       }
-      
+
       guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
         logger.error("Error while loading \(T.Type.self) from \(url.absoluteString): server returned non-200 status code.")
         return
       }
-      
+
       if let data = data {
         do {
           let res = try CustomDecoder().decode([T].self, from: data)
@@ -96,23 +96,23 @@ final class SpaceXData: ObservableObject {
         }
       }
     }
-    
+
     task.resume()
-    
+
     _ = semaphore.wait(timeout: DispatchTime.now() + 10.0)
     return result
   }
-  
+
   /// Creates a new instance of `SpaceXData`.
   init() {
     let queue = OperationQueue()
     queue.name = "com.persello.norminal.widget.concurrentTimelineGeneration"
     queue.qualityOfService = .userInteractive
     queue.maxConcurrentOperationCount = 8
-    
+
     queue.addOperation { [self] in
       launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
-      
+
       // Sort launches
       launches = launches.sorted(by: {
         // $0 not launched and $1 launched
@@ -129,19 +129,19 @@ final class SpaceXData: ObservableObject {
         }
       })
     }
-    
+
     queue.addOperation { [self] in
       crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
     }
-    
+
     queue.addOperation { [self] in
       launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
     }
-    
+
     queue.addOperation { [self] in
       landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
     }
-    
+
     queue.waitUntilAllOperationsAreFinished()
   }
 }

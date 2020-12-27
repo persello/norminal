@@ -38,7 +38,7 @@ struct MainView: View {
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
-                    
+
                 }
                 Link(destination: URL(string: "https://forms.gle/1pzmsASLWYjEPnU5A")!, label: {
                     Text("Join the Alpha channel")

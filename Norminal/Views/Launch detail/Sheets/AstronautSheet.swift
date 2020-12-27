@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AstronautSheet: View {
     @State var astronaut: Astronaut
-    
+
     var body: some View {
         Color(UIColor.systemGray6)
             .ignoresSafeArea(edges: .all)
@@ -36,13 +36,13 @@ struct AstronautSheet: View {
                         .padding(.bottom, 16)
                         Spacer()
                     }
-                    
+
                     if let wikipedia = astronaut.wikipedia {
                         Link(destination: wikipedia, label: {
                             Label("Read more on Wikipedia", systemImage: "safari.fill")
                         })
                     }
-                    
+
                     if let launches = astronaut.getLaunches() {
                         Section(header: Text("Launches")) {
                             ForEach(launches) { launch in

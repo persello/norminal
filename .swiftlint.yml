@@ -1,0 +1,11 @@
+included:
+  - Norminal
+  - Widget
+
+reporter: "xcode"
+
+disabled_rules:
+  - force_try
+  - identifier_name
+  - switch_case_alignment
+

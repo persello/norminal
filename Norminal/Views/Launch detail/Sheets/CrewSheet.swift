@@ -8,31 +8,30 @@
 import SwiftUI
 
 struct CrewSheet: View {
-    
+
     var crew: [Astronaut]
-    
+
     @Binding var modalShown: Bool
-    
+
     var body: some View {
         NavigationView {
             List {
                 Section {
                     ForEach(crew) { astronaut in
-                        
+
                         NavigationLink(destination: AstronautSheet(astronaut: astronaut)) {
                             HStack {
                                 AstronautPicture(astronaut: astronaut)
                                     .frame(width: 70, height: 70)
                                     .padding(.vertical, 8)
                                     .padding(.trailing, 8)
-                                
+
                                 VStack(alignment: .leading) {
                                     Text(astronaut.name).bold()
                                     Text(astronaut.agency)
                                         .font(.subheadline)
                                         .foregroundColor(Color.gray)
-                                        
-                                        
+
                                 }
                             }
                         }
@@ -47,7 +46,7 @@ struct CrewSheet: View {
                 Text("Done").bold()
             })
         }
-        
+
     }
 }
 

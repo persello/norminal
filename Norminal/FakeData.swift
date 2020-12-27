@@ -8,6 +8,7 @@
 import Foundation
 import os
 
+// swiftlint:disable line_length
 let robertBehnkenJSON = """
   {
     "name": "Robert Behnken",
@@ -116,7 +117,7 @@ struct FakeData {
 
     var crewDragon: Launch?
     var robertBehnken: Astronaut?
-    
+
     private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Fake data")
 
     init() {

@@ -11,20 +11,20 @@ import SDWebImageSwiftUI
 struct GalleryCard: View {
     @State var launch: Launch
     @State var modalPresented: Bool = false
-    
+
     private let threeColumnGrid = Array(repeating: GridItem(.flexible(minimum: 60, maximum: 160), spacing: 2), count: 3)
-    
+
     var body: some View {
         Card(background: {
             ZStack(alignment: .top) {
                 Color(UIColor.systemGray5)
-                
+
                 LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
                     // Using index for filling at least 9 images
                     ForEach(0..<20) { index in
                         GeometryReader { gr in
                             let numberOfPictures = launch.links?.flickr?.originalImages?.count ?? 0
-                            if(numberOfPictures > 0) {
+                            if numberOfPictures > 0 {
                               WebImage(url: launch.links?.flickr?.originalImages![index % numberOfPictures])
                                     .resizable()
                                     .scaledToFill()
@@ -55,7 +55,7 @@ struct GalleryCard: View {
         .sheet(isPresented: $modalPresented, content: {
             GallerySheet(modalShown: self.$modalPresented, launch: launch)
         })
-        
+
     }
 }
 

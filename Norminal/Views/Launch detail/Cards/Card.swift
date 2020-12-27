@@ -10,25 +10,25 @@ import SwiftUI
 struct Card<Background: View, Content: View>: View {
     let background: () -> Background
     let content: () -> Content
-    
+
     @State private var scale: CGFloat = 1
-    
+
     init(@ViewBuilder background: @escaping () -> Background, @ViewBuilder content: @escaping () -> Content) {
         self.background = background
         self.content = content
     }
-    
+
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
             GeometryReader { geometry in
-                
+
                 background()
                     .frame(width: geometry.size.width,
                            height: geometry.size.height,
                            alignment: .center)
                     .clipped()
                     .scaledToFit()
-                
+
                 content()
                     .padding(24)
             }

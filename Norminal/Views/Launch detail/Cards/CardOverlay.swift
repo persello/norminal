@@ -13,7 +13,7 @@ struct CardOverlay: View {
     @State var bottomText: String
     @State var buttonText: String
     @State var buttonAction: () -> Void
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(preamble.uppercased())

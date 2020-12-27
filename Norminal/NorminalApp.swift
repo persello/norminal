@@ -18,10 +18,10 @@ struct NorminalApp: App {
     WindowGroup {
       MainView()
         .onAppear {
-          
+
           // Widget
           WidgetCenter.shared.reloadAllTimelines()
-          
+
           // Firebase
           FirebaseApp.configure()
         }
