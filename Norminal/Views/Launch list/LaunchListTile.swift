@@ -78,6 +78,8 @@ struct LaunchListTile_Previews: PreviewProvider {
 
 struct LaunchCountdownView: View {
   @State var launch: Launch
+  @State var forecastIcon: String?
+  @State var hourlyForecast: WeatherAPIResponse.WeatherAPIForecastHour?
 
   var body: some View {
     VStack(alignment: .center) {
@@ -176,21 +178,36 @@ struct LaunchCountdownView: View {
         }
         Divider()
         VStack {
-          Image(systemName: "sun.min")
+          Image(systemName: forecastIcon ?? "questionmark")
             .font(.system(size: 45, weight: .light))
             .foregroundColor(.gray)
             .padding([.bottom, .top], 8)
 
-          Text("Generic weather")
+          Text(hourlyForecast?.condition.text ?? "Unknown weather")
             .multilineTextAlignment(.center)
             .font(.headline)
             .frame(maxWidth: .infinity)
 
-          Text("Wind and temperature")
+          // TODO: Show progress indicator while waiting for API response
+          Text("Wind/temp string" ?? "Wind and temperature not available")
             .multilineTextAlignment(.center)
             .font(.footnote)
             .foregroundColor(.gray)
             .frame(maxWidth: .infinity)
+        }
+      }
+      .onAppear {
+        if self.hourlyForecast != nil {
+          return
+        }
+
+        if let launchpadLocation = launch.getLaunchpad()?.location {
+          WeatherAPI.shared.forecast(forLocation: launchpadLocation, at: launch.dateUTC) { forecastResponse in
+            if let hourlyForecast = forecastResponse?.getForecastForHourOfLaunch(/*unixDateTime: launch.dateUNIX - (3600*24*10)*/) {
+              forecastIcon = hourlyForecast.getIcon()
+              self.hourlyForecast = hourlyForecast
+            }
+          }
         }
       }
     }

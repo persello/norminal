@@ -260,5 +260,101 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CAB8293D-8563-4757-ADAA-F5CB7B30CBF8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Norminal/Views/Launch list/LaunchListTile.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F13297AA-694F-4312-BD45-6BCA8F758130"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Norminal/Views/Launch list/LaunchListTile.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8B3E4E13-0D8E-4746-9286-A364CBE07A73"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Norminal/Data/Weather/WeatherAPI.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "getForecastForHourOfLaunch(unixDateTime:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8B3E4E13-0D8E-4746-9286-A364CBE07A73 - 7dd4402b00959d72"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Norminal.WeatherAPIResponse.getForecastForHourOfLaunch(unixDateTime: Swift.UInt) -&gt; Swift.Optional&lt;Norminal.WeatherAPIResponse.WeatherAPIForecastHour&gt;"
+                  moduleName = "Norminal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/riccardo/Developer/Norminal/Norminal/Data/Weather/WeatherAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "8B3E4E13-0D8E-4746-9286-A364CBE07A73 - fdb690ecda8dc1b1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Norminal.WeatherAPIResponse.WeatherAPIForecastHour) -&gt; Swift.Bool in Norminal.WeatherAPIResponse.getForecastForHourOfLaunch(unixDateTime: Swift.UInt) -&gt; Swift.Optional&lt;Norminal.WeatherAPIResponse.WeatherAPIForecastHour&gt;"
+                  moduleName = "Norminal"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/riccardo/Developer/Norminal/Norminal/Data/Weather/WeatherAPI.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1BF44F7C-7A6C-41F0-B6F1-7178B5E93B7E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Norminal/Views/Launch list/LaunchListTile.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

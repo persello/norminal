@@ -24,7 +24,7 @@ class SecretsManager {
   private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Secrets manager")
   private let url = Bundle.main.url(forResource: "Secrets", withExtension: "plist")!
 
-  lazy var shared = SecretsManager()
+  static var shared = SecretsManager()
   var root: SecretsRoot?
 
   init() {
