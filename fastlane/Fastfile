@@ -27,6 +27,11 @@ platform :ios do
 
     ensure_git_status_clean
 
+    ENV["FASTLANE_CHANGELOG"] = prompt(
+      text: "Changelog: ",
+      multi_line_end_keyword: "END"
+    )
+
     # sync_code_signing(type: "appstore")
     increment_build_number(
       build_number: latest_testflight_build_number + 1,
@@ -41,7 +46,8 @@ platform :ios do
   lane :beta do
     # Distribute
     upload_to_testflight(
-      groups: ["Group A", "Group B"]
+      groups: ["Group A", "Group B"],
+      changelog: ENV["FASTLANE_CHANGELOG"]
     )
   end
 
@@ -49,14 +55,13 @@ platform :ios do
   lane :alpha do
     # Distribute
     upload_to_testflight(
-      groups: ["Group A"]
+      groups: ["Group A"],
+      changelog: ENV["FASTLANE_CHANGELOG"]
     )
   end
 
   after_all do |lane, options|
     # After
-    notification(message: "Add a changelog in the terminal window", subtitle: "Fastlane #{lane} lane needs a changelog")
-    set_changelog
     add_git_tag(
       grouping: "testflight",
       prefix: "#{lane}-"
