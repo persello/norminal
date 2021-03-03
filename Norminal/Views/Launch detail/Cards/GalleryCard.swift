@@ -21,7 +21,7 @@ struct GalleryCard: View {
 
                 LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
                     // Using index for filling at least 9 images
-                    ForEach(0..<20) { index in
+                    ForEach(0..<12) { index in
                         GeometryReader { gr in
                             let numberOfPictures = launch.links?.flickr?.originalImages?.count ?? 0
                             if numberOfPictures > 0 {

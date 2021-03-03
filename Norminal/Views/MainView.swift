@@ -29,8 +29,13 @@ struct MainView: View {
                 }
             VStack {
                 HStack {
-                    Image(uiImage: Bundle.main.icon!)
-                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    if let icon = Bundle.main.icon {
+                        Image(uiImage: icon)
+                            .clipShape(
+                                RoundedRectangle(cornerRadius: 12,
+                                                style: .continuous))
+                    }
+                    
                     VStack(alignment: .leading) {
                         Text("Norminal")
                             .font(.title)
@@ -38,7 +43,7 @@ struct MainView: View {
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
-
+                    
                 }
                 Link(destination: URL(string: "https://forms.gle/1pzmsASLWYjEPnU5A")!, label: {
                     Text("Join the Alpha channel")

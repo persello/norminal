@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0B4DC325EE511500F1C068 /* LaunchCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */; };
 		8B0C25732593C38B00C169E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */; };
 		8B0C25742593C38B00C169E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */; };
 		8B0D1D3825324E090056FACA /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0D1D3725324E090056FACA /* SDWebImageSwiftUI */; };
@@ -96,9 +97,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCountdownView.swift; sourceTree = "<group>"; };
 		8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapCard.swift; sourceTree = "<group>"; };
 		8B0D1D78253365660056FACA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		8B17527525EDA8A300A760C5 /* Norminal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Norminal.entitlements; sourceTree = "<group>"; };
+		8B17527625EDA8A300A760C5 /* NorminalWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NorminalWidget.entitlements; sourceTree = "<group>"; };
 		8B208B85258EBC6A009107EC /* NorminalWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NorminalWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B208B87258EBC6A009107EC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8B208B89258EBC6A009107EC /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -217,11 +221,12 @@
 		8B46A5742530CE740084E52D = {
 			isa = PBXGroup;
 			children = (
-				8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */,
-				8BB5232025489817006A9511 /* README.md */,
+				8B17527625EDA8A300A760C5 /* NorminalWidget.entitlements */,
 				8B46A57F2530CE740084E52D /* Norminal */,
 				8BB5232125489827006A9511 /* res */,
 				8B208B8B258EBC6A009107EC /* Widget */,
+				8BB5232025489817006A9511 /* README.md */,
+				8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */,
 				8B208B86258EBC6A009107EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -239,6 +244,7 @@
 		8B46A57F2530CE740084E52D /* Norminal */ = {
 			isa = PBXGroup;
 			children = (
+				8B17527525EDA8A300A760C5 /* Norminal.entitlements */,
 				8B83E8AC253769BD002AE62B /* Views */,
 				8B46A5AE2531EA730084E52D /* Data */,
 				8B46A5802530CE740084E52D /* NorminalApp.swift */,
@@ -363,6 +369,7 @@
 			children = (
 				8B46A5912530CF4D0084E52D /* LaunchView.swift */,
 				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
+				8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */,
 			);
 			path = "Launch list";
 			sourceTree = "<group>";
@@ -405,7 +412,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B208B97258EBC6C009107EC /* Build configuration list for PBXNativeTarget "NorminalWidget" */;
 			buildPhases = (
-				8B4E965E2599014000F9668E /* Lint */,
 				8B208B81258EBC6A009107EC /* Sources */,
 				8B208B82258EBC6A009107EC /* Frameworks */,
 				8B208B83258EBC6A009107EC /* Resources */,
@@ -427,7 +433,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B46A58C2530CE760084E52D /* Build configuration list for PBXNativeTarget "Norminal" */;
 			buildPhases = (
-				8B4E965D2599012B00F9668E /* Lint */,
 				8B46A5792530CE740084E52D /* Sources */,
 				8B46A57A2530CE740084E52D /* Frameworks */,
 				8B46A57B2530CE740084E52D /* Resources */,
@@ -537,42 +542,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/res/Crashlytics/run\" -gsp ${SRCROOT}/GoogleService-Info.plist\n";
 		};
-		8B4E965D2599012B00F9668E /* Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Lint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		8B4E965E2599014000F9668E /* Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Lint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -611,6 +580,7 @@
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
 				8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */,
 				8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */,
+				8B0B4DC325EE511500F1C068 /* LaunchCountdownView.swift in Sources */,
 				8B4E957F2594F58600F9668E /* ImageCache.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
 				8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */,
@@ -642,9 +612,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 117;
+				CURRENT_PROJECT_VERSION = 121;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -658,8 +629,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 			};
 			name = Debug;
@@ -669,9 +642,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 117;
+				CURRENT_PROJECT_VERSION = 121;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -685,8 +659,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 			};
 			name = Release;
@@ -819,14 +795,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Norminal/Norminal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 117;
+				CURRENT_PROJECT_VERSION = 121;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Norminal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -834,8 +811,10 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -847,13 +826,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Norminal/Norminal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 117;
+				CURRENT_PROJECT_VERSION = 121;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Norminal/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -861,8 +841,10 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
