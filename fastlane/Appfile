@@ -1,0 +1,8 @@
+app_identifier("com.persello.norminal") # The bundle identifier of your app
+apple_id("riccardo.persello@icloud.com") # Your Apple email address
+
+itc_team_id("122337905") # App Store Connect Team ID
+team_id("BZTVD28H6K") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
