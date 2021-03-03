@@ -27,7 +27,6 @@ platform :ios do
 
     ensure_git_status_clean
 
-    set_changelog
     sync_code_signing(type: "appstore")
     increment_build_number(
       build_number: latest_testflight_build_number + 1,
@@ -56,6 +55,8 @@ platform :ios do
 
   after_all do |lane, options|
     # After
+    notification(message: "Add a changelog in the terminal window", subtitle: "Fastlane #{lane} lane needs a changelog")
+    set_changelog
     add_git_tag(
       grouping: "testflight",
       prefix: "#{lane}-"
@@ -63,7 +64,7 @@ platform :ios do
 
     push_to_git_remote
 
-    notification(subtitle: "The app has been distributed to the #{lane} testers.", message: "Fastlane #{lane} lane complete")
+    notification(message: "The app has been distributed to the #{lane} testers.", subtitle: "Fastlane #{lane} lane complete")
   end
 
   error do |lane, exception, options|
