@@ -47,103 +47,87 @@ struct WebcastSheet: View {
     var videoID: String
     @Binding var modalShown: Bool
     
+    @State var video: XCDYouTubeVideo?
+    @State var errorString: String?
+    
     var body: some View {
-        NavigationView {
-            WebcastSheetInnerView(videoID: videoID, modalShown: $modalShown)
+        if let v = video {
+            NavigationView {
+                WebcastSheetInnerView(modalShown: $modalShown, video: v)
+            }
+        } else {
+            if let e = errorString {
+                Text(e)
+            } else {
+                ProgressView()
+                    .onAppear {
+                        XCDYouTubeClient.default().getVideoWithIdentifier(videoID) { (video, error) in
+                            self.video = video
+                        }
+                    }
+            }
         }
-    }
-}
-
-struct WebcastSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        WebcastSheet(videoID: (FakeData.shared.crewDragon?.links?.youtubeID)!, modalShown: .constant(true))
     }
 }
 
 struct WebcastSheetInnerView: View {
-    var videoID: String
+    
+    // Parameters
     @Binding var modalShown: Bool
     
+    // Player
     @State private var play: Bool = true
     @State private var time: CMTime = .zero
     
+    // Video
+    var video: XCDYouTubeVideo
     @State private var player: AVPlayer?
-    @State private var thumbnailURL: URL?
-    @State private var title: String?
-    
     @State private var interestingVideos: [XCDYouTubeVideo] = []
     
-    func getThumbnailAndTitle() {
-        XCDYouTubeClient.default().getVideoWithIdentifier(videoID) { (video, _) in
-            guard video != nil else {
-                return
-            }
-            
-            if let url = video?.thumbnailURLs?.last {
-                thumbnailURL = url
-            }
-            
-            if let t = video?.title {
-                title = t.replacingOccurrences(of: "|", with: "-")
-            }
-        }
-    }
-    
-    func analyzeYouTubeDescription() {
-        interestingVideos.removeAll()
-        XCDYouTubeClient.default().getVideoWithIdentifier(videoID) { (video, _) in
-            guard video != nil else {
-                return
-            }
-            
-            if let description = video?.videoDescription {
-                let types: NSTextCheckingResult.CheckingType = .link
+    func analyzeYouTubeDescription(video: XCDYouTubeVideo) {
                 
-                if let detector = try? NSDataDetector(types: types.rawValue) {
-                    
-                    let matches = detector.matches(in: description, options: .reportCompletion, range: NSMakeRange(0, description.count))
-                    
-                    let strings = matches.compactMap({$0.url?.description})
-                    let ids = strings.compactMap({$0.split(separator: "/").last?.description})
-                    
-                    for id in ids {
-                        XCDYouTubeClient.default().getVideoWithIdentifier(id) { (video, _)  in
-                            guard video != nil else {
-                                return
-                            }
-                            
-                            interestingVideos.append(video!)
-                        }
+        if let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue) {
+            
+            let matches = detector.matches(in: video.videoDescription, options: [], range: NSMakeRange(0, video.videoDescription.utf16.count))
+            
+            let strings = matches.compactMap({$0.url?.description})
+            let ids = strings.compactMap({$0.split(separator: "/").last?.description})
+            
+            for id in ids {
+                XCDYouTubeClient.default().getVideoWithIdentifier(id) { (video, _)  in
+                    guard video != nil else {
+                        return
                     }
+                    
+                    // Add this video
+                    if !interestingVideos.contains(video!) {
+                        interestingVideos.append(video!)
+                    }
+                    
+                    // TODO: Recurse only once?
                 }
             }
         }
     }
     
-    func getYouTubeLink() {
-        XCDYouTubeClient.default().getVideoWithIdentifier(videoID) { (video, _) in
-            guard video != nil else {
-                // Handle error
-                return
-            }
+    func getYouTubeLink(video: XCDYouTubeVideo) {
+        
+        //Do something with video
+        let link = video.streamURLs[YouTubeVideoQuality.medium360]
+        if let link = link {
+            player = AVPlayer(url: link)
+            player?.automaticallyWaitsToMinimizeStalling = true
+            player?.allowsExternalPlayback = true
             
-            //Do something with video
-            let link = video?.streamURLs[YouTubeVideoQuality.medium360]
-            if let link = link {
-                player = AVPlayer(url: link)
-                player?.automaticallyWaitsToMinimizeStalling = true
-                player?.allowsExternalPlayback = true
-                
-                // Override silent switch
-                // swiftlint:disable force_try
-                try! AVAudioSession.sharedInstance().setCategory(.playback)
-                
-                // Push video title to "Now playing" info
-                var videoInfo = [String: Any]()
-                videoInfo[MPMediaItemPropertyTitle] = video?.title
-                
-                MPNowPlayingInfoCenter.default().nowPlayingInfo = videoInfo
-            }
+            // Override silent switch
+            // swiftlint:disable force_try
+            try! AVAudioSession.sharedInstance().setCategory(.playback)
+            
+            // Push video title to "Now playing" info
+            var videoInfo = [String: Any]()
+            videoInfo[MPMediaItemPropertyTitle] = video.title
+            
+            MPNowPlayingInfoCenter.default().nowPlayingInfo = videoInfo
         }
     }
     
@@ -160,29 +144,19 @@ struct WebcastSheetInnerView: View {
             } else {
                 
                 ZStack {
-                    if let url = thumbnailURL {
-                        // Thumbnail preview
-                        WebImage(url: url)
-                            .resizable()
-                            .aspectRatio(16/9, contentMode: .fit)
-                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                            .padding()
-                        
-                    } else {
-                        // Gray rectangle
-                        Rectangle()
-                            .fill(Color(UIColor.systemGray6))
-                            .aspectRatio(16/9, contentMode: .fit)
-                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                            .padding()
-                    }
+                    // Gray rectangle
+                    Rectangle()
+                        .fill(Color(UIColor.systemGray5))
+                        .aspectRatio(16/9, contentMode: .fit)
+                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        .padding()
                     
                     ProgressView()
                 }
             }
             
             List {
-                if let YouTubeURL = URL(string: "https://www.youtube.com/watch?v=\(videoID)") {
+                if let YouTubeURL = URL(string: "https://www.youtube.com/watch?v=\(video.identifier)") {
                     Section {
                         Link(destination: YouTubeURL, label: {
                             Label("Watch on YouTube", systemImage: "play.rectangle.fill")
@@ -190,10 +164,12 @@ struct WebcastSheetInnerView: View {
                     }
                 }
                 
-                Section(header: Text("Related videos")) {
-                    ForEach(interestingVideos, id: \.self) { video in
-                        NavigationLink(destination: WebcastSheetInnerView(videoID: video.identifier, modalShown: $modalShown)) {
-                            SmallWebcastPreviewView(video: video)
+                if interestingVideos.count > 0 {
+                    Section(header: Text("Related videos")) {
+                        ForEach(interestingVideos, id: \.self) { video in
+                            NavigationLink(destination: WebcastSheetInnerView(modalShown: $modalShown, video: video)) {
+                                SmallWebcastPreviewView(video: video)
+                            }
                         }
                     }
                 }
@@ -201,16 +177,22 @@ struct WebcastSheetInnerView: View {
             .padding(.top, -8)
             .listStyle(InsetGroupedListStyle())
         }
-        .navigationBarTitle(Text(title ?? "Launch webcast"), displayMode: .inline)
+        .navigationBarTitle(Text(video.title), displayMode: .inline)
         .navigationBarItems(trailing: Button(action: {
             self.modalShown.toggle()
         }) {
             Text("Done").bold()
         })
         .onAppear(perform: {
-            self.getThumbnailAndTitle()
-            self.getYouTubeLink()
-            self.analyzeYouTubeDescription()
+            // Do operations on video
+            self.getYouTubeLink(video: video)
+            self.analyzeYouTubeDescription(video: video)
         })
+    }
+}
+
+struct WebcastSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        WebcastSheet(videoID: (FakeData.shared.crewDragon?.links?.youtubeID)!, modalShown: .constant(true))
     }
 }
