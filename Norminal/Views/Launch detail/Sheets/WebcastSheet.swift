@@ -47,15 +47,33 @@ struct WebcastSheet: View {
     var videoID: String
     @Binding var modalShown: Bool
     
+    var body: some View {
+        NavigationView {
+            WebcastSheetInnerView(videoID: videoID, modalShown: $modalShown)
+        }
+    }
+}
+
+struct WebcastSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        WebcastSheet(videoID: (FakeData.shared.crewDragon?.links?.youtubeID)!, modalShown: .constant(true))
+    }
+}
+
+struct WebcastSheetInnerView: View {
+    var videoID: String
+    @Binding var modalShown: Bool
+    
     @State private var play: Bool = true
     @State private var time: CMTime = .zero
     
     @State private var player: AVPlayer?
     @State private var thumbnailURL: URL?
+    @State private var title: String?
     
     @State private var interestingVideos: [XCDYouTubeVideo] = []
     
-    func getThumbnail() {
+    func getThumbnailAndTitle() {
         XCDYouTubeClient.default().getVideoWithIdentifier(videoID) { (video, _) in
             guard video != nil else {
                 return
@@ -64,10 +82,15 @@ struct WebcastSheet: View {
             if let url = video?.thumbnailURLs?.last {
                 thumbnailURL = url
             }
+            
+            if let t = video?.title {
+                title = t.replacingOccurrences(of: "|", with: "-")
+            }
         }
     }
     
     func analyzeYouTubeDescription() {
+        interestingVideos.removeAll()
         XCDYouTubeClient.default().getVideoWithIdentifier(videoID) { (video, _) in
             guard video != nil else {
                 return
@@ -125,75 +148,69 @@ struct WebcastSheet: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                if let p = self.player {
-                    VideoPlayer(player: p)
-                        .aspectRatio(16/9, contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                        .padding()
-                        .onAppear(perform: {
-                            self.player?.play()
-                        })
-                } else {
-                    
-                    ZStack {
-                        if let url = thumbnailURL {
-                            // Thumbnail preview
-                            WebImage(url: url)
-                                .resizable()
-                                .aspectRatio(16/9, contentMode: .fit)
-                                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                                .padding()
-                            
-                        } else {
-                            // Gray rectangle
-                            Rectangle()
-                                .fill(Color(UIColor.systemGray6))
-                                .aspectRatio(16/9, contentMode: .fit)
-                                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
-                                .padding()
-                        }
+        VStack {
+            if let p = self.player {
+                VideoPlayer(player: p)
+                    .aspectRatio(16/9, contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                    .padding()
+                    .onAppear(perform: {
+                        self.player?.play()
+                    })
+            } else {
+                
+                ZStack {
+                    if let url = thumbnailURL {
+                        // Thumbnail preview
+                        WebImage(url: url)
+                            .resizable()
+                            .aspectRatio(16/9, contentMode: .fit)
+                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                            .padding()
                         
-                        ProgressView()
+                    } else {
+                        // Gray rectangle
+                        Rectangle()
+                            .fill(Color(UIColor.systemGray6))
+                            .aspectRatio(16/9, contentMode: .fit)
+                            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+                            .padding()
+                    }
+                    
+                    ProgressView()
+                }
+            }
+            
+            List {
+                if let YouTubeURL = URL(string: "https://www.youtube.com/watch?v=\(videoID)") {
+                    Section {
+                        Link(destination: YouTubeURL, label: {
+                            Label("Watch on YouTube", systemImage: "play.rectangle.fill")
+                        })
                     }
                 }
                 
-                List {
-                    if let YouTubeURL = URL(string: "https://www.youtube.com/watch?v=\(videoID)") {
-                        Section {
-                            Link(destination: YouTubeURL, label: {
-                                Label("Watch on YouTube", systemImage: "play.rectangle.fill")
-                            })
-                        }
-                    }
-                    
-                    Section(header: Text("Related videos")) {
-                        ForEach(interestingVideos, id: \.self) { video in
+                Section(header: Text("Related videos")) {
+                    ForEach(interestingVideos, id: \.self) { video in
+                        NavigationLink(destination: WebcastSheetInnerView(videoID: video.identifier, modalShown: $modalShown)) {
                             SmallWebcastPreviewView(video: video)
                         }
                     }
                 }
-                .padding(.top, -8)
-                .listStyle(InsetGroupedListStyle())
             }
-            .navigationBarTitle(Text("Launch webcast"), displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: {
-                self.modalShown.toggle()
-            }) {
-                Text("Done").bold()
-            })
-            .onAppear(perform: {
-                self.getThumbnail()
-                self.getYouTubeLink()
-                self.analyzeYouTubeDescription()
-            })
+            .padding(.top, -8)
+            .listStyle(InsetGroupedListStyle())
         }
-    }
-}
-
-struct WebcastSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        WebcastSheet(videoID: (FakeData.shared.crewDragon?.links?.youtubeID)!, modalShown: .constant(true))
+        .navigationBarTitle(Text(title ?? "Launch webcast"), displayMode: .inline)
+        .navigationBarItems(trailing: Button(action: {
+            self.modalShown.toggle()
+        }) {
+            Text("Done").bold()
+        })
+        .onAppear(perform: {
+            self.getThumbnailAndTitle()
+            self.getYouTubeLink()
+            self.analyzeYouTubeDescription()
+        })
     }
 }
