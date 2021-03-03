@@ -16,11 +16,17 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
-    
+
+  before_all do |lane, options|
     # Prepare
+    begin
+      ensure_git_status_clean
+    rescue
+      git_commit(path: "*")
+    end
+
     ensure_git_status_clean
+
     set_changelog
     sync_code_signing(type: "appstore")
     increment_build_number(
@@ -30,50 +36,34 @@ platform :ios do
 
     # Build
     build_app(scheme: "Norminal")
-    
+  end
+
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
     # Distribute
     upload_to_testflight(
       groups: ["Group A", "Group B"]
     )
-
-    # After
-    add_git_tag(
-      grouping: "testflight",
-    )
-
-    push_to_git_remote
-
-    notification(subtitle: "The app has been distributed to the beta testers.", message: "Fastlane beta lane complete")
   end
 
   desc "Push a new alpha build to TestFlight"
   lane :alpha do
-    
-    # Prepare
-    ensure_git_status_clean
-    set_changelog
-    sync_code_signing(type: "appstore")
-    increment_build_number(
-      build_number: latest_testflight_build_number + 1,
-      xcodeproj: "Norminal.xcodeproj"
-    )
-
-    # Build
-    build_app(scheme: "Norminal")
-    
     # Distribute
     upload_to_testflight(
       groups: ["Group A"]
     )
+  end
 
+  after_all do |lane, options|
     # After
     add_git_tag(
       grouping: "testflight",
+      prefix: "#{lane}-"
     )
 
     push_to_git_remote
 
-    notification(message: "The app has been distributed to the beta testers.", subtitle: "Fastlane beta lane complete")
+    notification(subtitle: "The app has been distributed to the #{lane} testers.", message: "Fastlane #{lane} lane complete")
   end
 
   error do |lane, exception, options|
