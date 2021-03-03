@@ -326,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
+				8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */,
 				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
 				8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */,
 				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
@@ -369,7 +370,6 @@
 			children = (
 				8B46A5912530CF4D0084E52D /* LaunchView.swift */,
 				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
-				8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */,
 			);
 			path = "Launch list";
 			sourceTree = "<group>";

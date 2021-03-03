@@ -24,15 +24,19 @@ struct LaunchCountdownView: View {
             formatter.numberFormatter.maximumFractionDigits = 0
             
             var view: some View {
-                HStack {
+                VStack {
+                  HStack {
                     Image(systemName: "location.north.fill")
-                        .rotationEffect(Angle(degrees: degrees))
+                      .rotationEffect(Angle(degrees: degrees))
                     Text(formatter.string(from: windSpeed) + " " + direction)
-                        .padding(.leading, -4)
-                    
+                      .padding(.leading, -4)
+                  }
+
+                  HStack {
                     Image(systemName: "thermometer")
                     Text(formatter.string(from:temperature))
-                        .padding(.leading, -4)
+                      .padding(.leading, -4)
+                  } 
                 }
                 .foregroundColor(.gray)
                 .font(.footnote)
