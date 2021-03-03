@@ -60,6 +60,11 @@ struct MissionRecapView: View {
                 
                 HStack(alignment: .center, spacing: 6) {
                     
+                    // Number
+                    Text("#\(launch.flightNumber)")
+                        .font(.system(.caption, design: .monospaced))
+                        .opacity(0.8)
+                    
                     // Success
                     // == true/false is for excluding nil
                     if launch.success == true {
@@ -89,15 +94,10 @@ struct MissionRecapView: View {
                                 .foregroundColor((launch.fairings?.recovered ?? false) ? .blue : .red)
                         }
                     }
-                    
-                    // Number
-                    Text("#\(launch.flightNumber)")
-                        .font(.caption)
-                        .opacity(0.8)
                 }
                 .font(.caption)
                 
-                Text((launch.getNiceDate(usePrecision: true)).uppercased())
+                Text((launch.getNiceDate(usePrecision: true)))
                     .font(.caption)
             }
             .padding(8)
