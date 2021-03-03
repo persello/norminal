@@ -63,7 +63,8 @@ platform :ios do
     # After
     add_git_tag(
       grouping: "testflight",
-      prefix: "#{lane}-"
+      prefix: "#{lane}-",
+      includes_lane: false
     )
 
     push_to_git_remote
