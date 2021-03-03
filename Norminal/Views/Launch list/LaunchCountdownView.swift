@@ -12,6 +12,47 @@ struct LaunchCountdownView: View {
     @State var forecastIcon: String?
     @State var hourlyForecast: WeatherAPIResponse.WeatherAPIForecastHour?
     
+    func buildWindTempView() -> some View {
+        if let wind = hourlyForecast?.windkph,
+           let direction = hourlyForecast?.windDirection,
+           let degrees = hourlyForecast?.windDegree,
+           let temperature = hourlyForecast?.tempC {
+            let windSpeed = Measurement(value: wind, unit: UnitSpeed.kilometersPerHour)
+            let temperature = Measurement(value: temperature, unit: UnitTemperature.celsius)
+            
+            let formatter = MeasurementFormatter()
+            formatter.numberFormatter.maximumFractionDigits = 0
+            
+            var view: some View {
+                HStack {
+                    Image(systemName: "location.north.fill")
+                        .rotationEffect(Angle(degrees: degrees))
+                    Text(formatter.string(from: windSpeed) + " " + direction)
+                        .padding(.leading, -4)
+                    
+                    Image(systemName: "thermometer")
+                    Text(formatter.string(from:temperature))
+                        .padding(.leading, -4)
+                }
+                .foregroundColor(.gray)
+                .font(.footnote)
+            }
+            
+            return AnyView(view)
+            
+        } else {
+            var view: some View {
+                Text("Wind and temperature not available")
+                    .multilineTextAlignment(.center)
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity)
+            }
+            
+            return AnyView(view)
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .center) {
             HStack(alignment: .lastTextBaseline) {
@@ -29,7 +70,7 @@ struct LaunchCountdownView: View {
                                 .foregroundColor(.gray)
                             Text("\(years, specifier: "%.0f")")
                                 .lineLimit(1)
-                                .font(.system(size: 48, weight: .bold, design: .rounded))
+                                .font(.system(size: 36, weight: .bold, design: .rounded))
                                 .minimumScaleFactor(0.04)
                         }
                         Text("\(years == 0 ? "this " : "")year\(years > 1 ? "s": "") \(launch.dateUTC < Date() && years != 0 ? "ago" : "")")
@@ -47,7 +88,7 @@ struct LaunchCountdownView: View {
                                 .foregroundColor(.gray)
                             Text("\(months, specifier: "%.0f")")
                                 .lineLimit(1)
-                                .font(.system(size: 48, weight: .bold, design: .rounded))
+                                .font(.system(size: 36, weight: .bold, design: .rounded))
                                 .minimumScaleFactor(0.04)
                         }
                         Text("\(months == 0 ? "this " : "")month\(months > 1 ? "s": "") \(launch.dateUTC < Date() && months != 0 ? "ago" : "")")
@@ -66,7 +107,7 @@ struct LaunchCountdownView: View {
                                 .foregroundColor(.gray)
                             Text("\(days, specifier: "%.0f")")
                                 .lineLimit(1)
-                                .font(.system(size: 48, weight: .bold, design: .rounded))
+                                .font(.system(size: 36, weight: .bold, design: .rounded))
                                 .minimumScaleFactor(0.04)
                         }
                         Text("\(days == 0 ? "to" : "")day\(days > 1 ? "s": "") \(launch.dateUTC < Date() && days != 0 ? "ago" : "")")
@@ -82,7 +123,7 @@ struct LaunchCountdownView: View {
                             .padding(.trailing, -8)
                         Text(launch.dateUTC, style: .timer)
                             .lineLimit(1)
-                            .font(.system(size: 48, weight: .bold, design: .rounded))
+                            .font(.system(size: 36, weight: .bold, design: .rounded))
                             .minimumScaleFactor(0.04)
                         
                 }
@@ -119,12 +160,8 @@ struct LaunchCountdownView: View {
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                     
-                    // TODO: Show progress indicator while waiting for API response
-                    Text("Wind/temp string" ?? "Wind and temperature not available")
-                        .multilineTextAlignment(.center)
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                        .frame(maxWidth: .infinity)
+
+                    buildWindTempView()
                 }
             }
             .onAppear {

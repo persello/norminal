@@ -99,6 +99,8 @@ struct LaunchDetailView: View {
             }
           }
         }.frame(height: UIScreen.main.bounds.height / 16 * 10)
+        
+        // MARK: List of cards
         VStack(alignment: .leading) {
           MissionRecapCard(launch: launch)
             .padding(.top, -50)
