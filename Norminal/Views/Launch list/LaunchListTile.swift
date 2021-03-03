@@ -11,15 +11,18 @@ import SDWebImageSwiftUI
 struct LaunchListTile: View {
   @State var launch: Launch
   var showDetails: Bool = false
-
+  
   var body: some View {
     VStack(alignment: .center) {
       HStack {
-
-        MissionRecapView(launch: launch)
-
+        
+        VStack {
+          // Recap details
+          MissionRecapView(launch: launch, showCrewWhenAvailable: true)
+        }
+        
         Spacer()
-
+        
         // Show arrow in right place
         if showDetails {
           Image(systemName: "chevron.forward")
@@ -28,7 +31,8 @@ struct LaunchListTile: View {
             .padding(.trailing, 0.5)
         }
       }
-
+      
+      // Countdown
       if showDetails {
         LaunchCountdownView(launch: launch)
           .padding(.top, 16)
@@ -41,13 +45,13 @@ struct LaunchListTile: View {
 struct LaunchListTile_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-        LaunchListTile(launch: SpaceXData.shared.getNextLaunch() ?? FakeData.shared.crewDragon!, showDetails: true)
-          .frame(width: 350, height: 150, alignment: .center)
-            .previewLayout(.fixed(width: 350, height: 400))
-        LaunchListTile(launch: SpaceXData.shared.getNextLaunch() ?? FakeData.shared.crewDragon!, showDetails: true)
-            .preferredColorScheme(.dark)
-            .frame(width: 350, height: 150, alignment: .center)
-            .previewLayout(.fixed(width: 350, height: 400))
+      LaunchListTile(launch: SpaceXData.shared.getNextLaunch() ?? FakeData.shared.crewDragon!, showDetails: true)
+        .frame(width: 350, height: 150, alignment: .center)
+        .previewLayout(.fixed(width: 350, height: 400))
+      LaunchListTile(launch: SpaceXData.shared.getNextLaunch() ?? FakeData.shared.crewDragon!, showDetails: true)
+        .preferredColorScheme(.dark)
+        .frame(width: 350, height: 150, alignment: .center)
+        .previewLayout(.fixed(width: 350, height: 400))
     }
   }
 }
