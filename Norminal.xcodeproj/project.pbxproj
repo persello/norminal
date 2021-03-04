@@ -115,7 +115,7 @@
 		8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapCard.swift; sourceTree = "<group>"; };
 		8B0D1D78253365660056FACA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		8B17527525EDA8A300A760C5 /* Norminal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Norminal.entitlements; sourceTree = "<group>"; };
-		8B17527625EDA8A300A760C5 /* NorminalWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NorminalWidget.entitlements; sourceTree = "<group>"; };
+		8B17527625EDA8A300A760C5 /* NorminalWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NorminalWidget.entitlements; path = ../NorminalWidget.entitlements; sourceTree = "<group>"; };
 		8B208B85258EBC6A009107EC /* NorminalWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NorminalWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B208B87258EBC6A009107EC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8B208B89258EBC6A009107EC /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -234,6 +234,7 @@
 		8B208B8B258EBC6A009107EC /* Widget */ = {
 			isa = PBXGroup;
 			children = (
+				8B17527625EDA8A300A760C5 /* NorminalWidget.entitlements */,
 				8B208B8C258EBC6A009107EC /* NextLaunches.swift */,
 				8B208B8E258EBC6C009107EC /* Assets.xcassets */,
 				8B208B90258EBC6C009107EC /* Info.plist */,
@@ -244,8 +245,8 @@
 		8B46A5742530CE740084E52D = {
 			isa = PBXGroup;
 			children = (
-				8B17527625EDA8A300A760C5 /* NorminalWidget.entitlements */,
 				8BF143D725F10C370045B95D /* Data */,
+				8B4E96472597F06600F9668E /* Support Views */,
 				8B46A57F2530CE740084E52D /* Norminal */,
 				8BB5232125489827006A9511 /* res */,
 				8B208B8B258EBC6A009107EC /* Widget */,
@@ -321,7 +322,7 @@
 			path = FirebaseCrashlytics;
 			sourceTree = "<group>";
 		};
-		8B4E96472597F06600F9668E /* Support */ = {
+		8B4E96472597F06600F9668E /* Support Views */ = {
 			isa = PBXGroup;
 			children = (
 				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
@@ -329,14 +330,14 @@
 				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
 				8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */,
 				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
+				8B0D1D78253365660056FACA /* Card.swift */,
 			);
-			path = Support;
+			path = "Support Views";
 			sourceTree = "<group>";
 		};
 		8B83E8AB253769AE002AE62B /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				8B0D1D78253365660056FACA /* Card.swift */,
 				8BB5232A254A009B006A9511 /* CardOverlay.swift */,
 				8B83E8B025376A5D002AE62B /* WebcastCard.swift */,
 				8BB5231725478833006A9511 /* CrewCard.swift */,
@@ -351,7 +352,6 @@
 				8B46A5822530CE740084E52D /* MainView.swift */,
 				8B83E8AD253769F4002AE62B /* Launch list */,
 				8B83E8AE25376A07002AE62B /* Launch detail */,
-				8B4E96472597F06600F9668E /* Support */,
 			);
 			path = Views;
 			sourceTree = "<group>";
