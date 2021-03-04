@@ -76,7 +76,7 @@ final class LaunchSearcher: ObservableObject {
     @Published var filteredLaunches: [Launch]?
 }
 
-struct LaunchView: View {
+struct LaunchListView: View {
     @ObservedObject private var searcher = LaunchSearcher(data: SpaceXData.shared)
     
     var body: some View {
@@ -143,6 +143,6 @@ struct LaunchView: View {
 
 struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchView()
+        LaunchListView()
     }
 }

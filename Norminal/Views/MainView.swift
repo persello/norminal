@@ -22,7 +22,7 @@ extension Bundle {
 struct MainView: View {
   var body: some View {
     TabView {
-      LaunchView()
+      LaunchListView()
         .tabItem {
           Image(systemName: "flame")
           Text("Launches")

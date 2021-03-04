@@ -114,11 +114,10 @@ struct LaunchDetailView: View {
             .padding(.top, 24)
             .padding(.bottom, -8)
 
-          // Continue for 1 hour after launch
+          // Continue to show countdown for 1 hour after launch
           if Date() < (launch.dateUTC + 3600) {
             LaunchCountdownView(launch: launch)
               .shadow(radius: 24)
-              .scaledToFit()
               .padding()
           }
 
