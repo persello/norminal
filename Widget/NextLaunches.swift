@@ -9,6 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import os
 import WidgetKit
+import Firebase
 
 struct Provider: TimelineProvider {
   /*
@@ -24,6 +25,11 @@ struct Provider: TimelineProvider {
    If two launches are less than 48 hours apart, the interesting launch will be the past one for 2/5 of the time interval, then the next one will take its place.
    Otherwise, the interesting launch will be active for a day and a half.
    */
+  
+  init() {
+    // Firebase (for crashlytics)
+    FirebaseApp.configure()
+  }
 
   private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Widget provider")
 
