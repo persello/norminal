@@ -77,5 +77,6 @@ struct WebcastCard_Previews: PreviewProvider {
         VStack {
             WebcastCard(launch: FakeData.shared.crewDragon!)
         }
+        .previewLayout(.sizeThatFits)
     }
 }

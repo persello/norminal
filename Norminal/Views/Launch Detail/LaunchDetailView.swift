@@ -13,6 +13,8 @@ import MapKit
 struct LaunchDetailView: View {
   @State var launch: Launch
   @State var mapImage: UIImage?
+  
+  @State var isRedditActionSheetPresented: Bool = false
 
   func getMapSnapshot(geometry: GeometryProxy) {
     let options = MKMapSnapshotter.Options()
@@ -135,7 +137,78 @@ struct LaunchDetailView: View {
             WebcastCard(launch: launch)
           }
 
-          Spacer(minLength: 120)
+          Text("Resources")
+            .font(.title)
+            .fontWeight(.bold)
+            .padding(.horizontal, 16)
+            .padding(.top, 48)
+            .padding(.bottom, -8)
+          
+          List {
+            Button(action: {
+              isRedditActionSheetPresented = true
+            }) {
+              HStack {
+                Image("reddit.logo")
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 20)
+                  .padding(.horizontal, 4)
+
+                Text("Reddit")
+              }
+            }
+            .actionSheet(isPresented: $isRedditActionSheetPresented, content: {
+              // TODO: Enumerate across optional links and don't present action sheet if only one is available
+              ActionSheet(title: Text("Choose Reddit coverage post"), buttons: [
+                .cancel(),
+                .default(Text("Campaign")),
+                .default(Text("Launch")),
+                .default(Text("Media")),
+                .default(Text("Recovery"))
+              ])
+            })
+
+            Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
+              HStack {
+                Image("youtube.logo")
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 20)
+                  .padding(.horizontal, 4)
+
+                Text("YouTube")
+              }
+            }
+
+            Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
+              HStack {
+                Image(systemName: "newspaper.fill")
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 20)
+                  .foregroundColor(.blue)
+                  .padding(.horizontal, 4)
+                
+                Text("Press Kit")
+              }
+            }
+            
+            Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
+              HStack {
+                Image("wikipedia.logo")
+                  .resizable()
+                  .scaledToFit()
+                  .frame(width: 20)
+                  .frame(width: 28, height: 28)
+                  .background(Color.white)
+                  .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
+                
+                Text("Wikipedia")
+              }
+            }
+          }
+          .scaledToFit()
 
         }
       }
