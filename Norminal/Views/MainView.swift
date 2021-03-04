@@ -8,59 +8,59 @@
 import SwiftUI
 
 extension Bundle {
-    public var icon: UIImage? {
-        if let icons = infoDictionary?["CFBundleIcons"] as? [String: Any],
-           let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
-           let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
-           let lastIcon = iconFiles.last {
-            return UIImage(named: lastIcon)
-        }
-        return nil
+  public var icon: UIImage? {
+    if let icons = infoDictionary?["CFBundleIcons"] as? [String: Any],
+       let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
+       let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
+       let lastIcon = iconFiles.last {
+      return UIImage(named: lastIcon)
     }
+    return nil
+  }
 }
 
 struct MainView: View {
-    var body: some View {
-        TabView {
-            LaunchView()
-                .tabItem {
-                    Image(systemName: "flame")
-                    Text("Launches")
-                }
-            VStack {
-                HStack {
-                    if let icon = Bundle.main.icon {
-                        Image(uiImage: icon)
-                            .clipShape(
-                                RoundedRectangle(cornerRadius: 12,
-                                                style: .continuous))
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text("Norminal")
-                            .font(.title)
-                        Text("v\(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                    }
-                    
-                }
-                Link(destination: URL(string: "https://forms.gle/1pzmsASLWYjEPnU5A")!, label: {
-                    Text("Join the Alpha channel")
-                })
-                .padding(48)
-            }
-            // .buttonStyle(RoundedButtonStyle())
-            .tabItem {
-                Image(systemName: "exclamationmark.bubble.fill")
-                Text("Feedback")
-            }
+  var body: some View {
+    TabView {
+      LaunchView()
+        .tabItem {
+          Image(systemName: "flame")
+          Text("Launches")
         }
+      VStack {
+        HStack {
+          if let icon = Bundle.main.icon {
+            Image(uiImage: icon)
+              .clipShape(
+                RoundedRectangle(cornerRadius: 12,
+                                 style: .continuous))
+          }
+          
+          VStack(alignment: .leading) {
+            Text("Norminal")
+              .font(.title)
+            Text("v\(Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String)")
+              .font(.subheadline)
+              .foregroundColor(.gray)
+          }
+          
+        }
+        Link(destination: URL(string: "https://forms.gle/1pzmsASLWYjEPnU5A")!, label: {
+          Text("Join the Alpha channel")
+        })
+        .padding(48)
+      }
+      // .buttonStyle(RoundedButtonStyle())
+      .tabItem {
+        Image(systemName: "exclamationmark.bubble.fill")
+        Text("Feedback")
+      }
     }
+  }
 }
 
 struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
+  static var previews: some View {
+    MainView()
+  }
 }

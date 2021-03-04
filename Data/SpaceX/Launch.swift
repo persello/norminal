@@ -7,7 +7,10 @@
 //
 
 import Foundation
+
+#if canImport(UIKit)
 import UIKit
+#endif
 
 // MARK: Enums
 enum LaunchDatePrecision: String, Decodable {
