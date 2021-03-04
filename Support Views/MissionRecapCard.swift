@@ -98,7 +98,7 @@ struct MissionRecapView: View {
         }
         .font(.caption)
         
-        Text((launch.getNiceDate(usePrecision: true)))
+        Text(launch.getNiceDate(usePrecision: true) + launch.NET ? "NET" : "")
           .font(.caption)
         
         

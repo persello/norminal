@@ -67,7 +67,7 @@ let crewDragonJSON = """
     "window": 0,
     "rocket": "5e9d0d95eda69973a809d1ec",
     "success": true,
-    "details": "DETAILS DETAILS DETAILS",
+    "details": "Crew Dragon Demo-2 (officially Crew Demo-2, SpaceX Demo-2, or Demonstration Mission-2)[a] was the first crewed test flight of the Crew Dragon spacecraft. The spacecraft, named Endeavour, launched on 30 May 2020 at 19:22:45 UTC[8][12][13] (3:22:45 PM EDT) on top of Falcon 9 Booster B1058.1, and carried NASA astronauts Douglas Hurley and Robert Behnken to the International Space Station in the first crewed orbital spaceflight launched from the United States since the final Space Shuttle mission, STS-135, in 2011, and the first ever operated by a commercial provider.[14] Demo-2 was also the first two-person orbital spaceflight launched from the United States since STS-4 in 1982.",
     "crew": [
       "5ebf1b7323a9a60006e03a7b",
       "5ebf1a6e23a9a60006e03a7a"

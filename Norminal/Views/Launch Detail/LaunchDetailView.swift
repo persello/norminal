@@ -124,6 +124,8 @@ struct LaunchDetailView: View {
           if let crew = launch.getCrew() {
             CrewCard(crew: crew)
           }
+          
+          MissionDetailsCard(launch: launch)
 
           if launch.links?.flickr?.originalImages?.count ?? 0 > 0 {
             GalleryCard(launch: launch)

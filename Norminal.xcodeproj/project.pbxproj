@@ -56,6 +56,7 @@
 		8B919AEE25F13CF2007D992E /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95EC259671F000F9668E /* GoogleUtilities.xcframework */; };
 		8B919AF025F13CF2007D992E /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E4259671F000F9668E /* nanopb.xcframework */; };
 		8B919AF225F13CF2007D992E /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E5259671F000F9668E /* PromisesObjC.xcframework */; };
+		8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B919B0525F14F27007D992E /* MissionDetailsCard.swift */; };
 		8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA90E12257D9AA200168722 /* GalleryCard.swift */; };
 		8BB5231825478833006A9511 /* CrewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231725478833006A9511 /* CrewCard.swift */; };
 		8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5232A254A009B006A9511 /* CardOverlay.swift */; };
@@ -150,6 +151,7 @@
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
 		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
 		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
+		8B919B0525F14F27007D992E /* MissionDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsCard.swift; sourceTree = "<group>"; };
 		8BA90E12257D9AA200168722 /* GalleryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCard.swift; sourceTree = "<group>"; };
 		8BB5231725478833006A9511 /* CrewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewCard.swift; sourceTree = "<group>"; };
 		8BB5232025489817006A9511 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 		8B4E96472597F06600F9668E /* Support Views */ = {
 			isa = PBXGroup;
 			children = (
+				8BB5232A254A009B006A9511 /* CardOverlay.swift */,
 				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
 				8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */,
 				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
@@ -338,10 +341,10 @@
 		8B83E8AB253769AE002AE62B /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				8BB5232A254A009B006A9511 /* CardOverlay.swift */,
 				8B83E8B025376A5D002AE62B /* WebcastCard.swift */,
 				8BB5231725478833006A9511 /* CrewCard.swift */,
 				8BA90E12257D9AA200168722 /* GalleryCard.swift */,
+				8B919B0525F14F27007D992E /* MissionDetailsCard.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BF143F325F10C370045B95D /* Astronaut.swift in Sources */,
+				8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */,
 				8BF143E325F10C370045B95D /* ImageCache.swift in Sources */,
 				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
 				8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */,
