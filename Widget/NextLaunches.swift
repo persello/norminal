@@ -65,21 +65,24 @@ struct Provider: TimelineProvider {
       if (-30 * 60)...0 ~= minimumDateDistance(date: d, dateList: upcomingLaunchDates) ?? .infinity {
 
         // Half hour before a launch
-        refreshDates.append(d)
+        if minute % 15 == 0 {
+          // Append every fifteen minutes
+          refreshDates.append(d)
+        }
 
       } else if (-120 * 60)...(120 * 60) ~= minimumDateDistance(date: d, dateList: upcomingLaunchDates) ?? .infinity {
 
         // Two hours before/after a launch
-        if minute % 5 == 0 {
-          // Append every five minutes
+        if minute % 30 == 0 {
+          // Append every thirty minutes
           refreshDates.append(d)
         }
 
       } else {
 
         // Always
-        if minute % 20 == 0 {
-          // Append a minute every 20
+        if minute % 120 == 0 {
+          // Append a minute every 120
           refreshDates.append(d)
         }
       }
