@@ -567,7 +567,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/res/Crashlytics/run\" -gsp ${SRCROOT}/GoogleService-Info.plist\n";
+			shellScript = "\"${SRCROOT}/res/Crashlytics/upload-symbols\" -gsp ${SRCROOT}/GoogleService-Info.plist -p ios ${SRCROOT}/Norminal.app.dSYM.zip\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -645,7 +645,7 @@
 				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 126;
+				CURRENT_PROJECT_VERSION = 127;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -675,7 +675,7 @@
 				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 126;
+				CURRENT_PROJECT_VERSION = 127;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -827,7 +827,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Norminal/Norminal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 126;
+				CURRENT_PROJECT_VERSION = 127;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
@@ -858,7 +858,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Norminal/Norminal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 126;
+				CURRENT_PROJECT_VERSION = 127;
 				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
