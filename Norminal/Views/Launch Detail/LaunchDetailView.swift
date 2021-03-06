@@ -15,13 +15,13 @@ struct LaunchDetailView: View {
   @State var mapImage: UIImage?
   
   @State var isRedditActionSheetPresented: Bool = false
-
+  
   func getMapSnapshot(geometry: GeometryProxy) {
     let options = MKMapSnapshotter.Options()
     options.scale = UIScreen.main.scale
     options.showsBuildings = true
     options.pointOfInterestFilter = .excludingAll
-
+    
     // Double the resolution for keeping high quality in rubber-banding
     options.size = CGSize(width: geometry.size.width * 2, height: geometry.size.height * 2)
     options.region = MKCoordinateRegion(
@@ -29,7 +29,7 @@ struct LaunchDetailView: View {
       latitudinalMeters: 4000,
       longitudinalMeters: 4000)
     options.mapType = .satelliteFlyover
-
+    
     let mapSnapshotter = MKMapSnapshotter(options: options)
     mapSnapshotter.start { (snap, _) in
       if let image = snap?.image {
@@ -37,7 +37,7 @@ struct LaunchDetailView: View {
       }
     }
   }
-
+  
   var body: some View {
     ScrollView(.vertical) {
       VStack {
@@ -78,7 +78,7 @@ struct LaunchDetailView: View {
                 .frame(width: geometry.size.width,
                        height: geometry.size.height
                         + geometry.frame(in: .global).minY)
-
+              
             } else {
               if let mpi = mapImage {
                 Image(uiImage: mpi)
@@ -108,35 +108,45 @@ struct LaunchDetailView: View {
             .padding(.top, -50)
             .padding(.horizontal, 24)
             .shadow(radius: 24)
-
+          
           Text("Details")
             .font(.title)
             .fontWeight(.bold)
             .padding(.horizontal, 16)
             .padding(.top, 24)
             .padding(.bottom, -8)
-
-          // Continue to show countdown for 1 hour after launch
-          if Date() < (launch.dateUTC + 3600) {
-            LaunchCountdownView(launch: launch)
-              .shadow(radius: 24)
-              .padding()
-          }
-
-          if let crew = launch.getCrew() {
-            CrewCard(crew: crew)
+          
+          // MARK: "Real" cards
+          Group {
+            // Continue to show countdown for 1 hour after launch
+            if Date() < (launch.dateUTC + 3600) {
+              LaunchCountdownView(launch: launch)
+                .shadow(radius: 24)
+                .padding()
+            }
+            
+            if let crew = launch.getCrew() {
+              CrewCard(crew: crew)
+            }
+            
+            // TODO: Show only when really available
+            MissionDetailsCard(launch: launch)
+            
+            PayloadCard(launch: launch)
+            
+            RocketCard(launch: launch)
+            
+            if launch.links?.flickr?.originalImages?.count ?? 0 > 0 {
+              GalleryCard(launch: launch)
+            }
+            
+            if (launch.links?.youtubeID ?? "").count > 0 {
+              WebcastCard(launch: launch)
+            }
+            
           }
           
-          MissionDetailsCard(launch: launch)
-
-          if launch.links?.flickr?.originalImages?.count ?? 0 > 0 {
-            GalleryCard(launch: launch)
-          }
-
-          if (launch.links?.youtubeID ?? "").count > 0 {
-            WebcastCard(launch: launch)
-          }
-
+          // MARK: Footer
           Text("Resources")
             .font(.title)
             .fontWeight(.bold)
@@ -154,7 +164,7 @@ struct LaunchDetailView: View {
                   .scaledToFit()
                   .frame(width: 20)
                   .padding(.horizontal, 4)
-
+                
                 Text("Reddit")
               }
             }
@@ -168,7 +178,7 @@ struct LaunchDetailView: View {
                 .default(Text("Recovery"))
               ])
             })
-
+            
             Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
               HStack {
                 Image("youtube.logo")
@@ -176,11 +186,11 @@ struct LaunchDetailView: View {
                   .scaledToFit()
                   .frame(width: 20)
                   .padding(.horizontal, 4)
-
+                
                 Text("YouTube")
               }
             }
-
+            
             Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
               HStack {
                 Image(systemName: "newspaper.fill")
@@ -209,7 +219,7 @@ struct LaunchDetailView: View {
             }
           }
           .scaledToFit()
-
+          
         }
       }
     }

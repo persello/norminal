@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B07905225F2FC41006CD9BE /* PayloadCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B07905125F2FC41006CD9BE /* PayloadCard.swift */; };
 		8B0B4DC325EE511500F1C068 /* LaunchCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */; };
 		8B0C25732593C38B00C169E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */; };
 		8B0C25742593C38B00C169E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */; };
@@ -17,7 +18,6 @@
 		8B208B88258EBC6A009107EC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B208B87258EBC6A009107EC /* WidgetKit.framework */; };
 		8B208B8A258EBC6A009107EC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B208B89258EBC6A009107EC /* SwiftUI.framework */; };
 		8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B208B8C258EBC6A009107EC /* NextLaunches.swift */; };
-		8B208B8F258EBC6C009107EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B208B8E258EBC6C009107EC /* Assets.xcassets */; };
 		8B208B93258EBC6C009107EC /* NorminalWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8B208B85258EBC6A009107EC /* NorminalWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8B208B9A258ECBDB009107EC /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
 		8B208BAF258ED31B009107EC /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8B208BAE258ED31B009107EC /* SDWebImageSwiftUI */; };
@@ -25,7 +25,6 @@
 		8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5802530CE740084E52D /* NorminalApp.swift */; };
 		8B46A5832530CE740084E52D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5822530CE740084E52D /* MainView.swift */; };
 		8B46A5852530CE760084E52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
-		8B46A5882530CE760084E52D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5872530CE760084E52D /* Preview Assets.xcassets */; };
 		8B46A5922530CF4D0084E52D /* LaunchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5912530CF4D0084E52D /* LaunchListView.swift */; };
 		8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59A2530D87F0084E52D /* LaunchListTile.swift */; };
 		8B46A5A0253118160084E52D /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
@@ -57,6 +56,8 @@
 		8B919AF025F13CF2007D992E /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E4259671F000F9668E /* nanopb.xcframework */; };
 		8B919AF225F13CF2007D992E /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E5259671F000F9668E /* PromisesObjC.xcframework */; };
 		8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B919B0525F14F27007D992E /* MissionDetailsCard.swift */; };
+		8B9255B225F2DA810059CB2E /* RocketCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B125F2DA810059CB2E /* RocketCard.swift */; };
+		8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
 		8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA90E12257D9AA200168722 /* GalleryCard.swift */; };
 		8BB5231825478833006A9511 /* CrewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231725478833006A9511 /* CrewCard.swift */; };
 		8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5232A254A009B006A9511 /* CardOverlay.swift */; };
@@ -111,6 +112,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B07905125F2FC41006CD9BE /* PayloadCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadCard.swift; sourceTree = "<group>"; };
 		8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCountdownView.swift; sourceTree = "<group>"; };
 		8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapCard.swift; sourceTree = "<group>"; };
@@ -121,13 +123,11 @@
 		8B208B87258EBC6A009107EC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8B208B89258EBC6A009107EC /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		8B208B8C258EBC6A009107EC /* NextLaunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLaunches.swift; sourceTree = "<group>"; };
-		8B208B8E258EBC6C009107EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B208B90258EBC6C009107EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B46A57D2530CE740084E52D /* Norminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Norminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B46A5802530CE740084E52D /* NorminalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorminalApp.swift; sourceTree = "<group>"; };
 		8B46A5822530CE740084E52D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8B46A5842530CE760084E52D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8B46A5872530CE760084E52D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8B46A5892530CE760084E52D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B46A5912530CF4D0084E52D /* LaunchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListView.swift; sourceTree = "<group>"; };
 		8B46A59A2530D87F0084E52D /* LaunchListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListTile.swift; sourceTree = "<group>"; };
@@ -152,6 +152,8 @@
 		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
 		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
 		8B919B0525F14F27007D992E /* MissionDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsCard.swift; sourceTree = "<group>"; };
+		8B9255B125F2DA810059CB2E /* RocketCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCard.swift; sourceTree = "<group>"; };
+		8B9255B725F2DB4E0059CB2E /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
 		8BA90E12257D9AA200168722 /* GalleryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCard.swift; sourceTree = "<group>"; };
 		8BB5231725478833006A9511 /* CrewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewCard.swift; sourceTree = "<group>"; };
 		8BB5232025489817006A9511 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -238,7 +240,6 @@
 			children = (
 				8B17527625EDA8A300A760C5 /* NorminalWidget.entitlements */,
 				8B208B8C258EBC6A009107EC /* NextLaunches.swift */,
-				8B208B8E258EBC6C009107EC /* Assets.xcassets */,
 				8B208B90258EBC6C009107EC /* Info.plist */,
 			);
 			path = Widget;
@@ -253,6 +254,7 @@
 				8BB5232125489827006A9511 /* res */,
 				8B208B8B258EBC6A009107EC /* Widget */,
 				8B208B86258EBC6A009107EC /* Frameworks */,
+				8B46A5842530CE760084E52D /* Assets.xcassets */,
 				8BB5232025489817006A9511 /* README.md */,
 				8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */,
 			);
@@ -272,23 +274,13 @@
 			isa = PBXGroup;
 			children = (
 				8B83E8AC253769BD002AE62B /* Views */,
+				8B46A57E2530CE740084E52D /* Products */,
 				8B46A5802530CE740084E52D /* NorminalApp.swift */,
 				8B46A59F253118160084E52D /* FakeData.swift */,
-				8B46A5842530CE760084E52D /* Assets.xcassets */,
 				8B46A5892530CE760084E52D /* Info.plist */,
 				8B17527525EDA8A300A760C5 /* Norminal.entitlements */,
-				8B46A57E2530CE740084E52D /* Products */,
-				8B46A5862530CE760084E52D /* Preview Content */,
 			);
 			path = Norminal;
-			sourceTree = "<group>";
-		};
-		8B46A5862530CE760084E52D /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				8B46A5872530CE760084E52D /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		8B4E95BF25966BC200F9668E /* Crashlytics */ = {
@@ -327,6 +319,7 @@
 		8B4E96472597F06600F9668E /* Support Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B83E8AB253769AE002AE62B /* Cards */,
 				8BB5232A254A009B006A9511 /* CardOverlay.swift */,
 				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
 				8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */,
@@ -345,6 +338,8 @@
 				8BB5231725478833006A9511 /* CrewCard.swift */,
 				8BA90E12257D9AA200168722 /* GalleryCard.swift */,
 				8B919B0525F14F27007D992E /* MissionDetailsCard.swift */,
+				8B9255B125F2DA810059CB2E /* RocketCard.swift */,
+				8B07905125F2FC41006CD9BE /* PayloadCard.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -371,7 +366,6 @@
 		8B83E8AE25376A07002AE62B /* Launch Detail */ = {
 			isa = PBXGroup;
 			children = (
-				8B83E8AB253769AE002AE62B /* Cards */,
 				8BEB85F72562FDE7006144ED /* Sheets */,
 				8B69255A253206E900D61C3F /* LaunchDetailView.swift */,
 			);
@@ -427,6 +421,7 @@
 				8BF143E025F10C370045B95D /* Landpad.swift */,
 				8BF143E125F10C370045B95D /* SpaceXData.swift */,
 				8BF143E225F10C370045B95D /* Astronaut.swift */,
+				8B9255B725F2DB4E0059CB2E /* Rocket.swift */,
 			);
 			path = SpaceX;
 			sourceTree = "<group>";
@@ -531,7 +526,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B208B8F258EBC6C009107EC /* Assets.xcassets in Resources */,
 				8BF143E625F10C370045B95D /* Secrets.plist in Resources */,
 				8B0C25742593C38B00C169E2 /* GoogleService-Info.plist in Resources */,
 			);
@@ -542,7 +536,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BF143E525F10C370045B95D /* Secrets.plist in Resources */,
-				8B46A5882530CE760084E52D /* Preview Assets.xcassets in Resources */,
 				8B46A5852530CE760084E52D /* Assets.xcassets in Resources */,
 				8B0C25732593C38B00C169E2 /* GoogleService-Info.plist in Resources */,
 			);
@@ -604,9 +597,12 @@
 				8BBEEBCE257FFDEF00EA168A /* PhotoSheet.swift in Sources */,
 				8B46A5922530CF4D0084E52D /* LaunchListView.swift in Sources */,
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
+				8B07905225F2FC41006CD9BE /* PayloadCard.swift in Sources */,
+				8B9255B225F2DA810059CB2E /* RocketCard.swift in Sources */,
 				8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */,
 				8BF143ED25F10C370045B95D /* Launch.swift in Sources */,
 				8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */,
+				8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */,
 				8B0B4DC325EE511500F1C068 /* LaunchCountdownView.swift in Sources */,
 				8BF143F125F10C370045B95D /* SpaceXData.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
@@ -829,7 +825,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 127;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Norminal/Info.plist;
@@ -859,7 +855,7 @@
 				CODE_SIGN_ENTITLEMENTS = Norminal/Norminal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 127;
-				DEVELOPMENT_ASSET_PATHS = "\"Norminal/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Norminal/Info.plist;
