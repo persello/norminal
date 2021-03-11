@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 import XCDYouTubeKit
+import Telescope
 
 struct WebcastCard: View {
     @State var launch: Launch
@@ -33,9 +33,9 @@ struct WebcastCard: View {
     var body: some View {
         Card(background: {
             if thumbnailLink != nil {
-              WebImage(url: thumbnailLink)
+              TImage(RemoteImage(imageURL: thumbnailLink!))
                     .resizable()
-                    .placeholder(content: {
+                    .placeholder({
                         Color(UIColor.systemGray5)
                             .overlay(
                                 VStack {

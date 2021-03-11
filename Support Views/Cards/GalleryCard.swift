@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
+import Telescope
 
 struct GalleryCard: View {
     @State var launch: Launch
@@ -25,7 +25,7 @@ struct GalleryCard: View {
                         GeometryReader { gr in
                             let numberOfPictures = launch.links?.flickr?.originalImages?.count ?? 0
                             if numberOfPictures > 0 {
-                              WebImage(url: launch.links?.flickr?.originalImages![index % numberOfPictures])
+                                TImage(try? RemoteImage(imageURL: (launch.links?.flickr?.originalImages![index % numberOfPictures])!))
                                     .resizable()
                                     .scaledToFill()
                                     .frame(height: gr.size.width)
