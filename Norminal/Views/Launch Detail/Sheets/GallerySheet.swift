@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct GallerySheet: View {
     @Binding var modalShown: Bool

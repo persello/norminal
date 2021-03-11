@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct LaunchListTile: View {
   @State var launch: Launch

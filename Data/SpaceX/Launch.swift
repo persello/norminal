@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Telescope
 
 #if canImport(UIKit)
 import UIKit
@@ -327,24 +328,23 @@ struct Launch: Decodable {
         return false
     }
     
-    func getImage(atIndex index: Int, handler: @escaping (UIImage?) -> Void) {
+    func getImage(atIndex index: Int) -> RemoteImage? {
         guard index < (links?.flickr?.originalImages?.count ?? 0) - 1 else {
-            handler(nil)
-            return
+            return nil
         }
         
         if let url = links?.flickr?.originalImages![index] {
-            ImageCache.shared.get(fromURL: url, withTag: nil, completion: handler)
+            return RemoteImage(imageURL: url)
         } else {
-            handler(nil)
+            return nil
         }
     }
     
-    func getPatch(_ handler: @escaping (UIImage?) -> Void) {
+    func getPatch() -> RemoteImage? {
         if let patchURL = links?.patch?.large {
-            ImageCache.shared.get(fromURL: patchURL, withTag: nil, completion: handler)
+            return RemoteImage(imageURL: patchURL)
         } else {
-            handler(nil)
+            return nil
         }
     }
     

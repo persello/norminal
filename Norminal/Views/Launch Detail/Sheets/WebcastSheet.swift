@@ -8,7 +8,6 @@
 import SwiftUI
 import XCDYouTubeKit
 import AVKit
-import SDWebImageSwiftUI
 
 struct YouTubeVideoQuality {
     static let hd720 = NSNumber(value: XCDYouTubeVideoQuality.HD720.rawValue)

@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/markvanwijnen/NavigationSearchBar.git",
         "state": {
           "branch": null,
-          "revision": "1c2c11779275a8fde5f22c40a101e3459872cdbc",
-          "version": "1.0.0"
+          "revision": "592c422c9e6b86ed50ed6d2844e0b1068032fb81",
+          "version": "1.1.0"
         }
       },
       {
@@ -15,26 +15,17 @@
         "repositoryURL": "https://github.com/gavineadie/SatelliteKit.git",
         "state": {
           "branch": null,
-          "revision": "563c54772fe51e86705bc4f172f25aa655af7386",
-          "version": "1.0.25"
+          "revision": "af37b2c5c05365e0749681f3ce99a0f028be9468",
+          "version": "1.0.27"
         }
       },
       {
-        "package": "SDWebImage",
-        "repositoryURL": "https://github.com/SDWebImage/SDWebImage",
+        "package": "Telescope",
+        "repositoryURL": "https://github.com/persello/telescope",
         "state": {
           "branch": null,
-          "revision": "e857b78ca4c8afe616b794aeb090d40f4e348072",
-          "version": "5.10.0"
-        }
-      },
-      {
-        "package": "SDWebImageSwiftUI",
-        "repositoryURL": "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
-        "state": {
-          "branch": null,
-          "revision": "4c7f169e39bc35d6b80d42b8eb8301bee9cd0907",
-          "version": "1.5.0"
+          "revision": "327215db99e06214eb8da8228c3128e632c42ae4",
+          "version": "1.1.0"
         }
       },
       {
@@ -51,8 +42,8 @@
         "repositoryURL": "https://github.com/0xced/XCDYouTubeKit.git",
         "state": {
           "branch": null,
-          "revision": "b35528de27f7452a9cb6ced213e0592fee89b663",
-          "version": "2.15.0"
+          "revision": "23f765941b36d6d28215ab81a37af1039d29138b",
+          "version": "2.15.2"
         }
       }
     ]
