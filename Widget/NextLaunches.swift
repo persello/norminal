@@ -141,25 +141,22 @@ struct Provider: TimelineProvider {
     // MARK: Getting bg and patch
     var bg: UIImage?
     var patch: UIImage?
-
-    let group = DispatchGroup()
-
-    group.enter()
-    interestingLaunch?.getPatch { image in
-      patch = image
-      group.leave()
-      logger.debug("Got patch for \(interestingLaunch!): \(String(describing: image)).")
+    let d = DispatchGroup()
+    
+    d.enter()
+    try? interestingLaunch?.getPatch()?.preload().image { image in
+        defer { d.leave() }
+        patch = image
     }
-
-    group.enter()
-    interestingLaunch?.getImage(atIndex: 0) { image in
-      bg = image
-      group.leave()
-      logger.debug("Got image for \(interestingLaunch!): \(String(describing: image)).")
+    
+    d.enter()
+    try? interestingLaunch?.getImage(atIndex: 0)?.preload().image { image in
+        defer { d.leave() }
+        bg = image
     }
-
-    let result = group.wait(timeout: DispatchTime.now() + 10.0)
-    logger.debug("Dispatch group wait result is \(String(describing: result)).")
+    
+    d.wait()
+    logger.debug("Patch is \(String(describing: patch.self)), background is \(String(describing: bg.self)).")
 
     return SimpleEntry(date: date, interestingLaunch: interestingLaunch, backgroundImage: bg, missionPatch: patch)
   }
@@ -259,24 +256,23 @@ class SampleData {
   static var shared = SampleData()
 
   init() {
-    let group = DispatchGroup()
 
-    group.enter()
-    launch.getPatch { [self] image in
-      self.patch = image
-      group.leave()
-      logger.debug("Got patch for \(launch): \(String(describing: image)).")
+    let d = DispatchGroup()
+    
+    d.enter()
+    try? launch.getPatch()?.preload().image { image in
+        defer { d.leave() }
+        self.patch = image
+    }
+    
+    d.enter()
+    try? launch.getImage(atIndex: 0)?.preload().image { image in
+        defer { d.leave() }
+        self.bg = image
     }
 
-    group.enter()
-    launch.getImage(atIndex: 0) { [self] image in
-      self.bg = image
-      group.leave()
-      logger.debug("Got image for \(launch): \(String(describing: image)).")
-    }
-
-    let result = group.wait(timeout: DispatchTime.now() + 10.0)
-    logger.debug("Dispatch group wait result is \(String(describing: result)).")
+    d.wait()
+    logger.debug("Test data patch is \(String(describing: self.patch.self)), background is \(String(describing: self.bg.self)).")
   }
 }
 

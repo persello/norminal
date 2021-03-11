@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Telescope
 
 struct GallerySheet: View {
     @Binding var modalShown: Bool
     var launch: Launch
-
+    
     private let threeColumnGrid = Array(repeating: GridItem(.flexible(minimum: 60, maximum: 160), spacing: 2), count: 3)
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -20,10 +21,8 @@ struct GallerySheet: View {
                     LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
                         ForEach((launch.links?.flickr?.originalImages)!, id: \.absoluteString) { imageURL in
                             GeometryReader { gr in
-                                NavigationLink(
-                                    destination: PhotoSheet(imageURL: imageURL)
-                                ) {
-                                  WebImage(url: imageURL)
+                                NavigationLink(destination: PhotoSheet(imageURL: imageURL)) {
+                                    TImage(RemoteImage(imageURL: imageURL))
                                         .resizable()
                                         .scaledToFill()
                                         .frame(height: gr.size.width)

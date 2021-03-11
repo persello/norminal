@@ -8,6 +8,7 @@
 import SwiftUI
 import XCDYouTubeKit
 import AVKit
+import Telescope
 
 struct YouTubeVideoQuality {
     static let hd720 = NSNumber(value: XCDYouTubeVideoQuality.HD720.rawValue)
@@ -20,7 +21,7 @@ struct SmallWebcastPreviewView: View {
     
     var body: some View {
         HStack {
-            WebImage(url: video.thumbnailURLs?.first)
+            TImage(try? RemoteImage(stringURL: (video.thumbnailURLs?.first?.absoluteString ?? "")))
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 64)
@@ -84,7 +85,7 @@ struct WebcastSheetInnerView: View {
     @State private var interestingVideos: [XCDYouTubeVideo] = []
     
     func analyzeYouTubeDescription(video: XCDYouTubeVideo) {
-                
+        
         if let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue) {
             
             let matches = detector.matches(in: video.videoDescription, options: [], range: NSMakeRange(0, video.videoDescription.utf16.count))

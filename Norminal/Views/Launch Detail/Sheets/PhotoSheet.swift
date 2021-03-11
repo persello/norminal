@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import Telescope
 
 struct ShareSheet: UIViewControllerRepresentable {
     typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
-
+    
     let activityItems: [Any]
     let applicationActivities: [UIActivity]? = nil
     let excludedActivityTypes: [UIActivity.ActivityType]? = nil
     let callback: Callback? = nil
-
+    
     func makeUIViewController(context: Context) -> UIActivityViewController {
         let controller = UIActivityViewController(
             activityItems: activityItems,
@@ -23,7 +24,7 @@ struct ShareSheet: UIViewControllerRepresentable {
         controller.completionWithItemsHandler = callback
         return controller
     }
-
+    
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
         // nothing to do here
     }
@@ -31,34 +32,34 @@ struct ShareSheet: UIViewControllerRepresentable {
 
 struct PhotoSheet: View {
     @State var imageURL: URL
-
+    
     @State private var isSharing: Bool = false
     @State private var preparingImage: Bool = false
-
+    
     @State private var sharedImage: UIImage?
-
+    
     func prepareImageForSharing() {
         preparingImage = true
-      if let data = try? Data(contentsOf: imageURL) {
-        if let image = UIImage(data: data) {
-          sharedImage = image
-          preparingImage = false
-          isSharing = true
+        if let data = try? Data(contentsOf: imageURL) {
+            if let image = UIImage(data: data) {
+                sharedImage = image
+                preparingImage = false
+                isSharing = true
+            }
         }
-      }
     }
-
+    
     var body: some View {
-      WebImage(url: imageURL)
+        TImage(RemoteImage(imageURL: imageURL))
             .resizable()
             .scaledToFit()
             .navigationBarItems(trailing: Button(action: {
                 prepareImageForSharing()
             }) {
                 if !isSharing && !preparingImage {
-                Image(systemName: "square.and.arrow.up")
-                    .imageScale(.large)
-                    .font(.body)
+                    Image(systemName: "square.and.arrow.up")
+                        .imageScale(.large)
+                        .font(.body)
                 } else {
                     ProgressView()
                 }

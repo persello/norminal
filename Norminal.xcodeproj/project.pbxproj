@@ -39,6 +39,7 @@
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
 		8B75409A25FA95470021234A /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8B75409925FA95470021234A /* Telescope */; };
+		8B7540AE25FAB7F30021234A /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7540AD25FAB7F30021234A /* Telescope */; };
 		8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8A825375B10002AE62B /* SatelliteKit */; };
 		8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B025376A5D002AE62B /* WebcastCard.swift */; };
 		8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */; };
@@ -184,6 +185,7 @@
 				8B208B8A258EBC6A009107EC /* SwiftUI.framework in Frameworks */,
 				8B919AEA25F13CF2007D992E /* GoogleAppMeasurement.xcframework in Frameworks */,
 				8B919AE425F13CF2007D992E /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
+				8B7540AE25FAB7F30021234A /* Telescope in Frameworks */,
 				8B208B88258EBC6A009107EC /* WidgetKit.framework in Frameworks */,
 				8B919AE825F13CF2007D992E /* FirebaseInstallations.xcframework in Frameworks */,
 				8B919AEE25F13CF2007D992E /* GoogleUtilities.xcframework in Frameworks */,
@@ -435,6 +437,7 @@
 			);
 			name = NorminalWidget;
 			packageProductDependencies = (
+				8B7540AD25FAB7F30021234A /* Telescope */,
 			);
 			productName = nextlaunchesExtension;
 			productReference = 8B208B85258EBC6A009107EC /* NorminalWidget.appex */;
@@ -950,6 +953,11 @@
 			productName = NavigationSearchBar;
 		};
 		8B75409925FA95470021234A /* Telescope */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B75409825FA95470021234A /* XCRemoteSwiftPackageReference "telescope" */;
+			productName = Telescope;
+		};
+		8B7540AD25FAB7F30021234A /* Telescope */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B75409825FA95470021234A /* XCRemoteSwiftPackageReference "telescope" */;
 			productName = Telescope;
