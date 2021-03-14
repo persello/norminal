@@ -19,6 +19,8 @@
 		8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B208B8C258EBC6A009107EC /* NextLaunches.swift */; };
 		8B208B93258EBC6C009107EC /* NorminalWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8B208B85258EBC6A009107EC /* NorminalWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8B208B9A258ECBDB009107EC /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
+		8B41489825FECD4F00EDC9BF /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8B41489725FECD4F00EDC9BF /* Telescope */; };
+		8B41489C25FECD6100EDC9BF /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8B41489B25FECD6100EDC9BF /* Telescope */; };
 		8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5802530CE740084E52D /* NorminalApp.swift */; };
 		8B46A5832530CE740084E52D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5822530CE740084E52D /* MainView.swift */; };
 		8B46A5852530CE760084E52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
@@ -38,8 +40,6 @@
 		8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B511097257ED4950097BC0D /* GallerySheet.swift */; };
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
-		8B75409A25FA95470021234A /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8B75409925FA95470021234A /* Telescope */; };
-		8B7540AE25FAB7F30021234A /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7540AD25FAB7F30021234A /* Telescope */; };
 		8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8A825375B10002AE62B /* SatelliteKit */; };
 		8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B025376A5D002AE62B /* WebcastCard.swift */; };
 		8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */; };
@@ -185,7 +185,7 @@
 				8B208B8A258EBC6A009107EC /* SwiftUI.framework in Frameworks */,
 				8B919AEA25F13CF2007D992E /* GoogleAppMeasurement.xcframework in Frameworks */,
 				8B919AE425F13CF2007D992E /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
-				8B7540AE25FAB7F30021234A /* Telescope in Frameworks */,
+				8B41489C25FECD6100EDC9BF /* Telescope in Frameworks */,
 				8B208B88258EBC6A009107EC /* WidgetKit.framework in Frameworks */,
 				8B919AE825F13CF2007D992E /* FirebaseInstallations.xcframework in Frameworks */,
 				8B919AEE25F13CF2007D992E /* GoogleUtilities.xcframework in Frameworks */,
@@ -205,7 +205,7 @@
 				8B4E95F9259671F000F9668E /* GoogleDataTransport.xcframework in Frameworks */,
 				8B4E95ED259671F000F9668E /* nanopb.xcframework in Frameworks */,
 				8B4E95FD259671F000F9668E /* GoogleUtilities.xcframework in Frameworks */,
-				8B75409A25FA95470021234A /* Telescope in Frameworks */,
+				8B41489825FECD4F00EDC9BF /* Telescope in Frameworks */,
 				8B4E95F5259671F000F9668E /* FirebaseInstallations.xcframework in Frameworks */,
 				8B4E9605259671FD00F9668E /* FirebaseCrashlytics.xcframework in Frameworks */,
 				8B4E95F1259671F000F9668E /* FirebaseAnalytics.xcframework in Frameworks */,
@@ -437,7 +437,7 @@
 			);
 			name = NorminalWidget;
 			packageProductDependencies = (
-				8B7540AD25FAB7F30021234A /* Telescope */,
+				8B41489B25FECD6100EDC9BF /* Telescope */,
 			);
 			productName = nextlaunchesExtension;
 			productReference = 8B208B85258EBC6A009107EC /* NorminalWidget.appex */;
@@ -464,7 +464,7 @@
 				8B0D1D6E253351EA0056FACA /* VisualEffects */,
 				8B83E8A825375B10002AE62B /* SatelliteKit */,
 				8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */,
-				8B75409925FA95470021234A /* Telescope */,
+				8B41489725FECD4F00EDC9BF /* Telescope */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -501,7 +501,7 @@
 				8B0D1D6D253351EA0056FACA /* XCRemoteSwiftPackageReference "VisualEffects" */,
 				8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */,
 				8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */,
-				8B75409825FA95470021234A /* XCRemoteSwiftPackageReference "telescope" */,
+				8B41489625FECD4F00EDC9BF /* XCRemoteSwiftPackageReference "telescope" */,
 			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
@@ -631,7 +631,8 @@
 				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 129;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -661,7 +662,7 @@
 				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 129;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -813,7 +814,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Norminal/Norminal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 129;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
@@ -844,7 +845,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Norminal/Norminal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 128;
+				CURRENT_PROJECT_VERSION = 129;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;
@@ -907,17 +908,17 @@
 				minimumVersion = 1.0.3;
 			};
 		};
+		8B41489625FECD4F00EDC9BF /* XCRemoteSwiftPackageReference "telescope" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/persello/telescope";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		8B692556253205E800D61C3F /* XCRemoteSwiftPackageReference "NavigationSearchBar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/markvanwijnen/NavigationSearchBar.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		8B75409825FA95470021234A /* XCRemoteSwiftPackageReference "telescope" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/persello/telescope";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
@@ -947,20 +948,20 @@
 			package = 8B0D1D6D253351EA0056FACA /* XCRemoteSwiftPackageReference "VisualEffects" */;
 			productName = VisualEffects;
 		};
+		8B41489725FECD4F00EDC9BF /* Telescope */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B41489625FECD4F00EDC9BF /* XCRemoteSwiftPackageReference "telescope" */;
+			productName = Telescope;
+		};
+		8B41489B25FECD6100EDC9BF /* Telescope */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B41489625FECD4F00EDC9BF /* XCRemoteSwiftPackageReference "telescope" */;
+			productName = Telescope;
+		};
 		8B692557253205E800D61C3F /* NavigationSearchBar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B692556253205E800D61C3F /* XCRemoteSwiftPackageReference "NavigationSearchBar" */;
 			productName = NavigationSearchBar;
-		};
-		8B75409925FA95470021234A /* Telescope */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B75409825FA95470021234A /* XCRemoteSwiftPackageReference "telescope" */;
-			productName = Telescope;
-		};
-		8B7540AD25FAB7F30021234A /* Telescope */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8B75409825FA95470021234A /* XCRemoteSwiftPackageReference "telescope" */;
-			productName = Telescope;
 		};
 		8B83E8A825375B10002AE62B /* SatelliteKit */ = {
 			isa = XCSwiftPackageProductDependency;

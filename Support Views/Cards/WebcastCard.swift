@@ -13,14 +13,14 @@ struct WebcastCard: View {
     @State var launch: Launch
     @State var modalPresented: Bool = false
     @State var thumbnailLink: URL?
-
+    
     func getYoutubeThumbnailLink() {
         XCDYouTubeClient.default().getVideoWithIdentifier(launch.links?.youtubeID!) { (video, _) in
             guard video != nil else {
                 // Handle error
                 return
             }
-
+            
             //Do something with video
             if let c = video?.thumbnailURLs?.count {
                 if let l = video?.thumbnailURLs?[c - 1] {
@@ -29,11 +29,11 @@ struct WebcastCard: View {
             }
         }
     }
-
+    
     var body: some View {
         Card(background: {
             if thumbnailLink != nil {
-              TImage(RemoteImage(imageURL: thumbnailLink!))
+                TImage(RemoteImage(imageURL: thumbnailLink!))
                     .resizable()
                     .placeholder({
                         Color(UIColor.systemGray5)
@@ -43,18 +43,11 @@ struct WebcastCard: View {
                                     ProgressView()
                                     Spacer()
                                 })
-
+                        
                     })
-                    .aspectRatio(contentMode: .fill)
-
+                    .scaledToFill()
             } else {
-                Color(UIColor.systemGray5)
-                    .overlay(
-                        VStack {
-                            Spacer()
-                            ProgressView()
-                            Spacer()
-                        })
+                Color(UIColor.systemGray4)
             }
         }, content: {
             CardOverlay(preamble: "Did it land?", title: "Webcast", bottomText: "Watch now", buttonText: "Open", buttonAction: {
@@ -73,7 +66,7 @@ struct WebcastCard: View {
 
 struct WebcastCard_Previews: PreviewProvider {
     static var previews: some View {
-
+        
         VStack {
             WebcastCard(launch: FakeData.shared.crewDragon!)
         }

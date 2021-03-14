@@ -21,21 +21,21 @@ struct GalleryCard: View {
 
                 LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
                     // Using index for filling at least 9 images
-                    ForEach(0..<12) { index in
+                    ForEach(0..<9) { index in
                         GeometryReader { gr in
                             let numberOfPictures = launch.links?.flickr?.originalImages?.count ?? 0
                             if numberOfPictures > 0 {
                                 TImage(RemoteImage(imageURL: (launch.links?.flickr?.originalImages![index % numberOfPictures])!))
                                     .resizable()
-                                    .scaledToFill()
-                                    .frame(height: gr.size.width)
+//                                    .hideProgressView()
+                                    .frame(width: gr.size.width, height: gr.size.width)
                             }
                         }
                         .clipped()
-                        .aspectRatio(1, contentMode: .fit)
+                        .aspectRatio(1, contentMode: .fill)
                     }
                 }
-
+                
                 Rectangle()
                     .fill(LinearGradient(
                             gradient: Gradient(colors: [Color.black.opacity(0.7), .clear]),
@@ -44,7 +44,6 @@ struct GalleryCard: View {
                     .frame(width: 1200, height: 240)
                     .clipped()
             }
-            .drawingGroup()
 
         }, content: {
             CardOverlay(preamble: "Great shots from this mission", title: "Photo gallery", bottomText: "See more", buttonText: "Open", buttonAction: {

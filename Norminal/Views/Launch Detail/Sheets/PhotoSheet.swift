@@ -39,7 +39,6 @@ struct PhotoSheet: View {
     @State private var sharedImage: UIImage?
     
     func prepareImageForSharing() {
-        preparingImage = true
         if let data = try? Data(contentsOf: imageURL) {
             if let image = UIImage(data: data) {
                 sharedImage = image
@@ -54,6 +53,7 @@ struct PhotoSheet: View {
             .resizable()
             .scaledToFit()
             .navigationBarItems(trailing: Button(action: {
+                preparingImage = true
                 prepareImageForSharing()
             }) {
                 if !isSharing && !preparingImage {
