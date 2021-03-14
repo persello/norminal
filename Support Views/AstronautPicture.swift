@@ -138,20 +138,21 @@ struct AstronautPicture: View {
                             if croppedImage != nil {
                                 logger.info("Cropped astronaut picture cache hit.")
                                 return
-                            } else {
-                                logger.info("Cropped astronaut picture cache miss. Retrieving original and cropping.")
-                                try? RemoteImage(imageURL: url).preload().image(completion: { image in
-                                    if let rawImage = image {
-                                        cropper.startCrop(image: rawImage, completionHandler: { cropResult in
-                                            if let ci = cropResult {
-                                                RemoteImage(imageURL: url)[".cropped"] = ci
-                                                croppedImage = ci
-                                            }
-                                        })
-                                    }
-                                })
                             }
+                        } else {
+                            logger.info("Cropped astronaut picture cache miss. Retrieving original and cropping.")
+                            try? RemoteImage(imageURL: url).image(completion: { image in
+                                if let rawImage = image {
+                                    cropper.startCrop(image: rawImage, completionHandler: { cropResult in
+                                        if let ci = cropResult {
+                                            RemoteImage(imageURL: url)[".cropped"] = ci
+                                            croppedImage = ci
+                                        }
+                                    })
+                                }
+                            })
                         }
+                        
                     }
                 })
             }
