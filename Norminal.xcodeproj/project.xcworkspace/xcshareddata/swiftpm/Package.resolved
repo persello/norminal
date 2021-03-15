@@ -23,9 +23,9 @@
         "package": "Telescope",
         "repositoryURL": "https://github.com/persello/telescope",
         "state": {
-          "branch": null,
-          "revision": "0648db5c3dc63b572ee0f7f781310367a7d4d6ed",
-          "version": "1.2.1"
+          "branch": "develop",
+          "revision": "6b7338dfb6cc8b6914b2de2108518f41da34c4c7",
+          "version": null
         }
       },
       {

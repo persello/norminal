@@ -47,7 +47,7 @@ class FaceCropper {
         // Return
         if let finishCallback = callback {
             if let image = rawImage {
-                finishCallback(self.cropToFace(face, image))
+                finishCallback(self.cropToFace(face, image)?.scaleWith(newSize: CGSize(width: 256, height: 256)))
             } else {
                 finishCallback(nil)
             }
