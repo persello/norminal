@@ -47,7 +47,12 @@ struct CardOverlay: View {
 
 struct CardOverlay_Previews: PreviewProvider {
     static var previews: some View {
-        CardOverlay(preamble: "Preamble", title: "Title", bottomText: "Bottom text", buttonText: "Open",
+        CardOverlay(preamble: "Preamble",
+                    title: "Title",
+                    bottomText: "Bottom text",
+                    buttonText: "Open",
                     buttonAction: {})
+            .padding()
+            .previewLayout(.fixed(width: 300, height: 450))
     }
 }

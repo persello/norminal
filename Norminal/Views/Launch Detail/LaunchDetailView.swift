@@ -120,7 +120,7 @@ struct LaunchDetailView: View {
                     Group {
                         // Continue to show countdown for 1 hour after launch
                         if Date() < (launch.dateUTC + 3600) {
-                            LaunchCountdownView(launch: launch)
+                            LaunchCountdownView()
                                 .shadow(radius: 24)
                                 .padding()
                         }
@@ -224,6 +224,7 @@ struct LaunchDetailView: View {
             }
         }
         .edgesIgnoringSafeArea(.all)
+        .environmentObject(launch)
     }
 }
 

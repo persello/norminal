@@ -17,9 +17,8 @@ struct RoundedButtonStyle: ButtonStyle {
             .padding(.vertical, 6)
             .padding(.horizontal, 24)
             .background(
-                Rectangle()
+                Capsule()
                     .foregroundColor(Color(UIColor.systemGray5))
-                    .cornerRadius(15)
             )
             .opacity(configuration.isPressed ? 0.4 : 1.0)
     }
