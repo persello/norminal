@@ -7,90 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A06B57A8-D5BB-47A6-826A-959E7106C51B"
-            shouldBeEnabled = "Yes"
+            uuid = "15AFE43B-778F-4FC7-B3DB-97273C7A0260"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Norminal/Views/Launch Detail/Sheets/PhotoSheet.swift"
+            filePath = "Data/SpaceX/Launchpad.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "prepareImageForSharing()"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "getForecast(for:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0B7078DC-AA1E-4066-9B55-38FEA4BBCEB0"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Norminal/Views/Launch Detail/Sheets/PhotoSheet.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "324041D6-B87C-4CB8-B130-F310C00E6B63"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Norminal/Views/Launch Detail/Sheets/PhotoSheet.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B1D2B8D4-0E5D-4198-9F79-10690D4A4612"
+            uuid = "8049EC9E-5ABA-4CB2-994F-5CE2E0723D0F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Library/Developer/Xcode/DerivedData/Norminal-bbgqqzoizdbsficuidpxzuflcgon/SourcePackages/checkouts/telescope/Sources/Telescope/TImage.swift"
+            filePath = "Data/SpaceX/Launchpad.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F8E6E213-3117-4010-B98D-45C326428B31"
-            shouldBeEnabled = "No"
-            condition = "geometry.size.width == 0"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Library/Developer/Xcode/DerivedData/Norminal-bbgqqzoizdbsficuidpxzuflcgon/SourcePackages/checkouts/telescope/Sources/Telescope/TImage.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Actions>
-               <BreakpointActionProxy
-                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
-                  <ActionContent
-                     consoleCommand = "">
-                  </ActionContent>
-               </BreakpointActionProxy>
-            </Actions>
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "getForecast(for:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

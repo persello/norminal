@@ -15,7 +15,7 @@ enum LaunchpadStatus: String, Decodable {
 }
 
 /// Represents a rocket launchpad
-struct Launchpad: Decodable {
+class Launchpad: Decodable, ObservableObject {
 
     /// Launchpad official name
     public var name: String
@@ -73,6 +73,25 @@ struct Launchpad: Decodable {
         case details = "details"
         case status = "status"
         case idstring = "id"
+    }
+    
+    // MARK: Launchpad weather
+    
+    // Static for persistence
+    static var forecastsCache = NSCache<NSString, WeatherAPIResponse.WeatherAPIForecastHour>()
+    
+    public func getForecast(for date: Date, completion: @escaping (WeatherAPIResponse.WeatherAPIForecastHour) -> Void) {
+        if let cachedResponse = Launchpad.forecastsCache.object(forKey: "\(date.description)-\(self.idstring)" as NSString) {
+            completion(cachedResponse)
+            return
+        }
+        
+        WeatherAPI.shared.forecast(forLocation: self.location, at: date) { forecastResponse in
+            if let hourlyForecast = forecastResponse?.getOnlyHourlyForecast() {
+                completion(hourlyForecast)
+                Launchpad.forecastsCache.setObject(hourlyForecast, forKey: "\(date.description)-\(self.idstring)" as NSString)
+            }
+        }
     }
 }
 

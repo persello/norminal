@@ -203,7 +203,7 @@ struct FlickrLinks: Decodable {
 // MARK: Launch struct
 
 /// Represents a SpaceX launch.
-struct Launch: Decodable {
+class Launch: Decodable, ObservableObject {
     
     /// **(Required)** The ordinal number of this launch.
     public var flightNumber: Int

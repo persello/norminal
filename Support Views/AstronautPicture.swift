@@ -163,5 +163,6 @@ struct AstronautPicture: View {
 struct AstronautPicture_Previews: PreviewProvider {
     static var previews: some View {
         AstronautPicture(astronaut: FakeData.shared.robertBehnken!)
+            .previewLayout(.fixed(width: 200, height: 200))
     }
 }
