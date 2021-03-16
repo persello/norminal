@@ -144,15 +144,15 @@ struct Provider: TimelineProvider {
     let d = DispatchGroup()
     
     d.enter()
-    try? interestingLaunch?.getPatch()?.image { image in
+    try? interestingLaunch?.getPatch()?.image(withSize: CGSize(width: 120, height: 120)) { image in
         defer { d.leave() }
-        patch = image?.scaleWith(newSize: CGSize(width: 240, height: 240))
+        patch = image
     }
     
     d.enter()
-    try? interestingLaunch?.getImage(atIndex: 0)?.image { image in
+    try? interestingLaunch?.getImage(atIndex: 0)?.image(withSize: CGSize(width: 400, height: 400)) { image in
         defer { d.leave() }
-        bg = image?.scaleWith(newSize: CGSize(width: 800, height: 800))
+        bg = image
     }
     
     d.wait()
@@ -260,15 +260,15 @@ class SampleData {
     let d = DispatchGroup()
     
     d.enter()
-    try? launch.getPatch()?.image { image in
+    try? launch.getPatch()?.image(withSize: CGSize(width: 120, height: 120)) { image in
         defer { d.leave() }
-        self.patch = image?.scaleWith(newSize: CGSize(width: 240, height: 240))
+        self.patch = image
     }
     
     d.enter()
-    try? launch.getImage(atIndex: 0)?.image { image in
+    try? launch.getImage(atIndex: 0)?.image(withSize: CGSize(width: 400, height: 400)) { image in
         defer { d.leave() }
-        self.bg = image?.scaleWith(newSize: CGSize(width: 800, height: 800))
+        self.bg = image
     }
 
     d.wait()

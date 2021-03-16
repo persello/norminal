@@ -27,7 +27,6 @@ struct GalleryCard: View {
                             if numberOfPictures > 0 {
                                 TImage(RemoteImage(imageURL: (launch.links?.flickr?.originalImages![index % numberOfPictures])!))
                                     .resizable()
-//                                    .hideProgressView()
                                     .frame(width: gr.size.width, height: gr.size.width)
                             }
                         }
