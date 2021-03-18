@@ -14,17 +14,20 @@ import WidgetKit
 
 @main
 struct NorminalApp: App {
-  var body: some Scene {
-    WindowGroup {
-      MainView()
-        .onAppear {
-
-          // Widget
-          WidgetCenter.shared.reloadAllTimelines()
-
-          // Firebase
-          FirebaseApp.configure()
+    @ObservedObject var globalData = SpaceXData.shared
+    
+    var body: some Scene {
+        WindowGroup {
+            MainView()
+                .onAppear {
+                    
+                    // Widget
+                    WidgetCenter.shared.reloadAllTimelines()
+                    
+                    // Firebase
+                    FirebaseApp.configure()
+                }
+                .environmentObject(globalData)
         }
     }
-  }
 }

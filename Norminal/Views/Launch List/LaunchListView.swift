@@ -9,32 +9,20 @@ import SwiftUI
 import NavigationSearchBar
 
 final class LaunchSearcher: ObservableObject {
-    
-    init(data: SpaceXData) {
-        self.data = data
-        filteredLaunches = data.launches
-    }
-    
-    @ObservedObject private var data: SpaceXData
-    
-    var text: String = "" {
-        didSet {
-            if text != oldValue {
-                updateLaunches()
-            }
-        }
-    }
+        
+    @Published var text: String = ""
     
     let scopes = ["All", "Upcoming", "Past"]
     @AppStorage("com.persello.norminal.launchview.searcher.scopeselection") var scopeSelection: Int = 0 {
-        didSet {
-            if scopeSelection != oldValue {
-                updateLaunches()
+        willSet {
+            // @Published alternative
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
             }
         }
     }
     
-    private func launchFilter(_ launch: Launch) -> Bool {
+    private func textLaunchFilter(_ launch: Launch) -> Bool {
         let nameMatch = launch.name.uppercased().contains(text.uppercased())
         
         var astronautNameMatch: Bool = false
@@ -46,10 +34,22 @@ final class LaunchSearcher: ObservableObject {
             }
         }
         
-        return nameMatch || astronautNameMatch
+        let scopeMatch: Bool!
+        switch scopeSelection {
+            case 0:
+                scopeMatch = true
+            case 1:
+                scopeMatch = launch.upcoming
+            case 2:
+                scopeMatch = !launch.upcoming
+            default:
+                scopeMatch = false
+        }
+        
+        return (nameMatch || astronautNameMatch) && scopeMatch
     }
     
-    private func updateLaunches() {
+    func filterLaunches(_ launches: [Launch]) -> [Launch]? {
         
         // Time filtering
         var timeFiltered: [Launch]?
@@ -57,35 +57,34 @@ final class LaunchSearcher: ObservableObject {
         switch scopeSelection {
             case 1:
                 // Upcoming
-                timeFiltered = data.launches.filter({$0.upcoming}).reversed()
+                timeFiltered = launches.filter({$0.upcoming}).reversed()
             case 2:
-                timeFiltered = data.launches.filter({!$0.upcoming})
+                timeFiltered = launches.filter({!$0.upcoming})
             default:
-                timeFiltered = data.launches
+                timeFiltered = launches
         }
         
         // When we have a query do the text filtering
         if text.count > 0 {
-            filteredLaunches = timeFiltered?.filter(launchFilter(_:))
+            return timeFiltered?.filter(textLaunchFilter(_:))
         } else {
-            filteredLaunches = timeFiltered
+            return timeFiltered
         }
         
     }
-    
-    @Published var filteredLaunches: [Launch]?
 }
 
 struct LaunchListView: View {
-    @ObservedObject private var searcher = LaunchSearcher(data: SpaceXData.shared)
+    @ObservedObject private var searcher = LaunchSearcher()
+    @EnvironmentObject private var globalData: SpaceXData
     
     var body: some View {
         NavigationView {
-            if SpaceXData.shared.launches.count > 0 {
+            if globalData.launches.count > 0 {
                 List {
                     
                     // Next launch
-                    if let nl = SpaceXData.shared.getNextLaunch(), searcher.text.count == 0, searcher.scopeSelection == 0 {
+                    if let nl = globalData.getNextLaunch(), searcher.text.count == 0, searcher.scopeSelection == 0 {
                         Section(header: Text("Next launch")) {
                             ZStack {
                                 LaunchListTile(launch: nl, showDetails: true)
@@ -99,7 +98,8 @@ struct LaunchListView: View {
                     }
                     
                     // Launch list
-                    if let launches = searcher.filteredLaunches {
+                    if let launches = searcher.filterLaunches(globalData.launches),
+                       launches.count > 0 {
                         if searcher.scopeSelection == 0 {
                             // When showing all launches, split them
                             Section(header: Text("\(searcher.scopes[1]) launches")) {
@@ -127,6 +127,15 @@ struct LaunchListView: View {
                                 }
                             }
                         }
+                    } else {
+                        VStack {
+                            Text("No match")
+                                .font(.title)
+                            Text("No launches found for \"\(searcher.text)\".")
+                                .foregroundColor(.secondary)
+                                .font(.subheadline)
+                        }
+ 
                     }
                 }
                 .listStyle(GroupedListStyle())

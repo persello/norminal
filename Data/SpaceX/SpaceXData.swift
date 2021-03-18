@@ -61,11 +61,10 @@ final class SpaceXData: ObservableObject {
     @Published public var crew = [Astronaut]()
     @Published public var launchpads = [Launchpad]()
     @Published public var landpads = [Landpad]()
-    
+    @Published var loadingError: Bool = false
+        
     // Shared instance
     static var shared = SpaceXData()
-    
-    var loadingError: Bool = false
     
     // Methods
     func getNextLaunch() -> Launch? {
@@ -113,14 +112,15 @@ final class SpaceXData: ObservableObject {
     init() {
         let queue = OperationQueue()
         queue.name = "com.persello.norminal.widget.concurrentTimelineGeneration"
-        queue.qualityOfService = .userInteractive
+        queue.qualityOfService = .background
         queue.maxConcurrentOperationCount = 8
         
+        var _launches: [Launch]!
         queue.addOperation { [self] in
-            launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
+            _launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
             
             // Sort launches
-            launches = launches.sorted(by: {
+            _launches = _launches.sorted(by: {
                 // $0 not launched and $1 launched
                 if $0.upcoming && !$1.upcoming {
                     return false
@@ -136,18 +136,29 @@ final class SpaceXData: ObservableObject {
             })
         }
         
+        var _crew: [Astronaut]!
         queue.addOperation { [self] in
-            crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
+            _crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
         }
         
+        var _launchpads: [Launchpad]!
         queue.addOperation { [self] in
-            launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
+            _launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
         }
         
+        var _landpads: [Landpad]!
         queue.addOperation { [self] in
-            landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
+            _landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
         }
         
         queue.waitUntilAllOperationsAreFinished()
+        
+        // Sync
+        DispatchQueue.main.async {
+            self.launches = _launches
+            self.crew = _crew
+            self.launchpads = _launchpads
+            self.landpads = _landpads
+        }
     }
 }
