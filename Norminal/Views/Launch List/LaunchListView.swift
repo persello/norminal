@@ -176,10 +176,11 @@ struct LoadingErrorView: View {
             Text("Please check your connection and try again.")
                 .foregroundColor(.secondary)
                 .font(.subheadline)
-            Button("__NOT_IMPLEMENTED__", action: {})
+            Button("Retry", action: { SpaceXData.shared.loadAllData() })
                 .buttonStyle(FilledButtonStyle())
-                .padding(.horizontal, 48)
+                .padding()
         }
+        .padding()
     }
 }
 
