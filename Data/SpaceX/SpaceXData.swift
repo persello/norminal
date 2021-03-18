@@ -62,7 +62,7 @@ final class SpaceXData: ObservableObject {
     @Published public var launchpads = [Launchpad]()
     @Published public var landpads = [Landpad]()
     @Published var loadingError: Bool = false
-        
+    
     // Shared instance
     static var shared = SpaceXData()
     
@@ -108,57 +108,65 @@ final class SpaceXData: ObservableObject {
         return result
     }
     
+    func loadAllData() {
+        self.loadingError = false
+        
+        DispatchQueue.global(qos: .background).async {
+            let queue = OperationQueue()
+            queue.name = "com.persello.norminal.widget.concurrentTimelineGeneration"
+            queue.qualityOfService = .background
+            queue.maxConcurrentOperationCount = 8
+            
+            var _launches: [Launch]!
+            queue.addOperation { [self] in
+                _launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
+                
+                // Sort launches
+                _launches = _launches.sorted(by: {
+                    // $0 not launched and $1 launched
+                    if $0.upcoming && !$1.upcoming {
+                        return false
+                    } else if !$0.upcoming && $1.upcoming {
+                        return true
+                    } else {
+                        // Considering tolerance
+                        if let d0 = $0.dateAfterTolerance, let d1 = $1.dateAfterTolerance {
+                            return d0.compare(d1) == .orderedAscending
+                        }
+                        return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
+                    }
+                })
+            }
+            
+            var _crew: [Astronaut]!
+            queue.addOperation { [self] in
+                _crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
+            }
+            
+            var _launchpads: [Launchpad]!
+            queue.addOperation { [self] in
+                _launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
+            }
+            
+            var _landpads: [Landpad]!
+            queue.addOperation { [self] in
+                _landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
+            }
+            
+            queue.waitUntilAllOperationsAreFinished()
+            
+            // Sync
+            DispatchQueue.main.async {
+                self.launches = _launches
+                self.crew = _crew
+                self.launchpads = _launchpads
+                self.landpads = _landpads
+            }
+        }
+    }
+    
     /// Creates a new instance of `SpaceXData`.
     init() {
-        let queue = OperationQueue()
-        queue.name = "com.persello.norminal.widget.concurrentTimelineGeneration"
-        queue.qualityOfService = .background
-        queue.maxConcurrentOperationCount = 8
-        
-        var _launches: [Launch]!
-        queue.addOperation { [self] in
-            _launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
-            
-            // Sort launches
-            _launches = _launches.sorted(by: {
-                // $0 not launched and $1 launched
-                if $0.upcoming && !$1.upcoming {
-                    return false
-                } else if !$0.upcoming && $1.upcoming {
-                    return true
-                } else {
-                    // Considering tolerance
-                    if let d0 = $0.dateAfterTolerance, let d1 = $1.dateAfterTolerance {
-                        return d0.compare(d1) == .orderedAscending
-                    }
-                    return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
-                }
-            })
-        }
-        
-        var _crew: [Astronaut]!
-        queue.addOperation { [self] in
-            _crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
-        }
-        
-        var _launchpads: [Launchpad]!
-        queue.addOperation { [self] in
-            _launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
-        }
-        
-        var _landpads: [Landpad]!
-        queue.addOperation { [self] in
-            _landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
-        }
-        
-        queue.waitUntilAllOperationsAreFinished()
-        
-        // Sync
-        DispatchQueue.main.async {
-            self.launches = _launches
-            self.crew = _crew
-            self.launchpads = _launchpads
-            self.landpads = _landpads
-        }
+        loadAllData()
     }
 }
