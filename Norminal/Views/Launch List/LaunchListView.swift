@@ -81,61 +81,58 @@ struct LaunchListView: View {
     var body: some View {
         NavigationView {
             if globalData.launches.count > 0 {
-                List {
-                    
-                    // Next launch
-                    if let nl = globalData.getNextLaunch(), searcher.text.count == 0, searcher.scopeSelection == 0 {
-                        Section(header: Text("Next launch")) {
-                            ZStack {
-                                LaunchListTile(launch: nl, showDetails: true)
-                                NavigationLink(destination: LaunchDetailView(launch: nl)) {
-                                    EmptyView()
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                                .opacity(0.0)
-                            }
-                        }
-                    }
-                    
-                    // Launch list
+            // We have data in the globalData
+                ZStack {
                     if let launches = searcher.filterLaunches(globalData.launches),
                        launches.count > 0 {
-                        if searcher.scopeSelection == 0 {
-                            // When showing all launches, split them
-                            Section(header: Text("\(searcher.scopes[1]) launches")) {
-                                ForEach(launches.filter({$0.upcoming}).reversed()) { launch in
-                                    NavigationLink(destination: LaunchDetailView(launch: launch)) {
-                                        LaunchListTile(launch: launch)
+                        // The current filter is valid
+                        List {
+                            // Show first big tile?
+                            if let nl = globalData.getNextLaunch(), searcher.text.count == 0, searcher.scopeSelection == 0 {
+                                Section(header: Text("Next launch")) {
+                                    ZStack {
+                                        LaunchListTile(launch: nl, showDetails: true)
+                                        NavigationLink(destination: LaunchDetailView(launch: nl)) {
+                                            EmptyView()
+                                        }
+                                        .buttonStyle(PlainButtonStyle())
+                                        .opacity(0.0)
                                     }
                                 }
                             }
                             
-                            Section(header: Text("\(searcher.scopes[2]) launches")) {
-                                ForEach(launches.filter({!$0.upcoming}).reversed()) { launch in
-                                    NavigationLink(destination: LaunchDetailView(launch: launch)) {
-                                        LaunchListTile(launch: launch)
+                            // Show results
+                            if launches.filter({$0.upcoming}).count > 0 {
+                                Section(header: Text("\(searcher.scopes[1]) launches")) {
+                                    ForEach(launches.filter({$0.upcoming}).reversed()) { launch in
+                                        NavigationLink(destination: LaunchDetailView(launch: launch)) {
+                                            LaunchListTile(launch: launch)
+                                        }
                                     }
                                 }
                             }
-                        } else {
-                            // Everything in one section otherwise
-                            Section(header: Text("\(searcher.scopes[searcher.scopeSelection]) launches")) {
-                                ForEach(launches.reversed()) { launch in
-                                    NavigationLink(destination: LaunchDetailView(launch: launch)) {
-                                        LaunchListTile(launch: launch)
+                            
+                            if launches.filter({!$0.upcoming}).count > 0 {
+                                Section(header: Text("\(searcher.scopes[2]) launches")) {
+                                    ForEach(launches.filter({!$0.upcoming}).reversed()) { launch in
+                                        NavigationLink(destination: LaunchDetailView(launch: launch)) {
+                                            LaunchListTile(launch: launch)
+                                        }
                                     }
                                 }
                             }
                         }
                     } else {
+                        // The current filter returns nothing
                         VStack {
-                            Text("No match")
+                            Text("No results")
                                 .font(.title)
-                            Text("No launches found for \"\(searcher.text)\".")
+                            Text("No launches were found for \"\(searcher.text)\".")
                                 .foregroundColor(.secondary)
                                 .font(.subheadline)
+                                .multilineTextAlignment(.center)
                         }
- 
+                        .padding()
                     }
                 }
                 .listStyle(GroupedListStyle())
@@ -148,9 +145,12 @@ struct LaunchListView: View {
                     ]
                 )
             } else {
-                if SpaceXData.shared.loadingError {
+            // We don't have data in the globalData
+                if globalData.loadingError {
+                    // Error occurred during data load
                     LoadingErrorView()
                 } else {
+                    // We are loading data
                     LoadingView()
                 }
             }
@@ -215,5 +215,6 @@ struct LoadingView_Previews: PreviewProvider {
 struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
         LaunchListView()
+            .environmentObject(SpaceXData.shared)
     }
 }
