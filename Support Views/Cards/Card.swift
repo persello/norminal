@@ -34,21 +34,21 @@ struct Card<Background: View, Content: View>: View {
                 content()
                     .padding(24)
             }
-            .clipped()
-            .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-            .shadow(radius: 24)
-            .aspectRatio(4 / 5, contentMode: .fill)
-            .scaledToFit()
-            .scaleEffect(self.scale)
-            .animation(.easeInOut)
-            .onTapGesture {} // Otherwise you can't scroll the list anymore
-            .contentShape(Rectangle())
-            .onLongPressGesture(minimumDuration: 10, pressing: { inProgress in
-                self.scale = inProgress ? 0.95 : 1
-            }, perform: {
-                self.scale = 1
-            })
+
         }
+        .clipped()
+        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .shadow(radius: 24)
+        .aspectRatio(4 / 5, contentMode: .fill)
+        .scaleEffect(self.scale)
+        .contentShape(Rectangle())
+        .animation(.easeInOut)
+        .onTapGesture {} // Otherwise you can't scroll the list anymore
+        .onLongPressGesture(minimumDuration: 10, pressing: { inProgress in
+            self.scale = inProgress ? 0.95 : 1
+        }, perform: {
+            self.scale = 1
+        })
     }
 }
 
@@ -65,5 +65,6 @@ struct Card_Previews: PreviewProvider {
         }
         .environmentObject(FakeData.shared.crewDragon!)
         .previewLayout(.sizeThatFits)
+        .scaledToFit()
     }
 }
