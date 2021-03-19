@@ -8,11 +8,14 @@
 import Foundation
 import CoreLocation
 
+// MARK: - Enums
 enum LaunchpadStatus: String, Decodable {
     case retired = "retired"
     case active = "active"
     case underConstruction = "under construction"
 }
+
+// MARK: - Launchpad class
 
 /// Represents a rocket launchpad
 class Launchpad: Decodable, ObservableObject {
@@ -95,6 +98,7 @@ class Launchpad: Decodable, ObservableObject {
     }
 }
 
+// MARK: - Protocol extensions
 extension Launchpad: Identifiable {
     /// Launchpad ID
     var id: UUID { return UUID(stringWithoutDashes: self.idstring)! }

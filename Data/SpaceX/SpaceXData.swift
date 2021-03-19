@@ -10,7 +10,7 @@ import Foundation
 import os
 import WidgetKit
 
-// MARK: Utility function for UUID from string with no dashes
+// MARK: - Utility extension for initializing UUID from string with no dashes
 extension UUID {
     init?(stringWithoutDashes input: String) {
         var dashed = input
@@ -27,7 +27,7 @@ extension UUID {
     }
 }
 
-// MARK: Custom date formatter for extended ISO8601 support.
+// MARK: - Custom date formatter for extended ISO8601 support.
 extension DateFormatter {
     static let iso8601Full: DateFormatter = {
         let formatter = DateFormatter()
@@ -39,6 +39,7 @@ extension DateFormatter {
     }()
 }
 
+// MARK: - Custom JSON date format decoder
 class CustomDecoder: JSONDecoder {
     let dateFormatter = DateFormatter.iso8601Full
     
@@ -48,7 +49,7 @@ class CustomDecoder: JSONDecoder {
     }
 }
 
-// MARK: SpaceXData support class
+// MARK: - SpaceXData main class
 
 /// Contains data obtained from the SpaceX API
 final class SpaceXData: ObservableObject {
@@ -71,6 +72,7 @@ final class SpaceXData: ObservableObject {
         return launches.first(where: {$0.upcoming})
     }
     
+    // MARK: Generic function for loading data
     func loadData<T: Decodable>(url: URL) -> [T] {
         var result = [T]()
         let semaphore = DispatchSemaphore(value: 0)

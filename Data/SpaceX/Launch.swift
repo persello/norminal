@@ -200,7 +200,7 @@ struct FlickrLinks: Decodable {
     }
 }
 
-// MARK: Launch struct
+// MARK: - Launch class
 
 /// Represents a SpaceX launch.
 class Launch: Decodable, ObservableObject {
@@ -311,8 +311,10 @@ class Launch: Decodable, ObservableObject {
         case autoUpdate = "auto_update"
         case idstring = "id"
     }
-    
-    // MARK: - Utility methods
+}
+
+// MARK: - Utility methods
+extension Launch {
     var coresToRecover: Int {
         cores?.filter({$0.landingAttempt ?? false}).count ?? 0
     }
@@ -458,6 +460,7 @@ class Launch: Decodable, ObservableObject {
     
 }
 
+// MARK: - Protocol extensions
 extension Launch: Identifiable {
     var id: Int { return flightNumber }
 }
