@@ -44,31 +44,33 @@ class Astronaut: Decodable {
     case status = "status"
     case idstring = "id"
   }
+}
 
-  private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Astronaut")
+// MARK: - Utility methods
 
-  /// Returns the initials of the astronaut
-  func getInitials() -> String {
-    let components = self.name.components(separatedBy: " ")
-    return "\((components.first?.first)!)\((components.last?.first)!)"
-  }
-
-  /// Returns the launches in which this astronaut participated
-  func getLaunches() -> [Launch]? {
-    if let launchIdList = launches {
-      var launches: [Launch] = []
-      for launchID in launchIdList {
-        if let launch = SpaceXData.shared.launches.first(where: { $0.idstring ?? "" == launchID }) {
-          launches.append(launch)
-        }
-      }
-
-      if launches.count > 0 {
-        return launches
-      }
+extension Astronaut {
+    /// Returns the initials of the astronaut
+    func getInitials() -> String {
+        let components = self.name.components(separatedBy: " ")
+        return "\((components.first?.first)!)\((components.last?.first)!)"
     }
-    return nil
-  }
+    
+    /// Returns the launches in which this astronaut participated
+    func getLaunches() -> [Launch]? {
+        if let launchIdList = launches {
+            var launches: [Launch] = []
+            for launchID in launchIdList {
+                if let launch = SpaceXData.shared.launches.first(where: { $0.idstring ?? "" == launchID }) {
+                    launches.append(launch)
+                }
+            }
+            
+            if launches.count > 0 {
+                return launches
+            }
+        }
+        return nil
+    }
 
 }
 

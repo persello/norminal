@@ -4,7 +4,7 @@
 //
 //  Created by Riccardo Persello on 02/03/21.
 //
- 
+
 import SwiftUI
 
 struct LaunchCountdownView: View {
@@ -163,7 +163,7 @@ struct WeatherView: View {
     @State var forecastIcon: String?
     @State var forecastText: String?
     @State var windTempConfiguration: WindTemperatureView.Configuration?
-        
+    
     var body: some View {
         VStack {
             Image(systemName: forecastIcon ?? "questionmark")
@@ -178,7 +178,9 @@ struct WeatherView: View {
             
             WindTemperatureView(configuration: self.windTempConfiguration)
                 .onAppear {
-                        launch.getLaunchpad()?.getForecast(for: launch.dateUTC) { forecast in
+                    launch.getLaunchpad()?.getForecast(for: launch.dateUTC) { result in
+                        switch result {
+                            case .success(let forecast):
                                 forecastIcon = forecast.getIcon()
                                 forecastText = forecast.condition.text
                                 windTempConfiguration = WindTemperatureView.Configuration(
@@ -191,51 +193,52 @@ struct WeatherView: View {
                                 )
                         }
                     }
+                }
         }
     }
-}
-
-struct WindTemperatureView: View {
-    struct Configuration {
-        init(windDirection: Angle, windSpeed: Measurement<UnitSpeed>, textualWindDirection: String, temperature: Measurement<UnitTemperature>) {
-            self.formatter = MeasurementFormatter()
-            formatter.numberFormatter.maximumFractionDigits = 0
+    
+    struct WindTemperatureView: View {
+        struct Configuration {
+            init(windDirection: Angle, windSpeed: Measurement<UnitSpeed>, textualWindDirection: String, temperature: Measurement<UnitTemperature>) {
+                self.formatter = MeasurementFormatter()
+                formatter.numberFormatter.maximumFractionDigits = 0
+                
+                self.windDirection = windDirection
+                self.windSpeed = windSpeed
+                self.textualWindDirection = textualWindDirection
+                self.temperature = temperature
+            }
             
-            self.windDirection = windDirection
-            self.windSpeed = windSpeed
-            self.textualWindDirection = textualWindDirection
-            self.temperature = temperature
+            let formatter: MeasurementFormatter
+            let windDirection: Angle
+            let windSpeed: Measurement<UnitSpeed>
+            let textualWindDirection: String
+            let temperature: Measurement<UnitTemperature>
         }
         
-        let formatter: MeasurementFormatter
-        let windDirection: Angle
-        let windSpeed: Measurement<UnitSpeed>
-        let textualWindDirection: String
-        let temperature: Measurement<UnitTemperature>
-    }
-    
-    var configuration: WindTemperatureView.Configuration?
-    
-    var body: some View {
-        if let configuration = self.configuration {
-            VStack {
-                HStack {
-                    Image(systemName: "location.north.fill")
-                        .rotationEffect(configuration.windDirection)
-                    Text(configuration.formatter.string(from: configuration.windSpeed) + " " + configuration.textualWindDirection)
-                        .padding(.leading, -4)
+        var configuration: WindTemperatureView.Configuration?
+        
+        var body: some View {
+            if let configuration = self.configuration {
+                VStack {
+                    HStack {
+                        Image(systemName: "location.north.fill")
+                            .rotationEffect(configuration.windDirection)
+                        Text(configuration.formatter.string(from: configuration.windSpeed) + " " + configuration.textualWindDirection)
+                            .padding(.leading, -4)
+                    }
+                    
+                    HStack {
+                        Image(systemName: "thermometer")
+                        Text(configuration.formatter.string(from: configuration.temperature))
+                            .padding(.leading, -4)
+                    }
                 }
-                
-                HStack {
-                    Image(systemName: "thermometer")
-                    Text(configuration.formatter.string(from: configuration.temperature))
-                        .padding(.leading, -4)
-                }
+                .foregroundColor(.gray)
+                .font(.footnote)
+            } else {
+                ProgressView()
             }
-            .foregroundColor(.gray)
-            .font(.footnote)
-        } else {
-            ProgressView()
         }
     }
 }

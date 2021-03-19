@@ -171,7 +171,7 @@ class WeatherAPI {
     
     func forecast(forLocation location: CLLocationCoordinate2D,
                   at date: Date,
-                  completion callback: @escaping (WeatherAPIResponse?) -> Void) {
+                  completion callback: @escaping (Result<WeatherAPIResponse, Never>) -> Void) {
         
         let key = SecretsManager.shared.root?.weatherAPI.key ?? ""
         
@@ -190,7 +190,7 @@ class WeatherAPI {
             if let data = data {
                 do {
                     let result = try JSONDecoder().decode(WeatherAPIResponse.self, from: data)
-                    callback(result)
+                    callback(.success(result))
                 } catch {
                     logger.error("Error while decoding WeatherAPI response: \(error as NSObject).")
                 }

@@ -83,16 +83,21 @@ class Launchpad: Decodable, ObservableObject {
     // Static for persistence
     static var forecastsCache = NSCache<NSString, WeatherAPIResponse.WeatherAPIForecastHour>()
     
-    public func getForecast(for date: Date, completion: @escaping (WeatherAPIResponse.WeatherAPIForecastHour) -> Void) {
+    public func getForecast(for date: Date, completion: @escaping (Result<WeatherAPIResponse.WeatherAPIForecastHour, Never>) -> Void) {
         if let cachedResponse = Launchpad.forecastsCache.object(forKey: "\(date.description)-\(self.idstring)" as NSString) {
-            completion(cachedResponse)
+            completion(.success(cachedResponse))
             return
         }
         
         WeatherAPI.shared.forecast(forLocation: self.location, at: date) { forecastResponse in
-            if let hourlyForecast = forecastResponse?.getOnlyHourlyForecast() {
-                completion(hourlyForecast)
-                Launchpad.forecastsCache.setObject(hourlyForecast, forKey: "\(date.description)-\(self.idstring)" as NSString)
+            switch forecastResponse {
+                case .success(let result):
+                    if let hourlyForecast = result.getOnlyHourlyForecast() {
+                        completion(.success(hourlyForecast))
+                        Launchpad.forecastsCache.setObject(hourlyForecast, forKey: "\(date.description)-\(self.idstring)" as NSString)
+                    }
+                default:
+                    break
             }
         }
     }

@@ -50,7 +50,6 @@ struct MainView: View {
         })
         .padding(48)
       }
-      // .buttonStyle(RoundedButtonStyle())
       .tabItem {
         Image(systemName: "exclamationmark.bubble.fill")
         Text("Feedback")

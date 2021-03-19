@@ -12,14 +12,14 @@ import os
 
 class FaceCropper {
     
-    init() { }
+    typealias FaceCropperCallback = (Result<UIImage, Error>) -> Void
     
     private var rawImage: UIImage?
-    private var callback: ((UIImage?) -> Void)?
+    private var callback: FaceCropperCallback?
     
     private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Face cropper")
     
-    func startCrop(image input: UIImage, completionHandler: @escaping (UIImage?) -> Void) {
+    func startCrop(image input: UIImage, completionHandler: @escaping FaceCropperCallback) {
         
         // Setup
         self.rawImage = input
@@ -33,24 +33,26 @@ class FaceCropper {
             try requestHandler.perform([faceRequest])
         } catch {
             logger.error("Error while requesting face crop: \"\(error.localizedDescription)\"")
+            completionHandler(.failure(error))
         }
     }
     
     private func cropComplete(request: VNRequest, error: Error?) {
         guard let observations = request.results as? [VNFaceObservation] else {
-            logger.error("Error while getting face observations: \"\(error?.localizedDescription ?? "Unknown error")\"")
+            if let error = error {
+                logger.error("Error while getting face observations: \"\(error.localizedDescription)\".")
+                callback?(.failure(error))
+            }
             return
         }
         
         let face = observations[0]
         
         // Return
-        if let finishCallback = callback {
-            if let image = rawImage {
-                finishCallback(self.cropToFace(face, image)?.scaleWith(newSize: CGSize(width: 256, height: 256)))
-            } else {
-                finishCallback(nil)
-            }
+        if let callback = callback,
+           let image = rawImage,
+           let cropped = self.cropToFace(face, image)?.scaleWith(newSize: CGSize(width: 256, height: 256)) {
+            callback(.success(cropped))
         }
     }
     
@@ -118,7 +120,8 @@ struct AstronautPicture: View {
                     Circle()
                         .fill(LinearGradient(
                                 gradient: Gradient(colors: [
-                                    Color(UIColor.systemGray3), Color(UIColor.systemGray)
+                                    Color(UIColor.systemGray3),
+                                    Color(UIColor.systemGray)
                                 ]),
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing)
@@ -144,9 +147,12 @@ struct AstronautPicture: View {
                             try? RemoteImage(imageURL: url).image(completion: { image in
                                 if let rawImage = image {
                                     cropper.startCrop(image: rawImage, completionHandler: { cropResult in
-                                        if let ci = cropResult {
-                                            RemoteImage(imageURL: url)[".cropped"] = ci
-                                            croppedImage = ci
+                                        switch cropResult {
+                                            case .success(image):
+                                                RemoteImage(imageURL: url)[".cropped"] = image
+                                                croppedImage = image
+                                            default:
+                                                break
                                         }
                                     })
                                 }
