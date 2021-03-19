@@ -8,32 +8,33 @@
 import SwiftUI
 
 struct RocketCard: View {
-  @State var launch: Launch
-  @State var modalPresented: Bool = false
-  
-  var body: some View {
-    Card(background: {
-      Image("starship.render")
-        .resizable()
-        .scaledToFill()
-      
-    }, content: {
-      CardOverlay(preamble: "Vehicle",
-                  title: "**MOCKUP**",
-                  bottomText: "Read details",
-                  buttonText: "Open",
-                  buttonAction: {
-                    self.modalPresented = true
-                  })
-    })
-    .padding()
-  }
+    @EnvironmentObject var launch: Launch
+    @State var modalPresented: Bool = false
+    
+    var body: some View {
+        Card(background: {
+            Image("starship.render")
+                .resizable()
+                .scaledToFill()
+            
+        }, content: {
+            CardOverlay(preamble: "Vehicle",
+                        title: "**MOCKUP**",
+                        bottomText: "Read details",
+                        buttonText: "Open",
+                        buttonAction: {
+                            self.modalPresented = true
+                        })
+        })
+        .padding()
+    }
 }
 
 
 struct RocketCard_Previews: PreviewProvider {
-  static var previews: some View {
-    RocketCard(launch: FakeData.shared.crewDragon!)
-      .previewLayout(.sizeThatFits)
-  }
+    static var previews: some View {
+        RocketCard()
+            .previewLayout(.sizeThatFits)
+            .environmentObject(FakeData.shared.crewDragon!)
+    }
 }

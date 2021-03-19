@@ -125,23 +125,23 @@ struct LaunchDetailView: View {
                                 .padding()
                         }
                         
-                        if let crew = launch.getCrew() {
-                            CrewCard(crew: crew)
+                        if launch.getCrew()?.count ?? 0 > 0            {
+                            CrewCard()
                         }
                         
                         // TODO: Show only when really available
-                        MissionDetailsCard(launch: launch)
+                        MissionDetailsCard()
                         
-                        PayloadCard(launch: launch)
+                        PayloadCard()
                         
-                        RocketCard(launch: launch)
+                        RocketCard()
                         
                         if launch.links?.flickr?.originalImages?.count ?? 0 > 0 {
-                            GalleryCard(launch: launch)
+                            GalleryCard()
                         }
                         
                         if (launch.links?.youtubeID ?? "").count > 0 {
-                            WebcastCard(launch: launch)
+                            WebcastCard()
                         }
                         
                     }

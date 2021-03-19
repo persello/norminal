@@ -9,7 +9,7 @@ import SwiftUI
 import Telescope
 
 struct GalleryCard: View {
-    @State var launch: Launch
+    @EnvironmentObject var launch: Launch
     @State var modalPresented: Bool = false
 
     private let threeColumnGrid = Array(repeating: GridItem(.flexible(minimum: 60, maximum: 160), spacing: 2), count: 3)
@@ -59,7 +59,8 @@ struct GalleryCard: View {
 
 struct GalleryCard_Previews: PreviewProvider {
     static var previews: some View {
-      GalleryCard(launch: FakeData.shared.crewDragon!)
+      GalleryCard()
         .previewLayout(.sizeThatFits)
+        .environmentObject(FakeData.shared.crewDragon!)
     }
 }

@@ -10,7 +10,7 @@ import XCDYouTubeKit
 import Telescope
 
 struct WebcastCard: View {
-    @State var launch: Launch
+    @EnvironmentObject var launch: Launch
     @State var modalPresented: Bool = false
     @State var thumbnailLink: URL?
     
@@ -68,8 +68,9 @@ struct WebcastCard_Previews: PreviewProvider {
     static var previews: some View {
         
         VStack {
-            WebcastCard(launch: FakeData.shared.crewDragon!)
+            WebcastCard()
         }
         .previewLayout(.sizeThatFits)
+        .environmentObject(FakeData.shared.crewDragon!)
     }
 }
