@@ -18,13 +18,13 @@ struct GalleryCard: View {
         Card(background: {
             ZStack(alignment: .top) {
                 Color(UIColor.systemGray5)
-
-                LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
-                    // Using index for filling at least 9 images
-                    ForEach(0..<9) { index in
-                        GeometryReader { gr in
-                            let numberOfPictures = launch.links?.flickr?.originalImages?.count ?? 0
-                            if numberOfPictures > 0 {
+                let numberOfPictures = launch.links?.flickr?.originalImages?.count ?? 0
+                if numberOfPictures > 3 {
+                    LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
+                        // Using index for filling at least 9 images
+                        
+                        ForEach(0..<9) { index in
+                            GeometryReader { gr in
                                 TImage(RemoteImage(imageURL: (launch.links?.flickr?.originalImages![index % numberOfPictures])!))
                                     .resizable()
                                     .frame(width: gr.size.width, height: gr.size.width)
@@ -32,7 +32,13 @@ struct GalleryCard: View {
                         }
                         .clipped()
                         .aspectRatio(1, contentMode: .fill)
+                        
                     }
+                } else if (1...3).contains(numberOfPictures) {
+                    TImage(RemoteImage(imageURL: (launch.links?.flickr?.originalImages![0])!))
+                        .resizable()
+                        .scaledToFit()
+                        .scaleEffect(1.5)
                 }
                 
                 Rectangle()
@@ -61,6 +67,6 @@ struct GalleryCard_Previews: PreviewProvider {
     static var previews: some View {
       GalleryCard()
         .previewLayout(.sizeThatFits)
-        .environmentObject(FakeData.shared.crewDragon!)
+        .environmentObject(FakeData.shared.nrol108!)
     }
 }
