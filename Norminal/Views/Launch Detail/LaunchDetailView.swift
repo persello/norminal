@@ -112,7 +112,7 @@ struct LaunchDetailView: View {
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.74
                             - (launch.links?.flickr?.originalImages?.first == nil ? 100 : 0))
                     .scaledToFit()
-                    .clipShape(BottomClipper(bottom: UIScreen.main.bounds.height))
+                    .clipShape(BottomClipper(bottom: UIScreen.main.bounds.height * 2))
                     
                     // Shadow on top
                     GeometryReader { geometry in
@@ -131,7 +131,7 @@ struct LaunchDetailView: View {
                     MissionRecapView()
                         .shadow(radius: 12)
                         .frame(width: UIScreen.main.bounds.width, height: 100, alignment: .center)
-                        .background(VisualEffectBlur(blurStyle: UIBlurEffect.Style.systemUltraThinMaterial))
+                        .background(VisualEffectBlur(blurStyle: UIBlurEffect.Style.systemThinMaterial))
                         .alignmentGuide(.bottom, computeValue: { dimension in
                             dimension[launch.links?.flickr?.originalImages?.first == nil ? .top : .bottom]
                         })

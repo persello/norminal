@@ -33,7 +33,10 @@ struct CardOverlay: View {
                     .fontWeight(.semibold)
                     .foregroundColor(Color(UIColor.label))
                 Spacer()
-                Button(action: buttonAction) {
+                Button(action: {
+                    UIImpactFeedbackGenerator(style: .soft).impactOccurred(intensity: 1.0)
+                    buttonAction()
+                }) {
                     Text(buttonText)
                 }
                 .buttonStyle(RoundedButtonStyle())
