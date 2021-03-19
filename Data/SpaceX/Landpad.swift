@@ -8,6 +8,8 @@
 import Foundation
 import CoreLocation
 
+// MARK: - Enums
+
 enum LandpadStatus: String, Decodable {
     case retired = "retired"
     case active = "active"
@@ -19,8 +21,10 @@ enum LandpadType: String, Decodable {
     case ASDS
 }
 
+// MARK: - Landpad class
+
 /// Represents a rocket Landpad
-struct Landpad: Decodable {
+class Landpad: Decodable {
 
     /// Landpad official name
     public var name: String
@@ -81,6 +85,8 @@ struct Landpad: Decodable {
         case idstring = "id"
     }
 }
+
+// MARK: - Protocol extensions
 
 extension Landpad: Identifiable {
     /// Landpad ID

@@ -9,8 +9,10 @@ import Foundation
 import SwiftUI
 import os
 
+// MARK: - Astronaut class
+
 /// Represents an astronaut
-struct Astronaut: Decodable {
+class Astronaut: Decodable {
 
   /// Name and surname of the astronaut
   public var name: String
@@ -69,6 +71,8 @@ struct Astronaut: Decodable {
   }
 
 }
+
+// MARK: - Protocol extension
 
 extension Astronaut: Identifiable {
   var id: UUID { return UUID(stringWithoutDashes: self.idstring)! }
