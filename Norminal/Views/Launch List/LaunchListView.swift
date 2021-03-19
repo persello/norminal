@@ -9,8 +9,15 @@ import SwiftUI
 import NavigationSearchBar
 
 final class LaunchSearcher: ObservableObject {
-        
-    @Published var text: String = ""
+    
+    var text: String = "" {
+        willSet {
+            // A fix for the max CPU time
+            if newValue != text {
+                self.objectWillChange.send()
+            }
+        }
+    }
     
     let scopes = ["All", "Upcoming", "Past"]
     @AppStorage("com.persello.norminal.launchview.searcher.scopeselection") var scopeSelection: Int = 0 {
@@ -50,7 +57,7 @@ final class LaunchSearcher: ObservableObject {
     }
     
     func filterLaunches(_ launches: [Launch]) -> [Launch]? {
-        
+                
         // Time filtering
         var timeFiltered: [Launch]?
         
@@ -78,13 +85,16 @@ struct LaunchListView: View {
     @ObservedObject private var searcher = LaunchSearcher()
     @EnvironmentObject private var globalData: SpaceXData
     
+    var launches: [Launch] {
+        return searcher.filterLaunches(globalData.launches) ?? []
+    }
+    
     var body: some View {
         NavigationView {
             if globalData.launches.count > 0 {
-            // We have data in the globalData
+                // We have data in the globalData
                 ZStack {
-                    if let launches = searcher.filterLaunches(globalData.launches),
-                       launches.count > 0 {
+                    if launches.count > 0 {
                         // The current filter is valid
                         List {
                             // Show first big tile?
@@ -111,7 +121,7 @@ struct LaunchListView: View {
                                     }
                                 }
                             }
-                            
+
                             if launches.filter({!$0.upcoming}).count > 0 {
                                 Section(header: Text("\(searcher.scopes[2]) launches")) {
                                     ForEach(launches.filter({!$0.upcoming}).reversed()) { launch in
@@ -145,7 +155,7 @@ struct LaunchListView: View {
                     ]
                 )
             } else {
-            // We don't have data in the globalData
+                // We don't have data in the globalData
                 if globalData.loadingError {
                     // Error occurred during data load
                     LoadingErrorView()
