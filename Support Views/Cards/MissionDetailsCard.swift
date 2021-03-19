@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MissionDetailsCard: View {
-  @State var launch: Launch
+  @EnvironmentObject var launch: Launch
   @State var modalPresented: Bool = false
   
   var body: some View {
@@ -48,12 +48,13 @@ struct MissionDetailsCard: View {
 struct MissionDetailsCard_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      MissionDetailsCard(launch: FakeData.shared.crewDragon!)
+      MissionDetailsCard()
         .preferredColorScheme(.light)
         .previewLayout(.sizeThatFits)
-      MissionDetailsCard(launch: FakeData.shared.crewDragon!)
+      MissionDetailsCard()
         .preferredColorScheme(.dark)
         .previewLayout(.sizeThatFits)
     }
+    .environmentObject(FakeData.shared.crewDragon!)
   }
 }

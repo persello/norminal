@@ -315,13 +315,11 @@
 			isa = PBXGroup;
 			children = (
 				8B83E8AB253769AE002AE62B /* Cards */,
-				8BB5232A254A009B006A9511 /* CardOverlay.swift */,
 				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
 				8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */,
 				8B0D1D75253363BF0056FACA /* MissionRecapCard.swift */,
 				8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */,
 				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
-				8B0D1D78253365660056FACA /* Card.swift */,
 			);
 			path = "Support Views";
 			sourceTree = "<group>";
@@ -329,12 +327,14 @@
 		8B83E8AB253769AE002AE62B /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				8B83E8B025376A5D002AE62B /* WebcastCard.swift */,
+				8B0D1D78253365660056FACA /* Card.swift */,
+				8BB5232A254A009B006A9511 /* CardOverlay.swift */,
 				8BB5231725478833006A9511 /* CrewCard.swift */,
 				8BA90E12257D9AA200168722 /* GalleryCard.swift */,
 				8B919B0525F14F27007D992E /* MissionDetailsCard.swift */,
-				8B9255B125F2DA810059CB2E /* RocketCard.swift */,
 				8B07905125F2FC41006CD9BE /* PayloadCard.swift */,
+				8B9255B125F2DA810059CB2E /* RocketCard.swift */,
+				8B83E8B025376A5D002AE62B /* WebcastCard.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";

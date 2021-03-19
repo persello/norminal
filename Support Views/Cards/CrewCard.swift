@@ -9,7 +9,11 @@ import SwiftUI
 import VisualEffects
 
 struct CrewCard: View {
-    @State var crew: [Astronaut]
+    @EnvironmentObject var launch: Launch
+    var crew: [Astronaut] {
+        return launch.getCrew() ?? []
+    }
+    
     @State var modalPresented: Bool = false
 
     let spacing: CGFloat = 28
@@ -58,7 +62,8 @@ struct CrewCard: View {
 
 struct CrewCard_Previews: PreviewProvider {
     static var previews: some View {
-      CrewCard(crew: [FakeData.shared.robertBehnken!])
+      CrewCard()
         .previewLayout(.sizeThatFits)
+        .environmentObject(FakeData.shared.crewDragon!)
     }
 }
