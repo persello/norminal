@@ -10,6 +10,14 @@ import VisualEffects
 import MapKit
 import Telescope
 
+struct BottomClipper: Shape {
+    let bottom: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        Rectangle().path(in: CGRect(x: 0, y: rect.size.height - bottom, width: rect.size.width, height: bottom))
+    }
+}
+
 struct LaunchDetailView: View {
     @State var launch: Launch
     @State var mapImage: UIImage?
@@ -41,73 +49,96 @@ struct LaunchDetailView: View {
     var body: some View {
         ScrollView(.vertical) {
             VStack {
-                GeometryReader { (geometry: GeometryProxy) in
-                    if geometry.frame(in: .global).minY <= 0 {
-                        if let imageURL = launch.links?.flickr?.originalImages?.first {
-                            TImage(RemoteImage(imageURL: imageURL))
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .offset(y: -0.1 * geometry.frame(in: .global).minY)
-                                .frame(width: geometry.size.width,
-                                       height: geometry.size.height)
-                        } else {
-                            if let mpi = mapImage {
-                                Image(uiImage: mpi)
+                ZStack(alignment: .bottom) {
+                    GeometryReader { (geometry: GeometryProxy) in
+                        if geometry.frame(in: .global).minY <= 0 {
+                            if let imageURL = launch.links?.flickr?.originalImages?.first {
+                                TImage(RemoteImage(imageURL: imageURL))
                                     .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .offset(y: -0.1 * geometry.frame(in: .global).minY)
-                                    .frame(width: geometry.size.width,
-                                           height: geometry.size.height)
+                                    .scaledToFill()
+                                    .offset(y: -geometry.frame(in: .global).minY * 0.5)
+                                    .frame(width: geometry.size.width)
                             } else {
-                                ProgressView()
-                                    .frame(width: geometry.size.width,
-                                           height: geometry.size.height)
-                                    .onAppear(perform: {
-                                        if launch.links?.flickr?.originalImages?.first == nil {
-                                            getMapSnapshot(geometry: geometry)
-                                        }
-                                    })
+                                if let mpi = mapImage {
+                                    Image(uiImage: mpi)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .offset(y: -geometry.frame(in: .global).minY * 0.5)
+                                        .frame(width: geometry.size.width,
+                                               height: geometry.size.height)
+                                } else {
+                                    ProgressView()
+                                        .frame(width: geometry.size.width,
+                                               height: geometry.size.height)
+                                        .onAppear(perform: {
+                                            if launch.links?.flickr?.originalImages?.first == nil {
+                                                getMapSnapshot(geometry: geometry)
+                                            }
+                                        })
+                                }
                             }
-                        }
-                    } else {
-                        if let imageURL = launch.links?.flickr?.originalImages?.first {
-                            TImage(RemoteImage(imageURL: imageURL))
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .offset(y: -geometry.frame(in: .global).minY)
-                                .frame(width: geometry.size.width,
-                                       height: geometry.size.height
-                                        + geometry.frame(in: .global).minY)
-                            
                         } else {
-                            if let mpi = mapImage {
-                                Image(uiImage: mpi)
+                            if let imageURL = launch.links?.flickr?.originalImages?.first {
+                                TImage(RemoteImage(imageURL: imageURL))
                                     .resizable()
-                                    .aspectRatio(contentMode: .fill)
+                                    .scaledToFill()
                                     .offset(y: -geometry.frame(in: .global).minY)
                                     .frame(width: geometry.size.width,
                                            height: geometry.size.height
                                             + geometry.frame(in: .global).minY)
+                                
                             } else {
-                                ProgressView()
-                                    .frame(width: geometry.size.width,
-                                           height: geometry.size.height)
-                                    .onAppear(perform: {
-                                        if launch.links?.flickr?.originalImages?.first == nil {
-                                            getMapSnapshot(geometry: geometry)
-                                        }
-                                    })
+                                if let mpi = mapImage {
+                                    Image(uiImage: mpi)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .offset(y: -geometry.frame(in: .global).minY)
+                                        .frame(width: geometry.size.width,
+                                               height: geometry.size.height
+                                                + geometry.frame(in: .global).minY)
+                                } else {
+                                    ProgressView()
+                                        .frame(width: geometry.size.width,
+                                               height: geometry.size.height)
+                                        .onAppear(perform: {
+                                            if launch.links?.flickr?.originalImages?.first == nil {
+                                                getMapSnapshot(geometry: geometry)
+                                            }
+                                        })
+                                }
                             }
                         }
                     }
-                }.frame(height: UIScreen.main.bounds.height / 16 * 10)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.74
+                            - (launch.links?.flickr?.originalImages?.first == nil ? 100 : 0))
+                    .scaledToFit()
+                    .clipShape(BottomClipper(bottom: UIScreen.main.bounds.height))
+                    
+                    // Shadow on top
+                    GeometryReader { geometry in
+                        Rectangle()
+                            .fill(
+                                LinearGradient(gradient: Gradient(colors: [
+                                                                    Color(UIColor.black.withAlphaComponent(0.45)),
+                                                                    .clear]),
+                                               startPoint: .top,
+                                               endPoint: .bottom))
+                            .offset(y: -geometry.frame(in: .global).minY)
+                    }
+                    .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .center)
+
+                    // Recap view
+                    MissionRecapView()
+                        .shadow(radius: 12)
+                        .frame(width: UIScreen.main.bounds.width, height: 100, alignment: .center)
+                        .background(VisualEffectBlur(blurStyle: UIBlurEffect.Style.systemUltraThinMaterial))
+                        .alignmentGuide(.bottom, computeValue: { dimension in
+                            dimension[launch.links?.flickr?.originalImages?.first == nil ? .top : .bottom]
+                        })
+                }
                 
                 // MARK: List of cards
                 VStack(alignment: .leading) {
-                    MissionRecapCard(launch: launch)
-                        .padding(.top, -50)
-                        .padding(.horizontal, 24)
-                        .shadow(radius: 24)
                     
                     Text("Details")
                         .font(.title)
@@ -221,6 +252,7 @@ struct LaunchDetailView: View {
                     .scaledToFit()
                     
                 }
+                .background(Color(UIColor.systemBackground))
             }
         }
         .edgesIgnoringSafeArea(.all)

@@ -17,7 +17,7 @@ struct LaunchListTile: View {
                 
                 VStack {
                     // Recap details
-                    MissionRecapView(launch: launch, showCrewWhenAvailable: true)
+                    MissionRecapView(showCrewWhenAvailable: true)
                 }
                 
                 Spacer()
