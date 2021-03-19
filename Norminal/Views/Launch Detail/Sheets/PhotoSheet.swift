@@ -54,9 +54,11 @@ struct PhotoSheet: View {
             .scaledToFit()
             .navigationBarItems(trailing: Button(action: {
                 preparingImage = true
-                prepareImageForSharing()
+                DispatchQueue.global(qos: .background).async {
+                    prepareImageForSharing()
+                }
             }) {
-                if !isSharing && !preparingImage {
+                if !preparingImage {
                     Image(systemName: "square.and.arrow.up")
                         .imageScale(.large)
                         .font(.body)
