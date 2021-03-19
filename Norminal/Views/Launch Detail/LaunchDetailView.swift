@@ -231,7 +231,7 @@ struct LaunchDetailView: View {
 struct LaunchDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LaunchDetailView(launch: FakeData.shared.crewDragon!)
+            LaunchDetailView(launch: FakeData.shared.nrol108!)
         }
     }
 }

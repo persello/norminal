@@ -244,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				8BF143D725F10C370045B95D /* Data */,
+				8B46A59F253118160084E52D /* FakeData.swift */,
 				8B4E96472597F06600F9668E /* Support Views */,
 				8B46A57F2530CE740084E52D /* Norminal */,
 				8BB5232125489827006A9511 /* res */,
@@ -271,7 +272,6 @@
 				8B83E8AC253769BD002AE62B /* Views */,
 				8B46A57E2530CE740084E52D /* Products */,
 				8B46A5802530CE740084E52D /* NorminalApp.swift */,
-				8B46A59F253118160084E52D /* FakeData.swift */,
 				8B46A5892530CE760084E52D /* Info.plist */,
 				8B17527525EDA8A300A760C5 /* Norminal.entitlements */,
 			);
@@ -410,11 +410,11 @@
 		8BF143DD25F10C370045B95D /* SpaceX */ = {
 			isa = PBXGroup;
 			children = (
-				8BF143DE25F10C370045B95D /* Launchpad.swift */,
-				8BF143DF25F10C370045B95D /* Launch.swift */,
-				8BF143E025F10C370045B95D /* Landpad.swift */,
-				8BF143E125F10C370045B95D /* SpaceXData.swift */,
 				8BF143E225F10C370045B95D /* Astronaut.swift */,
+				8BF143E025F10C370045B95D /* Landpad.swift */,
+				8BF143DF25F10C370045B95D /* Launch.swift */,
+				8BF143DE25F10C370045B95D /* Launchpad.swift */,
+				8BF143E125F10C370045B95D /* SpaceXData.swift */,
 				8B9255B725F2DB4E0059CB2E /* Rocket.swift */,
 			);
 			path = SpaceX;

@@ -23,6 +23,91 @@ let robertBehnkenJSON = """
   }
 """.data(using: .utf8)!
 
+let nrol108JSON = """
+  {
+    "fairings": {
+      "reused": false,
+      "recovery_attempt": true,
+      "recovered": true,
+      "ships": [
+        "5ea6ed2e080df4000697c908",
+        "5ea6ed2f080df4000697c90c"
+      ]
+    },
+    "links": {
+      "patch": {
+        "small": "https://i.imgur.com/t9j2kJg.png",
+        "large": "https://i.imgur.com/lSpAmBB.png"
+      },
+      "reddit": {
+        "campaign": "https://www.reddit.com/r/spacex/comments/j7qqbg/nrol108_launch_campaign_thread/",
+        "launch": "https://www.reddit.com/r/spacex/comments/ke9pmg/rspacex_nrol108_official_launch_discussion/",
+        "media": null,
+        "recovery": "https://www.reddit.com/r/spacex/comments/k2ts1q/rspacex_fleet_updates_discussion_thread/"
+      },
+      "flickr": {
+        "small": [],
+        "original": [
+          "https://live.staticflickr.com/65535/50740257483_0f550f6a25_o.jpg",
+          "https://live.staticflickr.com/65535/50740993291_57ef3f881b_o.jpg",
+          "https://live.staticflickr.com/65535/50740257263_b41b843e85_o.jpg",
+          "https://live.staticflickr.com/65535/50740993211_dc00af6dbb_o.jpg",
+          "https://live.staticflickr.com/65535/50740257078_e46a6462df_o.jpg",
+          "https://live.staticflickr.com/65535/50741096702_2a152bdf13_o.jpg",
+          "https://live.staticflickr.com/65535/50740257323_e3e49fa2c6_o.jpg"
+        ]
+      },
+      "presskit": null,
+      "webcast": "https://youtu.be/9OeVwaFBkfE",
+      "youtube_id": "9OeVwaFBkfE",
+      "article": "https://spaceflightnow.com/2020/12/19/spacex-closes-out-record-year-of-launches-from-floridas-space-coast/",
+      "wikipedia": "https://en.wikipedia.org/wiki/National_Reconnaissance_Office"
+    },
+    "static_fire_date_utc": null,
+    "static_fire_date_unix": null,
+    "tbd": false,
+    "net": false,
+    "window": null,
+    "rocket": "5e9d0d95eda69973a809d1ec",
+    "success": true,
+    "details": "SpaceX will launch NROL-108 for the National Reconnaissance Office aboard a Falcon 9 from SLC-40, Cape Canaveral Air Force Station. The booster for this mission is expected to land at LZ-1.",
+    "crew": [],
+    "ships": [
+      "5ea6ed2f080df4000697c90c",
+      "5ea6ed2e080df4000697c908"
+    ],
+    "capsules": [],
+    "payloads": [
+      "5f839ac7818d8b59f5740d48"
+    ],
+    "launchpad": "5e9e4502f509094188566f88",
+    "auto_update": true,
+    "launch_library_id": null,
+    "failures": [],
+    "flight_number": 112,
+    "name": "NROL-108",
+    "date_utc": "2020-12-19T14:00:00.000Z",
+    "date_unix": 1608386400,
+    "date_local": "2020-12-19T09:00:00-05:00",
+    "date_precision": "hour",
+    "upcoming": false,
+    "cores": [
+      {
+        "core": "5e9e28a7f359187afd3b2662",
+        "flight": 5,
+        "gridfins": true,
+        "legs": true,
+        "reused": true,
+        "landing_attempt": true,
+        "landing_success": true,
+        "landing_type": "RTLS",
+        "landpad": "5e9e3032383ecb267a34e7c7"
+      }
+    ],
+    "id": "5f8399fb818d8b59f5740d43"
+  }
+""".data(using: .utf8)!
+
 let crewDragonJSON = """
   {
     "fairings": null,
@@ -116,6 +201,7 @@ struct FakeData {
     static let shared = FakeData()
 
     var crewDragon: Launch?
+    var nrol108: Launch?
     var robertBehnken: Astronaut?
 
     private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Fake data")
@@ -126,6 +212,7 @@ struct FakeData {
             decoder.dateDecodingStrategy = .formatted(.iso8601Full)
             self.crewDragon = try decoder.decode(Launch.self, from: crewDragonJSON)
             self.robertBehnken = try decoder.decode(Astronaut.self, from: robertBehnkenJSON)
+            self.nrol108 = try decoder.decode(Launch.self, from: nrol108JSON)
         } catch {
             logger.error("Unhandled error while initializing fake data: \"\(error.localizedDescription)\"")
         }
