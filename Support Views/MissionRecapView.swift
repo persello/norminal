@@ -1,5 +1,5 @@
 //
-//  MissionRecapCard.swift
+//  MissionRecapView.swift
 //  Norminal
 //
 //  Created by Riccardo Persello on 11/10/2020.
@@ -9,33 +9,9 @@ import SwiftUI
 import Telescope
 import VisualEffects
 
-struct MissionRecapCard: View {
-    @State var launch: Launch
-    
-    var body: some View {
-        ZStack {
-            VisualEffectBlur(blurStyle: .systemThinMaterial, vibrancyStyle: .label) {
-                
-                MissionRecapView(launch:launch, showCrewWhenAvailable: false)
-            }
-            .frame(height: 100)
-            .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
-        }
-    }
-}
-
-struct MissionRecapCard_Previews: PreviewProvider {
-    static var previews: some View {
-        MissionRecapCard(launch: FakeData.shared.crewDragon!)
-            .previewLayout(.sizeThatFits)
-            .padding()
-        
-    }
-}
-
 struct MissionRecapView: View {
-    var launch: Launch
-    var showCrewWhenAvailable: Bool
+    @EnvironmentObject var launch: Launch
+    var showCrewWhenAvailable: Bool = false
     
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
@@ -117,7 +93,8 @@ struct MissionRecapView: View {
 
 struct MissionRecapView_Previews: PreviewProvider {
     static var previews: some View {
-        MissionRecapView(launch: FakeData.shared.crewDragon!, showCrewWhenAvailable: true)
+        MissionRecapView(showCrewWhenAvailable: true)
             .previewLayout(.sizeThatFits)
+            .environmentObject(FakeData.shared.crewDragon!)
     }
 }
