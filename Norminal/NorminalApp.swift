@@ -22,7 +22,9 @@ struct NorminalApp: App {
                 .onAppear {
                     
                     // Widget
-                    WidgetCenter.shared.reloadAllTimelines()
+                    DispatchQueue.global(qos: .background).async {
+                        WidgetCenter.shared.reloadAllTimelines()
+                    }
                     
                     // Firebase
                     FirebaseApp.configure()

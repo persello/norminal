@@ -42,6 +42,7 @@
 		8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B025376A5D002AE62B /* WebcastCard.swift */; };
 		8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */; };
 		8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8BD25379B60002AE62B /* AstronautPicture.swift */; };
+		8B87DFBA260659DB009C13D0 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87DFB9260659DB009C13D0 /* FeedbackView.swift */; };
 		8B919AE025F13CF2007D992E /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E6259671F000F9668E /* FirebaseAnalytics.xcframework */; };
 		8B919AE225F13CF2007D992E /* FirebaseCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E9259671F000F9668E /* FirebaseCore.xcframework */; };
 		8B919AE425F13CF2007D992E /* FirebaseCoreDiagnostics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E7259671F000F9668E /* FirebaseCoreDiagnostics.xcframework */; };
@@ -148,6 +149,7 @@
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
 		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
 		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
+		8B87DFB9260659DB009C13D0 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		8B919B0525F14F27007D992E /* MissionDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsCard.swift; sourceTree = "<group>"; };
 		8B9255B125F2DA810059CB2E /* RocketCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCard.swift; sourceTree = "<group>"; };
 		8B9255B725F2DB4E0059CB2E /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				8B46A5822530CE740084E52D /* MainView.swift */,
 				8B83E8AD253769F4002AE62B /* Launch List */,
 				8B83E8AE25376A07002AE62B /* Launch Detail */,
+				8B87DFB9260659DB009C13D0 /* FeedbackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				8BF143F125F10C370045B95D /* SpaceXData.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
 				8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */,
+				8B87DFBA260659DB009C13D0 /* FeedbackView.swift in Sources */,
 				8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */,
 				8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */,
 				8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */,

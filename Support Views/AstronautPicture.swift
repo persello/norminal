@@ -29,11 +29,13 @@ class FaceCropper {
         
         let faceRequest = VNDetectFaceLandmarksRequest(completionHandler: cropComplete)
         
-        do {
-            try requestHandler.perform([faceRequest])
-        } catch {
-            logger.error("Error while requesting face crop: \"\(error.localizedDescription)\"")
-            completionHandler(.failure(error))
+        DispatchQueue.global(qos: .background).async {
+            do {
+                try requestHandler.perform([faceRequest])
+            } catch {
+                self.logger.error("Error while requesting face crop: \"\(error.localizedDescription)\"")
+                completionHandler(.failure(error))
+            }
         }
     }
     
@@ -57,7 +59,7 @@ class FaceCropper {
     }
     
     private func cropToFace(_ face: VNFaceObservation, _ image: UIImage) -> UIImage? {
-        
+                
         let faceWidth = face.boundingBox.size.width * image.size.width
         let faceHeight = face.boundingBox.size.height * image.size.height
         let faceX = face.boundingBox.origin.x * image.size.width

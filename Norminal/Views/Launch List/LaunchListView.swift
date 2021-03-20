@@ -82,6 +82,7 @@ final class LaunchSearcher: ObservableObject {
 }
 
 struct LaunchListView: View {
+    var selectedLaunch: Binding<Launch?>?
     @ObservedObject private var searcher = LaunchSearcher()
     @EnvironmentObject private var globalData: SpaceXData
     
