@@ -57,7 +57,7 @@ final class LaunchSearcher: ObservableObject {
     }
     
     func filterLaunches(_ launches: [Launch]) -> [Launch]? {
-                
+        
         // Time filtering
         var timeFiltered: [Launch]?
         
@@ -90,79 +90,77 @@ struct LaunchListView: View {
     }
     
     var body: some View {
-        NavigationView {
-            if globalData.launches.count > 0 {
-                // We have data in the globalData
-                ZStack {
-                    if launches.count > 0 {
-                        // The current filter is valid
-                        List {
-                            // Show first big tile?
-                            if let nl = globalData.getNextLaunch(), searcher.text.count == 0, searcher.scopeSelection == 0 {
-                                Section(header: Text("Next launch")) {
-                                    ZStack {
-                                        LaunchListTile(launch: nl, showDetails: true)
-                                        NavigationLink(destination: LaunchDetailView(launch: nl)) {
-                                            EmptyView()
-                                        }
-                                        .buttonStyle(PlainButtonStyle())
-                                        .opacity(0.0)
+        if globalData.launches.count > 0 {
+            // We have data in the globalData
+            ZStack {
+                if launches.count > 0 {
+                    // The current filter is valid
+                    List {
+                        // Show first big tile?
+                        if let nl = globalData.getNextLaunch(), searcher.text.count == 0, searcher.scopeSelection == 0 {
+                            Section(header: Text("Next launch")) {
+                                ZStack {
+                                    LaunchListTile(launch: nl, showDetails: true)
+                                    NavigationLink(destination: LaunchDetailView(launch: nl)) {
+                                        EmptyView()
                                     }
+                                    .buttonStyle(PlainButtonStyle())
+                                    .opacity(0.0)
                                 }
                             }
-                            
-                            // Show results
-                            if launches.filter({$0.upcoming}).count > 0 {
-                                Section(header: Text("\(searcher.scopes[1]) launches")) {
-                                    ForEach(launches.filter({$0.upcoming}).reversed()) { launch in
-                                        NavigationLink(destination: LaunchDetailView(launch: launch)) {
-                                            LaunchListTile(launch: launch)
-                                        }
-                                    }
-                                }
-                            }
-
-                            if launches.filter({!$0.upcoming}).count > 0 {
-                                Section(header: Text("\(searcher.scopes[2]) launches")) {
-                                    ForEach(launches.filter({!$0.upcoming}).reversed()) { launch in
-                                        NavigationLink(destination: LaunchDetailView(launch: launch)) {
-                                            LaunchListTile(launch: launch)
-                                        }
+                        }
+                        
+                        // Show results
+                        if launches.filter({$0.upcoming}).count > 0 {
+                            Section(header: Text("\(searcher.scopes[1]) launches")) {
+                                ForEach(launches.filter({$0.upcoming}).reversed()) { launch in
+                                    NavigationLink(destination: LaunchDetailView(launch: launch)) {
+                                        LaunchListTile(launch: launch)
                                     }
                                 }
                             }
                         }
-                    } else {
-                        // The current filter returns nothing
-                        VStack {
-                            Text("No results")
-                                .font(.title)
-                            Text("No launches were found for \"\(searcher.text)\".")
-                                .foregroundColor(.secondary)
-                                .font(.subheadline)
-                                .multilineTextAlignment(.center)
+                        
+                        if launches.filter({!$0.upcoming}).count > 0 {
+                            Section(header: Text("\(searcher.scopes[2]) launches")) {
+                                ForEach(launches.filter({!$0.upcoming}).reversed()) { launch in
+                                    NavigationLink(destination: LaunchDetailView(launch: launch)) {
+                                        LaunchListTile(launch: launch)
+                                    }
+                                }
+                            }
                         }
-                        .padding()
                     }
-                }
-                .listStyle(GroupedListStyle())
-                .navigationBarTitle("Launches")
-                .navigationSearchBar(
-                    text: $searcher.text,
-                    scopeSelection: $searcher.scopeSelection,
-                    options: [
-                        .scopeButtonTitles: searcher.scopes
-                    ]
-                )
-            } else {
-                // We don't have data in the globalData
-                if globalData.loadingError {
-                    // Error occurred during data load
-                    LoadingErrorView()
                 } else {
-                    // We are loading data
-                    LoadingView()
+                    // The current filter returns nothing
+                    VStack {
+                        Text("No results")
+                            .font(.title)
+                        Text("No launches were found for \"\(searcher.text)\".")
+                            .foregroundColor(.secondary)
+                            .font(.subheadline)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding()
                 }
+            }
+            .listStyle(GroupedListStyle())
+            .navigationBarTitle("Launches")
+            .navigationSearchBar(
+                text: $searcher.text,
+                scopeSelection: $searcher.scopeSelection,
+                options: [
+                    .scopeButtonTitles: searcher.scopes
+                ]
+            )
+        } else {
+            // We don't have data in the globalData
+            if globalData.loadingError {
+                // Error occurred during data load
+                LoadingErrorView()
+            } else {
+                // We are loading data
+                LoadingView()
             }
         }
     }
