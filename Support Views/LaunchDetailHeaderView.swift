@@ -98,9 +98,9 @@ struct LaunchDetailHeaderView: View {
                     }
                 }
             }
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.74
+            .scaledToFill()
+            .frame(height: UIScreen.main.bounds.height * 0.74
                     - (launch.links?.flickr?.originalImages?.first == nil ? 100 : 0))
-            .scaledToFit()
             .clipShape(BottomClipper(bottom: UIScreen.main.bounds.height * 2))
             
             // Shadow on top
@@ -114,12 +114,12 @@ struct LaunchDetailHeaderView: View {
                                        endPoint: .bottom))
                     .offset(y: -geometry.frame(in: .global).minY)
             }
-            .frame(width: UIScreen.main.bounds.width, height: 200, alignment: .center)
+            .frame(height: 200, alignment: .center)
             
             // Recap view
             MissionRecapView()
                 .shadow(radius: 12)
-                .frame(width: UIScreen.main.bounds.width, height: 100, alignment: .center)
+                .frame(height: 100, alignment: .center)
                 .background(VisualEffectBlur(blurStyle: UIBlurEffect.Style.systemThinMaterial))
                 .alignmentGuide(.bottom, computeValue: { dimension in
                     dimension[launch.links?.flickr?.originalImages?.first == nil ? .top : .bottom]

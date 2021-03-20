@@ -18,130 +18,94 @@ struct BottomClipper: Shape {
     }
 }
 
-struct LaunchDetailResourcesView: View {
-    
-    @EnvironmentObject var launch: Launch
-    @State var isRedditActionSheetPresented: Bool = false
-    
-    var redditButtons: [ActionSheet.Button] {
-        var list: [ActionSheet.Button] = [ActionSheet.Button.cancel()]
-        
-        if let campaignLink = launch.links?.reddit?.campaign {
-            list.append(ActionSheet.Button.default(Text("Campaign")) {
-                UIApplication.shared.open(campaignLink)
-            })
-        }
-        
-        if let launchLink = launch.links?.reddit?.launch {
-            list.append(ActionSheet.Button.default(Text("Launch")) {
-                UIApplication.shared.open(launchLink)
-            })
-        }
-        
-        if let mediaLink = launch.links?.reddit?.media {
-            list.append(ActionSheet.Button.default(Text("Media")) {
-                UIApplication.shared.open(mediaLink)
-            })
-        }
-        
-        if let recoveryLink = launch.links?.reddit?.recovery {
-            list.append(ActionSheet.Button.default(Text("Recovery")) {
-                UIApplication.shared.open(recoveryLink)
-            })
-        }
-        
-        return list
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Resources")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.horizontal, 16)
-                .padding(.top, 48)
-                .padding(.bottom, -8)
-            
-            List {
-                
-                if redditButtons.count > 1 {
-                    Button(action: {
-                        isRedditActionSheetPresented = true
-                    }) {
-                        HStack {
-                            Image("reddit.logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
-                                .padding(.horizontal, 4)
-                            
-                            Text("Reddit")
-                        }
-                    }
-                    .actionSheet(isPresented: $isRedditActionSheetPresented, content: {
-                        // TODO: Enumerate across optional links and don't present action sheet if only one is available
-                        ActionSheet(title: Text("Choose Reddit coverage post"), buttons: redditButtons)
-                    })
-                }
-                
-                if let webcast = launch.links?.webcast {
-                    Button(action: {
-                        UIApplication.shared.open(webcast)
-                    }) {
-                        HStack {
-                            Image("youtube.logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
-                                .padding(.horizontal, 4)
-                            
-                            Text("YouTube")
-                        }
-                    }
-                }
-                
-                if let presskit = launch.links?.pressKit {
-                    Button(action: {
-                        UIApplication.shared.open(presskit)
-                    }) {
-                        HStack {
-                            Image(systemName: "newspaper.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
-                                .foregroundColor(.blue)
-                                .padding(.horizontal, 4)
-                            
-                            Text("Press Kit")
-                        }
-                    }
-                }
-                
-                if let wikipedia = launch.links?.wikipedia {
-                    Button(action: {
-                        UIApplication.shared.open(wikipedia)
-                    }) {
-                        HStack {
-                            Image("wikipedia.logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
-                                .frame(width: 28, height: 28)
-                                .background(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
-                            
-                            Text("Wikipedia")
-                        }
-                    }
-                }
-            }
-        }
-        .frame(width: UIScreen.main.bounds.width, height: 400, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-    }
-}
-
 struct LaunchDetailView: View {
     @State var launch: Launch
+    
+    // Redraw on orientation change
+    @State var orientation = UIDevice.current.orientation
+    let orientationChanged = NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
+        .makeConnectable()
+        .autoconnect()
+    
+    var columns: [GridItem] = [
+        GridItem(.adaptive(minimum: 300), spacing: 0)
+    ]
+    
+    struct CardDescriptor: Identifiable {
+        internal init<Content: View>(@ViewBuilder cardBuilder: () -> Content, saliency: Double) {
+            self.card = AnyView(cardBuilder())
+            self.saliency = saliency
+        }
+        
+        let id = UUID()
+        let card: AnyView
+        let saliency: Double
+    }
+    
+    func cardsBuilder() -> [CardDescriptor] {
+        var cardList: [CardDescriptor] = []
+        
+        // Generate and reorder cards
+        
+        // Launch countdown (not a "real" card)
+        // Continue to show countdown for 1 hour after launch
+        if Date() < (launch.dateUTC + 3600) {
+            // Always maximum saliency
+            cardList.append(CardDescriptor(cardBuilder: {
+                LaunchCountdownView()
+                    .shadow(radius: 24)
+                    .padding()
+            }, saliency: 1000))
+        }
+        
+        if launch.getCrew()?.count ?? 0 > 0 {
+            cardList.append(CardDescriptor(cardBuilder: {
+                CrewCard()
+            }, saliency: 900))
+        }
+        
+        // TODO: Implement
+        if true {
+            cardList.append(CardDescriptor(cardBuilder: {
+                MissionDetailsCard()
+            }, saliency: 800))
+        }
+        
+        if launch.payloads?.count ?? 0 > 0 {
+            cardList.append(CardDescriptor(cardBuilder: {
+                PayloadCard()
+            }, saliency: 700))
+        }
+        
+        if launch.rocket != nil {
+            cardList.append(CardDescriptor(cardBuilder: {
+                RocketCard()
+            }, saliency: 600))
+        }
+        
+        // TODO: Variable saliency
+        if (launch.links?.youtubeID ?? "").count > 0 {
+            cardList.append(CardDescriptor(cardBuilder: {
+                WebcastCard()
+            }, saliency: 500))
+        }
+        
+        if launch.links?.flickr?.originalImages?.count ?? 0 > 0 {
+            cardList.append(CardDescriptor(cardBuilder: {
+                GalleryCard()
+            }, saliency: 400))
+        }
+    
+        cardList.append(CardDescriptor(cardBuilder: {
+            LaunchDetailResourcesView().scaledToFill()
+                .zIndex(-1)
+                .padding()
+        }, saliency: 0))
+        
+        return cardList.sorted { a, b in
+            a.saliency > b.saliency
+        }
+    }
     
     var body: some View {
         ScrollView(.vertical) {
@@ -159,38 +123,12 @@ struct LaunchDetailView: View {
                         .padding(.bottom, -8)
                     
                     // MARK: "Real" cards
-                    Group {
-                        // Continue to show countdown for 1 hour after launch
-                        if Date() < (launch.dateUTC + 3600) {
-                            LaunchCountdownView()
-                                .shadow(radius: 24)
-                                .padding()
+                    LazyVGrid(columns: columns) {
+                        let cards = cardsBuilder()
+                        ForEach(cards) { card in
+                            card.card
                         }
-                        
-                        if launch.getCrew()?.count ?? 0 > 0            {
-                            CrewCard()
-                        }
-                        
-                        // TODO: Show only when really available
-                        MissionDetailsCard()
-                        
-                        PayloadCard()
-                        
-                        RocketCard()
-                        
-                        if launch.links?.flickr?.originalImages?.count ?? 0 > 0 {
-                            GalleryCard()
-                        }
-                        
-                        if (launch.links?.youtubeID ?? "").count > 0 {
-                            WebcastCard()
-                        }
-                        
                     }
-                    
-                    // MARK: Footer
-                    LaunchDetailResourcesView()
-                        .scaledToFit()
                     
                 }
                 .background(Color(UIColor.systemBackground))
@@ -198,6 +136,9 @@ struct LaunchDetailView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .environmentObject(launch)
+        .onReceive(orientationChanged) { _ in
+            self.orientation = UIDevice.current.orientation
+        }
     }
 }
 
@@ -206,16 +147,5 @@ struct LaunchDetailView_Previews: PreviewProvider {
         Group {
             LaunchDetailView(launch: FakeData.shared.nrol108!)
         }
-        .previewLayout(.fixed(width: 400, height: 3500))
-    }
-}
-
-struct LaunchDetailResourcesView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            LaunchDetailResourcesView()
-                .environmentObject(FakeData.shared.crewDragon!)
-        }
-        .previewLayout(.sizeThatFits)
     }
 }
