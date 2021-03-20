@@ -25,11 +25,12 @@ class FaceCropper {
         self.rawImage = input
         self.callback = completionHandler
         
-        let requestHandler = VNImageRequestHandler(cgImage: input.cgImage!, orientation: .up, options: [:])
-        
-        let faceRequest = VNDetectFaceLandmarksRequest(completionHandler: cropComplete)
-        
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            let requestHandler = VNImageRequestHandler(cgImage: input.cgImage!, orientation: .up, options: [:])
+            
+            let faceRequest = VNDetectFaceLandmarksRequest(completionHandler: self.cropComplete)
+            
             do {
                 try requestHandler.perform([faceRequest])
             } catch {
@@ -150,11 +151,11 @@ struct AstronautPicture: View {
                                 if let rawImage = image {
                                     cropper.startCrop(image: rawImage, completionHandler: { cropResult in
                                         switch cropResult {
-                                            case .success(image):
+                                            case .success(let image):
                                                 RemoteImage(imageURL: url)[".cropped"] = image
                                                 croppedImage = image
-                                            default:
-                                                break
+                                            case .failure(let error):
+                                                logger.error("Cannot crop image for \(astronaut.name): \"\(error as NSObject)\".")
                                         }
                                     })
                                 }
