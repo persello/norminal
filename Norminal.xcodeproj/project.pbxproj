@@ -44,6 +44,7 @@
 		8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8BD25379B60002AE62B /* AstronautPicture.swift */; };
 		8B87DFBA260659DB009C13D0 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87DFB9260659DB009C13D0 /* FeedbackView.swift */; };
 		8B87DFBE2606659F009C13D0 /* LaunchDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87DFBD2606659F009C13D0 /* LaunchDetailHeaderView.swift */; };
+		8B87DFC426066F71009C13D0 /* LaunchDetailResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87DFC326066F71009C13D0 /* LaunchDetailResourcesView.swift */; };
 		8B919AE025F13CF2007D992E /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E6259671F000F9668E /* FirebaseAnalytics.xcframework */; };
 		8B919AE225F13CF2007D992E /* FirebaseCore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E9259671F000F9668E /* FirebaseCore.xcframework */; };
 		8B919AE425F13CF2007D992E /* FirebaseCoreDiagnostics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E7259671F000F9668E /* FirebaseCoreDiagnostics.xcframework */; };
@@ -152,6 +153,7 @@
 		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
 		8B87DFB9260659DB009C13D0 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		8B87DFBD2606659F009C13D0 /* LaunchDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailHeaderView.swift; sourceTree = "<group>"; };
+		8B87DFC326066F71009C13D0 /* LaunchDetailResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailResourcesView.swift; sourceTree = "<group>"; };
 		8B919B0525F14F27007D992E /* MissionDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsCard.swift; sourceTree = "<group>"; };
 		8B9255B125F2DA810059CB2E /* RocketCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCard.swift; sourceTree = "<group>"; };
 		8B9255B725F2DB4E0059CB2E /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
 				8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */,
 				8B87DFBD2606659F009C13D0 /* LaunchDetailHeaderView.swift */,
+				8B87DFC326066F71009C13D0 /* LaunchDetailResourcesView.swift */,
 				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
 				8B0D1D75253363BF0056FACA /* MissionRecapView.swift */,
 				8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */,
@@ -571,6 +574,7 @@
 				8B87DFBE2606659F009C13D0 /* LaunchDetailHeaderView.swift in Sources */,
 				8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */,
 				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
+				8B87DFC426066F71009C13D0 /* LaunchDetailResourcesView.swift in Sources */,
 				8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */,
 				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,

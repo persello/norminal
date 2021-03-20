@@ -73,10 +73,10 @@ struct CompactMainView: View {
             }
             
             FeedbackView()
-            .tabItem {
-                Image(systemName: "exclamationmark.bubble.fill")
-                Text("Feedback")
-            }
+                .tabItem {
+                    Image(systemName: "exclamationmark.bubble.fill")
+                    Text("Feedback")
+                }
         }
     }
 }
@@ -109,30 +109,30 @@ struct RegularMainView: View {
     var body: some View {
         
         switch selectedView {
-            case .launchList:
-                NavigationView {
-                    SidebarView(selectedView: $selectedView)
-                    LaunchListView()
-                    if let nextLaunch = globalData.getNextLaunch() {
-                        LaunchDetailView(launch: nextLaunch)
-                    } else {
-                        VStack {
-                            Text("No details available")
-                                .font(.title)
-                            Text("Select a launch from the sidebar.")
-                                .foregroundColor(.secondary)
-                                .font(.subheadline)
-                        }
+        case .launchList:
+            NavigationView {
+                SidebarView(selectedView: $selectedView)
+                LaunchListView()
+                if let nextLaunch = globalData.getNextLaunch() {
+                    LaunchDetailView(launch: nextLaunch)
+                } else {
+                    VStack {
+                        Text("No details available")
+                            .font(.title)
+                        Text("Select a launch from the sidebar.")
+                            .foregroundColor(.secondary)
+                            .font(.subheadline)
                     }
-                    
                 }
-                .navigationViewStyle(DoubleColumnNavigationViewStyle())
-
-            case .feedback:
-                NavigationView {
-                    SidebarView(selectedView: $selectedView)
-                    FeedbackView()
-                }
+                
+            }
+            .navigationViewStyle(DoubleColumnNavigationViewStyle())
+            
+        case .feedback:
+            NavigationView {
+                SidebarView(selectedView: $selectedView)
+                FeedbackView()
+            }
         }
     }
 }
@@ -141,10 +141,12 @@ struct MainView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
-        if horizontalSizeClass == .compact {
-            CompactMainView()
-        } else {
-            RegularMainView()
+        Group {
+            if horizontalSizeClass == .compact {
+                CompactMainView()
+            } else {
+                RegularMainView()
+            }
         }
     }
 }
