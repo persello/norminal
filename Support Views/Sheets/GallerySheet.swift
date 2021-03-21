@@ -34,7 +34,7 @@ struct GallerySheet: View {
                     }
                 }
             }
-            .navigationBarTitle(Text("Photo gallery"), displayMode: .inline)
+            .navigationTitle("Photo gallery")
             .navigationBarItems(trailing: Button(action: {
                 self.modalShown.toggle()
             }) {

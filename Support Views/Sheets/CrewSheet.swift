@@ -39,7 +39,7 @@ struct CrewSheet: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarTitle(Text("Mission crew"), displayMode: .inline)
+            .navigationTitle(Text("Mission crew"))
             .navigationBarItems(trailing: Button(action: {
                 self.modalShown.toggle()
             }) {

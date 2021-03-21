@@ -7,18 +7,48 @@
 
 import SwiftUI
 
+struct AdaptiveStack<Content: View>: View {
+    internal init(horizontal: Bool, @ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+        self.horizontal = horizontal
+    }
+    
+    let content: () -> Content
+    let horizontal: Bool
+        
+    var body: some View {
+        if horizontal {
+            HStack(content: content)
+        } else {
+            VStack(content: content)
+        }
+    }
+}
+
 struct LaunchCountdownView: View {
     @EnvironmentObject var launch: Launch
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    
+    var canBeExpanded: Bool = false
     
     var body: some View {
         VStack(alignment: .center) {
             LaunchCountdownText(precision: launch.datePrecision, dateUTC: launch.dateUTC)
             Divider()
-            HStack {
-                LaunchLocationView(launchpad: launch.getLaunchpad())
+           
+            let largeCard = canBeExpanded && horizontalSizeClass == .regular
+            
+            AdaptiveStack(horizontal: !largeCard) {
+                LaunchLocationView(launchpad: launch.getLaunchpad(), horizontal: largeCard)
                 Divider()
-                WeatherView()
+                WeatherView(horizontal: largeCard)
             }
+            
+            if largeCard {
+                Divider()
+                Spacer()
+            }
+
             if let sfDate = launch.staticFireDateUTC {
                 Divider()
                 HStack {
@@ -136,23 +166,27 @@ struct LaunchCountdownText: View {
 
 struct LaunchLocationView: View {
     var launchpad: Launchpad?
+    var horizontal: Bool = false
+    
     var body: some View {
-        VStack {
+        AdaptiveStack(horizontal: horizontal) {
             Image(systemName: "mappin.and.ellipse")
                 .font(.system(size: 45, weight: .light))
                 .foregroundColor(.gray)
                 .padding([.bottom, .top], 8)
             
-            Text(launchpad?.name ?? "Unknown launchpad")
-                .multilineTextAlignment(.center)
-                .font(.headline)
-                .frame(maxWidth: .infinity)
-            
-            Text(launchpad?.locality ?? "Unknown location")
-                .multilineTextAlignment(.center)
-                .font(.footnote)
-                .foregroundColor(.gray)
-                .frame(maxWidth: .infinity)
+            VStack {
+                Text(launchpad?.name ?? "Unknown launchpad")
+                    .multilineTextAlignment(.center)
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                
+                Text(launchpad?.locality ?? "Unknown location")
+                    .multilineTextAlignment(.center)
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity)
+            }
         }
     }
 }
@@ -164,36 +198,40 @@ struct WeatherView: View {
     @State var forecastText: String?
     @State var windTempConfiguration: WindTemperatureView.Configuration?
     
+    var horizontal: Bool = false
+    
     var body: some View {
-        VStack {
+        AdaptiveStack(horizontal: horizontal) {
             Image(systemName: forecastIcon ?? "questionmark")
                 .font(.system(size: 45, weight: .light))
                 .foregroundColor(.gray)
                 .padding([.bottom, .top], 8)
             
-            Text(forecastText ?? "Unknown weather")
-                .multilineTextAlignment(.center)
-                .font(.headline)
-                .frame(maxWidth: .infinity)
-            
-            WindTemperatureView(configuration: self.windTempConfiguration)
-                .onAppear {
-                    launch.getLaunchpad()?.getForecast(for: launch.dateUTC) { result in
-                        switch result {
-                            case .success(let forecast):
-                                forecastIcon = forecast.getIcon()
-                                forecastText = forecast.condition.text
-                                windTempConfiguration = WindTemperatureView.Configuration(
-                                    windDirection: Angle(degrees: forecast.windDegree),
-                                    windSpeed: Measurement(value: forecast.windkph,
-                                                           unit: UnitSpeed.kilometersPerHour),
-                                    textualWindDirection: forecast.windDirection,
-                                    temperature: Measurement(value: forecast.tempC,
-                                                             unit: UnitTemperature.celsius)
-                                )
+            VStack {
+                Text(forecastText ?? "Unknown weather")
+                    .multilineTextAlignment(.center)
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
+                
+                WindTemperatureView(configuration: self.windTempConfiguration)
+                    .onAppear {
+                        launch.getLaunchpad()?.getForecast(for: launch.dateUTC) { result in
+                            switch result {
+                                case .success(let forecast):
+                                    forecastIcon = forecast.getIcon()
+                                    forecastText = forecast.condition.text
+                                    windTempConfiguration = WindTemperatureView.Configuration(
+                                        windDirection: Angle(degrees: forecast.windDegree),
+                                        windSpeed: Measurement(value: forecast.windkph,
+                                                               unit: UnitSpeed.kilometersPerHour),
+                                        textualWindDirection: forecast.windDirection,
+                                        temperature: Measurement(value: forecast.tempC,
+                                                                 unit: UnitTemperature.celsius)
+                                    )
+                            }
                         }
                     }
-                }
+            }
         }
     }
     
@@ -237,7 +275,10 @@ struct WeatherView: View {
                 .foregroundColor(.gray)
                 .font(.footnote)
             } else {
-                ProgressView()
+                Text("No available data")
+                    .multilineTextAlignment(.center)
+                    .font(.headline)
+                    .frame(maxWidth: .infinity)
             }
         }
     }

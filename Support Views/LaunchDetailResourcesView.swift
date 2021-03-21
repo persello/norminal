@@ -44,82 +44,90 @@ struct LaunchDetailResourcesView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Resources")
-                .font(.title)
-                .fontWeight(.bold)
-                .padding(.horizontal, 16)
-                .padding(.top, 48)
-                .padding(.bottom, -8)
             
-            List {
+            if redditButtons.count > 1 ||
+                launch.links?.webcast != nil ||
+                launch.links?.pressKit != nil ||
+                launch.links?.wikipedia != nil {
                 
-                if redditButtons.count > 1 {
-                    Button(action: {
-                        isRedditActionSheetPresented = true
-                    }) {
-                        HStack {
-                            Image("reddit.logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
-                                .padding(.horizontal, 4)
-                            
-                            Text("Reddit")
+                Text("Resources")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 48)
+                    .padding(.bottom, -8)
+                
+                
+                List {
+                    
+                    if redditButtons.count > 1 {
+                        Button(action: {
+                            isRedditActionSheetPresented = true
+                        }) {
+                            HStack {
+                                Image("reddit.logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                                    .padding(.horizontal, 4)
+                                
+                                Text("Reddit")
+                            }
+                        }
+                        .actionSheet(isPresented: $isRedditActionSheetPresented, content: {
+                            // TODO: Enumerate across optional links and don't present action sheet if only one is available
+                            ActionSheet(title: Text("Choose Reddit coverage post"), buttons: redditButtons)
+                        })
+                    }
+                    
+                    if let webcast = launch.links?.webcast {
+                        Button(action: {
+                            UIApplication.shared.open(webcast)
+                        }) {
+                            HStack {
+                                Image("youtube.logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                                    .padding(.horizontal, 4)
+                                
+                                Text("YouTube")
+                            }
                         }
                     }
-                    .actionSheet(isPresented: $isRedditActionSheetPresented, content: {
-                        // TODO: Enumerate across optional links and don't present action sheet if only one is available
-                        ActionSheet(title: Text("Choose Reddit coverage post"), buttons: redditButtons)
-                    })
-                }
-                
-                if let webcast = launch.links?.webcast {
-                    Button(action: {
-                        UIApplication.shared.open(webcast)
-                    }) {
-                        HStack {
-                            Image("youtube.logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
-                                .padding(.horizontal, 4)
-                            
-                            Text("YouTube")
+                    
+                    if let presskit = launch.links?.pressKit {
+                        Button(action: {
+                            UIApplication.shared.open(presskit)
+                        }) {
+                            HStack {
+                                Image(systemName: "newspaper.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                                    .foregroundColor(.blue)
+                                    .padding(.horizontal, 4)
+                                
+                                Text("Press Kit")
+                            }
                         }
                     }
-                }
-                
-                if let presskit = launch.links?.pressKit {
-                    Button(action: {
-                        UIApplication.shared.open(presskit)
-                    }) {
-                        HStack {
-                            Image(systemName: "newspaper.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
-                                .foregroundColor(.blue)
-                                .padding(.horizontal, 4)
-                            
-                            Text("Press Kit")
-                        }
-                    }
-                }
-                
-                if let wikipedia = launch.links?.wikipedia {
-                    Button(action: {
-                        UIApplication.shared.open(wikipedia)
-                    }) {
-                        HStack {
-                            Image("wikipedia.logo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
-                                .frame(width: 28, height: 28)
-                                .background(Color.white)
-                                .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
-                            
-                            Text("Wikipedia")
+                    
+                    if let wikipedia = launch.links?.wikipedia {
+                        Button(action: {
+                            UIApplication.shared.open(wikipedia)
+                        }) {
+                            HStack {
+                                Image("wikipedia.logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                                    .frame(width: 28, height: 28)
+                                    .background(Color.white)
+                                    .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
+                                
+                                Text("Wikipedia")
+                            }
                         }
                     }
                 }
