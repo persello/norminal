@@ -12,7 +12,7 @@ struct LaunchListTile: View {
     var showDetails: Bool = false
     
     var body: some View {
-        VStack(alignment: .center) {
+        VStack {
             HStack {
                 
                 VStack {

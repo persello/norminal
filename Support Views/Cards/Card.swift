@@ -22,8 +22,9 @@ struct Card<Background: View, Content: View>: View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
             GeometryReader { geometry in
                 
+                Color(UIColor.systemGray5)
+                
                 background()
-                    // TODO: Remove this padding and get bottom part size instead
                     .padding(.bottom, 72)
                     .frame(width: geometry.size.width,
                            height: geometry.size.height,
@@ -31,13 +32,20 @@ struct Card<Background: View, Content: View>: View {
                     .clipped()
                     .scaledToFit()
                 
+                Rectangle()
+                    .fill(LinearGradient(
+                            gradient: Gradient(colors: [Color.black.opacity(0.6), .clear]),
+                            startPoint: .top,
+                            endPoint: .bottom))
+                    .frame(height: 240)
+                
                 content()
                     .padding(24)
             }
 
         }
         .clipped()
-        .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(radius: 24)
         .aspectRatio(4 / 5, contentMode: .fill)
         .scaleEffect(self.scale)
@@ -63,8 +71,9 @@ struct Card_Previews: PreviewProvider {
             GalleryCard()
             Card(background: {}, content: {})
         }
+        .frame(width: 400, height: 500, alignment: .center)
         .environmentObject(FakeData.shared.crewDragon!)
         .previewLayout(.sizeThatFits)
-        .scaledToFit()
+        .padding(48)
     }
 }

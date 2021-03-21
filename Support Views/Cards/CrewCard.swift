@@ -8,45 +8,43 @@
 import SwiftUI
 import VisualEffects
 
+extension View {
+    func colorfulShadow(radius: CGFloat, saturation: Double = 1) -> some View {
+        return ZStack {
+            self
+                .blur(radius: radius)
+                .saturation(saturation)
+            
+            self
+        }
+    }
+}
+
 struct CrewCard: View {
     @EnvironmentObject var launch: Launch
+    @State var modalPresented: Bool = false
+    
     var crew: [Astronaut] {
         return launch.getCrew() ?? []
     }
-    
-    @State var modalPresented: Bool = false
 
     let spacing: CGFloat = 28
-    let colsCount: Int = 5
     let size: CGFloat = 130
+    
+    let cols: [GridItem] = [
+        GridItem(.adaptive(minimum: 100, maximum: 200))
+    ]
 
     var body: some View {
-        let cols = Array(repeating: GridItem(.fixed(size), spacing: spacing), count: colsCount)
         Card(background: {
-            ZStack(alignment: .top) {
-                Color(UIColor.systemGray5)
-
-                LazyVGrid(columns: cols) {
-                    ForEach(0..<20) {
-                        AstronautPicture(astronaut: crew[$0 % crew.count])
-                            .frame(width: size, height: size)
-                            .offset(x: (($0 / colsCount) % 2 == 0) ? 0 : size / 2 + spacing / 2)
-                            .shadow(radius: 12)
-                    }
+            LazyVGrid(columns: cols) {
+                ForEach(crew) { astronaut in
+                    AstronautPicture(astronaut: astronaut)
+                        .scaledToFit()
+                        .shadow(radius: 12)
                 }
-                .rotationEffect(.degrees(-24))
-
-                Rectangle()
-                    .fill(LinearGradient(
-                            gradient: Gradient(colors: [Color.black.opacity(0.7), .clear]),
-                            startPoint: .top,
-                            endPoint: .bottom))
-                    .frame(width: 1200, height: 240)
-                    .clipped()
-
             }
-            .drawingGroup()
-
+            .padding(.horizontal, 30)
         }, content: {
             CardOverlay(preamble: "Inside the Dragon", title: "Capsule Crew", bottomText: "Learn more", buttonText: "Open", buttonAction: {
                 self.modalPresented = true
@@ -56,14 +54,15 @@ struct CrewCard: View {
         .sheet(isPresented: $modalPresented, content: {
             CrewSheet(crew: crew, modalShown: self.$modalPresented)
         })
-
     }
 }
 
 struct CrewCard_Previews: PreviewProvider {
     static var previews: some View {
       CrewCard()
-        .previewLayout(.sizeThatFits)
         .environmentObject(FakeData.shared.crewDragon!)
+        .frame(width: 400, height: 500, alignment: .center)
+        .previewLayout(.sizeThatFits)
+        .padding(48)
     }
 }

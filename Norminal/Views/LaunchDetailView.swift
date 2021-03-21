@@ -10,16 +10,10 @@ import VisualEffects
 import MapKit
 import Telescope
 
-struct BottomClipper: Shape {
-    let bottom: CGFloat
-    
-    func path(in rect: CGRect) -> Path {
-        Rectangle().path(in: CGRect(x: 0, y: rect.size.height - bottom, width: rect.size.width, height: bottom))
-    }
-}
-
 struct LaunchDetailView: View {
     @State var launch: Launch
+    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     // Redraw on orientation change
     @State var orientation = UIDevice.current.orientation
@@ -99,7 +93,7 @@ struct LaunchDetailView: View {
         cardList.append(CardDescriptor(cardBuilder: {
             LaunchDetailResourcesView().scaledToFill()
                 .zIndex(-1)
-                .padding()
+                .padding(horizontalSizeClass == .regular ? 8 : 0)
         }, saliency: 0))
         
         return cardList.sorted { a, b in
@@ -132,6 +126,7 @@ struct LaunchDetailView: View {
                     
                 }
                 .background(Color(UIColor.systemBackground))
+                .padding(horizontalSizeClass == .regular ? 24 : 8)
             }
         }
         .edgesIgnoringSafeArea(.all)
@@ -146,6 +141,7 @@ struct LaunchDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             LaunchDetailView(launch: FakeData.shared.nrol108!)
+                .previewDevice("iPad Air (4th generation)")
         }
     }
 }

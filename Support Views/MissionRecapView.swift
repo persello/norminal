@@ -15,9 +15,6 @@ struct MissionRecapView: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
-            
-            Spacer()
-            
             TImage(try? RemoteImage(stringURL: launch.links?.patch?.large?.absoluteString ?? ""))
                 .resizable()
                 .placeholder {
@@ -90,8 +87,6 @@ struct MissionRecapView: View {
                 }
             }
             .padding(8)
-            
-            Spacer()
         }
     }
 }

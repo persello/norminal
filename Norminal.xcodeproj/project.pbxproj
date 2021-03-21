@@ -38,6 +38,8 @@
 		8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B511097257ED4950097BC0D /* GallerySheet.swift */; };
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
+		8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F8D3B2607A756008A226B /* FaceCropper.swift */; };
+		8B7F8D3D2607A90E008A226B /* FaceCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F8D3B2607A756008A226B /* FaceCropper.swift */; };
 		8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8A825375B10002AE62B /* SatelliteKit */; };
 		8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B025376A5D002AE62B /* WebcastCard.swift */; };
 		8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */; };
@@ -148,6 +150,7 @@
 		8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCrashlytics.xcframework; sourceTree = "<group>"; };
 		8B511097257ED4950097BC0D /* GallerySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySheet.swift; sourceTree = "<group>"; };
 		8B69255A253206E900D61C3F /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
+		8B7F8D3B2607A756008A226B /* FaceCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceCropper.swift; sourceTree = "<group>"; };
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
 		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
 		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
@@ -403,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				8BF143E225F10C370045B95D /* Astronaut.swift */,
+				8B7F8D3B2607A756008A226B /* FaceCropper.swift */,
 				8B46A59F253118160084E52D /* FakeData.swift */,
 				8BF143E025F10C370045B95D /* Landpad.swift */,
 				8BF143DF25F10C370045B95D /* Launch.swift */,
@@ -558,6 +562,7 @@
 				8BF143F225F10C370045B95D /* SpaceXData.swift in Sources */,
 				8BF143E825F10C370045B95D /* Secrets.swift in Sources */,
 				8BF143EA25F10C370045B95D /* WeatherAPI.swift in Sources */,
+				8B7F8D3D2607A90E008A226B /* FaceCropper.swift in Sources */,
 				8BF143F025F10C370045B95D /* Landpad.swift in Sources */,
 				8BF143EE25F10C370045B95D /* Launch.swift in Sources */,
 				8BF143F425F10C370045B95D /* Astronaut.swift in Sources */,
@@ -604,6 +609,7 @@
 				8BF143E925F10C370045B95D /* WeatherAPI.swift in Sources */,
 				8BF143EF25F10C370045B95D /* Landpad.swift in Sources */,
 				8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */,
+				8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */,
 				8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
