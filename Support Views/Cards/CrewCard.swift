@@ -40,6 +40,7 @@ struct CrewCard: View {
             LazyVGrid(columns: cols) {
                 ForEach(crew) { astronaut in
                     AstronautPicture(astronaut: astronaut)
+                        .padding()
                         .scaledToFit()
                         .shadow(radius: 12)
                 }
