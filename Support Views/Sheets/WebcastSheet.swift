@@ -177,7 +177,7 @@ struct WebcastSheetInnerView: View {
             .padding(.top, -8)
             .listStyle(InsetGroupedListStyle())
         }
-        .navigationBarTitle(Text(video.title), displayMode: .inline)
+        .navigationTitle(video.title)
         .navigationBarItems(trailing: Button(action: {
             self.modalShown.toggle()
         }) {

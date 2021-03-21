@@ -47,7 +47,7 @@ struct LaunchDetailHeaderView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            GeometryReader { (geometry: GeometryProxy) in
+            GeometryReader { geometry in
                 if geometry.frame(in: .global).minY <= 0 {
                     if let imageURL = launch.links?.flickr?.originalImages?.first {
                         TImage(RemoteImage(imageURL: imageURL))

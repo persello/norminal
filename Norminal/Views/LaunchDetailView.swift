@@ -46,7 +46,7 @@ struct LaunchDetailView: View {
         if Date() < (launch.dateUTC + 3600) {
             // Always maximum saliency
             cardList.append(CardDescriptor(cardBuilder: {
-                LaunchCountdownView()
+                LaunchCountdownView(canBeExpanded: true)
                     .shadow(radius: 24)
                     .padding()
             }, saliency: 1000))

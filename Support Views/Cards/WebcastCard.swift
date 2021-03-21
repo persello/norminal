@@ -57,7 +57,7 @@ struct WebcastCard: View {
             WebcastSheet(videoID: (launch.links?.youtubeID)!, modalShown: self.$modalPresented)
         })
         .onAppear {
-                getYoutubeThumbnailLink()
+            getYoutubeThumbnailLink()
         }
     }
 }

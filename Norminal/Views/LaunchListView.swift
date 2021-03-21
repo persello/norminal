@@ -146,7 +146,7 @@ struct LaunchListView: View {
                 }
             }
             .listStyle(GroupedListStyle())
-            .navigationBarTitle("Launches")
+            .navigationTitle("Launches")
             .navigationSearchBar(
                 text: $searcher.text,
                 scopeSelection: $searcher.scopeSelection,
