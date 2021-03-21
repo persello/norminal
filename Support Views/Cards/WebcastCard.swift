@@ -46,8 +46,6 @@ struct WebcastCard: View {
                         
                     })
                     .scaledToFill()
-            } else {
-                Color(UIColor.systemGray4)
             }
         }, content: {
             CardOverlay(preamble: "Did it land?", title: "Webcast", bottomText: "Watch now", buttonText: "Open", buttonAction: {
@@ -58,9 +56,9 @@ struct WebcastCard: View {
         .sheet(isPresented: $modalPresented, content: {
             WebcastSheet(videoID: (launch.links?.youtubeID)!, modalShown: self.$modalPresented)
         })
-        .onAppear(perform: {
-            getYoutubeThumbnailLink()
-        })
+        .onAppear {
+                getYoutubeThumbnailLink()
+        }
     }
 }
 

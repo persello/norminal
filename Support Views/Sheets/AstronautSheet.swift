@@ -22,6 +22,8 @@ struct AstronautSheet: View {
                                 .frame(width: 160, height: 160)
                                 .padding(.top, 48)
                                 .padding(.bottom, 12)
+                                .colorfulShadow(radius: 12, saturation: 2)
+                                .shadow(radius: 12)
                             Text(astronaut.name)
                                 .font(.largeTitle)
                             HStack {

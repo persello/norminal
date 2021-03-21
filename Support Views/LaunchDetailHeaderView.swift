@@ -10,6 +10,14 @@ import SwiftUI
 import Telescope
 import VisualEffects
 
+struct BottomClipper: Shape {
+    let bottom: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        Rectangle().path(in: CGRect(x: 0, y: rect.size.height - bottom, width: rect.size.width, height: bottom))
+    }
+}
+
 struct LaunchDetailHeaderView: View {
     
     @EnvironmentObject var launch: Launch
@@ -98,9 +106,7 @@ struct LaunchDetailHeaderView: View {
                     }
                 }
             }
-            .scaledToFill()
-            .frame(height: UIScreen.main.bounds.height * 0.74
-                    - (launch.links?.flickr?.originalImages?.first == nil ? 100 : 0))
+            .frame(height: UIScreen.main.bounds.height * 0.74)
             .clipShape(BottomClipper(bottom: UIScreen.main.bounds.height * 2))
             
             // Shadow on top
@@ -119,12 +125,16 @@ struct LaunchDetailHeaderView: View {
             // Recap view
             MissionRecapView()
                 .shadow(radius: 12)
-                .frame(height: 100, alignment: .center)
+                .frame(maxWidth: .infinity, maxHeight: 100, alignment: .center)
                 .background(VisualEffectBlur(blurStyle: UIBlurEffect.Style.systemThinMaterial))
                 .alignmentGuide(.bottom, computeValue: { dimension in
-                    dimension[launch.links?.flickr?.originalImages?.first == nil ? .top : .bottom]
+                    dimension[.bottom] + 30
                 })
+                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
+                .padding(.vertical)
+                .padding(.horizontal, 24)
         }
+        .clipShape(BottomClipper(bottom: UIScreen.main.bounds.height * 2))
     }
 }
 
