@@ -12,13 +12,13 @@ struct GallerySheet: View {
     @Binding var modalShown: Bool
     var launch: Launch
     
-    private let threeColumnGrid = Array(repeating: GridItem(.flexible(minimum: 60, maximum: 160), spacing: 2), count: 3)
+    private let cols = [GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 2)]
     
     var body: some View {
         NavigationView {
             ZStack {
                 ScrollView {
-                    LazyVGrid(columns: threeColumnGrid, alignment: .center, spacing: 2) {
+                    LazyVGrid(columns: cols, alignment: .center, spacing: 2) {
                         ForEach((launch.links?.flickr?.originalImages)!, id: \.absoluteString) { imageURL in
                             GeometryReader { gr in
                                 NavigationLink(destination: PhotoSheet(imageURL: imageURL)) {
