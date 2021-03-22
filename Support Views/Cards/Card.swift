@@ -29,9 +29,8 @@ struct Card<Background: View, Content: View>: View {
                     .frame(width: geometry.size.width,
                            height: geometry.size.height,
                            alignment: .center)
-                    .clipped()
-                    .scaledToFit()
-                
+                    .scaledToFill()
+
                 Rectangle()
                     .fill(LinearGradient(
                             gradient: Gradient(colors: [Color.black.opacity(0.6), .clear]),
@@ -44,7 +43,7 @@ struct Card<Background: View, Content: View>: View {
             }
 
         }
-        .clipped()
+//        .clipped()
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(radius: 24)
         .aspectRatio(4 / 5, contentMode: .fill)

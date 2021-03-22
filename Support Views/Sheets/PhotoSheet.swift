@@ -37,7 +37,7 @@ struct PhotoSheet: View {
     @State private var preparingImage: Bool = false
     
     @State private var sharedImage: UIImage?
-    
+        
     func prepareImageForSharing() {
         if let data = try? Data(contentsOf: imageURL) {
             if let image = UIImage(data: data) {

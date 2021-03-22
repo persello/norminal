@@ -18,9 +18,9 @@ struct MissionDetailsCard: View {
                 .foregroundColor(Color(UIColor.label.withAlphaComponent(0.45)))
                 .multilineTextAlignment(.center)
                 .font(.system(size: 32, weight: .semibold, design: .serif))
+                .drawingGroup()
                 .scaleEffect(CGSize(width: 2.0, height: 2.0))
                 .rotationEffect(Angle(degrees: 24))
-                .drawingGroup()
             
         }, content: {
             CardOverlay(preamble: "All about \(launch.name)",
@@ -40,11 +40,10 @@ struct MissionDetailsCard_Previews: PreviewProvider {
     Group {
       MissionDetailsCard()
         .preferredColorScheme(.light)
-        .previewLayout(.sizeThatFits)
       MissionDetailsCard()
         .preferredColorScheme(.dark)
-        .previewLayout(.sizeThatFits)
     }
     .environmentObject(FakeData.shared.crewDragon!)
+    .previewLayout(.fixed(width: 400, height: 500))
   }
 }
