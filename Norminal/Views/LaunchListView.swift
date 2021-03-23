@@ -86,33 +86,16 @@ struct LaunchListView: View {
     var selectedLaunch: Binding<Launch?>?
     @StateObject private var searcher = LaunchSearcher()
     @EnvironmentObject private var globalData: SpaceXData
-    
-    let splogger = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: .pointsOfInterest)
-    
-    var launches: [Launch] {
-        defer {
-            os_signpost(.end, log: splogger, name: "Get launches")
-        }
-        os_signpost(.begin, log: splogger, name: "Get launches")
         
+    var launches: [Launch] {
         return searcher.filterLaunches(globalData.launches) ?? []
     }
     
     var pastLaunches: [Launch] {
-        defer {
-            os_signpost(.end, log: splogger, name: "Get past launches")
-        }
-        os_signpost(.begin, log: splogger, name: "Get past launches")
-        
         return launches.filter({!$0.upcoming}).reversed()
     }
     
     var upcomingLaunches: [Launch] {
-        defer {
-            os_signpost(.end, log: splogger, name: "Get upcoming launches")
-        }
-        os_signpost(.begin, log: splogger, name: "Get upcoming launches")
-        
         return launches.filter({$0.upcoming})
     }
     
