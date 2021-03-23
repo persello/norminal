@@ -7,6 +7,7 @@
 
 import SwiftUI
 import NavigationSearchBar
+import OSLog
 
 final class LaunchSearcher: ObservableObject {
     
@@ -83,16 +84,46 @@ final class LaunchSearcher: ObservableObject {
 
 struct LaunchListView: View {
     var selectedLaunch: Binding<Launch?>?
-    @ObservedObject private var searcher = LaunchSearcher()
+    @StateObject private var searcher = LaunchSearcher()
     @EnvironmentObject private var globalData: SpaceXData
     
+    let splogger = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: .pointsOfInterest)
+    
     var launches: [Launch] {
+        defer {
+            os_signpost(.end, log: splogger, name: "Get launches")
+        }
+        os_signpost(.begin, log: splogger, name: "Get launches")
+        
         return searcher.filterLaunches(globalData.launches) ?? []
+    }
+    
+    var pastLaunches: [Launch] {
+        defer {
+            os_signpost(.end, log: splogger, name: "Get past launches")
+        }
+        os_signpost(.begin, log: splogger, name: "Get past launches")
+        
+        return launches.filter({!$0.upcoming}).reversed()
+    }
+    
+    var upcomingLaunches: [Launch] {
+        defer {
+            os_signpost(.end, log: splogger, name: "Get upcoming launches")
+        }
+        os_signpost(.begin, log: splogger, name: "Get upcoming launches")
+        
+        return launches.filter({$0.upcoming})
     }
     
     var body: some View {
         if globalData.launches.count > 0 {
             // We have data in the globalData
+            
+            /*
+             If I use a ZStack instead of a Group, the keyboard
+             does not hide when launches.count becomes < 0 due to a search.
+             */
             ZStack {
                 if launches.count > 0 {
                     // The current filter is valid
@@ -112,9 +143,9 @@ struct LaunchListView: View {
                         }
                         
                         // Show results
-                        if launches.filter({$0.upcoming}).count > 0 {
+                        if upcomingLaunches.count > 0 {
                             Section(header: Text("\(searcher.scopes[1]) launches")) {
-                                ForEach(launches.filter({$0.upcoming}).reversed()) { launch in
+                                ForEach(upcomingLaunches) { launch in
                                     NavigationLink(destination: LaunchDetailView(launch: launch)) {
                                         LaunchListTile(launch: launch)
                                     }
@@ -122,9 +153,9 @@ struct LaunchListView: View {
                             }
                         }
                         
-                        if launches.filter({!$0.upcoming}).count > 0 {
+                        if pastLaunches.count > 0 {
                             Section(header: Text("\(searcher.scopes[2]) launches")) {
-                                ForEach(launches.filter({!$0.upcoming}).reversed()) { launch in
+                                ForEach(pastLaunches) { launch in
                                     NavigationLink(destination: LaunchDetailView(launch: launch)) {
                                         LaunchListTile(launch: launch)
                                     }
