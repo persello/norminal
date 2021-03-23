@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LaunchListTile: View {
-    @State var launch: Launch
+    var launch: Launch
     var showDetails: Bool = false
     
     var body: some View {

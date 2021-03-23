@@ -52,6 +52,7 @@ struct LaunchDetailHeaderView: View {
                     if let imageURL = launch.links?.flickr?.originalImages?.first {
                         TImage(RemoteImage(imageURL: imageURL))
                             .resizable()
+                            .equatable()
                             .scaledToFill()
                             .offset(y: -geometry.frame(in: .global).minY * 0.5)
                             .frame(width: geometry.size.width)
@@ -78,6 +79,7 @@ struct LaunchDetailHeaderView: View {
                     if let imageURL = launch.links?.flickr?.originalImages?.first {
                         TImage(RemoteImage(imageURL: imageURL))
                             .resizable()
+                            .equatable()
                             .scaledToFill()
                             .offset(y: -geometry.frame(in: .global).minY)
                             .frame(width: geometry.size.width,
