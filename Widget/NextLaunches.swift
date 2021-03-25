@@ -9,7 +9,6 @@ import SwiftUI
 import os
 import WidgetKit
 import Telescope
-import Firebase
 
 struct Provider: TimelineProvider {
     /*
@@ -28,7 +27,7 @@ struct Provider: TimelineProvider {
     
     init() {
         // Firebase (for crashlytics)
-        FirebaseApp.configure()
+        // FirebaseApp.configure()
     }
     
     private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Widget provider")
