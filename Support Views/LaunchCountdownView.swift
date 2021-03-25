@@ -277,8 +277,8 @@ struct WeatherView: View {
             } else {
                 Text("No available data")
                     .multilineTextAlignment(.center)
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
+                    .font(.footnote)
+                    .foregroundColor(.gray)
             }
         }
     }

@@ -40,6 +40,7 @@ struct CrewSheet: View {
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle(Text("Mission crew"))
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button(action: {
                 self.modalShown.toggle()
             }) {

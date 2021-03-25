@@ -96,7 +96,7 @@ struct LaunchListView: View {
     }
     
     var upcomingLaunches: [Launch] {
-        return launches.filter({$0.upcoming})
+        return launches.filter({$0.upcoming}).reversed()
     }
     
     var body: some View {
