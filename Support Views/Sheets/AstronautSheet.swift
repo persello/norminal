@@ -57,6 +57,7 @@ struct AstronautSheet: View {
                 .listStyle(InsetGroupedListStyle())
             )
             .navigationTitle("Details")
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
 
