@@ -31,6 +31,8 @@ class Capsule: ObservableObject, Decodable {
     
     private var launchIDs: [String]?
     
+    public var idstring: String
+    
     public var launches: [Launch] {
         return SpaceXData.shared.launches.filter({
             if let id = $0.idstring {
@@ -51,5 +53,16 @@ class Capsule: ObservableObject, Decodable {
         case landLandings = "land_landings"
         case lastUpdate = "last_update"
         case launchIDs = "launches"
+        case idstring = "id"
+    }
+}
+
+extension Capsule: Identifiable {
+    var id: String { return idstring }
+}
+
+extension Capsule: Equatable {
+    static func ==(rhs: Capsule, lhs: Capsule) -> Bool {
+        rhs.idstring == lhs.idstring
     }
 }

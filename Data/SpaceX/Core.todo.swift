@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class Core: Decodable, ObservableObject {
+    
+}
