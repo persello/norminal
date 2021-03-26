@@ -39,7 +39,7 @@ struct LaunchCountdownView: View {
             let largeCard = canBeExpanded && horizontalSizeClass == .regular
             
             AdaptiveStack(horizontal: !largeCard) {
-                LaunchLocationView(launchpad: launch.getLaunchpad(), horizontal: largeCard)
+                LaunchLocationView(launchpad: launch.launchpad, horizontal: largeCard)
                 Divider()
                 WeatherView(horizontal: largeCard)
             }
@@ -81,7 +81,7 @@ struct LaunchCountdownView_Previews: PreviewProvider {
 }
 
 struct LaunchCountdownText: View {
-    var precision: LaunchDatePrecision
+    var precision: Launch.DatePrecision
     var dateUTC: Date
     
     // TODO: Use RelativeDateTimeFormatter() ! ----------------------------------------------------------
@@ -89,9 +89,9 @@ struct LaunchCountdownText: View {
     var body: some View {
         HStack(alignment: .lastTextBaseline) {
             switch precision {
-                case LaunchDatePrecision.year,
-                     LaunchDatePrecision.halfYear,
-                     LaunchDatePrecision.quarterYear:
+            case Launch.DatePrecision.year,
+                 Launch.DatePrecision.halfYear,
+                 Launch.DatePrecision.quarterYear:
                     let years =
                         abs(ceil(dateUTC.timeIntervalSinceNow/(365*24*3600)))
                     
@@ -109,7 +109,7 @@ struct LaunchCountdownText: View {
                         .lineLimit(1)
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(.gray)
-                case LaunchDatePrecision.month:
+            case Launch.DatePrecision.month:
                     let months =
                         abs(ceil(dateUTC.timeIntervalSinceNow/(30*24*3600)))
                     
@@ -128,7 +128,7 @@ struct LaunchCountdownText: View {
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(.gray)
                     
-                case LaunchDatePrecision.day:
+            case Launch.DatePrecision.day:
                     let days =
                         abs(ceil(dateUTC.timeIntervalSinceNow/(24*3600)))
                     
@@ -147,7 +147,7 @@ struct LaunchCountdownText: View {
                         .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(.gray)
                     
-                case LaunchDatePrecision.hour:
+            case Launch.DatePrecision.hour:
                     Text("T\(dateUTC < Date() ? "+" : "-")")
                         .lineLimit(1)
                         .font(.system(size: 24, weight: .bold, design: .rounded))
@@ -215,7 +215,7 @@ struct WeatherView: View {
                 
                 WindTemperatureView(configuration: self.windTempConfiguration)
                     .onAppear {
-                        launch.getLaunchpad()?.getForecast(for: launch.dateUTC) { result in
+                        launch.launchpad?.getForecast(for: launch.dateUTC) { result in
                             switch result {
                                 case .success(let forecast):
                                     forecastIcon = forecast.getIcon()

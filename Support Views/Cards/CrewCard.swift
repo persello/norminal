@@ -25,7 +25,7 @@ struct CrewCard: View {
     @State var modalPresented: Bool = false
     
     var crew: [Astronaut] {
-        return launch.getCrew() ?? []
+        return launch.crew ?? []
     }
 
     let spacing: CGFloat = 28
