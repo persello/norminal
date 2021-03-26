@@ -63,6 +63,7 @@ final class SpaceXData: ObservableObject {
     @Published public var launchpads = [Launchpad]()
     @Published public var landpads = [Landpad]()
     @Published public var rockets = [Rocket]()
+    @Published public var capsules = [Capsule]()
     @Published var loadingError: Bool = false
     
     // Shared instance
@@ -167,6 +168,11 @@ final class SpaceXData: ObservableObject {
                 _rockets = loadData(url: URL(string: "https://api.spacexdata.com/v4/rockets")!)
             }
             
+            var _capsules: [Capsule]!
+            queue.addOperation { [self] in
+                _capsules = loadData(url: URL(string: "https://api.spacexdata.com/v4/capsules")!)
+            }
+            
             queue.waitUntilAllOperationsAreFinished()
             
             // Sync
@@ -176,6 +182,7 @@ final class SpaceXData: ObservableObject {
                 self.launchpads = _launchpads
                 self.landpads = _landpads
                 self.rockets = _rockets
+                self.capsules = _capsules
             }
         }
     }

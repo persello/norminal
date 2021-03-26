@@ -50,8 +50,8 @@
 		8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B919B0525F14F27007D992E /* MissionDetailsCard.swift */; };
 		8B9255B225F2DA810059CB2E /* RocketCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B125F2DA810059CB2E /* RocketCard.swift */; };
 		8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
-		8BA4D6EB260E50150096CE96 /* Capsule.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.todo.swift */; };
-		8BA4D6EC260E50150096CE96 /* Capsule.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.todo.swift */; };
+		8BA4D6EB260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
+		8BA4D6EC260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
 		8BA4D6EE260E50240096CE96 /* CompanyInfo.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.todo.swift */; };
 		8BA4D6EF260E50240096CE96 /* CompanyInfo.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.todo.swift */; };
 		8BA4D6F1260E502F0096CE96 /* Core.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.todo.swift */; };
@@ -175,7 +175,7 @@
 		8B919B0525F14F27007D992E /* MissionDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsCard.swift; sourceTree = "<group>"; };
 		8B9255B125F2DA810059CB2E /* RocketCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCard.swift; sourceTree = "<group>"; };
 		8B9255B725F2DB4E0059CB2E /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
-		8BA4D6EA260E50150096CE96 /* Capsule.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capsule.todo.swift; sourceTree = "<group>"; };
+		8BA4D6EA260E50150096CE96 /* Capsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capsule.swift; sourceTree = "<group>"; };
 		8BA4D6ED260E50240096CE96 /* CompanyInfo.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfo.todo.swift; sourceTree = "<group>"; };
 		8BA4D6F0260E502F0096CE96 /* Core.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.todo.swift; sourceTree = "<group>"; };
 		8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dragon.todo.swift; sourceTree = "<group>"; };
@@ -433,7 +433,7 @@
 			children = (
 				8BB7202E260E260F00B8433C /* AdditionalCodingKeys.swift */,
 				8BF143E225F10C370045B95D /* Astronaut.swift */,
-				8BA4D6EA260E50150096CE96 /* Capsule.todo.swift */,
+				8BA4D6EA260E50150096CE96 /* Capsule.swift */,
 				8BA4D6ED260E50240096CE96 /* CompanyInfo.todo.swift */,
 				8BA4D6F0260E502F0096CE96 /* Core.todo.swift */,
 				8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */,
@@ -606,7 +606,7 @@
 				8BF143F025F10C370045B95D /* Landpad.swift in Sources */,
 				8BF143EE25F10C370045B95D /* Launch.swift in Sources */,
 				8BF143F425F10C370045B95D /* Astronaut.swift in Sources */,
-				8BA4D6EC260E50150096CE96 /* Capsule.todo.swift in Sources */,
+				8BA4D6EC260E50150096CE96 /* Capsule.swift in Sources */,
 				8B208B9A258ECBDB009107EC /* FakeData.swift in Sources */,
 				8BA4D707260E50890096CE96 /* History.todo.swift in Sources */,
 				8BA4D6F8260E50500096CE96 /* Payload.todo.swift in Sources */,
@@ -671,7 +671,7 @@
 				8BF143EF25F10C370045B95D /* Landpad.swift in Sources */,
 				8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */,
 				8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */,
-				8BA4D6EB260E50150096CE96 /* Capsule.todo.swift in Sources */,
+				8BA4D6EB260E50150096CE96 /* Capsule.swift in Sources */,
 				8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
