@@ -62,6 +62,7 @@ final class SpaceXData: ObservableObject {
     @Published public var crew = [Astronaut]()
     @Published public var launchpads = [Launchpad]()
     @Published public var landpads = [Landpad]()
+    @Published public var rockets = [Rocket]()
     @Published var loadingError: Bool = false
     
     // Shared instance
@@ -82,13 +83,17 @@ final class SpaceXData: ObservableObject {
             
             if let error = error {
                 logger.error("Error while loading \(T.Type.self) from \(url.absoluteString) due to \"\(error as NSObject)\".")
-                loadingError = true
+                DispatchQueue.main.async {
+                    loadingError = true
+                }
                 return
             }
             
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                 logger.error("Error while loading \(T.Type.self) from \(url.absoluteString): server returned non-200 status code.")
-                loadingError = true
+                DispatchQueue.main.async {
+                    loadingError = true
+                }
                 return
             }
             
@@ -99,7 +104,9 @@ final class SpaceXData: ObservableObject {
                     logger.info("Loaded \(res.count) \(T.Type.self).")
                 } catch {
                     logger.error("Error while decoding \(T.Type.self): \(error as NSObject).")
-                    loadingError = true
+                    DispatchQueue.main.async {
+                        loadingError = true
+                    }
                 }
             }
         }
@@ -155,6 +162,11 @@ final class SpaceXData: ObservableObject {
                 _landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
             }
             
+            var _rockets: [Rocket]!
+            queue.addOperation { [self] in
+                _rockets = loadData(url: URL(string: "https://api.spacexdata.com/v4/rockets")!)
+            }
+            
             queue.waitUntilAllOperationsAreFinished()
             
             // Sync
@@ -163,6 +175,7 @@ final class SpaceXData: ObservableObject {
                 self.crew = _crew
                 self.launchpads = _launchpads
                 self.landpads = _landpads
+                self.rockets = _rockets
             }
         }
     }

@@ -71,9 +71,19 @@ struct MissionRecapView: View {
                 }
                 .font(.caption)
                 
-                Text(launch.getNiceDate(usePrecision: true) + (launch.NET ? "NET" : ""))
-                    .font(.caption)
-                
+                HStack(spacing: 4) {
+                    Text(launch.getNiceDate(usePrecision: true) + (launch.NET ? "NET" : ""))
+                    
+                    if let rocketName = launch.getRocket()?.name {
+                        Text("•")
+                            .foregroundColor(.secondary)
+                        
+                        Text(rocketName)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .font(.caption)
+
                 
                 // Crew
                 if let crew = launch.getCrew(), showCrewWhenAvailable {

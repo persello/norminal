@@ -359,6 +359,15 @@ extension Launch {
         return nil
     }
     
+    func getRocket() -> Rocket? {
+        
+        if rocket != nil {
+            return SpaceXData.shared.rockets.first(where: { $0.id == rocket! })
+        }
+        
+        return nil
+    }
+    
     func getLandpads() -> [(LaunchCore, Landpad?)]? {
         if cores != nil {
             return cores!.map { core in
