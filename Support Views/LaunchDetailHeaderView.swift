@@ -32,7 +32,7 @@ struct LaunchDetailHeaderView: View {
         // Double the resolution for keeping high quality in rubber-banding
         options.size = CGSize(width: geometry.size.width * 2, height: geometry.size.height * 2)
         options.region = MKCoordinateRegion(
-            center: (launch.getLaunchpad()?.location)!,
+            center: (launch.launchpad?.location)!,
             latitudinalMeters: 4000,
             longitudinalMeters: 4000)
         options.mapType = .satelliteFlyover

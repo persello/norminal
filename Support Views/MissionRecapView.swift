@@ -74,7 +74,7 @@ struct MissionRecapView: View {
                 HStack(spacing: 4) {
                     Text(launch.getNiceDate(usePrecision: true) + (launch.NET ? "NET" : ""))
                     
-                    if let rocketName = launch.getRocket()?.name {
+                    if let rocketName = launch.rocket?.name {
                         Text("•")
                             .foregroundColor(.secondary)
                         
@@ -86,7 +86,7 @@ struct MissionRecapView: View {
 
                 
                 // Crew
-                if let crew = launch.getCrew(), showCrewWhenAvailable {
+                if let crew = launch.crew, showCrewWhenAvailable {
                     HStack {
                         ForEach(crew) { astronaut in
                             AstronautPicture(astronaut: astronaut)

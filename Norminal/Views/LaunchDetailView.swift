@@ -52,7 +52,7 @@ struct LaunchDetailView: View {
             }, saliency: 1000))
         }
         
-        if launch.getCrew()?.count ?? 0 > 0 {
+        if launch.crew?.count ?? 0 > 0 {
             cardList.append(CardDescriptor(cardBuilder: {
                 CrewCard()
             }, saliency: 900))
@@ -65,7 +65,7 @@ struct LaunchDetailView: View {
             }, saliency: 800))
         }
         
-        if launch.payloads?.count ?? 0 > 0 {
+        if true { // launch.payloads?.count ?? 0 > 0 {
             cardList.append(CardDescriptor(cardBuilder: {
                 PayloadCard()
             }, saliency: 700))

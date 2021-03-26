@@ -389,22 +389,9 @@ struct PatchAndDetailsView: View {
     
     var body: some View {
         HStack(alignment: .center) {
-//            if let patch = launch.links?.patch?.small {
-//                TImage(RemoteImage(imageURL: patch))
-//                    .hideProgressView()
-//                    .resizable()
-//                    .frame(width: 52, height: 52)
-//            } else {
-//                Image(systemName: "xmark.seal")
-//                    .foregroundColor(.gray)
-//                    .font(.system(size: 40, weight: .thin))
-//                    .frame(width: 52, height: 52)
-//                    .background(Circle().foregroundColor(Color(UIColor.systemGray5)))
-//            }
-            
             VStack(alignment: .leading) {
                 // Show crew or launchpad
-                if let crew = launch.getCrew() {
+                if let crew = launch.crew{
                     if crew.count > 3 {
                         // Show two names and additional members
                         ForEach(0..<2) { index in
@@ -429,10 +416,10 @@ struct PatchAndDetailsView: View {
                 } else {
                     // No crew
                     VStack(alignment: .leading) {
-                        Text(launch.getLaunchpad()?.name ?? "")
+                        Text(launch.launchpad?.name ?? "")
                             .font(.system(size: 13, weight: .semibold, design: .monospaced))
                             .lineLimit(1)
-                        Text(launch.getLaunchpad()?.locality ?? "")
+                        Text(launch.launchpad?.locality ?? "")
                             .font(.system(size: 13, weight: .regular, design: .monospaced))
                             .lineLimit(1)
                             .foregroundColor(.gray)

@@ -13,197 +13,197 @@ import Telescope
 import UIKit
 #endif
 
-// MARK: Enums
-enum LaunchDatePrecision: String, Decodable {
-    case halfYear = "half"
-    case quarterYear = "quarter"
-    case year = "year"
-    case month = "month"
-    case day = "day"
-    case hour = "hour"
-}
-
-enum LandingType: String, Decodable {
-    case ASDS = "ASDS"
-    case RTLS = "RTLS"
-    case ocean = "Ocean"
-}
-
-// MARK: - Support structs
-
-/// Represents a launch failure
-struct Failure: Decodable {
-    
-    /// Relative time in seconds from/after T+0
-    public var time: Int?
-    
-    /// Failure altitude
-    public var altitude: Int?
-    
-    /// Failure desctiption (add "due to" in front of this string)
-    public var reason: String?
-}
-
-/// Represents **a couple** of fairings.
-struct Fairings: Decodable {
-    
-    /// Whether the fairings are reused.
-    public var reused: Bool?
-    
-    /// Whether a recovery of these fairings will be attempted.
-    public var recoveryAttempt: Bool?
-    
-    /// Whether the recovery of the fairings has been successful.
-    public var recovered: Bool?
-    
-    /// List of IDs of the ships used for the recovery actions as `String`s.
-    public var ships: [String]
-    
-    enum CodingKeys: String, CodingKey {
-        case reused = "reused"
-        case recoveryAttempt = "recovery_attempt"
-        case recovered = "recovered"
-        case ships = "ships"
-    }
-}
-
-/// Represents the instance of a core in a launch.
-struct LaunchCore: Decodable, Identifiable {
-    
-    /// The ID of this core as a `String`.
-    public var id: String?
-    
-    /// The number of the current flight for this core.
-    public var flight: Int?
-    
-    /// Whether this core is equipped with grid fins.
-    public var gridFins: Bool?
-    
-    /// Whether this core is equipped with legs.
-    public var legs: Bool?
-    
-    /// Whether this core is reused.
-    public var reused: Bool?
-    
-    /// Whether a landing will be attempted.
-    public var landingAttempt: Bool?
-    
-    /// Whether the landing was a success.
-    public var landingSuccess: Bool?
-    
-    /// Indicates the landing type
-    public var landingType: LandingType?
-    
-    /// The id of the landing pad as a `String`.
-    public var landPad: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "core"
-        case flight = "flight"
-        case gridFins = "grid_fins"
-        case legs = "legs"
-        case reused = "reused"
-        case landingAttempt = "landing_attempt"
-        case landingSuccess = "landing_success"
-        case landingType = "landing_type"
-        case landPad = "landpad"
-    }
-}
-
-struct LaunchLinks: Decodable {
-    
-    /// Mission patch resources.
-    public var patch: PatchLinks?
-    
-    /// Reddit mission coverage.
-    public var reddit: RedditLinks?
-    
-    /// Flickr media.
-    public var flickr: FlickrLinks?
-    
-    /// Press kit.
-    public var pressKit: URL?
-    
-    /// Official webcast.
-    public var webcast: URL?
-    
-    /// YouTube webcast ID.
-    public var youtubeID: String?
-    
-    /// News article.
-    public var article: URL?
-    
-    /// Wikipedia page.
-    public var wikipedia: URL?
-    
-    enum CodingKeys: String, CodingKey {
-        case patch
-        case reddit
-        case flickr
-        case pressKit
-        case webcast
-        case youtubeID = "youtube_id"
-        case article
-        case wikipedia
-    }
-}
-
-struct PatchLinks: Decodable {
-    
-    /// Low-resolution mission patch.
-    public var small: URL?
-    
-    /// High-resolution mission patch.
-    public var large: URL?
-    
-    enum CodingKeys: String, CodingKey {
-        case small
-        case large
-    }
-    
-}
-
-struct RedditLinks: Decodable {
-    
-    /// Campaign thread on Reddit.
-    public var campaign: URL?
-    
-    /// Launch resources on Reddit.
-    public var launch: URL?
-    
-    /// Media resources on Reddit.
-    public var media: URL?
-    
-    /// recovery resources on Reddit.
-    public var recovery: URL?
-    
-    enum CodingKeys: String, CodingKey {
-        case campaign
-        case launch
-        case media
-        case recovery
-    }
-    
-}
-
-struct FlickrLinks: Decodable {
-    
-    /// Collection of low resolution images for this mission.
-    public var smallImages: [URL]?
-    
-    /// Collection of original size images for this mission.
-    public var originalImages: [URL]?
-    
-    enum CodingKeys: String, CodingKey {
-        case smallImages = "small"
-        case originalImages = "original"
-    }
-}
-
 // MARK: - Launch class
 
 /// Represents a SpaceX launch.
 class Launch: Decodable, ObservableObject {
+    
+    
+    // MARK: Enums
+    enum DatePrecision: String, Decodable {
+        case halfYear = "half"
+        case quarterYear = "quarter"
+        case year = "year"
+        case month = "month"
+        case day = "day"
+        case hour = "hour"
+    }
+
+    enum LandingType: String, Decodable {
+        case ASDS = "ASDS"
+        case RTLS = "RTLS"
+        case ocean = "Ocean"
+    }
+    
+    // MARK: - Support structs
+    /// Represents a launch failure
+    struct Failure: Decodable {
+        
+        /// Relative time in seconds from/after T+0
+        public var time: Int?
+        
+        /// Failure altitude
+        public var altitude: Int?
+        
+        /// Failure desctiption (add "due to" in front of this string)
+        public var reason: String?
+    }
+
+    /// Represents **a couple** of fairings.
+    struct Fairings: Decodable {
+        
+        /// Whether the fairings are reused.
+        public var reused: Bool?
+        
+        /// Whether a recovery of these fairings will be attempted.
+        public var recoveryAttempt: Bool?
+        
+        /// Whether the recovery of the fairings has been successful.
+        public var recovered: Bool?
+        
+        /// List of IDs of the ships used for the recovery actions as `String`s.
+        public var ships: [String]
+        
+        enum CodingKeys: String, CodingKey {
+            case reused = "reused"
+            case recoveryAttempt = "recovery_attempt"
+            case recovered = "recovered"
+            case ships = "ships"
+        }
+    }
+
+    /// Represents the instance of a core in a launch.
+    struct Core: Decodable, Identifiable {
+        
+        /// The ID of this core as a `String`.
+        public var id: String?
+        
+        /// The number of the current flight for this core.
+        public var flight: Int?
+        
+        /// Whether this core is equipped with grid fins.
+        public var gridFins: Bool?
+        
+        /// Whether this core is equipped with legs.
+        public var legs: Bool?
+        
+        /// Whether this core is reused.
+        public var reused: Bool?
+        
+        /// Whether a landing will be attempted.
+        public var landingAttempt: Bool?
+        
+        /// Whether the landing was a success.
+        public var landingSuccess: Bool?
+        
+        /// Indicates the landing type
+        public var landingType: LandingType?
+        
+        /// The id of the landing pad as a `String`.
+        public var landPad: String?
+        
+        enum CodingKeys: String, CodingKey {
+            case id = "core"
+            case flight = "flight"
+            case gridFins = "grid_fins"
+            case legs = "legs"
+            case reused = "reused"
+            case landingAttempt = "landing_attempt"
+            case landingSuccess = "landing_success"
+            case landingType = "landing_type"
+            case landPad = "landpad"
+        }
+    }
+
+    struct Links: Decodable {
+        
+        struct Patch: Decodable {
+            
+            /// Low-resolution mission patch.
+            public var small: URL?
+            
+            /// High-resolution mission patch.
+            public var large: URL?
+            
+            enum CodingKeys: String, CodingKey {
+                case small
+                case large
+            }
+            
+        }
+
+        struct Reddit: Decodable {
+            
+            /// Campaign thread on Reddit.
+            public var campaign: URL?
+            
+            /// Launch resources on Reddit.
+            public var launch: URL?
+            
+            /// Media resources on Reddit.
+            public var media: URL?
+            
+            /// recovery resources on Reddit.
+            public var recovery: URL?
+            
+            enum CodingKeys: String, CodingKey {
+                case campaign
+                case launch
+                case media
+                case recovery
+            }
+            
+        }
+
+        struct Flickr: Decodable {
+            
+            /// Collection of low resolution images for this mission.
+            public var smallImages: [URL]?
+            
+            /// Collection of original size images for this mission.
+            public var originalImages: [URL]?
+            
+            enum CodingKeys: String, CodingKey {
+                case smallImages = "small"
+                case originalImages = "original"
+            }
+        }
+        
+        /// Mission patch resources.
+        public var patch: Patch?
+        
+        /// Reddit mission coverage.
+        public var reddit: Reddit?
+        
+        /// Flickr media.
+        public var flickr: Flickr?
+        
+        /// Press kit.
+        public var pressKit: URL?
+        
+        /// Official webcast.
+        public var webcast: URL?
+        
+        /// YouTube webcast ID.
+        public var youtubeID: String?
+        
+        /// News article.
+        public var article: URL?
+        
+        /// Wikipedia page.
+        public var wikipedia: URL?
+        
+        enum CodingKeys: String, CodingKey {
+            case patch
+            case reddit
+            case flickr
+            case pressKit
+            case webcast
+            case youtubeID = "youtube_id"
+            case article
+            case wikipedia
+        }
+    }
     
     /// **(Required)** The ordinal number of this launch.
     public var flightNumber: Int
@@ -221,7 +221,7 @@ class Launch: Decodable, ObservableObject {
     // public var dateLocal: Date
     
     /// **(Required)** The launch date precision.
-    public var datePrecision: LaunchDatePrecision
+    public var datePrecision: DatePrecision
     
     /// The static fire's date.
     public var staticFireDateUTC: Date?
@@ -239,7 +239,7 @@ class Launch: Decodable, ObservableObject {
     public var window: Int?
     
     /// Contains the ID of the rocket as a `String`.
-    public var rocket: String?
+    private var rocketID: String?
     
     /// Represents whether the launch was a success or not. Has no value until the launch ends.
     public var success: Bool?
@@ -257,25 +257,25 @@ class Launch: Decodable, ObservableObject {
     public var fairings: Fairings?
     
     /// List of crew IDs as `String`s.
-    public var crew: [String]?
+    private var crewIDs: [String]?
     
     /// List of ship IDs as `String`s.
-    public var ships: [String]?
+    private var shipIDs: [String]?
     
     /// List of capsule IDs as `String`s.
-    public var capsules: [String]?
+    private var capsuleIDs: [String]?
     
     /// List of payload IDs as `String`s.
-    public var payloads: [String]?
+    private var payloadIDs: [String]?
     
-    /// List of launchpad IDs as a `String`.
-    public var launchpad: String?
+    /// Launchpad ID as a `String`.
+    private var launchpadID: String?
     
     /// List of cores.
-    public var cores: [LaunchCore]?
+    private var cores: [Core]?
     
     /// Internet resources for this launch.
-    public var links: LaunchLinks?
+    public var links: Links?
     
     /// Whether information is automatically updated. Defaults to `true`.
     public var autoUpdate: Bool = true
@@ -295,17 +295,17 @@ class Launch: Decodable, ObservableObject {
         case TBD = "tbd"
         case NET = "net"
         case window = "window"
-        case rocket = "rocket"
+        case rocketID = "rocket"
         case success = "success"
         case failures = "failures"
         case upcoming = "upcoming"
         case details = "details"
         case fairings = "fairings"
-        case crew = "crew"
-        case ships = "ships"
-        case capsules = "capsules"
-        case payloads = "payloads"
-        case launchpad = "launchpad"
+        case crewIDs = "crew"
+        case shipIDs = "ships"
+        case capsuleIDs = "capsules"
+        case payloadIDs = "payloads"
+        case launchpadID = "launchpad"
         case cores = "cores"
         case links = "links"
         case autoUpdate = "auto_update"
@@ -313,8 +313,9 @@ class Launch: Decodable, ObservableObject {
     }
 }
 
-// MARK: - Utility methods
+// MARK: - Computed properties
 extension Launch {
+    
     var coresToRecover: Int {
         cores?.filter({$0.landingAttempt ?? false}).count ?? 0
     }
@@ -328,70 +329,6 @@ extension Launch {
             return self == nl
         }
         return false
-    }
-    
-    func getImage(atIndex index: Int) -> RemoteImage? {
-        guard index < (links?.flickr?.originalImages?.count ?? 0) - 1 else {
-            return nil
-        }
-        
-        if let url = links?.flickr?.originalImages![index] {
-            return RemoteImage(imageURL: url)
-        } else {
-            return nil
-        }
-    }
-    
-    func getPatch() -> RemoteImage? {
-        if let patchURL = links?.patch?.large {
-            return RemoteImage(imageURL: patchURL)
-        } else {
-            return nil
-        }
-    }
-    
-    func getLaunchpad() -> Launchpad? {
-        
-        if launchpad != nil {
-            return SpaceXData.shared.launchpads.first(where: { $0.idstring == launchpad! })
-        }
-        
-        return nil
-    }
-    
-    func getRocket() -> Rocket? {
-        
-        if rocket != nil {
-            return SpaceXData.shared.rockets.first(where: { $0.id == rocket! })
-        }
-        
-        return nil
-    }
-    
-    func getLandpads() -> [(LaunchCore, Landpad?)]? {
-        if cores != nil {
-            return cores!.map { core in
-                (core, SpaceXData.shared.landpads.first(where: { $0.idstring == core.landPad }))
-            }
-        }
-        
-        return nil
-    }
-    
-    func getCrew() -> [Astronaut]? {
-        if let crewIdList = crew {
-            var astronauts: [Astronaut] = []
-            for astronautID in crewIdList {
-                if let astronaut = SpaceXData.shared.crew.first(where: { $0.idstring == astronautID }) {
-                    astronauts.append(astronaut)
-                }
-            }
-            
-            if astronauts.count > 0 {
-                return astronauts
-            }
-        }
-        return nil
     }
     
     /// Use only for ordering! Returns a wrong date useful only for setting the launch order
@@ -412,6 +349,75 @@ extension Launch {
         }
     }
     
+    // MARK: - Computed properties obtained from UUID
+    var rocket: Rocket? {
+        
+        if rocketID != nil {
+            return SpaceXData.shared.rockets.first(where: { $0.id == rocketID! })
+        }
+        
+        return nil
+    }
+    
+    var launchpad: Launchpad? {
+        
+        if launchpadID != nil {
+            return SpaceXData.shared.launchpads.first(where: { $0.idstring == launchpadID! })
+        }
+        
+        return nil
+    }
+    
+    var landpads: [(Core, Landpad?)]? {
+        if cores != nil {
+            return cores!.map { core in
+                (core, SpaceXData.shared.landpads.first(where: { $0.idstring == core.landPad }))
+            }
+        }
+        
+        return nil
+    }
+    
+    var crew: [Astronaut]? {
+        if let crewIdList = crewIDs {
+            var astronauts: [Astronaut] = []
+            for astronautID in crewIdList {
+                if let astronaut = SpaceXData.shared.crew.first(where: { $0.idstring == astronautID }) {
+                    astronauts.append(astronaut)
+                }
+            }
+            
+            if astronauts.count > 0 {
+                return astronauts
+            }
+        }
+        return nil
+    }
+    
+}
+
+// MARK: - Utility methods
+extension Launch {
+    func getImage(atIndex index: Int) -> RemoteImage? {
+        guard index < (links?.flickr?.originalImages?.count ?? 0) - 1 else {
+            return nil
+        }
+        
+        if let url = links?.flickr?.originalImages![index] {
+            return RemoteImage(imageURL: url)
+        } else {
+            return nil
+        }
+    }
+    
+    func getPatch() -> RemoteImage? {
+        if let patchURL = links?.patch?.large {
+            return RemoteImage(imageURL: patchURL)
+        } else {
+            return nil
+        }
+    }
+    
     func getNiceDate(usePrecision: Bool) -> String {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.autoupdatingCurrent
@@ -421,7 +427,7 @@ extension Launch {
         // For standard dates, use maximum precision
         var precision = self.datePrecision
         if usePrecision == false {
-            precision = LaunchDatePrecision.hour
+            precision = DatePrecision.hour
         }
         
         switch precision {

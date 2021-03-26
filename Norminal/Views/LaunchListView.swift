@@ -34,7 +34,7 @@ final class LaunchSearcher: ObservableObject {
         let nameMatch = launch.name.uppercased().contains(text.uppercased())
         
         var astronautNameMatch: Bool = false
-        if let crew = launch.getCrew() {
+        if let crew = launch.crew {
             for astronaut in crew {
                 if astronaut.name.uppercased().contains(text.uppercased()) {
                     astronautNameMatch = true
