@@ -64,6 +64,7 @@ final class SpaceXData: ObservableObject {
     @Published public var landpads = [Landpad]()
     @Published public var rockets = [Rocket]()
     @Published public var capsules = [Capsule]()
+    @Published public var companyInfo = CompanyInfo()
     @Published var loadingError: Bool = false
     
     // Shared instance
@@ -75,8 +76,8 @@ final class SpaceXData: ObservableObject {
     }
     
     // MARK: Generic function for loading data
-    func loadData<T: Decodable>(url: URL) -> [T] {
-        var result = [T]()
+    func loadData<T: Decodable>(url: URL) -> T {
+        var result: T!
         let semaphore = DispatchSemaphore(value: 0)
         
         let task = URLSession.shared.dataTask(with: url) { [self] data, response, error in
@@ -100,9 +101,8 @@ final class SpaceXData: ObservableObject {
             
             if let data = data {
                 do {
-                    let res = try CustomDecoder().decode([T].self, from: data)
-                    result.append(contentsOf: res)
-                    logger.info("Loaded \(res.count) \(T.Type.self).")
+                    result = try CustomDecoder().decode(T.self, from: data)
+                    logger.info("Loaded \(T.Type.self).")
                 } catch {
                     logger.error("Error while decoding \(T.Type.self): \(error as NSObject).")
                     DispatchQueue.main.async {
@@ -173,6 +173,11 @@ final class SpaceXData: ObservableObject {
                 _capsules = loadData(url: URL(string: "https://api.spacexdata.com/v4/capsules")!)
             }
             
+            var _companyInfo: CompanyInfo!
+            queue.addOperation { [self] in
+                _companyInfo = loadData(url: URL(string: "https://api.spacexdata.com/v4/company")!)
+            }
+            
             queue.waitUntilAllOperationsAreFinished()
             
             // Sync
@@ -183,6 +188,7 @@ final class SpaceXData: ObservableObject {
                 self.landpads = _landpads
                 self.rockets = _rockets
                 self.capsules = _capsules
+                self.companyInfo = _companyInfo
             }
         }
     }

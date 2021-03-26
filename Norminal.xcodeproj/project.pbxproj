@@ -52,8 +52,8 @@
 		8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
 		8BA4D6EB260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
 		8BA4D6EC260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
-		8BA4D6EE260E50240096CE96 /* CompanyInfo.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.todo.swift */; };
-		8BA4D6EF260E50240096CE96 /* CompanyInfo.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.todo.swift */; };
+		8BA4D6EE260E50240096CE96 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */; };
+		8BA4D6EF260E50240096CE96 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */; };
 		8BA4D6F1260E502F0096CE96 /* Core.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.todo.swift */; };
 		8BA4D6F2260E502F0096CE96 /* Core.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.todo.swift */; };
 		8BA4D6F4260E503C0096CE96 /* Dragon.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */; };
@@ -176,7 +176,7 @@
 		8B9255B125F2DA810059CB2E /* RocketCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCard.swift; sourceTree = "<group>"; };
 		8B9255B725F2DB4E0059CB2E /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
 		8BA4D6EA260E50150096CE96 /* Capsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capsule.swift; sourceTree = "<group>"; };
-		8BA4D6ED260E50240096CE96 /* CompanyInfo.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfo.todo.swift; sourceTree = "<group>"; };
+		8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfo.swift; sourceTree = "<group>"; };
 		8BA4D6F0260E502F0096CE96 /* Core.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.todo.swift; sourceTree = "<group>"; };
 		8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dragon.todo.swift; sourceTree = "<group>"; };
 		8BA4D6F6260E50500096CE96 /* Payload.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payload.todo.swift; sourceTree = "<group>"; };
@@ -434,7 +434,7 @@
 				8BB7202E260E260F00B8433C /* AdditionalCodingKeys.swift */,
 				8BF143E225F10C370045B95D /* Astronaut.swift */,
 				8BA4D6EA260E50150096CE96 /* Capsule.swift */,
-				8BA4D6ED260E50240096CE96 /* CompanyInfo.todo.swift */,
+				8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */,
 				8BA4D6F0260E502F0096CE96 /* Core.todo.swift */,
 				8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */,
 				8B7F8D3B2607A756008A226B /* FaceCropper.swift */,
@@ -597,7 +597,7 @@
 			files = (
 				8BF143EC25F10C370045B95D /* Launchpad.swift in Sources */,
 				8BA4D6FB260E505B0096CE96 /* Fairing.todo.swift in Sources */,
-				8BA4D6EF260E50240096CE96 /* CompanyInfo.todo.swift in Sources */,
+				8BA4D6EF260E50240096CE96 /* CompanyInfo.swift in Sources */,
 				8BF143F225F10C370045B95D /* SpaceXData.swift in Sources */,
 				8BF143E825F10C370045B95D /* Secrets.swift in Sources */,
 				8BB72031260E30C200B8433C /* Rocket.swift in Sources */,
@@ -663,7 +663,7 @@
 				8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */,
 				8BF143EB25F10C370045B95D /* Launchpad.swift in Sources */,
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,
-				8BA4D6EE260E50240096CE96 /* CompanyInfo.todo.swift in Sources */,
+				8BA4D6EE260E50240096CE96 /* CompanyInfo.swift in Sources */,
 				8B0D1D76253363BF0056FACA /* MissionRecapView.swift in Sources */,
 				8BF143E725F10C370045B95D /* Secrets.swift in Sources */,
 				8BF143E925F10C370045B95D /* WeatherAPI.swift in Sources */,
