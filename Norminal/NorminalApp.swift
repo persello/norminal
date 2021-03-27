@@ -5,7 +5,10 @@
 //  Created by Riccardo Persello on 09/10/2020.
 //
 
+#if !os(macOS) && !targetEnvironment(macCatalyst)
 import Firebase
+#endif
+
 import SwiftUI
 import os
 import WidgetKit
@@ -26,8 +29,10 @@ struct NorminalApp: App {
                         WidgetCenter.shared.reloadAllTimelines()
                     }
                     
+                    #if !os(macOS) && !targetEnvironment(macCatalyst)
                     // Firebase
                     FirebaseApp.configure()
+                    #endif
                 }
                 .environmentObject(globalData)
         }
