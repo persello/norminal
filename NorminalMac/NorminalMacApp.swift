@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import AppKit
+import PoweredTouchBar
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -18,10 +19,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 @main
 struct NorminalMacApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @ObservedObject var globalData = SpaceXData.shared
     
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(globalData)
         }
     }
 }

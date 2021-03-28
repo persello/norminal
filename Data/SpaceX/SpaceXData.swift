@@ -76,8 +76,8 @@ final class SpaceXData: ObservableObject {
     }
     
     // MARK: Generic function for loading data
-    func loadData<T: Decodable>(url: URL) -> T {
-        var result: T!
+    func loadData<T: Decodable>(url: URL) -> T? {
+        var result: T?
         let semaphore = DispatchSemaphore(value: 0)
         
         let task = URLSession.shared.dataTask(with: url) { [self] data, response, error in
@@ -148,32 +148,32 @@ final class SpaceXData: ObservableObject {
                 })
             }
             
-            var _crew: [Astronaut]!
+            var _crew: [Astronaut]?
             queue.addOperation { [self] in
                 _crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
             }
             
-            var _launchpads: [Launchpad]!
+            var _launchpads: [Launchpad]?
             queue.addOperation { [self] in
                 _launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
             }
             
-            var _landpads: [Landpad]!
+            var _landpads: [Landpad]?
             queue.addOperation { [self] in
                 _landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
             }
             
-            var _rockets: [Rocket]!
+            var _rockets: [Rocket]?
             queue.addOperation { [self] in
                 _rockets = loadData(url: URL(string: "https://api.spacexdata.com/v4/rockets")!)
             }
             
-            var _capsules: [Capsule]!
+            var _capsules: [Capsule]?
             queue.addOperation { [self] in
                 _capsules = loadData(url: URL(string: "https://api.spacexdata.com/v4/capsules")!)
             }
             
-            var _companyInfo: CompanyInfo!
+            var _companyInfo: CompanyInfo?
             queue.addOperation { [self] in
                 _companyInfo = loadData(url: URL(string: "https://api.spacexdata.com/v4/company")!)
             }
@@ -182,13 +182,33 @@ final class SpaceXData: ObservableObject {
             
             // Sync
             DispatchQueue.main.async {
-                self.launches = _launches
-                self.crew = _crew
-                self.launchpads = _launchpads
-                self.landpads = _landpads
-                self.rockets = _rockets
-                self.capsules = _capsules
-                self.companyInfo = _companyInfo
+                if let _launches = _launches {
+                    self.launches = _launches
+                }
+                
+                if let _crew = _crew {
+                    self.crew = _crew
+                }
+                
+                if let _launchpads = _launchpads {
+                    self.launchpads = _launchpads
+                }
+                
+                if let _landpads = _landpads {
+                    self.landpads = _landpads
+                }
+                
+                if let _rockets = _rockets {
+                    self.rockets = _rockets
+                }
+                
+                if let _capsules = _capsules {
+                    self.capsules = _capsules
+                }
+                
+                if let _companyInfo = _companyInfo {
+                    self.companyInfo = _companyInfo
+                }
             }
         }
     }
