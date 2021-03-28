@@ -146,7 +146,7 @@ struct WebcastSheetInnerView: View {
                 ZStack {
                     // Gray rectangle
                     Rectangle()
-                        .fill(Color(UIColor.systemGray5))
+                        .fill(Color(.systemGray5))
                         .aspectRatio(16/9, contentMode: .fit)
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                         .padding()

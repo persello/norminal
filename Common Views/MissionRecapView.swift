@@ -22,7 +22,7 @@ struct MissionRecapView: View {
                         .foregroundColor(.gray)
                         .font(.system(size: 40, weight: .thin))
                         .frame(width: 70, height: 70)
-                        .background(Circle().foregroundColor(Color(UIColor.systemGray6)))
+                        .background(Circle().foregroundColor(Color(.systemGray6)))
                 }
                 .frame(width: 70, height: 70)
                 .padding(4)

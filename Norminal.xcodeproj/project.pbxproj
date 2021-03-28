@@ -84,6 +84,9 @@
 		8BD13FB625FF762C003AB69C /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD13FB525FF762C003AB69C /* Telescope */; };
 		8BD13FBC25FF79CD003AB69C /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD13FBB25FF79CD003AB69C /* Telescope */; };
 		8BDF3D99260D4D2400DE48DD /* UnitForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF3D98260D4D2400DE48DD /* UnitForce.swift */; };
+		8BE2683526109FB7003B0C62 /* NorminalMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2683426109FB7003B0C62 /* NorminalMacApp.swift */; };
+		8BE268442610A031003B0C62 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE268432610A031003B0C62 /* MainView.swift */; };
+		8BE268492610A16E003B0C62 /* SidebarButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE268482610A16E003B0C62 /* SidebarButtonStyle.swift */; };
 		8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85F82562FE07006144ED /* CrewSheet.swift */; };
 		8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85FC25631B56006144ED /* AstronautSheet.swift */; };
 		8BF143E525F10C370045B95D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BF143D925F10C370045B95D /* Secrets.plist */; };
@@ -195,6 +198,12 @@
 		8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
 		8BC7E6CC25672966005E4304 /* WebcastSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastSheet.swift; sourceTree = "<group>"; };
 		8BDF3D98260D4D2400DE48DD /* UnitForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitForce.swift; sourceTree = "<group>"; };
+		8BE2683226109FB7003B0C62 /* NorminalMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NorminalMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BE2683426109FB7003B0C62 /* NorminalMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorminalMacApp.swift; sourceTree = "<group>"; };
+		8BE2683D26109FB8003B0C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BE2683E26109FB8003B0C62 /* NorminalMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NorminalMac.entitlements; sourceTree = "<group>"; };
+		8BE268432610A031003B0C62 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		8BE268482610A16E003B0C62 /* SidebarButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarButtonStyle.swift; sourceTree = "<group>"; };
 		8BEB85F82562FE07006144ED /* CrewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewSheet.swift; sourceTree = "<group>"; };
 		8BEB85FC25631B56006144ED /* AstronautSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautSheet.swift; sourceTree = "<group>"; };
 		8BF143D925F10C370045B95D /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
@@ -240,6 +249,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8BE2682F26109FB7003B0C62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -269,10 +285,11 @@
 		8B46A5742530CE740084E52D = {
 			isa = PBXGroup;
 			children = (
+				8BE2684A2610A191003B0C62 /* Common Views */,
 				8BF143D725F10C370045B95D /* Data */,
-				8B4E96472597F06600F9668E /* Support Views */,
 				8B46A57F2530CE740084E52D /* Norminal */,
-				8BB5232125489827006A9511 /* res */,
+				8BE2683326109FB7003B0C62 /* NorminalMac */,
+				8BB5232125489827006A9511 /* Resources */,
 				8B208B8B258EBC6A009107EC /* Widget */,
 				8B208B86258EBC6A009107EC /* Frameworks */,
 				8B46A5842530CE760084E52D /* Assets.xcassets */,
@@ -286,6 +303,7 @@
 			children = (
 				8B46A57D2530CE740084E52D /* Norminal.app */,
 				8B208B85258EBC6A009107EC /* NorminalWidget.appex */,
+				8BE2683226109FB7003B0C62 /* NorminalMac.app */,
 			);
 			name = Products;
 			path = ..;
@@ -298,6 +316,7 @@
 				8B17527525EDA8A300A760C5 /* Norminal.entitlements */,
 				8B46A5802530CE740084E52D /* NorminalApp.swift */,
 				8B46A57E2530CE740084E52D /* Products */,
+				8B4E96472597F06600F9668E /* Support Views */,
 				8B83E8AC253769BD002AE62B /* Views */,
 			);
 			path = Norminal;
@@ -339,16 +358,11 @@
 		8B4E96472597F06600F9668E /* Support Views */ = {
 			isa = PBXGroup;
 			children = (
-				8B83E8AB253769AE002AE62B /* Cards */,
 				8BEB85F72562FDE7006144ED /* Sheets */,
-				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
 				8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */,
 				8B87DFBD2606659F009C13D0 /* LaunchDetailHeaderView.swift */,
 				8B87DFC326066F71009C13D0 /* LaunchDetailResourcesView.swift */,
-				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
-				8B0D1D75253363BF0056FACA /* MissionRecapView.swift */,
 				8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */,
-				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
 			);
 			path = "Support Views";
 			sourceTree = "<group>";
@@ -375,17 +389,18 @@
 				8B46A5912530CF4D0084E52D /* LaunchListView.swift */,
 				8B69255A253206E900D61C3F /* LaunchDetailView.swift */,
 				8B87DFB9260659DB009C13D0 /* FeedbackView.swift */,
+				8BE268482610A16E003B0C62 /* SidebarButtonStyle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		8BB5232125489827006A9511 /* res */ = {
+		8BB5232125489827006A9511 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				8B4E95BF25966BC200F9668E /* Crashlytics */,
 				8BB5232225489842006A9511 /* logo.png */,
 			);
-			path = res;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		8BDF3D9A260D4D3500DE48DD /* Other */ = {
@@ -394,6 +409,37 @@
 				8BDF3D98260D4D2400DE48DD /* UnitForce.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		8BE2683326109FB7003B0C62 /* NorminalMac */ = {
+			isa = PBXGroup;
+			children = (
+				8BE2683D26109FB8003B0C62 /* Info.plist */,
+				8BE2683E26109FB8003B0C62 /* NorminalMac.entitlements */,
+				8BE2683426109FB7003B0C62 /* NorminalMacApp.swift */,
+				8BE268422610A021003B0C62 /* Views */,
+			);
+			path = NorminalMac;
+			sourceTree = "<group>";
+		};
+		8BE268422610A021003B0C62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8BE268432610A031003B0C62 /* MainView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8BE2684A2610A191003B0C62 /* Common Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B83E8AB253769AE002AE62B /* Cards */,
+				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
+				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
+				8B0D1D75253363BF0056FACA /* MissionRecapView.swift */,
+				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
+			);
+			path = "Common Views";
 			sourceTree = "<group>";
 		};
 		8BEB85F72562FDE7006144ED /* Sheets */ = {
@@ -504,13 +550,30 @@
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8BE2683126109FB7003B0C62 /* NorminalMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8BE2684126109FB8003B0C62 /* Build configuration list for PBXNativeTarget "NorminalMac" */;
+			buildPhases = (
+				8BE2682E26109FB7003B0C62 /* Sources */,
+				8BE2682F26109FB7003B0C62 /* Frameworks */,
+				8BE2683026109FB7003B0C62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NorminalMac;
+			productName = NorminalMac;
+			productReference = 8BE2683226109FB7003B0C62 /* NorminalMac.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		8B46A5752530CE740084E52D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					8B208B84258EBC6A009107EC = {
@@ -518,6 +581,9 @@
 					};
 					8B46A57C2530CE740084E52D = {
 						CreatedOnToolsVersion = 12.0.1;
+					};
+					8BE2683126109FB7003B0C62 = {
+						CreatedOnToolsVersion = 12.5;
 					};
 				};
 			};
@@ -543,6 +609,7 @@
 			targets = (
 				8B46A57C2530CE740084E52D /* Norminal */,
 				8B208B84258EBC6A009107EC /* NorminalWidget */,
+				8BE2683126109FB7003B0C62 /* NorminalMac */,
 			);
 		};
 /* End PBXProject section */
@@ -567,6 +634,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8BE2683026109FB7003B0C62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -586,7 +660,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/res/Crashlytics/upload-symbols\" -gsp ${SRCROOT}/GoogleService-Info.plist -p ios ${SRCROOT}/Norminal.app.dSYM.zip\n";
+			shellScript = "\"${SRCROOT}/Resources/Crashlytics/upload-symbols\" -gsp ${SRCROOT}/GoogleService-Info.plist -p ios ${SRCROOT}/Norminal.app.dSYM.zip\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -652,6 +726,7 @@
 				8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */,
 				8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */,
 				8B0B4DC325EE511500F1C068 /* LaunchCountdownView.swift in Sources */,
+				8BE268492610A16E003B0C62 /* SidebarButtonStyle.swift in Sources */,
 				8BA4D6FA260E505B0096CE96 /* Fairing.todo.swift in Sources */,
 				8BF143F125F10C370045B95D /* SpaceXData.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
@@ -673,6 +748,15 @@
 				8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */,
 				8BA4D6EB260E50150096CE96 /* Capsule.swift in Sources */,
 				8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8BE2682E26109FB7003B0C62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BE2683526109FB7003B0C62 /* NorminalMacApp.swift in Sources */,
+				8BE268442610A031003B0C62 /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,7 +794,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -740,7 +824,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -892,10 +976,10 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -922,12 +1006,64 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		8BE2683F26109FB8003B0C62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NorminalMac/NorminalMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = BZTVD28H6K;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = NorminalMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.mac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8BE2684026109FB8003B0C62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = NorminalMac/NorminalMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = BZTVD28H6K;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = NorminalMac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.mac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -957,6 +1093,15 @@
 			buildConfigurations = (
 				8B46A58D2530CE760084E52D /* Debug */,
 				8B46A58E2530CE760084E52D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8BE2684126109FB8003B0C62 /* Build configuration list for PBXNativeTarget "NorminalMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BE2683F26109FB8003B0C62 /* Debug */,
+				8BE2684026109FB8003B0C62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

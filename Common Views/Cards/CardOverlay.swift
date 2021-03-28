@@ -31,7 +31,7 @@ struct CardOverlay: View {
             HStack {
                 Text(bottomText)
                     .fontWeight(.semibold)
-                    .foregroundColor(Color(UIColor.label))
+                    .foregroundColor(Color(.label))
                 Spacer()
                 Button(action: {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred(intensity: 1.0)
@@ -43,7 +43,7 @@ struct CardOverlay: View {
 
             }
                 .padding(.vertical, 8)
-                .background(Rectangle().padding(-24).foregroundColor(Color(UIColor.systemGray6)))
+                .background(Rectangle().padding(-24).foregroundColor(Color(.systemGray6)))
         }
     }
 }

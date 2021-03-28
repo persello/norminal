@@ -26,7 +26,7 @@ struct LaunchListTile: View {
                 if showDetails {
                     Image(systemName: "chevron.forward")
                         .font(Font.caption.weight(.semibold))
-                        .foregroundColor(Color(UIColor.tertiaryLabel))
+                        .foregroundColor(Color(.tertiaryLabel))
                         .padding(.trailing, 0.5)
                 }
             }
