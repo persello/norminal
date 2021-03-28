@@ -8,18 +8,6 @@
 import SwiftUI
 import VisualEffects
 
-extension View {
-    func colorfulShadow(radius: CGFloat, saturation: Double = 1) -> some View {
-        return ZStack {
-            self
-                .blur(radius: radius)
-                .saturation(saturation)
-            
-            self
-        }
-    }
-}
-
 struct CrewCard: View {
     @EnvironmentObject var launch: Launch
     @State var modalPresented: Bool = false
