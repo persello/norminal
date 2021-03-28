@@ -25,19 +25,28 @@ struct LaunchListView: View {
         .navigationTitle("Launches")
         .navigationSubtitle("\(globalData.launches.count) launches")
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItem {
                 Button(action: { /* Open filters */ }) {
                     Image(systemName: "line.horizontal.3.decrease.circle")
                 }
+            }
+            ToolbarItem {
+                SearchBar(search: .constant("wefwef"))
             }
         }
     }
 }
 
 struct DetView: View {
-    var launch: Launch
+    var launch: Launch?
     var body: some View {
-        Text(launch.name)
+        Group {
+            if let launch = launch {
+                Text(launch.name)
+            } else {
+                LaunchNotSelectedView()
+            }
+        }
     }
 }
 

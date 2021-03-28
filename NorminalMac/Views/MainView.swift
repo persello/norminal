@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PoweredTouchBar
 
 enum Screens: Equatable, Identifiable {
     case launches
@@ -50,11 +49,12 @@ struct MainView: View {
         NavigationView {
             SidebarView()
             LaunchListView()
-            LaunchNotSelectedView()
+            DetView()
         }
         .touchBar(TouchBar {
             Button(action: SidebarView.toggle, label: {
                 Image(systemName: "sidebar.leading")
+                    .frame(width: 72)
             })
         })
     }

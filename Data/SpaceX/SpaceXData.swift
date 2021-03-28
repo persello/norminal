@@ -127,12 +127,12 @@ final class SpaceXData: ObservableObject {
             queue.qualityOfService = .background
             queue.maxConcurrentOperationCount = 8
             
-            var _launches: [Launch]!
+            var _launches: [Launch]?
             queue.addOperation { [self] in
                 _launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
                 
                 // Sort launches
-                _launches = _launches.sorted(by: {
+                _launches = _launches?.sorted(by: {
                     // $0 not launched and $1 launched
                     if $0.upcoming && !$1.upcoming {
                         return false
