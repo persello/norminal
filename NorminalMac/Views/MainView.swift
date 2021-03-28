@@ -37,7 +37,7 @@ struct SidebarView: View {
         .toolbar{
             ToolbarItem(placement: .automatic){
                 Button(action: SidebarView.toggle, label: {
-                    Image(systemName: "sidebar.left")
+                    Image(systemName: "sidebar.leading")
                 })
             }
         }
@@ -51,12 +51,6 @@ struct MainView: View {
             LaunchListView()
             DetView()
         }
-        .touchBar(TouchBar {
-            Button(action: SidebarView.toggle, label: {
-                Image(systemName: "sidebar.leading")
-                    .frame(width: 72)
-            })
-        })
     }
 }
 

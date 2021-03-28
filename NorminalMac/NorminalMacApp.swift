@@ -24,6 +24,21 @@ struct NorminalMacApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(globalData)
+                .touchBar(TouchBar {
+                    Button(action: SidebarView.toggle, label: {
+                        Image(systemName: "sidebar.leading")
+                            .frame(width: 48)
+                    })
+                })
+        }
+        .windowToolbarStyle(UnifiedWindowToolbarStyle())
+        .commands {
+            CommandGroup(after: CommandGroupPlacement.sidebar) {
+                Menu("Launches") {
+                    LaunchOrderingControls()
+                }
+                Divider()
+            }
         }
     }
 }

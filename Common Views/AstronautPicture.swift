@@ -33,7 +33,7 @@ struct AstronautPicture: View, Equatable {
                     Circle()
                         .fill(LinearGradient(
                                 gradient: Gradient(colors: [
-                                    .systemGray,
+                                    .lightGray,
                                     .gray
                                 ]),
                                 startPoint: .topLeading,

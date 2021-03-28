@@ -9,94 +9,21 @@ import SwiftUI
 import NavigationSearchBar
 import OSLog
 
-final class LaunchSearcher: ObservableObject {
-    
-    var text: String = "" {
-        willSet {
-            // A fix for the max CPU time
-            if newValue != text {
-                self.objectWillChange.send()
-            }
-        }
-    }
-    
-    let scopes = ["All", "Upcoming", "Past"]
-    @AppStorage("com.persello.norminal.launchview.searcher.scopeselection") var scopeSelection: Int = 0 {
-        willSet {
-            // @Published alternative
-            DispatchQueue.main.async {
-                self.objectWillChange.send()
-            }
-        }
-    }
-    
-    private func textLaunchFilter(_ launch: Launch) -> Bool {
-        let nameMatch = launch.name.uppercased().contains(text.uppercased())
-        
-        var astronautNameMatch: Bool = false
-        if let crew = launch.crew {
-            for astronaut in crew {
-                if astronaut.name.uppercased().contains(text.uppercased()) {
-                    astronautNameMatch = true
-                }
-            }
-        }
-        
-        let scopeMatch: Bool!
-        switch scopeSelection {
-            case 0:
-                scopeMatch = true
-            case 1:
-                scopeMatch = launch.upcoming
-            case 2:
-                scopeMatch = !launch.upcoming
-            default:
-                scopeMatch = false
-        }
-        
-        return (nameMatch || astronautNameMatch) && scopeMatch
-    }
-    
-    func filterLaunches(_ launches: [Launch]) -> [Launch]? {
-        
-        // Time filtering
-        var timeFiltered: [Launch]?
-        
-        switch scopeSelection {
-            case 1:
-                // Upcoming
-                timeFiltered = launches.filter({$0.upcoming}).reversed()
-            case 2:
-                timeFiltered = launches.filter({!$0.upcoming})
-            default:
-                timeFiltered = launches
-        }
-        
-        // When we have a query do the text filtering
-        if text.count > 0 {
-            return timeFiltered?.filter(textLaunchFilter(_:))
-        } else {
-            return timeFiltered
-        }
-        
-    }
-}
-
 struct LaunchListView: View {
     var selectedLaunch: Binding<Launch?>?
-    @StateObject private var searcher = LaunchSearcher()
+    @StateObject private var filter = LaunchFilter()
     @EnvironmentObject private var globalData: SpaceXData
         
     var launches: [Launch] {
-        return searcher.filterLaunches(globalData.launches) ?? []
+        return filter.filterLaunches(globalData.launches) ?? []
     }
     
     var pastLaunches: [Launch] {
-        return launches.filter({!$0.upcoming}).reversed()
+        return launches.filter({!$0.upcoming})
     }
     
     var upcomingLaunches: [Launch] {
-        return launches.filter({$0.upcoming}).reversed()
+        return launches.filter({$0.upcoming})
     }
     
     var body: some View {

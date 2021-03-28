@@ -9,29 +9,42 @@ import SwiftUI
 
 struct LaunchListView: View {
     @EnvironmentObject var globalData: SpaceXData
+    @ObservedObject var globalSettings = GlobalSettings.shared
+    @ObservedObject var filter = LaunchFilter()
     @State var selectedLaunch: Launch?
-    
+
     var launches: [Launch] {
-        return globalData.launches
+        return filter.filterLaunches(globalData.launches) ?? []
     }
     
     var body: some View {
-        List(launches) { launch in
-            NavigationLink(destination: DetView(launch: launch)) {
-                LaunchListTile(launch: launch, showDetails: false)
+        List {
+            ForEach(launches, id: \.id) {launch in
+                NavigationLink(destination: DetView(launch: launch)) {
+                    LaunchListTile(launch: launch, showDetails: false)
+                        .frame(maxHeight: 90)
+                }
             }
         }
         .frame(minWidth: 350)
-        .navigationTitle("Launches")
+        .navigationTitle("Launch history")
         .navigationSubtitle("\(globalData.launches.count) launches")
+        .touchBar(TouchBar {
+            Spacer(minLength: 50)
+                LaunchOrderingControls()
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(.horizontal, 16)
+        })
         .toolbar {
-            ToolbarItem {
-                Button(action: { /* Open filters */ }) {
-                    Image(systemName: "line.horizontal.3.decrease.circle")
+            ToolbarItemGroup(placement: .automatic) {
+                Menu {
+                    LaunchOrderingControls()
                 }
-            }
-            ToolbarItem {
-                SearchBar(search: .constant("wefwef"))
+                label: {
+                    Label("Launch filter", systemImage: "eyeglasses")
+                }
+                
+                SearchBar(search: $filter.text)
             }
         }
     }
@@ -47,6 +60,7 @@ struct DetView: View {
                 LaunchNotSelectedView()
             }
         }
+        .frame(minWidth: 500)
     }
 }
 
