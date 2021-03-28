@@ -1,5 +1,5 @@
 # norminal
 
-![norminal logo](res/logo.png)
+![norminal logo](Resources/logo.png)
 
 An app for everything about SpaceX.

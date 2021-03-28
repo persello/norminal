@@ -22,7 +22,7 @@ struct Card<Background: View, Content: View>: View {
         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
             GeometryReader { geometry in
                 
-                Color(UIColor.systemGray5)
+                Color(.systemGray5)
                 
                 background()
                     .padding(.bottom, 72)

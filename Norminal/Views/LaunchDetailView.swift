@@ -125,7 +125,7 @@ struct LaunchDetailView: View {
                     }
                     
                 }
-                .background(Color(UIColor.systemBackground))
+                .background(Color(.systemBackground))
                 .padding(horizontalSizeClass == .regular ? 24 : 8)
             }
         }

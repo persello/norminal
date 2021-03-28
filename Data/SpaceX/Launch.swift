@@ -9,10 +9,6 @@
 import Foundation
 import Telescope
 
-#if canImport(UIKit)
-import UIKit
-#endif
-
 // MARK: - Launch class
 
 /// Represents a SpaceX launch.

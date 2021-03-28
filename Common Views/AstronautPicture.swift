@@ -33,8 +33,8 @@ struct AstronautPicture: View, Equatable {
                     Circle()
                         .fill(LinearGradient(
                                 gradient: Gradient(colors: [
-                                    Color(UIColor.systemGray3),
-                                    Color(UIColor.systemGray)
+                                    Color(.systemGray3),
+                                    Color(.systemGray)
                                 ]),
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing)

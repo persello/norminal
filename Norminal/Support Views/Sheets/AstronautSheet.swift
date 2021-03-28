@@ -11,7 +11,7 @@ struct AstronautSheet: View {
     @State var astronaut: Astronaut
 
     var body: some View {
-        Color(UIColor.systemGray6)
+        Color(.systemGray6)
             .ignoresSafeArea(edges: .all)
             .overlay(
                 List {
