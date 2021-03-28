@@ -8,7 +8,6 @@
 import SwiftUI
 import Foundation
 import AppKit
-import PoweredTouchBar
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
