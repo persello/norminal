@@ -15,6 +15,10 @@ extension Color {
         return Color(NSColor.tertiaryLabelColor)
     }
     
+    static var ultralightGray: Color {
+        return Color(NSColor.lightGray.withSystemEffect(.disabled))
+    }
+    
     static var lightGray: Color {
         return Color(NSColor.lightGray)
     }
@@ -32,8 +36,12 @@ extension Color {
         return Color(UIColor.tertiaryLabel)
     }
     
+    static var ultralightGray: Color {
+        return Color(UIColor.systemGray6)
+    }
+    
     static var lightGray: Color {
-        return Color(UIColor.lightGray)
+        return Color(UIColor.systemGray4)
     }
     
     static var systemGray: Color {
