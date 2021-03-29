@@ -10,9 +10,7 @@ import OSLog
 import SwiftUI
 
 final class LaunchFilter: ObservableObject {
-    
-    let logger = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: .pointsOfInterest)
-    
+        
     var globalSettings = GlobalSettings.shared {
         willSet {
             self.objectWillChange.send()
@@ -54,11 +52,6 @@ final class LaunchFilter: ObservableObject {
     }
     
     func filterLaunches(_ launches: [Launch]) -> [Launch]? {
-        os_signpost(.begin, log: logger, name: "Launch filter")
-        
-        defer {
-            os_signpost(.end, log: logger, name: "Launch filter")
-        }
         
         // Time filtering
         var filtered: [Launch]?
