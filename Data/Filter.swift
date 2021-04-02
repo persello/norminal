@@ -10,7 +10,7 @@ import OSLog
 import SwiftUI
 
 final class LaunchFilter: ObservableObject {
-        
+    
     var globalSettings = GlobalSettings.shared {
         willSet {
             self.objectWillChange.send()
