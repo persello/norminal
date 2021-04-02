@@ -61,7 +61,7 @@ struct LaunchCountdownView: View {
         }
         .padding([.top, .leading, .trailing], 24)
         .padding(.bottom, 16)
-        .background(Color(UIColor.systemGray5))
+        .background(Color(.systemGray5))
         .clipShape(RoundedRectangle(cornerRadius: 24.0, style: .continuous))
     }
 }

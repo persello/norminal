@@ -7,8 +7,11 @@
 
 import Foundation
 import OSLog
-import UIKit
 import Vision
+
+#if canImport(UIKit)
+import UIKit
+#endif
 
 class FaceCropper {
     
@@ -98,7 +101,11 @@ class FaceCropper {
         }
         
         // Return image to UIImage
+        #if os(macOS)
+        let croppedImage: UIImage = UIImage(cgImage: cutImageRef, size: NSSize(width: cropRect.width, height: cropRect.height))
+        #else
         let croppedImage: UIImage = UIImage(cgImage: cutImageRef)
+        #endif
         return croppedImage
     }
 }

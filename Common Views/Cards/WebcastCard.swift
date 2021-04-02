@@ -36,7 +36,7 @@ struct WebcastCard: View {
                 TImage(RemoteImage(imageURL: thumbnailLink!))
                     .resizable()
                     .placeholder({
-                        Color(UIColor.systemGray5)
+                        Color(.systemGray5)
                             .overlay(
                                 VStack {
                                     Spacer()

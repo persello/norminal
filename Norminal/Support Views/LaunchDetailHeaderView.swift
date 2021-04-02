@@ -116,7 +116,7 @@ struct LaunchDetailHeaderView: View {
                 Rectangle()
                     .fill(
                         LinearGradient(gradient: Gradient(colors: [
-                                                            Color(UIColor.black.withAlphaComponent(0.45)),
+                                                            Color(.black.withAlphaComponent(0.45)),
                                                             .clear]),
                                        startPoint: .top,
                                        endPoint: .bottom))

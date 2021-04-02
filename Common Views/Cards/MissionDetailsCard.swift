@@ -15,7 +15,7 @@ struct MissionDetailsCard: View {
         Card(background: {
             Text(launch.details ?? "")
                 .shadow(color: .black, radius: 3, x: 5, y: 3)
-                .foregroundColor(Color(UIColor.label.withAlphaComponent(0.45)))
+                .foregroundColor(Color(.label.withAlphaComponent(0.45)))
                 .multilineTextAlignment(.center)
                 .font(.system(size: 32, weight: .semibold, design: .serif))
                 .drawingGroup()

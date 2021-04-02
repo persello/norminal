@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Telescope
-import VisualEffects
 
 struct MissionRecapView: View {
     @EnvironmentObject var launch: Launch
@@ -22,7 +21,7 @@ struct MissionRecapView: View {
                         .foregroundColor(.gray)
                         .font(.system(size: 40, weight: .thin))
                         .frame(width: 70, height: 70)
-                        .background(Circle().foregroundColor(Color(UIColor.systemGray6)))
+                        .background(Circle().foregroundColor(.ultralightGray))
                 }
                 .frame(width: 70, height: 70)
                 .padding(4)

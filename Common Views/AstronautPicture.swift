@@ -33,8 +33,8 @@ struct AstronautPicture: View, Equatable {
                     Circle()
                         .fill(LinearGradient(
                                 gradient: Gradient(colors: [
-                                    Color(UIColor.systemGray3),
-                                    Color(UIColor.systemGray)
+                                    .lightGray,
+                                    .gray
                                 ]),
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing)
@@ -71,6 +71,5 @@ struct AstronautPicture_Previews: PreviewProvider {
     static var previews: some View {
         AstronautPicture(astronaut: FakeData.shared.robertBehnken!)
             .previewLayout(.fixed(width: 200, height: 200))
-            .colorfulShadow(radius: 12)
     }
 }

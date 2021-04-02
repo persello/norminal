@@ -267,7 +267,7 @@ struct NorminalWidgetSmallWidget: View {
                 .font(.callout)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color(UIColor.systemGray6))
+                .background(Color(.systemGray6))
         }
     }
 }
@@ -322,7 +322,7 @@ struct SmallAfterLaunchContent: View {
                 } else {
                     // Without background
                     
-                    Color(UIColor.systemGray6)
+                    Color(.systemGray6)
                     
                     VStack(alignment: .leading) {
                         HStack {
@@ -380,7 +380,7 @@ struct SmallBeforeDuringLaunchContent: View {
             ClockCountdownView(launch: launch)
         }
         .padding(.all, 12)
-        .background(Color(UIColor.systemGray6))
+        .background(Color(.systemGray6))
     }
 }
 
