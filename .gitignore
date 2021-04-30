@@ -4,3 +4,4 @@
 /fastlane/FastlaneRunner
 GoogleService-Info.plist
 Secrets.plist
+.DS_Store
