@@ -5,41 +5,43 @@
 //  Created by Riccardo Persello o 09/10/2020.
 //
 
-import SwiftUI
 import NavigationSearchBar
 import OSLog
+import SwiftUI
 
 struct LaunchListView: View {
     var selectedLaunch: Binding<Launch?>?
     @StateObject private var filter = LaunchFilter()
     @EnvironmentObject private var globalData: SpaceXData
-        
+    @ObservedObject private var globalSettings = GlobalSettings.shared
+    @State private var popoverPresented: Bool = false
+
     var launches: [Launch] {
         return filter.filterLaunches(globalData.launches) ?? []
     }
-    
+
     var pastLaunches: [Launch] {
-        return launches.filter({!$0.upcoming})
+        return launches.filter({ !$0.upcoming })
     }
-    
+
     var upcomingLaunches: [Launch] {
-        return launches.filter({$0.upcoming})
+        return launches.filter({ $0.upcoming })
     }
-    
+
     var body: some View {
         if globalData.launches.count > 0 {
             // We have data in the globalData
-            
+
             /*
              If I use a ZStack instead of a Group, the keyboard
-             does not hide when launches.count becomes < 0 due to a search.
+             does not hide when launches.count becomes = 0 due to a search.
              */
             ZStack {
                 if launches.count > 0 {
                     // The current filter is valid
                     List {
                         // Show first big tile?
-                        if let nl = globalData.getNextLaunch(), searcher.text.count == 0, searcher.scopeSelection == 0 {
+                        if let nl = globalData.getNextLaunch(), filter.text.count == 0, globalSettings.launchFilterSelection == .all {
                             Section(header: Text("Next launch")) {
                                 ZStack {
                                     LaunchListTile(launch: nl, showDetails: true)
@@ -51,10 +53,10 @@ struct LaunchListView: View {
                                 }
                             }
                         }
-                        
+
                         // Show results
-                        if upcomingLaunches.count > 0 {
-                            Section(header: Text("\(searcher.scopes[1]) launches")) {
+                        if upcomingLaunches.count > 0 && globalSettings.launchOrderSelection != .oldest {
+                            Section(header: Text("\(GlobalSettings.Filters.upcoming.rawValue) launches")) {
                                 ForEach(upcomingLaunches) { launch in
                                     NavigationLink(destination: LaunchDetailView(launch: launch)) {
                                         LaunchListTile(launch: launch)
@@ -62,10 +64,21 @@ struct LaunchListView: View {
                                 }
                             }
                         }
-                        
+
                         if pastLaunches.count > 0 {
-                            Section(header: Text("\(searcher.scopes[2]) launches")) {
+                            Section(header: Text("\(GlobalSettings.Filters.past.rawValue) launches")) {
                                 ForEach(pastLaunches) { launch in
+                                    NavigationLink(destination: LaunchDetailView(launch: launch)) {
+                                        LaunchListTile(launch: launch)
+                                    }
+                                }
+                            }
+                        }
+                        
+                        // Repeat for reordering
+                        if upcomingLaunches.count > 0 && globalSettings.launchOrderSelection == .oldest {
+                            Section(header: Text("\(GlobalSettings.Filters.upcoming.rawValue) launches")) {
+                                ForEach(upcomingLaunches) { launch in
                                     NavigationLink(destination: LaunchDetailView(launch: launch)) {
                                         LaunchListTile(launch: launch)
                                     }
@@ -78,7 +91,7 @@ struct LaunchListView: View {
                     VStack {
                         Text("No results")
                             .font(.title)
-                        Text("No launches were found for \"\(searcher.text)\".")
+                        Text("No launches were found for \"\(filter.text)\".")
                             .foregroundColor(.secondary)
                             .font(.subheadline)
                             .multilineTextAlignment(.center)
@@ -87,14 +100,17 @@ struct LaunchListView: View {
                 }
             }
             .listStyle(GroupedListStyle())
-            .navigationTitle("Launches")
-            .navigationSearchBar(
-                text: $searcher.text,
-                scopeSelection: $searcher.scopeSelection,
-                options: [
-                    .scopeButtonTitles: searcher.scopes
-                ]
+            .navigationTitle(Text("Launches"))
+            .navigationBarItems(trailing:
+                Button(action: { popoverPresented.toggle() },
+                       label: { Image(systemName: "line.horizontal.3.decrease.circle") })
+                    .popover(isPresented: $popoverPresented,
+                             content: {
+                                 LaunchFilterSheet(modalShown: $popoverPresented, style: DefaultPickerStyle())
+                                     .frame(minWidth: 300, minHeight: 250, alignment: .center)
+                             })
             )
+            .navigationSearchBar(text: $filter.text)
         } else {
             // We don't have data in the globalData
             if globalData.loadingError {

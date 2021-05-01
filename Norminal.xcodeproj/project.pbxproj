@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		8B07905225F2FC41006CD9BE /* PayloadCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B07905125F2FC41006CD9BE /* PayloadCard.swift */; };
 		8B0B4DC325EE511500F1C068 /* LaunchCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */; };
-		8B0C25732593C38B00C169E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */; };
-		8B0C25742593C38B00C169E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */; };
 		8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0D1D6E253351EA0056FACA /* VisualEffects */; };
 		8B0D1D76253363BF0056FACA /* MissionRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D1D75253363BF0056FACA /* MissionRecapView.swift */; };
 		8B0D1D79253365660056FACA /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D1D78253365660056FACA /* Card.swift */; };
@@ -114,6 +112,8 @@
 		8BA4D704260E507F0096CE96 /* Starlink.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D702260E507F0096CE96 /* Starlink.todo.swift */; };
 		8BA4D706260E50890096CE96 /* History.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D705260E50890096CE96 /* History.todo.swift */; };
 		8BA4D707260E50890096CE96 /* History.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D705260E50890096CE96 /* History.todo.swift */; };
+		8BA63E88263CC2D600E019BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BA63E87263CC2D600E019BC /* GoogleService-Info.plist */; };
+		8BA63E8A263D91BB00E019BC /* LaunchFilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA63E89263D91BB00E019BC /* LaunchFilterSheet.swift */; };
 		8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA90E12257D9AA200168722 /* GalleryCard.swift */; };
 		8BB5231825478833006A9511 /* CrewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231725478833006A9511 /* CrewCard.swift */; };
 		8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5232A254A009B006A9511 /* CardOverlay.swift */; };
@@ -179,7 +179,6 @@
 /* Begin PBXFileReference section */
 		8B07905125F2FC41006CD9BE /* PayloadCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadCard.swift; sourceTree = "<group>"; };
 		8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCountdownView.swift; sourceTree = "<group>"; };
-		8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B0D1D75253363BF0056FACA /* MissionRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapView.swift; sourceTree = "<group>"; };
 		8B0D1D78253365660056FACA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		8B17527525EDA8A300A760C5 /* Norminal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Norminal.entitlements; sourceTree = "<group>"; };
@@ -242,6 +241,8 @@
 		8BA4D6FF260E50740096CE96 /* Ship.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.todo.swift; sourceTree = "<group>"; };
 		8BA4D702260E507F0096CE96 /* Starlink.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starlink.todo.swift; sourceTree = "<group>"; };
 		8BA4D705260E50890096CE96 /* History.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.todo.swift; sourceTree = "<group>"; };
+		8BA63E87263CC2D600E019BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8BA63E89263D91BB00E019BC /* LaunchFilterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchFilterSheet.swift; sourceTree = "<group>"; };
 		8BA90E12257D9AA200168722 /* GalleryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCard.swift; sourceTree = "<group>"; };
 		8BB5231725478833006A9511 /* CrewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewCard.swift; sourceTree = "<group>"; };
 		8BB5232025489817006A9511 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -351,7 +352,7 @@
 				8B208B86258EBC6A009107EC /* Frameworks */,
 				8B46A5842530CE760084E52D /* Assets.xcassets */,
 				8BB5232025489817006A9511 /* README.md */,
-				8B0C25722593C38B00C169E2 /* GoogleService-Info.plist */,
+				8BA63E87263CC2D600E019BC /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -520,6 +521,7 @@
 				8BEB85FC25631B56006144ED /* AstronautSheet.swift */,
 				8BEB85F82562FE07006144ED /* CrewSheet.swift */,
 				8B511097257ED4950097BC0D /* GallerySheet.swift */,
+				8BA63E89263D91BB00E019BC /* LaunchFilterSheet.swift */,
 				8BBEEBCD257FFDEF00EA168A /* PhotoSheet.swift */,
 				8BC7E6CC25672966005E4304 /* WebcastSheet.swift */,
 			);
@@ -699,7 +701,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BF143E625F10C370045B95D /* Secrets.plist in Resources */,
-				8B0C25742593C38B00C169E2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,7 +710,7 @@
 			files = (
 				8BF143E525F10C370045B95D /* Secrets.plist in Resources */,
 				8B46A5852530CE760084E52D /* Assets.xcassets in Resources */,
-				8B0C25732593C38B00C169E2 /* GoogleService-Info.plist in Resources */,
+				8BA63E88263CC2D600E019BC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +793,7 @@
 				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
 				8BA4D6F4260E503C0096CE96 /* Dragon.todo.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
+				8BA63E8A263D91BB00E019BC /* LaunchFilterSheet.swift in Sources */,
 				8BBEEBE3258009EC00EA168A /* PinchToZoom.swift in Sources */,
 				8BA4D700260E50740096CE96 /* Ship.todo.swift in Sources */,
 				8BBEEBCE257FFDEF00EA168A /* PhotoSheet.swift in Sources */,
