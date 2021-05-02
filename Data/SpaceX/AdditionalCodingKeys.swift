@@ -22,6 +22,11 @@ enum ForceStructCodingKeys: String, CodingKey {
     case lbf = "lbf"
 }
 
+enum VolumeStructCodingKeys: String, CodingKey {
+    case cubicMeters = "cubic_meters"
+    case cubicFeed = "cubic_feet"
+}
+
 enum ISPStructCodingKeys: String, CodingKey {
     case seaLevel = "sea_level"
     case vacuum

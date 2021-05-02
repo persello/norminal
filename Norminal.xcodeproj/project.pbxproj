@@ -33,9 +33,9 @@
 		8B29D09E2610B80C00FBA0C5 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */; };
 		8B29D09F2610B80C00FBA0C5 /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143E225F10C370045B95D /* Astronaut.swift */; };
 		8B29D0A02610B80C00FBA0C5 /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
-		8B29D0A12610B80C00FBA0C5 /* Core.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.todo.swift */; };
+		8B29D0A12610B80C00FBA0C5 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.swift */; };
 		8B29D0A22610B80C00FBA0C5 /* Ship.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.todo.swift */; };
-		8B29D0A32610B80C00FBA0C5 /* Dragon.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */; };
+		8B29D0A32610B80C00FBA0C5 /* Dragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.swift */; };
 		8B29D0A42610B80C00FBA0C5 /* Fairing.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F9260E505B0096CE96 /* Fairing.todo.swift */; };
 		8B29D0A52610B80C00FBA0C5 /* Roadster.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.todo.swift */; };
 		8B29D0A62610B80C00FBA0C5 /* Starlink.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D702260E507F0096CE96 /* Starlink.todo.swift */; };
@@ -96,10 +96,10 @@
 		8BA4D6EC260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
 		8BA4D6EE260E50240096CE96 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */; };
 		8BA4D6EF260E50240096CE96 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */; };
-		8BA4D6F1260E502F0096CE96 /* Core.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.todo.swift */; };
-		8BA4D6F2260E502F0096CE96 /* Core.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.todo.swift */; };
-		8BA4D6F4260E503C0096CE96 /* Dragon.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */; };
-		8BA4D6F5260E503C0096CE96 /* Dragon.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */; };
+		8BA4D6F1260E502F0096CE96 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.swift */; };
+		8BA4D6F2260E502F0096CE96 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.swift */; };
+		8BA4D6F4260E503C0096CE96 /* Dragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.swift */; };
+		8BA4D6F5260E503C0096CE96 /* Dragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.swift */; };
 		8BA4D6F7260E50500096CE96 /* Payload.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F6260E50500096CE96 /* Payload.todo.swift */; };
 		8BA4D6F8260E50500096CE96 /* Payload.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F6260E50500096CE96 /* Payload.todo.swift */; };
 		8BA4D6FA260E505B0096CE96 /* Fairing.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F9260E505B0096CE96 /* Fairing.todo.swift */; };
@@ -233,8 +233,8 @@
 		8B9255B725F2DB4E0059CB2E /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
 		8BA4D6EA260E50150096CE96 /* Capsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capsule.swift; sourceTree = "<group>"; };
 		8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfo.swift; sourceTree = "<group>"; };
-		8BA4D6F0260E502F0096CE96 /* Core.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.todo.swift; sourceTree = "<group>"; };
-		8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dragon.todo.swift; sourceTree = "<group>"; };
+		8BA4D6F0260E502F0096CE96 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		8BA4D6F3260E503C0096CE96 /* Dragon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dragon.swift; sourceTree = "<group>"; };
 		8BA4D6F6260E50500096CE96 /* Payload.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payload.todo.swift; sourceTree = "<group>"; };
 		8BA4D6F9260E505B0096CE96 /* Fairing.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fairing.todo.swift; sourceTree = "<group>"; };
 		8BA4D6FC260E50690096CE96 /* Roadster.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roadster.todo.swift; sourceTree = "<group>"; };
@@ -557,8 +557,8 @@
 				8BF143E225F10C370045B95D /* Astronaut.swift */,
 				8BA4D6EA260E50150096CE96 /* Capsule.swift */,
 				8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */,
-				8BA4D6F0260E502F0096CE96 /* Core.todo.swift */,
-				8BA4D6F3260E503C0096CE96 /* Dragon.todo.swift */,
+				8BA4D6F0260E502F0096CE96 /* Core.swift */,
+				8BA4D6F3260E503C0096CE96 /* Dragon.swift */,
 				8B7F8D3B2607A756008A226B /* FaceCropper.swift */,
 				8BA4D6F9260E505B0096CE96 /* Fairing.todo.swift */,
 				8B46A59F253118160084E52D /* FakeData.swift */,
@@ -765,11 +765,11 @@
 				8B208B9A258ECBDB009107EC /* FakeData.swift in Sources */,
 				8BA4D707260E50890096CE96 /* History.todo.swift in Sources */,
 				8BA4D6F8260E50500096CE96 /* Payload.todo.swift in Sources */,
-				8BA4D6F5260E503C0096CE96 /* Dragon.todo.swift in Sources */,
+				8BA4D6F5260E503C0096CE96 /* Dragon.swift in Sources */,
 				8BB72032260E30CA00B8433C /* UnitForce.swift in Sources */,
 				8BB72030260E30BF00B8433C /* AdditionalCodingKeys.swift in Sources */,
 				8BA4D6FE260E50690096CE96 /* Roadster.todo.swift in Sources */,
-				8BA4D6F2260E502F0096CE96 /* Core.todo.swift in Sources */,
+				8BA4D6F2260E502F0096CE96 /* Core.swift in Sources */,
 				8BA4D701260E50740096CE96 /* Ship.todo.swift in Sources */,
 				8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */,
 				8BA4D704260E507F0096CE96 /* Starlink.todo.swift in Sources */,
@@ -791,7 +791,7 @@
 				8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */,
 				8BB7202F260E260F00B8433C /* AdditionalCodingKeys.swift in Sources */,
 				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
-				8BA4D6F4260E503C0096CE96 /* Dragon.todo.swift in Sources */,
+				8BA4D6F4260E503C0096CE96 /* Dragon.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
 				8BA63E8A263D91BB00E019BC /* LaunchFilterSheet.swift in Sources */,
 				8BBEEBE3258009EC00EA168A /* PinchToZoom.swift in Sources */,
@@ -800,7 +800,7 @@
 				8B46A5922530CF4D0084E52D /* LaunchListView.swift in Sources */,
 				8B29D0B12610B8B900FBA0C5 /* CrossPlatformImage.swift in Sources */,
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
-				8BA4D6F1260E502F0096CE96 /* Core.todo.swift in Sources */,
+				8BA4D6F1260E502F0096CE96 /* Core.swift in Sources */,
 				8B07905225F2FC41006CD9BE /* PayloadCard.swift in Sources */,
 				8B9255B225F2DA810059CB2E /* RocketCard.swift in Sources */,
 				8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */,
@@ -846,7 +846,7 @@
 				8B29D0932610B80C00FBA0C5 /* Capsule.swift in Sources */,
 				8B29D0BF2610BBA800FBA0C5 /* Color.swift in Sources */,
 				8B29D0A62610B80C00FBA0C5 /* Starlink.todo.swift in Sources */,
-				8B29D0A32610B80C00FBA0C5 /* Dragon.todo.swift in Sources */,
+				8B29D0A32610B80C00FBA0C5 /* Dragon.swift in Sources */,
 				8B29D0A42610B80C00FBA0C5 /* Fairing.todo.swift in Sources */,
 				8B29D0B72610BAF200FBA0C5 /* LaunchListTile.swift in Sources */,
 				8B29D0A82610B80C00FBA0C5 /* Payload.todo.swift in Sources */,
@@ -875,7 +875,7 @@
 				8B29D0B02610B88A00FBA0C5 /* CrossPlatformImage.swift in Sources */,
 				8B29D09D2610B80C00FBA0C5 /* WeatherAPI.swift in Sources */,
 				8B29D0952610B80C00FBA0C5 /* SpaceXData.swift in Sources */,
-				8B29D0A12610B80C00FBA0C5 /* Core.todo.swift in Sources */,
+				8B29D0A12610B80C00FBA0C5 /* Core.swift in Sources */,
 				8B29D0CE26111D3D00FBA0C5 /* Filter.swift in Sources */,
 				8B29D0992610B80C00FBA0C5 /* Landpad.swift in Sources */,
 				8B29D0B92610BAF200FBA0C5 /* AstronautPicture.swift in Sources */,

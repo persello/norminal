@@ -65,6 +65,8 @@ final class SpaceXData: ObservableObject {
     @Published public var rockets = [Rocket]()
     @Published public var capsules = [Capsule]()
     @Published public var companyInfo = CompanyInfo()
+    @Published public var cores = [Core]()
+    @Published public var dragons = [Dragon]()
     @Published var loadingError: Bool = false
     
     // Shared instance
@@ -127,6 +129,7 @@ final class SpaceXData: ObservableObject {
             queue.qualityOfService = .background
             queue.maxConcurrentOperationCount = 8
             
+            // MARK: Launches
             var _launches: [Launch]?
             queue.addOperation { [self] in
                 _launches = loadData(url: URL(string: "https://api.spacexdata.com/v4/launches")!)
@@ -148,34 +151,52 @@ final class SpaceXData: ObservableObject {
                 })
             }
             
+            // MARK: Crew
             var _crew: [Astronaut]?
             queue.addOperation { [self] in
                 _crew = loadData(url: URL(string: "https://api.spacexdata.com/v4/crew")!)
             }
             
+            // MARK: Launchpads
             var _launchpads: [Launchpad]?
             queue.addOperation { [self] in
                 _launchpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/launchpads")!)
             }
             
+            // MARK: Landpads
             var _landpads: [Landpad]?
             queue.addOperation { [self] in
                 _landpads = loadData(url: URL(string: "https://api.spacexdata.com/v4/landpads")!)
             }
             
+            // MARK: Rockets
             var _rockets: [Rocket]?
             queue.addOperation { [self] in
                 _rockets = loadData(url: URL(string: "https://api.spacexdata.com/v4/rockets")!)
             }
             
+            // MARK: Capsules
             var _capsules: [Capsule]?
             queue.addOperation { [self] in
                 _capsules = loadData(url: URL(string: "https://api.spacexdata.com/v4/capsules")!)
             }
             
+            // MARK: Company info
             var _companyInfo: CompanyInfo?
             queue.addOperation { [self] in
                 _companyInfo = loadData(url: URL(string: "https://api.spacexdata.com/v4/company")!)
+            }
+            
+            // MARK: Cores
+            var _cores: [Core]?
+            queue.addOperation { [self] in
+                _cores = loadData(url: URL(string: "https://api.spacexdata.com/v4/cores")!)
+            }
+            
+            // MARK: Dragons
+            var _dragons: [Dragon]?
+            queue.addOperation { [self] in
+                _dragons = loadData(url: URL(string: "https://api.spacexdata.com/v4/dragons")!)
             }
             
             queue.waitUntilAllOperationsAreFinished()
@@ -208,6 +229,14 @@ final class SpaceXData: ObservableObject {
                 
                 if let _companyInfo = _companyInfo {
                     self.companyInfo = _companyInfo
+                }
+                
+                if let _cores = _cores {
+                    self.cores = _cores
+                }
+                
+                if let _dragons = _dragons {
+                    self.dragons = _dragons
                 }
             }
         }
