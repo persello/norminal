@@ -82,6 +82,7 @@ final class SpaceXData: ObservableObject {
     @Published public var fairings = [Fairing]()
     @Published public var history = [HistoryEntry]()
     @Published public var payloads = [Payload]()
+    @Published public var roadster: Roadster?
     @Published var loadingError: Bool = false
 
     // Shared instance
@@ -244,6 +245,13 @@ final class SpaceXData: ObservableObject {
             queue.addOperation { [self] in
                 _payloads = loadData(url: URL(string: "https://api.spacexdata.com/v4/payloads")!)
             }
+            
+            // MARK: Roadster
+            
+            var _roadster: Roadster?
+            queue.addOperation { [self] in
+                _roadster = loadData(url: URL(string: "https://api.spacexdata.com/v4/roadster")!)
+            }
 
             queue.waitUntilAllOperationsAreFinished()
 
@@ -295,6 +303,10 @@ final class SpaceXData: ObservableObject {
 
                 if let _payloads = _payloads {
                     self.payloads = _payloads
+                }
+                
+                if let _roadster = _roadster {
+                    self.roadster = _roadster
                 }
             }
         }

@@ -37,7 +37,7 @@
 		8B29D0A22610B80C00FBA0C5 /* Ship.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.todo.swift */; };
 		8B29D0A32610B80C00FBA0C5 /* Dragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.swift */; };
 		8B29D0A42610B80C00FBA0C5 /* Fairing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F9260E505B0096CE96 /* Fairing.swift */; };
-		8B29D0A52610B80C00FBA0C5 /* Roadster.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.todo.swift */; };
+		8B29D0A52610B80C00FBA0C5 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.swift */; };
 		8B29D0A62610B80C00FBA0C5 /* Starlink.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D702260E507F0096CE96 /* Starlink.todo.swift */; };
 		8B29D0A72610B80C00FBA0C5 /* FaceCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F8D3B2607A756008A226B /* FaceCropper.swift */; };
 		8B29D0A82610B80C00FBA0C5 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F6260E50500096CE96 /* Payload.swift */; };
@@ -104,8 +104,8 @@
 		8BA4D6F8260E50500096CE96 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F6260E50500096CE96 /* Payload.swift */; };
 		8BA4D6FA260E505B0096CE96 /* Fairing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F9260E505B0096CE96 /* Fairing.swift */; };
 		8BA4D6FB260E505B0096CE96 /* Fairing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F9260E505B0096CE96 /* Fairing.swift */; };
-		8BA4D6FD260E50690096CE96 /* Roadster.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.todo.swift */; };
-		8BA4D6FE260E50690096CE96 /* Roadster.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.todo.swift */; };
+		8BA4D6FD260E50690096CE96 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.swift */; };
+		8BA4D6FE260E50690096CE96 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.swift */; };
 		8BA4D700260E50740096CE96 /* Ship.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.todo.swift */; };
 		8BA4D701260E50740096CE96 /* Ship.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.todo.swift */; };
 		8BA4D703260E507F0096CE96 /* Starlink.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D702260E507F0096CE96 /* Starlink.todo.swift */; };
@@ -237,7 +237,7 @@
 		8BA4D6F3260E503C0096CE96 /* Dragon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dragon.swift; sourceTree = "<group>"; };
 		8BA4D6F6260E50500096CE96 /* Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payload.swift; sourceTree = "<group>"; };
 		8BA4D6F9260E505B0096CE96 /* Fairing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fairing.swift; sourceTree = "<group>"; };
-		8BA4D6FC260E50690096CE96 /* Roadster.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roadster.todo.swift; sourceTree = "<group>"; };
+		8BA4D6FC260E50690096CE96 /* Roadster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roadster.swift; sourceTree = "<group>"; };
 		8BA4D6FF260E50740096CE96 /* Ship.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.todo.swift; sourceTree = "<group>"; };
 		8BA4D702260E507F0096CE96 /* Starlink.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starlink.todo.swift; sourceTree = "<group>"; };
 		8BA4D705260E50890096CE96 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -567,7 +567,7 @@
 				8BF143DF25F10C370045B95D /* Launch.swift */,
 				8BF143DE25F10C370045B95D /* Launchpad.swift */,
 				8BA4D6F6260E50500096CE96 /* Payload.swift */,
-				8BA4D6FC260E50690096CE96 /* Roadster.todo.swift */,
+				8BA4D6FC260E50690096CE96 /* Roadster.swift */,
 				8B9255B725F2DB4E0059CB2E /* Rocket.swift */,
 				8BA4D6FF260E50740096CE96 /* Ship.todo.swift */,
 				8BF143E125F10C370045B95D /* SpaceXData.swift */,
@@ -768,7 +768,7 @@
 				8BA4D6F5260E503C0096CE96 /* Dragon.swift in Sources */,
 				8BB72032260E30CA00B8433C /* UnitForce.swift in Sources */,
 				8BB72030260E30BF00B8433C /* AdditionalCodingKeys.swift in Sources */,
-				8BA4D6FE260E50690096CE96 /* Roadster.todo.swift in Sources */,
+				8BA4D6FE260E50690096CE96 /* Roadster.swift in Sources */,
 				8BA4D6F2260E502F0096CE96 /* Core.swift in Sources */,
 				8BA4D701260E50740096CE96 /* Ship.todo.swift in Sources */,
 				8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */,
@@ -782,7 +782,7 @@
 			files = (
 				8BF143F325F10C370045B95D /* Astronaut.swift in Sources */,
 				8B87DFBE2606659F009C13D0 /* LaunchDetailHeaderView.swift in Sources */,
-				8BA4D6FD260E50690096CE96 /* Roadster.todo.swift in Sources */,
+				8BA4D6FD260E50690096CE96 /* Roadster.swift in Sources */,
 				8BA4D703260E507F0096CE96 /* Starlink.todo.swift in Sources */,
 				8BA4D6F7260E50500096CE96 /* Payload.swift in Sources */,
 				8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */,
@@ -860,7 +860,7 @@
 				8B29D0A22610B80C00FBA0C5 /* Ship.todo.swift in Sources */,
 				8B29D09F2610B80C00FBA0C5 /* Astronaut.swift in Sources */,
 				8B29D0922610B78500FBA0C5 /* LaunchListView.swift in Sources */,
-				8B29D0A52610B80C00FBA0C5 /* Roadster.todo.swift in Sources */,
+				8B29D0A52610B80C00FBA0C5 /* Roadster.swift in Sources */,
 				8B29D0B82610BAF200FBA0C5 /* LaunchNotSelectedView.swift in Sources */,
 				8B29D0C22610BE8600FBA0C5 /* ColorfulShadow.swift in Sources */,
 				8BE2683526109FB7003B0C62 /* NorminalMacApp.swift in Sources */,
