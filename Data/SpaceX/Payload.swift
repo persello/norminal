@@ -64,6 +64,7 @@ class Payload: ObservableObject, Decodable {
     public var argumentOfPericenter: Measurement<UnitAngle>?
     public var meanAnomaly: Measurement<UnitAngle>?
     public var dragon: Payload.Dragon?
+    public var idstring: String
 
     enum CodingKeys: String, CodingKey {
         case name, type, reused
@@ -89,6 +90,7 @@ class Payload: ObservableObject, Decodable {
         case argumentOfPericenterDegrees = "arg_of_pericenter"
         case meanAnomalyDegrees = "mean_anomaly"
         case dragon
+        case idstring = "id"
     }
 
     required init(from decoder: Decoder) throws {
@@ -154,6 +156,7 @@ class Payload: ObservableObject, Decodable {
         }
         
         dragon = try? values.decodeIfPresent(Dragon.self, forKey: .dragon)
+        idstring = try values.decode(String.self, forKey: .idstring)
     }
 }
 

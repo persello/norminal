@@ -390,6 +390,13 @@ extension Launch {
         return nil
     }
     
+    var payloads: [Payload]? {
+        payloadIDs?.compactMap({ id in
+            SpaceXData.shared.payloads.first(where: {payload in
+                payload.idstring == id
+            })
+        })
+    }
 }
 
 // MARK: - Utility methods
