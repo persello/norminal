@@ -76,7 +76,7 @@ final class SpaceXData: ObservableObject {
     @Published public var landpads = [Landpad]()
     @Published public var rockets = [Rocket]()
     @Published public var capsules = [Capsule]()
-    @Published public var companyInfo = CompanyInfo()
+    @Published public var companyInfo: CompanyInfo?
     @Published public var cores = [Core]()
     @Published public var dragons = [Dragon]()
     @Published public var fairings = [Fairing]()
@@ -84,6 +84,7 @@ final class SpaceXData: ObservableObject {
     @Published public var payloads = [Payload]()
     @Published public var roadster: Roadster?
     @Published public var ships = [Ship]()
+    @Published public var starlinks = [Starlink]()
     @Published var loadingError: Bool = false
 
     // Shared instance
@@ -260,6 +261,13 @@ final class SpaceXData: ObservableObject {
             queue.addOperation { [self] in
                 _ships = loadData(url: URL(string: "https://api.spacexdata.com/v4/ships")!)
             }
+            
+            // MARK: Starlink
+            
+            var _starlinks: [Starlink]?
+            queue.addOperation { [self] in
+                _starlinks = loadData(url: URL(string: "https://api.spacexdata.com/v4/starlink")!)
+            }
 
             queue.waitUntilAllOperationsAreFinished()
 
@@ -319,6 +327,10 @@ final class SpaceXData: ObservableObject {
                 
                 if let _ships = _ships {
                     self.ships = _ships
+                }
+                
+                if let _starlinks = _starlinks {
+                    self.starlinks = _starlinks
                 }
             }
         }
