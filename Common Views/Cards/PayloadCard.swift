@@ -39,7 +39,7 @@ struct PayloadCard: View {
             return ""
         }
     }
-    
+
     var imageName: String {
         if (launch.payloads?.first?.type?.lowercased() ?? "").contains("dragon") {
             return "dragon.space"
@@ -48,11 +48,26 @@ struct PayloadCard: View {
         }
     }
 
+    var isRoadster: Bool {
+        if let name = launch.payloads?.first?.name {
+            if name.lowercased().contains("tesla roadster") {
+                return true
+            }
+        }
+
+        return false
+    }
+
     var body: some View {
         Card(background: {
-            Image(imageName)
-                .resizable()
-                .scaledToFill()
+            if isRoadster,
+               let url = SpaceXData.shared.roadster?.flickrImages?.first {
+                TImage(RemoteImage(imageURL: url))
+            } else {
+                Image(imageName)
+                    .resizable()
+                    .scaledToFill()
+            }
 
         }, content: {
             CardOverlay(preamble: "Payload\(payloadTypeString)",
