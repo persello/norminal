@@ -50,7 +50,7 @@ class CustomDecoder: JSONDecoder {
         dateDecodingStrategy = .custom({ (decoder) -> Date in
             let container = try decoder.singleValueContainer()
             let dateStr = try container.decode(String.self)
-            
+
             if let date = DateFormatter.iso8601Full.date(from: dateStr) {
                 return date
             } else if let date = ISO8601DateFormatter().date(from: dateStr) {
@@ -81,6 +81,7 @@ final class SpaceXData: ObservableObject {
     @Published public var dragons = [Dragon]()
     @Published public var fairings = [Fairing]()
     @Published public var history = [HistoryEntry]()
+    @Published public var payloads = [Payload]()
     @Published var loadingError: Bool = false
 
     // Shared instance
@@ -237,6 +238,13 @@ final class SpaceXData: ObservableObject {
                 _history = loadData(url: URL(string: "https://api.spacexdata.com/v4/history")!)
             }
 
+            // MARK: Payloads
+
+            var _payloads: [Payload]?
+            queue.addOperation { [self] in
+                _payloads = loadData(url: URL(string: "https://api.spacexdata.com/v4/payloads")!)
+            }
+
             queue.waitUntilAllOperationsAreFinished()
 
             // Sync
@@ -283,6 +291,10 @@ final class SpaceXData: ObservableObject {
 
                 if let _history = _history {
                     self.history = _history
+                }
+
+                if let _payloads = _payloads {
+                    self.payloads = _payloads
                 }
             }
         }
