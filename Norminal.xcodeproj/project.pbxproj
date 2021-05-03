@@ -34,7 +34,7 @@
 		8B29D09F2610B80C00FBA0C5 /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143E225F10C370045B95D /* Astronaut.swift */; };
 		8B29D0A02610B80C00FBA0C5 /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
 		8B29D0A12610B80C00FBA0C5 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.swift */; };
-		8B29D0A22610B80C00FBA0C5 /* Ship.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.todo.swift */; };
+		8B29D0A22610B80C00FBA0C5 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.swift */; };
 		8B29D0A32610B80C00FBA0C5 /* Dragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.swift */; };
 		8B29D0A42610B80C00FBA0C5 /* Fairing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F9260E505B0096CE96 /* Fairing.swift */; };
 		8B29D0A52610B80C00FBA0C5 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.swift */; };
@@ -106,8 +106,8 @@
 		8BA4D6FB260E505B0096CE96 /* Fairing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F9260E505B0096CE96 /* Fairing.swift */; };
 		8BA4D6FD260E50690096CE96 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.swift */; };
 		8BA4D6FE260E50690096CE96 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.swift */; };
-		8BA4D700260E50740096CE96 /* Ship.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.todo.swift */; };
-		8BA4D701260E50740096CE96 /* Ship.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.todo.swift */; };
+		8BA4D700260E50740096CE96 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.swift */; };
+		8BA4D701260E50740096CE96 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.swift */; };
 		8BA4D703260E507F0096CE96 /* Starlink.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D702260E507F0096CE96 /* Starlink.todo.swift */; };
 		8BA4D704260E507F0096CE96 /* Starlink.todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D702260E507F0096CE96 /* Starlink.todo.swift */; };
 		8BA4D706260E50890096CE96 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D705260E50890096CE96 /* History.swift */; };
@@ -238,7 +238,7 @@
 		8BA4D6F6260E50500096CE96 /* Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payload.swift; sourceTree = "<group>"; };
 		8BA4D6F9260E505B0096CE96 /* Fairing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fairing.swift; sourceTree = "<group>"; };
 		8BA4D6FC260E50690096CE96 /* Roadster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roadster.swift; sourceTree = "<group>"; };
-		8BA4D6FF260E50740096CE96 /* Ship.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.todo.swift; sourceTree = "<group>"; };
+		8BA4D6FF260E50740096CE96 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
 		8BA4D702260E507F0096CE96 /* Starlink.todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starlink.todo.swift; sourceTree = "<group>"; };
 		8BA4D705260E50890096CE96 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		8BA63E87263CC2D600E019BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -569,7 +569,7 @@
 				8BA4D6F6260E50500096CE96 /* Payload.swift */,
 				8BA4D6FC260E50690096CE96 /* Roadster.swift */,
 				8B9255B725F2DB4E0059CB2E /* Rocket.swift */,
-				8BA4D6FF260E50740096CE96 /* Ship.todo.swift */,
+				8BA4D6FF260E50740096CE96 /* Ship.swift */,
 				8BF143E125F10C370045B95D /* SpaceXData.swift */,
 				8BA4D702260E507F0096CE96 /* Starlink.todo.swift */,
 			);
@@ -770,7 +770,7 @@
 				8BB72030260E30BF00B8433C /* AdditionalCodingKeys.swift in Sources */,
 				8BA4D6FE260E50690096CE96 /* Roadster.swift in Sources */,
 				8BA4D6F2260E502F0096CE96 /* Core.swift in Sources */,
-				8BA4D701260E50740096CE96 /* Ship.todo.swift in Sources */,
+				8BA4D701260E50740096CE96 /* Ship.swift in Sources */,
 				8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */,
 				8BA4D704260E507F0096CE96 /* Starlink.todo.swift in Sources */,
 			);
@@ -795,7 +795,7 @@
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
 				8BA63E8A263D91BB00E019BC /* LaunchFilterSheet.swift in Sources */,
 				8BBEEBE3258009EC00EA168A /* PinchToZoom.swift in Sources */,
-				8BA4D700260E50740096CE96 /* Ship.todo.swift in Sources */,
+				8BA4D700260E50740096CE96 /* Ship.swift in Sources */,
 				8BBEEBCE257FFDEF00EA168A /* PhotoSheet.swift in Sources */,
 				8B46A5922530CF4D0084E52D /* LaunchListView.swift in Sources */,
 				8B29D0B12610B8B900FBA0C5 /* CrossPlatformImage.swift in Sources */,
@@ -857,7 +857,7 @@
 				8B29D0942610B80C00FBA0C5 /* AdditionalCodingKeys.swift in Sources */,
 				8B29D0BD2610BB8000FBA0C5 /* LaunchCountdownView.swift in Sources */,
 				8B29D09A2610B80C00FBA0C5 /* UnitForce.swift in Sources */,
-				8B29D0A22610B80C00FBA0C5 /* Ship.todo.swift in Sources */,
+				8B29D0A22610B80C00FBA0C5 /* Ship.swift in Sources */,
 				8B29D09F2610B80C00FBA0C5 /* Astronaut.swift in Sources */,
 				8B29D0922610B78500FBA0C5 /* LaunchListView.swift in Sources */,
 				8B29D0A52610B80C00FBA0C5 /* Roadster.swift in Sources */,
