@@ -12,6 +12,10 @@
 		8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0D1D6E253351EA0056FACA /* VisualEffects */; };
 		8B0D1D76253363BF0056FACA /* MissionRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D1D75253363BF0056FACA /* MissionRecapView.swift */; };
 		8B0D1D79253365660056FACA /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D1D78253365660056FACA /* Card.swift */; };
+		8B133205264164E400638038 /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
+		8B133206264164E500638038 /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
+		8B1332072641653600638038 /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
+		8B1332082641655700638038 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0BE2610BBA800FBA0C5 /* Color.swift */; };
 		8B208B88258EBC6A009107EC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B208B87258EBC6A009107EC /* WidgetKit.framework */; };
 		8B208B8A258EBC6A009107EC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B208B89258EBC6A009107EC /* SwiftUI.framework */; };
 		8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B208B8C258EBC6A009107EC /* NextLaunches.swift */; };
@@ -76,8 +80,6 @@
 		8B4E95FD259671F000F9668E /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95EC259671F000F9668E /* GoogleUtilities.xcframework */; platformFilter = ios; };
 		8B4E9605259671FD00F9668E /* FirebaseCrashlytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */; platformFilter = ios; };
 		8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B511097257ED4950097BC0D /* GallerySheet.swift */; };
-		8B5459FA2641469800373B8B /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
-		8B5459FB2641469800373B8B /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
 		8B7C68C826408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
@@ -85,7 +87,6 @@
 		8B7C68CA26408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
 		8B7C68CC26408AD90075116B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7C68CB26408AD90075116B /* SatelliteKit */; };
 		8B7C68CE2640A2870075116B /* DetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68CD2640A2870075116B /* DetailsSheet.swift */; };
-		8B7C68CF2640A2870075116B /* DetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68CD2640A2870075116B /* DetailsSheet.swift */; };
 		8B7C68D02640A2870075116B /* DetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68CD2640A2870075116B /* DetailsSheet.swift */; };
 		8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F8D3B2607A756008A226B /* FaceCropper.swift */; };
 		8B7F8D3D2607A90E008A226B /* FaceCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F8D3B2607A756008A226B /* FaceCropper.swift */; };
@@ -764,6 +765,7 @@
 			files = (
 				8BF143EC25F10C370045B95D /* Launchpad.swift in Sources */,
 				8BA4D6FB260E505B0096CE96 /* Fairing.swift in Sources */,
+				8B1332072641653600638038 /* MapMarkers.swift in Sources */,
 				8BA4D6EF260E50240096CE96 /* CompanyInfo.swift in Sources */,
 				8BF143F225F10C370045B95D /* SpaceXData.swift in Sources */,
 				8BF143E825F10C370045B95D /* Secrets.swift in Sources */,
@@ -778,11 +780,11 @@
 				8B208B9A258ECBDB009107EC /* FakeData.swift in Sources */,
 				8BA4D707260E50890096CE96 /* History.swift in Sources */,
 				8BA4D6F8260E50500096CE96 /* Payload.swift in Sources */,
+				8B1332082641655700638038 /* Color.swift in Sources */,
 				8BA4D6F5260E503C0096CE96 /* Dragon.swift in Sources */,
 				8BB72032260E30CA00B8433C /* UnitForce.swift in Sources */,
 				8BB72030260E30BF00B8433C /* AdditionalCodingKeys.swift in Sources */,
 				8BA4D6FE260E50690096CE96 /* Roadster.swift in Sources */,
-				8B7C68CF2640A2870075116B /* DetailsSheet.swift in Sources */,
 				8BA4D6F2260E502F0096CE96 /* Core.swift in Sources */,
 				8BA4D701260E50740096CE96 /* Ship.swift in Sources */,
 				8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */,
@@ -844,7 +846,7 @@
 				8BF143E925F10C370045B95D /* WeatherAPI.swift in Sources */,
 				8BF5F6ED2611211B00060A0E /* GlobalSettings.swift in Sources */,
 				8BA4D706260E50890096CE96 /* History.swift in Sources */,
-				8B5459FA2641469800373B8B /* MapMarkers.swift in Sources */,
+				8B133206264164E500638038 /* MapMarkers.swift in Sources */,
 				8BF143EF25F10C370045B95D /* Landpad.swift in Sources */,
 				8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */,
 				8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */,
@@ -879,7 +881,7 @@
 				8B29D0C22610BE8600FBA0C5 /* ColorfulShadow.swift in Sources */,
 				8BE2683526109FB7003B0C62 /* NorminalMacApp.swift in Sources */,
 				8B29D0A72610B80C00FBA0C5 /* FaceCropper.swift in Sources */,
-				8B5459FB2641469800373B8B /* MapMarkers.swift in Sources */,
+				8B133205264164E400638038 /* MapMarkers.swift in Sources */,
 				8BF5F6EF2611211B00060A0E /* GlobalSettings.swift in Sources */,
 				8B29D0A02610B80C00FBA0C5 /* Rocket.swift in Sources */,
 				8BE268442610A031003B0C62 /* MainView.swift in Sources */,

@@ -10,28 +10,32 @@ import SwiftUI
 
 struct TextMapMarkerView: View {
     var text: String
+    var shadowRadius: CGFloat = 10
 
     var body: some View {
-        CustomMapMarker<Color>(text: text)
+        CustomMapMarker<Color>(text: text, shadowRadius: shadowRadius)
     }
 }
 
 struct ImageMapMarkerView: View {
     var image: Image
     var scale: CGFloat = 1
+    var shadowRadius: CGFloat = 10
 
     var body: some View {
         CustomMapMarker(
             background: image
                 .resizable()
-                .scaleEffect(scale)
+                .scaleEffect(scale),
+            shadowRadius: shadowRadius
         )
     }
 }
 
-private struct CustomMapMarker<Content: View>: View {
+struct CustomMapMarker<Content: View>: View {
     var text: String?
     var background: Content = Color.background as! Content
+    var shadowRadius: CGFloat = 10
 
     var body: some View {
         ZStack {
@@ -40,14 +44,16 @@ private struct CustomMapMarker<Content: View>: View {
                 .background(
                     background
                         .clipShape(Circle())
-                        .shadow(color: .black.opacity(0.4), radius: 10)
+                        .shadow(color: .black.opacity(0.4), radius: shadowRadius)
                         .frame(width: 100, height: 100, alignment: .center)
                 )
                 .frame(width: 100, height: 100, alignment: .center)
 
             if let t = text {
                 Text(t)
-                    .font(.system(size: 200))
+                    .font(.system(size: 200, design: .rounded))
+                    .bold()
+                    .foregroundColor(.primary.opacity(0.6))
                     .scaledToFit()
                     .minimumScaleFactor(0.00001)
                     .lineLimit(1)
@@ -59,9 +65,10 @@ private struct CustomMapMarker<Content: View>: View {
 
 struct MapMarkers_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
+        VStack(spacing: 30) {
             ImageMapMarkerView(image: Image("dragon.space"), scale: 2)
             TextMapMarkerView(text: "🚀")
+            TextMapMarkerView(text: "JRTI")
         }
         .padding()
         .previewLayout(.sizeThatFits)

@@ -397,6 +397,14 @@ extension Launch {
             })
         })
     }
+    
+    var ships: [Ship]? {
+        shipIDs?.compactMap({ id in
+            SpaceXData.shared.ships.first(where: { ship in
+                ship.idstring == id
+            })
+        })
+    }
 }
 
 // MARK: - Utility methods

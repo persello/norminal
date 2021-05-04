@@ -35,6 +35,8 @@ class Ship: ObservableObject, Decodable {
         })
     }
     
+    public var idstring: String
+    
     enum CodingKeys: String, CodingKey {
         case name
         case legacyID = "legacy_id"
@@ -48,6 +50,7 @@ class Ship: ObservableObject, Decodable {
         case latitude, longitude
         case link, image
         case launchIDs = "launches"
+        case idstring = "id"
     }
     
     required init(from decoder: Decoder) throws {
@@ -86,5 +89,6 @@ class Ship: ObservableObject, Decodable {
         link = try? values.decodeIfPresent(URL.self, forKey: .link)
         image = try? values.decodeIfPresent(URL.self, forKey: .image)
         launchIDs = try? values.decodeIfPresent([String].self, forKey: .launchIDs)
+        idstring = try values.decode(String.self, forKey: .idstring)
     }
 }
