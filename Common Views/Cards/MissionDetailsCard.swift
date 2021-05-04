@@ -36,7 +36,7 @@ struct MissionDetailsCard: View {
                         })
         })
         .sheet(isPresented: $modalPresented, content: {
-            RootSheet(content: DetailsSheet(launch: launch), modalShown: $modalPresented)
+            RootSheet(modalShown: $modalPresented) { DetailsSheet(launch: launch) }
         })
         .padding()
   }

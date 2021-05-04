@@ -28,7 +28,6 @@
 		8B29D0952610B80C00FBA0C5 /* SpaceXData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143E125F10C370045B95D /* SpaceXData.swift */; };
 		8B29D0962610B80C00FBA0C5 /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
 		8B29D0972610B80C00FBA0C5 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D705260E50890096CE96 /* History.swift */; };
-		8B29D0982610B80C00FBA0C5 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DE25F10C370045B95D /* Launchpad.swift */; };
 		8B29D0992610B80C00FBA0C5 /* Landpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143E025F10C370045B95D /* Landpad.swift */; };
 		8B29D09A2610B80C00FBA0C5 /* UnitForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF3D98260D4D2400DE48DD /* UnitForce.swift */; };
 		8B29D09B2610B80C00FBA0C5 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DF25F10C370045B95D /* Launch.swift */; };
@@ -136,6 +135,9 @@
 		8BD13FBC25FF79CD003AB69C /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD13FBB25FF79CD003AB69C /* Telescope */; };
 		8BDF3D99260D4D2400DE48DD /* UnitForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF3D98260D4D2400DE48DD /* UnitForce.swift */; };
 		8BE09FC12641EA0B0001C9D9 /* RootSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE09FC02641EA0B0001C9D9 /* RootSheet.swift */; };
+		8BE09FC32641EEED0001C9D9 /* LaunchpadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE09FC22641EEED0001C9D9 /* LaunchpadSheet.swift */; };
+		8BE09FC6264201DC0001C9D9 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DE25F10C370045B95D /* Launchpad.swift */; };
+		8BE09FC7264201DD0001C9D9 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DE25F10C370045B95D /* Launchpad.swift */; };
 		8BE2683526109FB7003B0C62 /* NorminalMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2683426109FB7003B0C62 /* NorminalMacApp.swift */; };
 		8BE268442610A031003B0C62 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE268432610A031003B0C62 /* MainView.swift */; };
 		8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85F82562FE07006144ED /* CrewSheet.swift */; };
@@ -147,7 +149,6 @@
 		8BF143E925F10C370045B95D /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DC25F10C370045B95D /* WeatherAPI.swift */; };
 		8BF143EA25F10C370045B95D /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DC25F10C370045B95D /* WeatherAPI.swift */; };
 		8BF143EB25F10C370045B95D /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DE25F10C370045B95D /* Launchpad.swift */; };
-		8BF143EC25F10C370045B95D /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DE25F10C370045B95D /* Launchpad.swift */; };
 		8BF143ED25F10C370045B95D /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DF25F10C370045B95D /* Launch.swift */; };
 		8BF143EE25F10C370045B95D /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DF25F10C370045B95D /* Launch.swift */; };
 		8BF143EF25F10C370045B95D /* Landpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143E025F10C370045B95D /* Landpad.swift */; };
@@ -264,6 +265,7 @@
 		8BC7E6CC25672966005E4304 /* WebcastSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastSheet.swift; sourceTree = "<group>"; };
 		8BDF3D98260D4D2400DE48DD /* UnitForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitForce.swift; sourceTree = "<group>"; };
 		8BE09FC02641EA0B0001C9D9 /* RootSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSheet.swift; sourceTree = "<group>"; };
+		8BE09FC22641EEED0001C9D9 /* LaunchpadSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchpadSheet.swift; sourceTree = "<group>"; };
 		8BE2683226109FB7003B0C62 /* Norminal for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Norminal for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE2683426109FB7003B0C62 /* NorminalMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorminalMacApp.swift; sourceTree = "<group>"; };
 		8BE2683D26109FB8003B0C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 				8B7C68CD2640A2870075116B /* DetailsSheet.swift */,
 				8B511097257ED4950097BC0D /* GallerySheet.swift */,
 				8BA63E89263D91BB00E019BC /* LaunchFilterSheet.swift */,
+				8BE09FC22641EEED0001C9D9 /* LaunchpadSheet.swift */,
 				8BBEEBCD257FFDEF00EA168A /* PhotoSheet.swift */,
 				8BE09FC02641EA0B0001C9D9 /* RootSheet.swift */,
 				8BC7E6CC25672966005E4304 /* WebcastSheet.swift */,
@@ -766,11 +769,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BF143EC25F10C370045B95D /* Launchpad.swift in Sources */,
 				8BA4D6FB260E505B0096CE96 /* Fairing.swift in Sources */,
 				8B1332072641653600638038 /* MapMarkers.swift in Sources */,
 				8BA4D6EF260E50240096CE96 /* CompanyInfo.swift in Sources */,
 				8BF143F225F10C370045B95D /* SpaceXData.swift in Sources */,
+				8BE09FC6264201DC0001C9D9 /* Launchpad.swift in Sources */,
 				8BF143E825F10C370045B95D /* Secrets.swift in Sources */,
 				8BB72031260E30C200B8433C /* Rocket.swift in Sources */,
 				8BF143EA25F10C370045B95D /* WeatherAPI.swift in Sources */,
@@ -830,6 +833,7 @@
 				8B29D0C32610BE9900FBA0C5 /* ColorfulShadow.swift in Sources */,
 				8B0B4DC325EE511500F1C068 /* LaunchCountdownView.swift in Sources */,
 				8BA4D6FA260E505B0096CE96 /* Fairing.swift in Sources */,
+				8BE09FC32641EEED0001C9D9 /* LaunchpadSheet.swift in Sources */,
 				8BF143F125F10C370045B95D /* SpaceXData.swift in Sources */,
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
 				8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */,
@@ -877,6 +881,7 @@
 				8B29D0942610B80C00FBA0C5 /* AdditionalCodingKeys.swift in Sources */,
 				8B29D0BD2610BB8000FBA0C5 /* LaunchCountdownView.swift in Sources */,
 				8B29D09A2610B80C00FBA0C5 /* UnitForce.swift in Sources */,
+				8BE09FC7264201DD0001C9D9 /* Launchpad.swift in Sources */,
 				8B29D0A22610B80C00FBA0C5 /* Ship.swift in Sources */,
 				8B29D09F2610B80C00FBA0C5 /* Astronaut.swift in Sources */,
 				8B29D0922610B78500FBA0C5 /* LaunchListView.swift in Sources */,
@@ -890,7 +895,6 @@
 				8B29D0A02610B80C00FBA0C5 /* Rocket.swift in Sources */,
 				8BE268442610A031003B0C62 /* MainView.swift in Sources */,
 				8B29D09C2610B80C00FBA0C5 /* Secrets.swift in Sources */,
-				8B29D0982610B80C00FBA0C5 /* Launchpad.swift in Sources */,
 				8B29D09B2610B80C00FBA0C5 /* Launch.swift in Sources */,
 				8B29D0CC2611178800FBA0C5 /* LaunchOrderingControls.swift in Sources */,
 				8B29D0B02610B88A00FBA0C5 /* CrossPlatformImage.swift in Sources */,

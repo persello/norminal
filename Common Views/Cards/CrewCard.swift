@@ -41,7 +41,7 @@ struct CrewCard: View {
         })
         .padding()
         .sheet(isPresented: $modalPresented, content: {
-            RootSheet(content: CrewSheet(crew: crew), modalShown: $modalPresented)
+            RootSheet(modalShown: $modalPresented) { CrewSheet(crew: crew) }
         })
     }
 }

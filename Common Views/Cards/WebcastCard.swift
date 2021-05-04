@@ -54,7 +54,7 @@ struct WebcastCard: View {
         })
             .padding()
             .sheet(isPresented: $modalPresented, content: {
-                RootSheet(content: WebcastSheet(videoID: (launch.links?.youtubeID)!), modalShown: $modalPresented)
+                RootSheet(modalShown: $modalPresented) { WebcastSheet(videoID: (launch.links?.youtubeID)!) }
             })
             .onAppear {
                 getYoutubeThumbnailLink()

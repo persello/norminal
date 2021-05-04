@@ -51,7 +51,14 @@ class Launchpad: Decodable, ObservableObject {
     public var rockets: [String]?
 
     /// List of launch IDs that have started from this launchpad
-    public var launches: [String]?
+    private var launchIDs: [String]?
+    public var launches: [Launch]? {
+        launchIDs?.compactMap({ id in
+            SpaceXData.shared.launches.first(where: { launch in
+                launch.idstring == id
+            })
+        })
+    }
 
     /// Brief description of the launchpad
     public var details: String?
@@ -73,6 +80,7 @@ class Launchpad: Decodable, ObservableObject {
         case launchAttempts = "launch_attempts"
         case launchSuccesses = "launch_successes"
         case rockets
+        case launchIDs = "launches"
         case details
         case status
         case idstring = "id"

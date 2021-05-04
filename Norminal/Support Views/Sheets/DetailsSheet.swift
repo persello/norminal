@@ -167,19 +167,19 @@ struct DetailsSheet: View {
         let coordinates: CLLocationCoordinate2D?
         let kind: Kind
         let name: String?
-        let roles: [String]?
+        let originalObject: Any?
 
-        init(coordinates: CLLocationCoordinate2D?, kind: Kind, name: String? = nil, roles: [String]? = nil) {
+        init(coordinates: CLLocationCoordinate2D?, kind: Kind, name: String? = nil, originalObject: Any? = nil) {
             self.coordinates = coordinates
             self.kind = kind
             self.name = name
-            self.roles = roles
+            self.originalObject = originalObject
         }
 
         func getMarker(shadowRadius: CGFloat = 10) -> some View {
             switch kind {
             case .droneship:
-                return TextMapMarkerView(text: name ?? "⤵️", shadowRadius: shadowRadius)
+                return TextMapMarkerView(text: (originalObject as? Landpad)?.name ?? "⤵️", shadowRadius: shadowRadius)
             case .landpad:
                 return TextMapMarkerView(text: "⤵️", shadowRadius: shadowRadius)
             case .launchpad:
@@ -190,8 +190,10 @@ struct DetailsSheet: View {
         }
 
         func getRolesString() -> String? {
-            if let roles = roles {
-                return ListFormatter.localizedString(byJoining: roles).capitalizingFirstLetter()
+            if let ship = originalObject as? Ship {
+                if let roles = ship.roles {
+                    return ListFormatter.localizedString(byJoining: roles).capitalizingFirstLetter()
+                }
             }
             return nil
         }
@@ -213,13 +215,13 @@ struct DetailsSheet: View {
                     //                                    coordintates: ship.location!.coordinate, kind: .droneship, name: ship.name))
                     break
                 default:
-                    result.append(PointOfInterest(coordinates: ship.location?.coordinate, kind: .ship, name: ship.name, roles: ship.roles))
+                    result.append(PointOfInterest(coordinates: ship.location?.coordinate, kind: .ship, name: ship.name, originalObject: ship))
                 }
             }
         }
 
         if let launchpad = launch.launchpad {
-            result.append(PointOfInterest(coordinates: launchpad.location, kind: .launchpad, name: launchpad.name))
+            result.append(PointOfInterest(coordinates: launchpad.location, kind: .launchpad, name: launchpad.name, originalObject: launchpad))
         }
 
         if let landpads = launch.landpads {
@@ -228,15 +230,32 @@ struct DetailsSheet: View {
 
                 switch _landpad?.type {
                 case .ASDS:
-                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .droneship, name: _landpad?.name))
+                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .droneship, name: _landpad?.name, originalObject: _landpad))
                 case .RTLS,
                      .none:
-                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .landpad, name: _landpad?.name))
+                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .landpad, name: _landpad?.name, originalObject: _landpad))
                 }
             }
         }
 
         annotationItems = result
+    }
+    
+    func generateDestinationView(poi: PointOfInterest) -> AnyView? {
+        switch poi.kind {
+            case .droneship:
+                return nil
+            case .launchpad:
+                if let launchpad = poi.originalObject as? Launchpad {
+                    return AnyView(LaunchpadSheet(launchpad: launchpad))
+                }
+                
+                return nil
+            case .landpad:
+                return nil
+            case .ship:
+                return nil
+        }
     }
 
     var body: some View {
@@ -247,7 +266,8 @@ struct DetailsSheet: View {
                 Section(header: Text("Points of interest")) {
                     if region != nil {
                         Map(coordinateRegion: Binding($region)!, annotationItems: annotationItems.filter({ $0.coordinates != nil })) { item in
-                            MapAnnotation(coordinate: item.coordinates!, anchorPoint: CGPoint(x: 0.5, y: 0.5)) {
+                            MapAnnotation(coordinate: item.coordinates!,
+                                          anchorPoint: CGPoint(x: 0.5, y: 0.5)) {
                                 item.getMarker().scaleEffect(0.5)
                             }
                         }
@@ -256,7 +276,7 @@ struct DetailsSheet: View {
                     }
 
                     ForEach(annotationItems) { item in
-                        NavigationLink(destination: EmptyView()) {
+                        NavigationLink(destination: generateDestinationView(poi: item)) {
                             PointOfInterestRow(poi: item, region: $region)
                         }
                     }

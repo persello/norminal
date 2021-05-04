@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct RootSheet<Content: View>: View {
-    var content: Content
     @Binding var modalShown: Bool
+    var content: () -> Content
+    
+    init(modalShown: Binding<Bool>, _ content: @escaping () -> Content) {
+        self._modalShown = modalShown
+        self.content = content
+    }
 
     var body: some View {
         NavigationView {
-            content
+            content()
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: Button(action: {
                     self.modalShown.toggle()
@@ -26,6 +31,6 @@ struct RootSheet<Content: View>: View {
 
 struct RootSheet_Previews: PreviewProvider {
     static var previews: some View {
-        RootSheet(content: Text("Content").navigationTitle("Title"), modalShown: .constant(true))
+        RootSheet(modalShown: .constant(true)) { Text("Content").navigationTitle("Title") }
     }
 }

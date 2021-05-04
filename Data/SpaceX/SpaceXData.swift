@@ -8,6 +8,7 @@
 
 import Foundation
 import os
+import SwiftUI
 import WidgetKit
 
 // MARK: - Utility extension for initializing UUID from string with no dashes
