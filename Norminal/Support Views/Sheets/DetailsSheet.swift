@@ -178,7 +178,7 @@ struct DetailsSheet: View {
                 Text("Done").bold()
             })
             .onAppear {
-                SpaceXData.shared.loadAllData()
+//                SpaceXData.shared.loadAllData()
 
                 findAnnotationItems()
 
