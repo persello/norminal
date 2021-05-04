@@ -238,7 +238,19 @@ class Launch: Decodable, ObservableObject {
     public var upcoming: Bool
 
     /// The description of this launch's mission.
-    public var details: String?
+    private var unfilteredDetails: String?
+    public var details: String? {
+        guard let unfiltered = unfilteredDetails else {
+            return nil
+        }
+        
+        let pattern = #"\[\w*\]"#
+        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+        let mString = NSMutableString(string: unfiltered)
+        regex.replaceMatches(in: mString, options: [], range: NSMakeRange(0, mString.length), withTemplate: "")
+        let result = String(mString)
+        return result
+    }
 
     /// The fairings' details. Has no value in case of Dragon.
     public var fairings: Fairings?
@@ -286,7 +298,7 @@ class Launch: Decodable, ObservableObject {
         case success
         case failures
         case upcoming
-        case details
+        case unfilteredDetails = "details"
         case fairings
         case crewIDs = "crew"
         case shipIDs = "ships"

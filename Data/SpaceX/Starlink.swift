@@ -29,14 +29,16 @@ class Starlink: ObservableObject, Decodable {
         if let lat = latitude,
            let lon = longitude,
            let height = heightKilometers {
-            return CLLocation(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon), altitude: height * 1000, horizontalAccuracy: 1000, verticalAccuracy: 1000, timestamp: Date())
+            return CLLocation(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon),
+                              altitude: height * 1000,
+                              horizontalAccuracy: 1000, verticalAccuracy: 1000, timestamp: Date())
         }
 
         return nil
     }
 
     private var velocityKps: Double?
-    private var velocity: Measurement<UnitSpeed>? {
+    public var velocity: Measurement<UnitSpeed>? {
         if let v = velocityKps {
             return .init(value: v * 3600, unit: .kilometersPerHour)
         }

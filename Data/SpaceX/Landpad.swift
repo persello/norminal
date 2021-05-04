@@ -21,7 +21,7 @@ class Landpad: Decodable {
         case underConstruction = "under construction"
     }
     
-    enum Type: String, Decodable {
+    enum `Type`: String, Decodable {
         case RTLS
         case ASDS
     }

@@ -145,6 +145,9 @@ struct DetailsSheet: View {
                     VStack(alignment: .leading, spacing: 12) {
                         Text("Details")
                             .font(.title.bold())
+                        Text("Launch #\(launch.flightNumber) • \(launch.getNiceDate(usePrecision: true))")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
                         Text(launch.details ?? "")
                             .multilineTextAlignment(.leading)
                             .font(.system(.body, design: .serif))
