@@ -33,7 +33,7 @@ class Launch: Decodable, ObservableObject {
     // MARK: - Support structs
 
     /// Represents a launch failure
-    struct Failure: Decodable {
+    struct Failure: Decodable, Hashable {
         /// Relative time in seconds from/after T+0
         public var time: Int?
 

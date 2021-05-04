@@ -197,11 +197,90 @@ let crewDragonJSON = """
   }
 """.data(using: .utf8)!
 
+let trailblazerJSON = """
+    {
+    "fairings": {
+    "reused": false,
+    "recovery_attempt": false,
+    "recovered": false,
+    "ships": []
+    },
+    "links": {
+    "patch": {
+    "small": "https://images2.imgbox.com/3d/86/cnu0pan8_o.png",
+    "large": "https://images2.imgbox.com/4b/bd/d8UxLh4q_o.png"
+    },
+    "reddit": {
+    "campaign": null,
+    "launch": null,
+    "media": null,
+    "recovery": null
+    },
+    "flickr": {
+    "small": [],
+    "original": []
+    },
+    "presskit": null,
+    "webcast": "https://www.youtube.com/watch?v=v0w9p3U8860",
+    "youtube_id": "v0w9p3U8860",
+    "article": "http://www.spacex.com/news/2013/02/11/falcon-1-flight-3-mission-summary",
+    "wikipedia": "https://en.wikipedia.org/wiki/Trailblazer_(satellite)"
+    },
+    "static_fire_date_utc": null,
+    "static_fire_date_unix": null,
+    "tbd": false,
+    "net": false,
+    "window": 0,
+    "rocket": "5e9d0d95eda69955f709d1eb",
+    "success": false,
+    "details": "Residual stage 1 thrust led to collision between stage 1 and stage 2",
+    "crew": [],
+    "ships": [],
+    "capsules": [],
+    "payloads": [
+    "5eb0e4b6b6c3bb0006eeb1e3",
+    "5eb0e4b6b6c3bb0006eeb1e4"
+    ],
+    "launchpad": "5e9e4502f5090995de566f86",
+    "auto_update": true,
+    "launch_library_id": null,
+    "failures": [
+    {
+    "time": 140,
+    "altitude": 35,
+    "reason": "residual stage-1 thrust led to collision between stage 1 and stage 2"
+    }
+    ],
+    "flight_number": 3,
+    "name": "Trailblazer",
+    "date_utc": "2008-08-03T03:34:00.000Z",
+    "date_unix": 1217734440,
+    "date_local": "2008-08-03T15:34:00+12:00",
+    "date_precision": "hour",
+    "upcoming": false,
+    "cores": [
+    {
+    "core": "5e9e289ef3591814873b2625",
+    "flight": 1,
+    "gridfins": false,
+    "legs": false,
+    "reused": false,
+    "landing_attempt": false,
+    "landing_success": null,
+    "landing_type": null,
+    "landpad": null
+    }
+    ],
+    "id": "5eb87cdbffd86e000604b32c"
+    }
+""".data(using: .utf8)!
+
 struct FakeData {
     static let shared = FakeData()
 
     var crewDragon: Launch?
     var nrol108: Launch?
+    var trailblazer: Launch?
     var robertBehnken: Astronaut?
 
     private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Fake data")
@@ -213,6 +292,7 @@ struct FakeData {
             crewDragon = try decoder.decode(Launch.self, from: crewDragonJSON)
             robertBehnken = try decoder.decode(Astronaut.self, from: robertBehnkenJSON)
             nrol108 = try decoder.decode(Launch.self, from: nrol108JSON)
+            trailblazer = try decoder.decode(Launch.self, from: trailblazerJSON)
         } catch {
             logger.error("Unhandled error while initializing fake data: \"\(error.localizedDescription)\"")
         }

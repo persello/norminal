@@ -8,33 +8,135 @@
 import MapKit
 import SwiftUI
 
+struct LaunchDetailsSection: View {
+    var launch: Launch
+
+    var body: some View {
+        Section {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Details")
+                    .font(.title.bold())
+
+                Text("Launch #\(launch.flightNumber) • \(launch.getNiceDate(usePrecision: true))")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+
+                if let sfDate = launch.staticFireDateUTC {
+                    Text("Static fire on \(sfDate.localDescription)")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+
+                if let details = launch.details {
+                    Divider().padding(.vertical, 8)
+
+                    Text(details)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.leading)
+                        .font(.system(.body, design: .serif))
+
+                    Divider().padding(.vertical, 8)
+                }
+
+                if let success = launch.success {
+                    if success {
+                        HStack(alignment: .firstTextBaseline) {
+                            Image(systemName: "checkmark.seal.fill")
+                                .foregroundColor(.green)
+                            Text("Successful mission")
+                        }
+                    } else {
+                        HStack {
+                            Image(systemName: "xmark.seal.fill")
+                                .foregroundColor(.red)
+                            Text("Failed mission")
+                        }
+
+                        Divider().padding(.vertical, 8)
+
+                        if let failures = launch.failures {
+                            ForEach(failures, id: \.self) { failure in
+                                VStack(alignment: .leading) {
+                                    Text(failure.reason?.capitalizingFirstLetter() ?? "Unknown reason")
+                                        .fixedSize(horizontal: false, vertical: true)
+                                        .multilineTextAlignment(.leading)
+
+                                    HStack {
+                                        if let time = failure.time {
+                                            Text("T\(time > 0 ? "+" : "")\(time) seconds")
+                                        }
+                                        if let altitude = failure.altitude {
+                                            Text("(\(altitude) kilometers)")
+                                        }
+                                    }
+                                    .foregroundColor(.gray)
+                                }
+                            }
+                        }
+                        
+                        Divider().padding(.vertical, 8)
+                    }
+
+                    if !launch.upcoming {
+                        switch launch.coresToRecover {
+                        case 0:
+                            EmptyView()
+                        case 1:
+                            HStack(alignment: .firstTextBaseline) {
+                                Image(systemName: "arrow.3.trianglepath")
+                                    .foregroundColor(launch.coresRecovered > 0 ? .green : .red)
+                                Text("\(launch.coresRecovered > 0 ? "S" : "Uns")uccessful core recovery")
+                            }
+                        default:
+                            HStack(alignment: .firstTextBaseline) {
+                                Image(systemName: "arrow.3.trianglepath")
+                                    .foregroundColor(launch.coresRecovered == launch.coresToRecover ? .green : .red)
+                                Text("\(launch.coresRecovered) out of \(launch.coresToRecover) cores recovered")
+                            }
+                        }
+
+                        // Fairings
+                        if launch.fairings?.recoveryAttempt ?? false {
+                            HStack(alignment: .firstTextBaseline) {
+                                Image(systemName: (launch.fairings?.recovered ?? false) ? "checkmark.shield" : "xmark.shield")
+                                    .foregroundColor((launch.fairings?.recovered ?? false) ? .green : .red)
+                                Text("Fairings \((launch.fairings?.recovered ?? false) ? "" : "not")recovered")
+                            }
+                        }
+                    }
+                }
+            }
+            .padding(.init(top: 10, leading: 5, bottom: 15, trailing: 0))
+        }
+    }
+}
+
 struct PointOfInterestRow: View {
-    
     var poi: DetailsSheet.PointOfInterest
     @Binding var region: MKCoordinateRegion?
-    
+
     var body: some View {
         HStack {
             poi.getMarker(shadowRadius: 0).scaleEffect(0.5)
                 .padding(-20)
                 .padding(.leading, -10)
-            
+
             VStack(alignment: .leading) {
                 Text(poi.name ?? "Unknown")
                 Text(poi.getRolesString() ?? poi.kind.rawValue.capitalizingFirstLetter())
                     .font(.subheadline)
                     .foregroundColor(Color.gray)
-                
+
                 if (poi.kind == .droneship || poi.kind == .ship)
                     && poi.coordinates != nil {
-                    Text("Current location shown")
+                    Text("Last known location shown")
                         .font(.subheadline)
                         .foregroundColor(.lightGray)
                 }
             }
-            
+
             Spacer()
-            
+
             if let coords = poi.coordinates {
                 Button(action: {
                     withAnimation {
@@ -43,8 +145,8 @@ struct PointOfInterestRow: View {
                 }, label: {
                     Text("\(Image(systemName: "location.circle"))")
                 })
-                .buttonStyle(PlainButtonStyle())
-                .foregroundColor(.blue)
+                    .buttonStyle(PlainButtonStyle())
+                    .foregroundColor(.blue)
             } else {
                 Image(systemName: "location.slash")
             }
@@ -122,7 +224,7 @@ struct DetailsSheet: View {
         }
 
         if let landpads = launch.landpads {
-            for landpad in landpads {
+            for landpad in landpads.filter({ $0.1?.idstring != nil }) {
                 let _landpad = landpad.1
 
                 switch _landpad?.type {
@@ -141,19 +243,7 @@ struct DetailsSheet: View {
     var body: some View {
         NavigationView {
             List {
-                Section {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Details")
-                            .font(.title.bold())
-                        Text("Launch #\(launch.flightNumber) • \(launch.getNiceDate(usePrecision: true))")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        Text(launch.details ?? "")
-                            .multilineTextAlignment(.leading)
-                            .font(.system(.body, design: .serif))
-                    }
-                    .padding(.init(top: 10, leading: 5, bottom: 15, trailing: 0))
-                }
+                LaunchDetailsSection(launch: launch)
 
                 if annotationItems.count > 0 {
                     Section(header: Text("Points of interest")) {
@@ -184,7 +274,7 @@ struct DetailsSheet: View {
                 Text("Done").bold()
             })
             .onAppear {
-                SpaceXData.shared.loadAllData()
+//                SpaceXData.shared.loadAllData()
 
                 findAnnotationItems()
 
@@ -198,10 +288,9 @@ struct DetailsSheet: View {
 
 struct DetailsSheet_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsSheet(launch: FakeData.shared.crewDragon!, modalShown: .constant(true))
+        DetailsSheet(launch: FakeData.shared.nrol108!, modalShown: .constant(true))
     }
 }
-
 
 extension String {
     func capitalizingFirstLetter() -> String {
