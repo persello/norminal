@@ -27,6 +27,14 @@ struct DetailsSheet: View {
         let coordinates: CLLocationCoordinate2D?
         let kind: Kind
         let name: String?
+        let roles: [String]?
+
+        init(coordinates: CLLocationCoordinate2D?, kind: Kind, name: String? = nil, roles: [String]? = nil) {
+            self.coordinates = coordinates
+            self.kind = kind
+            self.name = name
+            self.roles = roles
+        }
 
         func getMarker(shadowRadius: CGFloat = 10) -> some View {
             switch kind {
@@ -39,6 +47,13 @@ struct DetailsSheet: View {
             case .ship:
                 return TextMapMarkerView(text: "🛥", shadowRadius: shadowRadius)
             }
+        }
+
+        func getRolesString() -> String? {
+            if let roles = roles {
+                return ListFormatter.localizedString(byJoining: roles).capitalizingFirstLetter()
+            }
+            return nil
         }
     }
 
@@ -60,7 +75,7 @@ struct DetailsSheet: View {
                     //                                    coordintates: ship.location!.coordinate, kind: .droneship, name: ship.name))
                     break
                 default:
-                    result.append(InterestingPlace(coordinates: ship.location?.coordinate, kind: .ship, name: ship.name))
+                    result.append(InterestingPlace(coordinates: ship.location?.coordinate, kind: .ship, name: ship.name, roles: ship.roles))
                 }
             }
         }
@@ -113,39 +128,41 @@ struct DetailsSheet: View {
                         }
 
                         ForEach(annotationItems) { item in
-                            HStack {
-                                item.getMarker(shadowRadius: 0).scaleEffect(0.5)
-                                    .padding(-20)
-                                    .padding(.leading, -10)
+                            NavigationLink(destination: EmptyView()) {
+                                HStack {
+                                    item.getMarker(shadowRadius: 0).scaleEffect(0.5)
+                                        .padding(-20)
+                                        .padding(.leading, -10)
 
-                                VStack(alignment: .leading) {
-                                    Text(item.name ?? "Unknown")
-                                    Text(item.kind.rawValue.capitalizingFirstLetter())
-                                        .font(.subheadline)
-                                        .foregroundColor(Color.gray)
-
-                                    if (item.kind == .droneship || item.kind == .ship)
-                                        && item.coordinates != nil {
-                                        Text("Current location shown")
+                                    VStack(alignment: .leading) {
+                                        Text(item.name ?? "Unknown")
+                                        Text(item.getRolesString() ?? item.kind.rawValue.capitalizingFirstLetter())
                                             .font(.subheadline)
-                                            .foregroundColor(.lightGray)
-                                    }
-                                }
+                                            .foregroundColor(Color.gray)
 
-                                Spacer()
-
-                                if let coords = item.coordinates {
-                                    Button(action: {
-                                        withAnimation {
-                                            self.region = MKCoordinateRegion(center: coords, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                                        if (item.kind == .droneship || item.kind == .ship)
+                                            && item.coordinates != nil {
+                                            Text("Current location shown")
+                                                .font(.subheadline)
+                                                .foregroundColor(.lightGray)
                                         }
-                                    }, label: {
-                                        Text("\(Image(systemName: "location.circle"))")
-                                    })
-                                        .buttonStyle(PlainButtonStyle())
-                                        .foregroundColor(.blue)
-                                } else {
-                                    Image(systemName: "location.slash")
+                                    }
+
+                                    Spacer()
+
+                                    if let coords = item.coordinates {
+                                        Button(action: {
+                                            withAnimation {
+                                                self.region = MKCoordinateRegion(center: coords, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                                            }
+                                        }, label: {
+                                            Text("\(Image(systemName: "location.circle"))")
+                                        })
+                                            .buttonStyle(PlainButtonStyle())
+                                            .foregroundColor(.blue)
+                                    } else {
+                                        Image(systemName: "location.slash")
+                                    }
                                 }
                             }
                         }
@@ -164,7 +181,7 @@ struct DetailsSheet: View {
                 SpaceXData.shared.loadAllData()
 
                 findAnnotationItems()
-                
+
                 if let launchpadLocation = launch.launchpad?.location {
                     region = MKCoordinateRegion(center: launchpadLocation, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
                 }
