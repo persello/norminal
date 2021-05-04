@@ -76,12 +76,17 @@
 		8B4E95FD259671F000F9668E /* GoogleUtilities.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95EC259671F000F9668E /* GoogleUtilities.xcframework */; platformFilter = ios; };
 		8B4E9605259671FD00F9668E /* FirebaseCrashlytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */; platformFilter = ios; };
 		8B511098257ED4950097BC0D /* GallerySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B511097257ED4950097BC0D /* GallerySheet.swift */; };
+		8B5459FA2641469800373B8B /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
+		8B5459FB2641469800373B8B /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
 		8B7C68C826408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
 		8B7C68C926408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
 		8B7C68CA26408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
 		8B7C68CC26408AD90075116B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7C68CB26408AD90075116B /* SatelliteKit */; };
+		8B7C68CE2640A2870075116B /* DetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68CD2640A2870075116B /* DetailsSheet.swift */; };
+		8B7C68CF2640A2870075116B /* DetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68CD2640A2870075116B /* DetailsSheet.swift */; };
+		8B7C68D02640A2870075116B /* DetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68CD2640A2870075116B /* DetailsSheet.swift */; };
 		8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F8D3B2607A756008A226B /* FaceCropper.swift */; };
 		8B7F8D3D2607A90E008A226B /* FaceCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F8D3B2607A756008A226B /* FaceCropper.swift */; };
 		8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8A825375B10002AE62B /* SatelliteKit */; };
@@ -221,8 +226,10 @@
 		8B4E95EC259671F000F9668E /* GoogleUtilities.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = GoogleUtilities.xcframework; sourceTree = "<group>"; };
 		8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCrashlytics.xcframework; sourceTree = "<group>"; };
 		8B511097257ED4950097BC0D /* GallerySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GallerySheet.swift; sourceTree = "<group>"; };
+		8B5459F92641469800373B8B /* MapMarkers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkers.swift; sourceTree = "<group>"; };
 		8B69255A253206E900D61C3F /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
 		8B7C68C726408A870075116B /* Starlink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Starlink.swift; sourceTree = "<group>"; };
+		8B7C68CD2640A2870075116B /* DetailsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSheet.swift; sourceTree = "<group>"; };
 		8B7F8D3B2607A756008A226B /* FaceCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceCropper.swift; sourceTree = "<group>"; };
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
 		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
@@ -501,6 +508,7 @@
 				8B29D0AF2610B88A00FBA0C5 /* CrossPlatformImage.swift */,
 				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
 				8B29D08E2610B3F700FBA0C5 /* LaunchNotSelectedView.swift */,
+				8B5459F92641469800373B8B /* MapMarkers.swift */,
 				8B0D1D75253363BF0056FACA /* MissionRecapView.swift */,
 				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
 			);
@@ -522,6 +530,7 @@
 			children = (
 				8BEB85FC25631B56006144ED /* AstronautSheet.swift */,
 				8BEB85F82562FE07006144ED /* CrewSheet.swift */,
+				8B7C68CD2640A2870075116B /* DetailsSheet.swift */,
 				8B511097257ED4950097BC0D /* GallerySheet.swift */,
 				8BA63E89263D91BB00E019BC /* LaunchFilterSheet.swift */,
 				8BBEEBCD257FFDEF00EA168A /* PhotoSheet.swift */,
@@ -773,6 +782,7 @@
 				8BB72032260E30CA00B8433C /* UnitForce.swift in Sources */,
 				8BB72030260E30BF00B8433C /* AdditionalCodingKeys.swift in Sources */,
 				8BA4D6FE260E50690096CE96 /* Roadster.swift in Sources */,
+				8B7C68CF2640A2870075116B /* DetailsSheet.swift in Sources */,
 				8BA4D6F2260E502F0096CE96 /* Core.swift in Sources */,
 				8BA4D701260E50740096CE96 /* Ship.swift in Sources */,
 				8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */,
@@ -827,12 +837,14 @@
 				8BF143EB25F10C370045B95D /* Launchpad.swift in Sources */,
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,
 				8B29D0CF26111D4200FBA0C5 /* Filter.swift in Sources */,
+				8B7C68CE2640A2870075116B /* DetailsSheet.swift in Sources */,
 				8BA4D6EE260E50240096CE96 /* CompanyInfo.swift in Sources */,
 				8B0D1D76253363BF0056FACA /* MissionRecapView.swift in Sources */,
 				8BF143E725F10C370045B95D /* Secrets.swift in Sources */,
 				8BF143E925F10C370045B95D /* WeatherAPI.swift in Sources */,
 				8BF5F6ED2611211B00060A0E /* GlobalSettings.swift in Sources */,
 				8BA4D706260E50890096CE96 /* History.swift in Sources */,
+				8B5459FA2641469800373B8B /* MapMarkers.swift in Sources */,
 				8BF143EF25F10C370045B95D /* Landpad.swift in Sources */,
 				8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */,
 				8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */,
@@ -867,6 +879,7 @@
 				8B29D0C22610BE8600FBA0C5 /* ColorfulShadow.swift in Sources */,
 				8BE2683526109FB7003B0C62 /* NorminalMacApp.swift in Sources */,
 				8B29D0A72610B80C00FBA0C5 /* FaceCropper.swift in Sources */,
+				8B5459FB2641469800373B8B /* MapMarkers.swift in Sources */,
 				8BF5F6EF2611211B00060A0E /* GlobalSettings.swift in Sources */,
 				8B29D0A02610B80C00FBA0C5 /* Rocket.swift in Sources */,
 				8BE268442610A031003B0C62 /* MainView.swift in Sources */,
@@ -883,6 +896,7 @@
 				8B29D0B92610BAF200FBA0C5 /* AstronautPicture.swift in Sources */,
 				8B7C68CA26408A870075116B /* Starlink.swift in Sources */,
 				8B29D09E2610B80C00FBA0C5 /* CompanyInfo.swift in Sources */,
+				8B7C68D02640A2870075116B /* DetailsSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
