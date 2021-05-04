@@ -9,13 +9,11 @@ import SwiftUI
 import Telescope
 
 struct GallerySheet: View {
-    @Binding var modalShown: Bool
     var launch: Launch
     
     private let cols = [GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 2)]
     
     var body: some View {
-        NavigationView {
             ZStack {
                 ScrollView {
                     LazyVGrid(columns: cols, alignment: .center, spacing: 2) {
@@ -33,20 +31,13 @@ struct GallerySheet: View {
                         }
                     }
                 }
-            }
             .navigationTitle("Photo gallery")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing: Button(action: {
-                self.modalShown.toggle()
-            }) {
-                Text("Done").bold()
-            })
         }
     }
 }
 
 struct GallerySheet_Previews: PreviewProvider {
     static var previews: some View {
-        GallerySheet(modalShown: .constant(true), launch: FakeData.shared.crewDragon!)
+        GallerySheet(launch: FakeData.shared.crewDragon!)
     }
 }

@@ -46,7 +46,7 @@ struct GalleryCard: View {
         })
         .padding()
         .sheet(isPresented: $modalPresented, content: {
-            GallerySheet(modalShown: self.$modalPresented, launch: launch)
+            RootSheet(content: GallerySheet(launch: launch), modalShown: $modalPresented)
         })
         
     }

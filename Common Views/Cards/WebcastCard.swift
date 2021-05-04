@@ -6,22 +6,22 @@
 //
 
 import SwiftUI
-import XCDYouTubeKit
 import Telescope
+import XCDYouTubeKit
 
 struct WebcastCard: View {
     @EnvironmentObject var launch: Launch
     @State var modalPresented: Bool = false
     @State var thumbnailLink: URL?
-    
+
     func getYoutubeThumbnailLink() {
-        XCDYouTubeClient.default().getVideoWithIdentifier(launch.links?.youtubeID!) { (video, _) in
+        XCDYouTubeClient.default().getVideoWithIdentifier(launch.links?.youtubeID!) { video, _ in
             guard video != nil else {
                 // Handle error
                 return
             }
-            
-            //Do something with video
+
+            // Do something with video
             if let c = video?.thumbnailURLs?.count {
                 if let l = video?.thumbnailURLs?[c - 1] {
                     thumbnailLink = l
@@ -29,7 +29,7 @@ struct WebcastCard: View {
             }
         }
     }
-    
+
     var body: some View {
         Card(background: {
             if thumbnailLink != nil {
@@ -43,7 +43,7 @@ struct WebcastCard: View {
                                     ProgressView()
                                     Spacer()
                                 })
-                        
+
                     })
                     .scaledToFill()
             }
@@ -52,19 +52,18 @@ struct WebcastCard: View {
                 self.modalPresented = true
             })
         })
-        .padding()
-        .sheet(isPresented: $modalPresented, content: {
-            WebcastSheet(videoID: (launch.links?.youtubeID)!, modalShown: self.$modalPresented)
-        })
-        .onAppear {
-            getYoutubeThumbnailLink()
-        }
+            .padding()
+            .sheet(isPresented: $modalPresented, content: {
+                RootSheet(content: WebcastSheet(videoID: (launch.links?.youtubeID)!), modalShown: $modalPresented)
+            })
+            .onAppear {
+                getYoutubeThumbnailLink()
+            }
     }
 }
 
 struct WebcastCard_Previews: PreviewProvider {
     static var previews: some View {
-        
         VStack {
             WebcastCard()
         }

@@ -135,6 +135,7 @@
 		8BD13FB625FF762C003AB69C /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD13FB525FF762C003AB69C /* Telescope */; };
 		8BD13FBC25FF79CD003AB69C /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD13FBB25FF79CD003AB69C /* Telescope */; };
 		8BDF3D99260D4D2400DE48DD /* UnitForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF3D98260D4D2400DE48DD /* UnitForce.swift */; };
+		8BE09FC12641EA0B0001C9D9 /* RootSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE09FC02641EA0B0001C9D9 /* RootSheet.swift */; };
 		8BE2683526109FB7003B0C62 /* NorminalMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2683426109FB7003B0C62 /* NorminalMacApp.swift */; };
 		8BE268442610A031003B0C62 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE268432610A031003B0C62 /* MainView.swift */; };
 		8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85F82562FE07006144ED /* CrewSheet.swift */; };
@@ -262,6 +263,7 @@
 		8BBEEBE2258009EC00EA168A /* PinchToZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
 		8BC7E6CC25672966005E4304 /* WebcastSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastSheet.swift; sourceTree = "<group>"; };
 		8BDF3D98260D4D2400DE48DD /* UnitForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitForce.swift; sourceTree = "<group>"; };
+		8BE09FC02641EA0B0001C9D9 /* RootSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSheet.swift; sourceTree = "<group>"; };
 		8BE2683226109FB7003B0C62 /* Norminal for Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Norminal for Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE2683426109FB7003B0C62 /* NorminalMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorminalMacApp.swift; sourceTree = "<group>"; };
 		8BE2683D26109FB8003B0C62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 				8B511097257ED4950097BC0D /* GallerySheet.swift */,
 				8BA63E89263D91BB00E019BC /* LaunchFilterSheet.swift */,
 				8BBEEBCD257FFDEF00EA168A /* PhotoSheet.swift */,
+				8BE09FC02641EA0B0001C9D9 /* RootSheet.swift */,
 				8BC7E6CC25672966005E4304 /* WebcastSheet.swift */,
 			);
 			path = Sheets;
@@ -802,6 +805,7 @@
 				8BA4D6F7260E50500096CE96 /* Payload.swift in Sources */,
 				8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */,
 				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
+				8BE09FC12641EA0B0001C9D9 /* RootSheet.swift in Sources */,
 				8B87DFC426066F71009C13D0 /* LaunchDetailResourcesView.swift in Sources */,
 				8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */,
 				8BB7202F260E260F00B8433C /* AdditionalCodingKeys.swift in Sources */,

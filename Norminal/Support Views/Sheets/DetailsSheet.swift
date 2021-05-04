@@ -41,13 +41,13 @@ struct LaunchDetailsSection: View {
                 if let success = launch.success {
                     if success {
                         HStack(alignment: .firstTextBaseline) {
-                            Image(systemName: "checkmark.seal.fill")
+                            Image(systemName: "checkmark.seal")
                                 .foregroundColor(.green)
                             Text("Successful mission")
                         }
                     } else {
                         HStack {
-                            Image(systemName: "xmark.seal.fill")
+                            Image(systemName: "xmark.seal")
                                 .foregroundColor(.red)
                             Text("Failed mission")
                         }
@@ -73,7 +73,7 @@ struct LaunchDetailsSection: View {
                                 }
                             }
                         }
-                        
+
                         Divider().padding(.vertical, 8)
                     }
 
@@ -199,7 +199,6 @@ struct DetailsSheet: View {
 
     var launch: Launch
     @State private var region: MKCoordinateRegion?
-    @Binding var modalShown: Bool
     @State var annotationItems: [PointOfInterest] = []
 
     func findAnnotationItems() {
@@ -241,46 +240,36 @@ struct DetailsSheet: View {
     }
 
     var body: some View {
-        NavigationView {
-            List {
-                LaunchDetailsSection(launch: launch)
+        List {
+            LaunchDetailsSection(launch: launch)
 
-                if annotationItems.count > 0 {
-                    Section(header: Text("Points of interest")) {
-                        if region != nil {
-                            Map(coordinateRegion: Binding($region)!, annotationItems: annotationItems.filter({ $0.coordinates != nil })) { item in
-                                MapAnnotation(coordinate: item.coordinates!, anchorPoint: CGPoint(x: 0.5, y: 0.5)) {
-                                    item.getMarker().scaleEffect(0.5)
-                                }
+            if annotationItems.count > 0 {
+                Section(header: Text("Points of interest")) {
+                    if region != nil {
+                        Map(coordinateRegion: Binding($region)!, annotationItems: annotationItems.filter({ $0.coordinates != nil })) { item in
+                            MapAnnotation(coordinate: item.coordinates!, anchorPoint: CGPoint(x: 0.5, y: 0.5)) {
+                                item.getMarker().scaleEffect(0.5)
                             }
-                            .padding(.init(top: -20, leading: -20, bottom: -10, trailing: -20))
-                            .aspectRatio(0.618 * 2, contentMode: .fill)
                         }
+                        .padding(.init(top: -20, leading: -20, bottom: -10, trailing: -20))
+                        .aspectRatio(0.618 * 2, contentMode: .fill)
+                    }
 
-                        ForEach(annotationItems) { item in
-                            NavigationLink(destination: EmptyView()) {
-                                PointOfInterestRow(poi: item, region: $region)
-                            }
+                    ForEach(annotationItems) { item in
+                        NavigationLink(destination: EmptyView()) {
+                            PointOfInterestRow(poi: item, region: $region)
                         }
                     }
                 }
             }
-            .listStyle(InsetGroupedListStyle())
-            .navigationTitle(Text(launch.name))
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing: Button(action: {
-                self.modalShown.toggle()
-            }) {
-                Text("Done").bold()
-            })
-            .onAppear {
-//                SpaceXData.shared.loadAllData()
+        }
+        .listStyle(InsetGroupedListStyle())
+        .navigationTitle(Text(launch.name))
+        .onAppear {
+            findAnnotationItems()
 
-                findAnnotationItems()
-
-                if let launchpadLocation = launch.launchpad?.location {
-                    region = MKCoordinateRegion(center: launchpadLocation, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
-                }
+            if let launchpadLocation = launch.launchpad?.location {
+                region = MKCoordinateRegion(center: launchpadLocation, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
             }
         }
     }
@@ -288,7 +277,7 @@ struct DetailsSheet: View {
 
 struct DetailsSheet_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsSheet(launch: FakeData.shared.nrol108!, modalShown: .constant(true))
+        DetailsSheet(launch: FakeData.shared.nrol108!)
     }
 }
 
