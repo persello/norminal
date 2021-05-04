@@ -122,39 +122,39 @@ class Payload: ObservableObject, Decodable {
         }
 
         eccentricity = try? values.decode(Double.self, forKey: .eccentricity)
-        
+
         if let periapsisKilometers = try? values.decodeIfPresent(Double.self, forKey: .periapsisKilometers) {
             periapsis = .init(value: periapsisKilometers, unit: .kilometers)
         }
-        
+
         if let apoapsisKilometers = try? values.decodeIfPresent(Double.self, forKey: .apoapsisKilometers) {
             apoapsis = .init(value: apoapsisKilometers, unit: .kilometers)
         }
-        
+
         if let inclinationDegrees = try? values.decodeIfPresent(Double.self, forKey: .inclinationDegrees) {
             inclination = .init(value: inclinationDegrees, unit: .degrees)
         }
-        
+
         if let periodMinutes = try? values.decodeIfPresent(Double.self, forKey: .periodMinutes) {
             period = .init(value: periodMinutes, unit: .minutes)
         }
-        
+
         lifespanYears = try? values.decodeIfPresent(Double.self, forKey: .lifespanYears)
         epoch = try? values.decodeIfPresent(Date.self, forKey: .epoch)
         meanMotion = try? values.decodeIfPresent(Double.self, forKey: .meanMotion)
-        
+
         if let raanDegrees = try? values.decodeIfPresent(Double.self, forKey: .raanDegrees) {
             raan = .init(value: raanDegrees, unit: .degrees)
         }
-        
+
         if let argumentOfPericenterDegrees = try? values.decodeIfPresent(Double.self, forKey: .argumentOfPericenterDegrees) {
             argumentOfPericenter = .init(value: argumentOfPericenterDegrees, unit: .degrees)
         }
-        
+
         if let meanAnomalyDegrees = try? values.decodeIfPresent(Double.self, forKey: .meanAnomalyDegrees) {
             meanAnomaly = .init(value: meanAnomalyDegrees, unit: .degrees)
         }
-        
+
         dragon = try? values.decodeIfPresent(Dragon.self, forKey: .dragon)
         idstring = try values.decode(String.self, forKey: .idstring)
     }

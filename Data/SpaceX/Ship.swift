@@ -5,8 +5,8 @@
 //  Created by Riccardo Persello on 26/03/21.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
 class Ship: ObservableObject, Decodable {
     public var name: String
@@ -34,9 +34,9 @@ class Ship: ObservableObject, Decodable {
             })
         })
     }
-    
+
     public var idstring: String
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case legacyID = "legacy_id"
@@ -52,10 +52,10 @@ class Ship: ObservableObject, Decodable {
         case launchIDs = "launches"
         case idstring = "id"
     }
-    
+
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         name = try values.decode(String.self, forKey: .name)
         legacyID = try? values.decodeIfPresent(String.self, forKey: .legacyID)
         model = try? values.decodeIfPresent(String.self, forKey: .model)
@@ -64,28 +64,28 @@ class Ship: ObservableObject, Decodable {
         active = try values.decode(Bool.self, forKey: .active)
         imo = try? values.decodeIfPresent(Int.self, forKey: .imo)
         mmsi = try? values.decodeIfPresent(Int.self, forKey: .mmsi)
-        
+
         if let massKilograms = try? values.decodeIfPresent(Double.self, forKey: .massKilograms) {
             mass = .init(value: massKilograms, unit: .kilograms)
         }
-        
+
         constructionYear = try? values.decodeIfPresent(Int.self, forKey: .constructionYear)
         homePort = try? values.decodeIfPresent(String.self, forKey: .homePort)
         status = try? values.decodeIfPresent(String.self, forKey: .status)
-        
+
         if let speedKnots = try? values.decodeIfPresent(Double.self, forKey: .speedKnots) {
             speed = .init(value: speedKnots, unit: .knots)
         }
-        
+
         if let courseDegrees = try? values.decodeIfPresent(Double.self, forKey: .courseDegrees) {
             course = .init(value: courseDegrees, unit: .degrees)
         }
-        
+
         if let latitude = try? values.decodeIfPresent(Double.self, forKey: .latitude),
            let longitude = try? values.decodeIfPresent(Double.self, forKey: .longitude) {
             location = .init(latitude: latitude, longitude: longitude)
         }
-        
+
         link = try? values.decodeIfPresent(URL.self, forKey: .link)
         image = try? values.decodeIfPresent(URL.self, forKey: .image)
         launchIDs = try? values.decodeIfPresent([String].self, forKey: .launchIDs)

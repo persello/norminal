@@ -247,23 +247,23 @@ final class SpaceXData: ObservableObject {
             queue.addOperation { [self] in
                 _payloads = loadData(url: URL(string: "https://api.spacexdata.com/v4/payloads")!)
             }
-            
+
             // MARK: Roadster
-            
+
             var _roadster: Roadster?
             queue.addOperation { [self] in
                 _roadster = loadData(url: URL(string: "https://api.spacexdata.com/v4/roadster")!)
             }
-            
+
             // MARK: Ships
-            
+
             var _ships: [Ship]?
             queue.addOperation { [self] in
                 _ships = loadData(url: URL(string: "https://api.spacexdata.com/v4/ships")!)
             }
-            
+
             // MARK: Starlink
-            
+
             var _starlinks: [Starlink]?
             queue.addOperation { [self] in
                 _starlinks = loadData(url: URL(string: "https://api.spacexdata.com/v4/starlink")!)
@@ -320,15 +320,15 @@ final class SpaceXData: ObservableObject {
                 if let _payloads = _payloads {
                     self.payloads = _payloads
                 }
-                
+
                 if let _roadster = _roadster {
                     self.roadster = _roadster
                 }
-                
+
                 if let _ships = _ships {
                     self.ships = _ships
                 }
-                
+
                 if let _starlinks = _starlinks {
                     self.starlinks = _starlinks
                 }

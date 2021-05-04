@@ -8,14 +8,52 @@
 import MapKit
 import SwiftUI
 
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
+struct PointOfInterestRow: View {
+    
+    var poi: DetailsSheet.PointOfInterest
+    @Binding var region: MKCoordinateRegion?
+    
+    var body: some View {
+        HStack {
+            poi.getMarker(shadowRadius: 0).scaleEffect(0.5)
+                .padding(-20)
+                .padding(.leading, -10)
+            
+            VStack(alignment: .leading) {
+                Text(poi.name ?? "Unknown")
+                Text(poi.getRolesString() ?? poi.kind.rawValue.capitalizingFirstLetter())
+                    .font(.subheadline)
+                    .foregroundColor(Color.gray)
+                
+                if (poi.kind == .droneship || poi.kind == .ship)
+                    && poi.coordinates != nil {
+                    Text("Current location shown")
+                        .font(.subheadline)
+                        .foregroundColor(.lightGray)
+                }
+            }
+            
+            Spacer()
+            
+            if let coords = poi.coordinates {
+                Button(action: {
+                    withAnimation {
+                        self.region = MKCoordinateRegion(center: coords, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                    }
+                }, label: {
+                    Text("\(Image(systemName: "location.circle"))")
+                })
+                .buttonStyle(PlainButtonStyle())
+                .foregroundColor(.blue)
+            } else {
+                Image(systemName: "location.slash")
+            }
+        }
     }
 }
 
 struct DetailsSheet: View {
-    struct InterestingPlace: Identifiable {
+    struct PointOfInterest: Identifiable {
         enum Kind: String {
             case droneship
             case launchpad
@@ -60,11 +98,10 @@ struct DetailsSheet: View {
     var launch: Launch
     @State private var region: MKCoordinateRegion?
     @Binding var modalShown: Bool
-
-    @State var annotationItems: [InterestingPlace] = []
+    @State var annotationItems: [PointOfInterest] = []
 
     func findAnnotationItems() {
-        var result: [InterestingPlace] = []
+        var result: [PointOfInterest] = []
 
         if let ships = launch.ships {
             for ship in ships {
@@ -75,13 +112,13 @@ struct DetailsSheet: View {
                     //                                    coordintates: ship.location!.coordinate, kind: .droneship, name: ship.name))
                     break
                 default:
-                    result.append(InterestingPlace(coordinates: ship.location?.coordinate, kind: .ship, name: ship.name, roles: ship.roles))
+                    result.append(PointOfInterest(coordinates: ship.location?.coordinate, kind: .ship, name: ship.name, roles: ship.roles))
                 }
             }
         }
 
         if let launchpad = launch.launchpad {
-            result.append(InterestingPlace(coordinates: launchpad.location, kind: .launchpad, name: launchpad.name))
+            result.append(PointOfInterest(coordinates: launchpad.location, kind: .launchpad, name: launchpad.name))
         }
 
         if let landpads = launch.landpads {
@@ -90,10 +127,10 @@ struct DetailsSheet: View {
 
                 switch _landpad?.type {
                 case .ASDS:
-                    result.append(InterestingPlace(coordinates: _landpad?.location, kind: .droneship, name: _landpad?.name))
+                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .droneship, name: _landpad?.name))
                 case .RTLS,
                      .none:
-                    result.append(InterestingPlace(coordinates: _landpad?.location, kind: .landpad, name: _landpad?.name))
+                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .landpad, name: _landpad?.name))
                 }
             }
         }
@@ -129,41 +166,7 @@ struct DetailsSheet: View {
 
                         ForEach(annotationItems) { item in
                             NavigationLink(destination: EmptyView()) {
-                                HStack {
-                                    item.getMarker(shadowRadius: 0).scaleEffect(0.5)
-                                        .padding(-20)
-                                        .padding(.leading, -10)
-
-                                    VStack(alignment: .leading) {
-                                        Text(item.name ?? "Unknown")
-                                        Text(item.getRolesString() ?? item.kind.rawValue.capitalizingFirstLetter())
-                                            .font(.subheadline)
-                                            .foregroundColor(Color.gray)
-
-                                        if (item.kind == .droneship || item.kind == .ship)
-                                            && item.coordinates != nil {
-                                            Text("Current location shown")
-                                                .font(.subheadline)
-                                                .foregroundColor(.lightGray)
-                                        }
-                                    }
-
-                                    Spacer()
-
-                                    if let coords = item.coordinates {
-                                        Button(action: {
-                                            withAnimation {
-                                                self.region = MKCoordinateRegion(center: coords, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-                                            }
-                                        }, label: {
-                                            Text("\(Image(systemName: "location.circle"))")
-                                        })
-                                            .buttonStyle(PlainButtonStyle())
-                                            .foregroundColor(.blue)
-                                    } else {
-                                        Image(systemName: "location.slash")
-                                    }
-                                }
+                                PointOfInterestRow(poi: item, region: $region)
                             }
                         }
                     }
@@ -178,7 +181,7 @@ struct DetailsSheet: View {
                 Text("Done").bold()
             })
             .onAppear {
-//                SpaceXData.shared.loadAllData()
+                SpaceXData.shared.loadAllData()
 
                 findAnnotationItems()
 
@@ -193,5 +196,12 @@ struct DetailsSheet: View {
 struct DetailsSheet_Previews: PreviewProvider {
     static var previews: some View {
         DetailsSheet(launch: FakeData.shared.crewDragon!, modalShown: .constant(true))
+    }
+}
+
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
     }
 }

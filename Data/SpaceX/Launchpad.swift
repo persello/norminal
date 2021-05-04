@@ -5,13 +5,14 @@
 //  Created by Riccardo Persello on 27/10/2020.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
 // MARK: - Enums
+
 enum LaunchpadStatus: String, Decodable {
-    case retired = "retired"
-    case active = "active"
+    case retired
+    case active
     case underConstruction = "under construction"
 }
 
@@ -19,7 +20,6 @@ enum LaunchpadStatus: String, Decodable {
 
 /// Represents a rocket launchpad
 class Launchpad: Decodable, ObservableObject {
-
     /// Launchpad official name
     public var name: String
 
@@ -63,55 +63,56 @@ class Launchpad: Decodable, ObservableObject {
     public var idstring: String
 
     enum CodingKeys: String, CodingKey {
-        case name = "name"
+        case name
         case fullName = "full_name"
-        case locality = "locality"
-        case region = "region"
-        case timezone = "timezone"
-        case latitude = "latitude"
-        case longitude = "longitude"
+        case locality
+        case region
+        case timezone
+        case latitude
+        case longitude
         case launchAttempts = "launch_attempts"
         case launchSuccesses = "launch_successes"
-        case rockets = "rockets"
-        case details = "details"
-        case status = "status"
+        case rockets
+        case details
+        case status
         case idstring = "id"
     }
-    
+
     // MARK: Launchpad weather
-    
+
     // Static for persistence
     static var forecastsCache = NSCache<NSString, WeatherAPIResponse.WeatherAPIForecastHour>()
-    
+
     public func getForecast(for date: Date, completion: @escaping (Result<WeatherAPIResponse.WeatherAPIForecastHour, Never>) -> Void) {
-        if let cachedResponse = Launchpad.forecastsCache.object(forKey: "\(date.description)-\(self.idstring)" as NSString) {
+        if let cachedResponse = Launchpad.forecastsCache.object(forKey: "\(date.description)-\(idstring)" as NSString) {
             completion(.success(cachedResponse))
             return
         }
-        
-        WeatherAPI.shared.forecast(forLocation: self.location, at: date) { forecastResponse in
+
+        WeatherAPI.shared.forecast(forLocation: location, at: date) { forecastResponse in
             switch forecastResponse {
-                case .success(let result):
-                    if let hourlyForecast = result.getOnlyHourlyForecast() {
-                        completion(.success(hourlyForecast))
-                        Launchpad.forecastsCache.setObject(hourlyForecast, forKey: "\(date.description)-\(self.idstring)" as NSString)
-                    }
-                default:
-                    break
+            case let .success(result):
+                if let hourlyForecast = result.getOnlyHourlyForecast() {
+                    completion(.success(hourlyForecast))
+                    Launchpad.forecastsCache.setObject(hourlyForecast, forKey: "\(date.description)-\(self.idstring)" as NSString)
+                }
+            default:
+                break
             }
         }
     }
 }
 
 // MARK: - Protocol extensions
+
 extension Launchpad: Identifiable {
     /// Launchpad ID
-    var id: UUID { return UUID(stringWithoutDashes: self.idstring)! }
+    var id: UUID { return UUID(stringWithoutDashes: idstring)! }
 }
 
 extension Launchpad {
     /// Launchpad coordinates
     public var location: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }

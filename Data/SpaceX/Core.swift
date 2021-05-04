@@ -16,7 +16,7 @@ class Core: Decodable, ObservableObject {
         case lost
         case retired
     }
-    
+
     public var serial: String
     public var block: Int?
     public var status: Status
@@ -38,7 +38,7 @@ class Core: Decodable, ObservableObject {
             return []
         }
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case serial, block, status
         case reuseCount = "reuse_count"

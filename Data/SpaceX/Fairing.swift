@@ -40,7 +40,7 @@ class Fairing: ObservableObject, Decodable {
             })
         })
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case serial, version, status
         case reuseCount = "reuse_count"

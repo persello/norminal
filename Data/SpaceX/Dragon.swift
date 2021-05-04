@@ -113,23 +113,23 @@ class Dragon: Decodable, ObservableObject {
         case flickrImages = "flickr_images"
         case description
     }
-    
+
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         name = try values.decode(String.self, forKey: .name)
         type = try values.decode(String.self, forKey: .type)
         active = try values.decode(Bool.self, forKey: .active)
         crewCapacity = try values.decode(Int.self, forKey: .crewCapacity)
-        
+
         let sidewallAngleDegrees = try values.decode(Double.self, forKey: .sidewallAngleDegrees)
         sidewallAngle = Measurement<UnitAngle>(value: sidewallAngleDegrees, unit: .degrees)
-        
+
         orbitDurationYears = try values.decode(Double.self, forKey: .orbitDurationYears)
-        
+
         let dryMassKilograms = try values.decode(Double.self, forKey: .dryMassKilograms)
         dryMass = Measurement<UnitMass>(value: dryMassKilograms, unit: .kilograms)
-        
+
         // Date is YYYY-MM-DD
         let firstFlightDateString = try? values.decodeIfPresent(String.self, forKey: .firstFlight)
         let formatter = DateFormatter.yyyyMMdd
@@ -137,46 +137,46 @@ class Dragon: Decodable, ObservableObject {
 
         heatShield = try? values.decodeIfPresent(HeatShield.self, forKey: .heatShield)
         thrusters = try? values.decodeIfPresent([Thruster].self, forKey: .thrusters)
-        
+
         if let launchPayloadMassKilograms = try? values
             .nestedContainer(keyedBy: MassStructCodingKeys.self, forKey: .launchPayloadMassStruct)
             .decode(Double.self, forKey: .kg) {
             launchPayloadMass = Measurement<UnitMass>(value: launchPayloadMassKilograms, unit: .kilograms)
         }
-        
+
         if let launchPayloadVolumeCubicMeters = try? values
             .nestedContainer(keyedBy: VolumeStructCodingKeys.self, forKey: .launchPayloadVolumeStruct)
             .decode(Double.self, forKey: .cubicMeters) {
             launchPayloadVolume = Measurement<UnitVolume>(value: launchPayloadVolumeCubicMeters, unit: .cubicMeters)
         }
-        
+
         if let returnPayloadMassKilograms = try? values
             .nestedContainer(keyedBy: MassStructCodingKeys.self, forKey: .returnPayloadMassStruct)
             .decode(Double.self, forKey: .kg) {
             returnPayloadMass = Measurement<UnitMass>(value: returnPayloadMassKilograms, unit: .kilograms)
         }
-        
+
         if let returnPayloadVolumeCubicMeters = try? values
             .nestedContainer(keyedBy: VolumeStructCodingKeys.self, forKey: .returnPayloadVolumeStruct)
             .decode(Double.self, forKey: .cubicMeters) {
             returnPayloadVolume = Measurement<UnitVolume>(value: returnPayloadVolumeCubicMeters, unit: .cubicMeters)
         }
-        
+
         pressurizedCapsule = try? values.decodeIfPresent(PressurizedCapsule.self, forKey: .pressurizedCapsule)
         trunk = try? values.decodeIfPresent(Trunk.self, forKey: .trunk)
-        
+
         if let heightWithTrunkMeters = try? values
             .nestedContainer(keyedBy: LengthStructCodingKeys.self, forKey: .heightWithTrunkStruct)
             .decode(Double.self, forKey: .meters) {
             heightWithTrunk = Measurement<UnitLength>(value: heightWithTrunkMeters, unit: .meters)
         }
-        
+
         if let diameterMeters = try? values
             .nestedContainer(keyedBy: LengthStructCodingKeys.self, forKey: .diameter)
             .decode(Double.self, forKey: .meters) {
             diameter = Measurement<UnitLength>(value: diameterMeters, unit: .meters)
         }
-        
+
         flickrImages = try? values.decodeIfPresent([URL].self, forKey: .flickrImages)
         description = try? values.decodeIfPresent(String.self, forKey: .description)
     }
@@ -209,11 +209,11 @@ extension Dragon.Thruster: Decodable {
         fuel1 = try values.decode(String.self, forKey: .fuel1)
         fuel2 = try values.decode(String.self, forKey: .fuel2)
         isp = try values.decode(Int.self, forKey: .isp)
-        
+
         let thrustKiloNewton = try values
             .nestedContainer(keyedBy: ForceStructCodingKeys.self, forKey: .thrustStruct)
             .decode(Double.self, forKey: .kN)
-        
+
         thrust = Measurement<UnitForce>(value: thrustKiloNewton, unit: .kiloNewton)
     }
 }
@@ -221,11 +221,11 @@ extension Dragon.Thruster: Decodable {
 extension Dragon.PressurizedCapsule: Decodable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         let volumeCubicMeters = try values
             .nestedContainer(keyedBy: VolumeStructCodingKeys.self, forKey: .payloadVolumeStruct)
             .decode(Double.self, forKey: .cubicMeters)
-        
+
         payloadVolume = Measurement<UnitVolume>(value: volumeCubicMeters, unit: .cubicMeters)
     }
 }
@@ -233,13 +233,13 @@ extension Dragon.PressurizedCapsule: Decodable {
 extension Dragon.Trunk: Decodable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         let volumeCubicMeters = try values
             .nestedContainer(keyedBy: VolumeStructCodingKeys.self, forKey: .volume)
             .decode(Double.self, forKey: .cubicMeters)
-        
+
         volume = Measurement<UnitVolume>(value: volumeCubicMeters, unit: .cubicMeters)
-        
+
         cargo = try? values.decodeIfPresent(Cargo.self, forKey: .cargo)
     }
 }

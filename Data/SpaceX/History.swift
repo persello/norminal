@@ -11,12 +11,12 @@ class HistoryEntry: ObservableObject, Decodable {
     struct Links: Decodable {
         public var article: URL?
     }
-    
+
     public var title: String?
     public var date: Date?
     public var details: String?
     public var links: Links?
-    
+
     enum CodingKeys: String, CodingKey {
         case title
         case date = "event_date_utc"

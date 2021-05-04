@@ -210,9 +210,9 @@ struct FakeData {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(.iso8601Full)
-            self.crewDragon = try decoder.decode(Launch.self, from: crewDragonJSON)
-            self.robertBehnken = try decoder.decode(Astronaut.self, from: robertBehnkenJSON)
-            self.nrol108 = try decoder.decode(Launch.self, from: nrol108JSON)
+            crewDragon = try decoder.decode(Launch.self, from: crewDragonJSON)
+            robertBehnken = try decoder.decode(Astronaut.self, from: robertBehnkenJSON)
+            nrol108 = try decoder.decode(Launch.self, from: nrol108JSON)
         } catch {
             logger.error("Unhandled error while initializing fake data: \"\(error.localizedDescription)\"")
         }

@@ -8,23 +8,23 @@
 import Foundation
 import CoreLocation
 
-// MARK: - Enums
-
-enum LandpadStatus: String, Decodable {
-    case retired = "retired"
-    case active = "active"
-    case underConstruction = "under construction"
-}
-
-enum LandpadType: String, Decodable {
-    case RTLS
-    case ASDS
-}
-
 // MARK: - Landpad class
 
 /// Represents a rocket Landpad
 class Landpad: Decodable {
+    
+    // MARK: - Enums
+    
+    enum Status: String, Decodable {
+        case retired = "retired"
+        case active = "active"
+        case underConstruction = "under construction"
+    }
+    
+    enum Type: String, Decodable {
+        case RTLS
+        case ASDS
+    }
 
     /// Landpad official name
     public var name: String
@@ -33,7 +33,7 @@ class Landpad: Decodable {
     public var fullName: String
 
     /// Landpad type
-    public var type: LandpadType
+    public var type: Type
 
     /// Landpad locality
     public var locality: String
@@ -63,7 +63,7 @@ class Landpad: Decodable {
     public var details: String?
 
     /// Actual status of the Landpad
-    public var status: LandpadStatus
+    public var status: Status
 
     /// Landpad ID string
     public var idstring: String

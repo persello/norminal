@@ -8,31 +8,30 @@
 import Foundation
 
 class Capsule: ObservableObject, Decodable {
-    
     enum Status: String, Decodable {
         case unknown, active, retired, destroyed
     }
-    
+
     public var serial: String
-    
+
     public var status: Status
-    
+
     public var type: String
-    
+
     public var dragon: String?
-    
+
     public var reuseCount: Int?
-    
+
     public var waterLandings: Int?
-    
+
     public var landLandings: Int?
-    
+
     public var lastUpdate: String?
-    
+
     private var launchIDs: [String]?
-    
+
     public var idstring: String
-    
+
     public var launches: [Launch] {
         return SpaceXData.shared.launches.filter({
             if let id = $0.idstring {
@@ -42,7 +41,7 @@ class Capsule: ObservableObject, Decodable {
             }
         })
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case serial
         case status
@@ -62,7 +61,7 @@ extension Capsule: Identifiable {
 }
 
 extension Capsule: Equatable {
-    static func ==(rhs: Capsule, lhs: Capsule) -> Bool {
+    static func == (rhs: Capsule, lhs: Capsule) -> Bool {
         rhs.idstring == lhs.idstring
     }
 }

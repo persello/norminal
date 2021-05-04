@@ -29,7 +29,7 @@ class Roadster: ObservableObject, Decodable {
     public var wikipedia: URL?
     public var video: URL?
     public var details: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case launchDate = "launch_date_utc"
@@ -51,61 +51,61 @@ class Roadster: ObservableObject, Decodable {
         case flickrImages = "flickr_images"
         case wikipedia, video, details
     }
-    
+
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         name = try? values.decodeIfPresent(String.self, forKey: .name)
         launchDate = try? values.decodeIfPresent(Date.self, forKey: .launchDate)
-        
+
         if let launchMassKilograms = try? values.decodeIfPresent(Double.self, forKey: .launchMassKilograms) {
             launchMass = .init(value: launchMassKilograms, unit: .kilograms)
         }
-        
+
         noradID = try? values.decodeIfPresent(Int.self, forKey: .noradID)
         epochJD = try? values.decodeIfPresent(Double.self, forKey: .epochJD)
         orbit = try? values.decodeIfPresent(String.self, forKey: .orbit)
-        
+
         if let apoapsisAU = try? values.decodeIfPresent(Double.self, forKey: .apoapsisAU) {
             apoapsis = .init(value: apoapsisAU, unit: .astronomicalUnits)
         }
-        
+
         if let periapsisAU = try? values.decodeIfPresent(Double.self, forKey: .periapsisAU) {
             periapsis = .init(value: periapsisAU, unit: .astronomicalUnits)
         }
-        
+
         if let semiMajorAxisAU = try? values.decodeIfPresent(Double.self, forKey: .semiMajorAxisAU) {
             semiMajorAxis = .init(value: semiMajorAxisAU, unit: .astronomicalUnits)
         }
-        
+
         eccentricity = try? values.decodeIfPresent(Double.self, forKey: .eccentricity)
-        
+
         if let inclinationDegrees = try? values.decodeIfPresent(Double.self, forKey: .inclinationDegrees) {
             inclination = .init(value: inclinationDegrees, unit: .degrees)
         }
-        
+
         if let longitudeDegrees = try? values.decodeIfPresent(Double.self, forKey: .longitudeDegrees) {
             longitude = .init(value: longitudeDegrees, unit: .degrees)
         }
-        
+
         if let periapsisArgumentDegrees = try? values.decodeIfPresent(Double.self, forKey: .periapsisArgumentDegrees) {
             periapsisArgument = .init(value: periapsisArgumentDegrees, unit: .degrees)
         }
-        
+
         periodDays = try? values.decodeIfPresent(Double.self, forKey: .periodDays)
-        
+
         if let speedKph = try? values.decodeIfPresent(Double.self, forKey: .speedKph) {
             speed = .init(value: speedKph, unit: .kilometersPerHour)
         }
-        
+
         if let earthDistanceKilometers = try? values.decodeIfPresent(Double.self, forKey: .earthDistanceKilometers) {
             earthDistance = .init(value: earthDistanceKilometers, unit: .kilometers)
         }
-        
+
         if let marsDistanceKilometers = try? values.decodeIfPresent(Double.self, forKey: .marsDistanceKilometers) {
             marsDistance = .init(value: marsDistanceKilometers, unit: .kilometers)
         }
-        
+
         flickrImages = try? values.decodeIfPresent([URL].self, forKey: .flickrImages)
         wikipedia = try? values.decodeIfPresent(URL.self, forKey: .wikipedia)
         video = try? values.decodeIfPresent(URL.self, forKey: .video)
