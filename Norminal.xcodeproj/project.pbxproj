@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B01B15826428FEB0012833E /* SceneKit Asset Catalog.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B01B15726428FEB0012833E /* SceneKit Asset Catalog.scnassets */; };
 		8B07905225F2FC41006CD9BE /* PayloadCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B07905125F2FC41006CD9BE /* PayloadCard.swift */; };
 		8B0B4DC325EE511500F1C068 /* LaunchCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */; };
 		8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0D1D6E253351EA0056FACA /* VisualEffects */; };
@@ -186,6 +187,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B01B15726428FEB0012833E /* SceneKit Asset Catalog.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = "SceneKit Asset Catalog.scnassets"; sourceTree = "<group>"; };
 		8B07905125F2FC41006CD9BE /* PayloadCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadCard.swift; sourceTree = "<group>"; };
 		8B0B4DC225EE511500F1C068 /* LaunchCountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCountdownView.swift; sourceTree = "<group>"; };
 		8B0D1D75253363BF0056FACA /* MissionRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapView.swift; sourceTree = "<group>"; };
@@ -331,6 +333,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B01B15226428D3A0012833E /* Globe */ = {
+			isa = PBXGroup;
+			children = (
+				8B01B15726428FEB0012833E /* SceneKit Asset Catalog.scnassets */,
+			);
+			path = Globe;
+			sourceTree = "<group>";
+		};
 		8B208B86258EBC6A009107EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +516,7 @@
 		8BE2684A2610A191003B0C62 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B01B15226428D3A0012833E /* Globe */,
 				8B83E8AB253769AE002AE62B /* Cards */,
 				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
 				8B29D0BE2610BBA800FBA0C5 /* Color.swift */,
@@ -727,6 +738,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B01B15826428FEB0012833E /* SceneKit Asset Catalog.scnassets in Resources */,
 				8BF143E525F10C370045B95D /* Secrets.plist in Resources */,
 				8B46A5852530CE760084E52D /* Assets.xcassets in Resources */,
 				8BA63E88263CC2D600E019BC /* GoogleService-Info.plist in Resources */,
