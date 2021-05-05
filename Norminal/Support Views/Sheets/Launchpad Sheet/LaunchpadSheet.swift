@@ -19,9 +19,7 @@ struct LaunchpadSheet: View {
             if let launches = launchpad.launches {
                 Section(header: Text("Launches")) {
                     ForEach(launches) { launch in
-                        NavigationLink(destination: LaunchDetailView(launch: launch)) {
-                            LaunchListTile(launch: launch, showDetails: false)
-                        }
+                        LaunchListTile(launch: launch, showDetails: false)
                     }
                 }
             }

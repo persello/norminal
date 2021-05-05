@@ -12,6 +12,7 @@ struct LaunchMapSection: View {
     @EnvironmentObject var launch: Launch
     @State private var region: MKCoordinateRegion?
     @State var annotationItems: [PointOfInterest] = []
+    @State var loading = true
 
     func findAnnotationItems() {
         var result: [PointOfInterest] = []
@@ -69,23 +70,33 @@ struct LaunchMapSection: View {
     }
 
     var body: some View {
-        if annotationItems.count > 0 {
+        if !loading {
             Section(header: Text("Points of interest")) {
-                if region != nil {
-                    Map(coordinateRegion: Binding($region)!, annotationItems: annotationItems.filter({ $0.coordinates != nil })) { item in
-                        MapAnnotation(coordinate: item.coordinates!,
-                                      anchorPoint: CGPoint(x: 0.5, y: 0.5)) {
-                            item.getMarker().scaleEffect(0.5)
+                if annotationItems.count > 0 {
+                    if region != nil {
+                        Map(coordinateRegion: Binding($region)!, annotationItems: annotationItems.filter({ $0.coordinates != nil })) { item in
+                            MapAnnotation(coordinate: item.coordinates!,
+                                          anchorPoint: CGPoint(x: 0.5, y: 0.5)) {
+                                item.getMarker().scaleEffect(0.5)
+                            }
+                        }
+                        .padding(.init(top: -20, leading: -20, bottom: -10, trailing: -20))
+                        .aspectRatio(0.618 * 2, contentMode: .fill)
+                    }
+
+                    ForEach(annotationItems) { item in
+                        NavigationLink(destination: generateDestinationView(poi: item)) {
+                            PointOfInterestRow(poi: item, region: $region)
                         }
                     }
-                    .padding(.init(top: -20, leading: -20, bottom: -10, trailing: -20))
-                    .aspectRatio(0.618 * 2, contentMode: .fill)
-                }
-
-                ForEach(annotationItems) { item in
-                    NavigationLink(destination: generateDestinationView(poi: item)) {
-                        PointOfInterestRow(poi: item, region: $region)
+                } else {
+                    VStack(alignment: .center) {
+                        Text("No points of interest available")
+                            .font(.title2)
+                        Text("Check back in a few days")
+                            .foregroundColor(.gray)
                     }
+                    .padding(10)
                 }
             }
         } else {
@@ -99,6 +110,8 @@ struct LaunchMapSection: View {
                             if let launchpadLocation = launch.launchpad?.location {
                                 region = MKCoordinateRegion(center: launchpadLocation, span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
                             }
+
+                            loading = false
                         }
                     }
                 Spacer()

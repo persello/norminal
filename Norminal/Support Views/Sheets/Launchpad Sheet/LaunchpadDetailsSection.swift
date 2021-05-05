@@ -20,6 +20,7 @@ struct LaunchpadDetailsSection: View {
                     .font(.title.bold())
 
                 Text(launchpad.fullName)
+                    .lineLimit(4)
                     .font(.subheadline)
                     .foregroundColor(.gray)
 

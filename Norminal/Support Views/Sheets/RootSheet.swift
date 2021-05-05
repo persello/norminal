@@ -11,17 +11,17 @@ struct RootSheet<Content: View>: View {
     @Binding var modalShown: Bool
     var content: () -> Content
     
-    init(modalShown: Binding<Bool>, _ content: @escaping () -> Content) {
-        self._modalShown = modalShown
-        self.content = content
-    }
+//    init(modalShown: Binding<Bool>, _ content: @escaping () -> Content) {
+//        self._modalShown = modalShown
+//        self.content = content
+//    }
 
     var body: some View {
         NavigationView {
             content()
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing: Button(action: {
-                    self.modalShown.toggle()
+                    self.modalShown = false
                 }) {
                     Text("Done").bold()
                 })

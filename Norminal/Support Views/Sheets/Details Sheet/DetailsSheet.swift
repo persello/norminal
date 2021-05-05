@@ -13,11 +13,10 @@ struct DetailsSheet: View {
     var body: some View {
         List {
             LaunchDetailsSection()
-
             LaunchMapSection()
         }
         .environmentObject(launch)
-        .listStyle(InsetGroupedListStyle())
+//        .listStyle(InsetGroupedListStyle())
         .navigationTitle(Text(launch.name))
     }
 }
