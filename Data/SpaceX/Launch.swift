@@ -271,7 +271,7 @@ class Launch: Decodable, ObservableObject {
     private var launchpadID: String?
 
     /// List of cores.
-    private var cores: [Core]?
+    public var cores: [Core]?
 
     /// Internet resources for this launch.
     public var links: Links?
