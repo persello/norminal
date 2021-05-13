@@ -27,10 +27,11 @@ class Core: Decodable, ObservableObject {
     public var asdsLandings: Int?
     public var lastUpdate: String?
     private var launchIDs: [String]?
+    public var stringID: String
     public var launches: [Launch] {
         if let launches = launchIDs?.compactMap({ id in
             SpaceXData.shared.launches.first(where: { launch in
-                id == launch.idstring
+                id == launch.stringID
             })
         }) {
             return launches
@@ -48,9 +49,10 @@ class Core: Decodable, ObservableObject {
         case asdsLandings = "asds_landings"
         case lastUpdate = "last_update"
         case launchIDs = "launches"
+        case stringID = "id"
     }
 }
 
 extension Core: Identifiable {
-    var id: String { return serial }
+    var id: String { return stringID }
 }

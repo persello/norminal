@@ -55,7 +55,7 @@ class Launchpad: Decodable, ObservableObject {
     public var launches: [Launch]? {
         launchIDs?.compactMap({ id in
             SpaceXData.shared.launches.first(where: { launch in
-                launch.idstring == id
+                launch.stringID == id
             })
         })
     }
@@ -67,7 +67,7 @@ class Launchpad: Decodable, ObservableObject {
     public var status: LaunchpadStatus
 
     /// Launchpad ID string
-    public var idstring: String
+    public var stringID: String
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -83,7 +83,7 @@ class Launchpad: Decodable, ObservableObject {
         case launchIDs = "launches"
         case details
         case status
-        case idstring = "id"
+        case stringID = "id"
     }
 
     // MARK: Launchpad weather
@@ -92,7 +92,7 @@ class Launchpad: Decodable, ObservableObject {
     static var forecastsCache = NSCache<NSString, WeatherAPIResponse.WeatherAPIForecastHour>()
 
     public func getForecast(for date: Date, completion: @escaping (Result<WeatherAPIResponse.WeatherAPIForecastHour, Never>) -> Void) {
-        if let cachedResponse = Launchpad.forecastsCache.object(forKey: "\(date.description)-\(idstring)" as NSString) {
+        if let cachedResponse = Launchpad.forecastsCache.object(forKey: "\(date.description)-\(stringID)" as NSString) {
             completion(.success(cachedResponse))
             return
         }
@@ -102,7 +102,7 @@ class Launchpad: Decodable, ObservableObject {
             case let .success(result):
                 if let hourlyForecast = result.getOnlyHourlyForecast() {
                     completion(.success(hourlyForecast))
-                    Launchpad.forecastsCache.setObject(hourlyForecast, forKey: "\(date.description)-\(self.idstring)" as NSString)
+                    Launchpad.forecastsCache.setObject(hourlyForecast, forKey: "\(date.description)-\(self.stringID)" as NSString)
                 }
             default:
                 break
@@ -115,7 +115,7 @@ class Launchpad: Decodable, ObservableObject {
 
 extension Launchpad: Identifiable {
     /// Launchpad ID
-    var id: UUID { return UUID(stringWithoutDashes: idstring)! }
+    var id: UUID { return UUID(stringWithoutDashes: stringID)! }
 }
 
 extension Launchpad {

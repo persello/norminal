@@ -66,7 +66,7 @@ class Landpad: Decodable {
     public var status: Status
 
     /// Landpad ID string
-    public var idstring: String
+    public var stringID: String
 
     enum CodingKeys: String, CodingKey {
         case name = "name"
@@ -82,7 +82,7 @@ class Landpad: Decodable {
         case details = "details"
         case launches = "launches"
         case status = "status"
-        case idstring = "id"
+        case stringID = "id"
     }
 }
 
@@ -90,7 +90,7 @@ class Landpad: Decodable {
 
 extension Landpad: Identifiable {
     /// Landpad ID
-    var id: UUID { return UUID(stringWithoutDashes: self.idstring)! }
+    var id: UUID { return UUID(stringWithoutDashes: self.stringID)! }
 }
 
 extension Landpad {

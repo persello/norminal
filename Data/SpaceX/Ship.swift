@@ -30,12 +30,12 @@ class Ship: ObservableObject, Decodable {
     public var launches: [Launch]? {
         launchIDs?.compactMap({ id in
             SpaceXData.shared.launches.first(where: { launch in
-                launch.idstring == id
+                launch.stringID == id
             })
         })
     }
 
-    public var idstring: String
+    public var stringID: String
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -50,7 +50,7 @@ class Ship: ObservableObject, Decodable {
         case latitude, longitude
         case link, image
         case launchIDs = "launches"
-        case idstring = "id"
+        case stringID = "id"
     }
 
     required init(from decoder: Decoder) throws {
@@ -89,6 +89,6 @@ class Ship: ObservableObject, Decodable {
         link = try? values.decodeIfPresent(URL.self, forKey: .link)
         image = try? values.decodeIfPresent(URL.self, forKey: .image)
         launchIDs = try? values.decodeIfPresent([String].self, forKey: .launchIDs)
-        idstring = try values.decode(String.self, forKey: .idstring)
+        stringID = try values.decode(String.self, forKey: .stringID)
     }
 }
