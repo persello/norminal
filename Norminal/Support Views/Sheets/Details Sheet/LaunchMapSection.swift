@@ -36,7 +36,7 @@ struct LaunchMapSection: View {
         }
 
         if let landpads = launch.landpads {
-            for landpad in landpads.filter({ $0.1?.idstring != nil }) {
+            for landpad in landpads.filter({ $0.1?.stringID != nil }) {
                 let _landpad = landpad.1
 
                 switch _landpad?.type {
