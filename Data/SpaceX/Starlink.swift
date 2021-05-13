@@ -19,7 +19,7 @@ class Starlink: ObservableObject, Decodable {
     public var version: String?
     private var launchID: String?
     public var launch: Launch? {
-        SpaceXData.shared.launches.first(where: { $0.idstring == launchID })
+        SpaceXData.shared.launches.first(where: { $0.stringID == launchID })
     }
 
     private var latitude: Double?

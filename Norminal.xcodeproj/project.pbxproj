@@ -62,6 +62,12 @@
 		8B29D0CC2611178800FBA0C5 /* LaunchOrderingControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0CB2611178800FBA0C5 /* LaunchOrderingControls.swift */; };
 		8B29D0CE26111D3D00FBA0C5 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0CD26111D3D00FBA0C5 /* Filter.swift */; };
 		8B29D0CF26111D4200FBA0C5 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0CD26111D3D00FBA0C5 /* Filter.swift */; };
+		8B32865E264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
+		8B32865F264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
+		8B328660264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
+		8B328662264C91A60039ADE8 /* RocketInstanceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B328661264C91A60039ADE8 /* RocketInstanceSheet.swift */; };
+		8B328663264C91A60039ADE8 /* RocketInstanceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B328661264C91A60039ADE8 /* RocketInstanceSheet.swift */; };
+		8B328664264C91A60039ADE8 /* RocketInstanceSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B328661264C91A60039ADE8 /* RocketInstanceSheet.swift */; };
 		8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5802530CE740084E52D /* NorminalApp.swift */; };
 		8B46A5832530CE740084E52D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5822530CE740084E52D /* MainView.swift */; };
 		8B46A5852530CE760084E52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
@@ -142,8 +148,6 @@
 		8BE268442610A031003B0C62 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE268432610A031003B0C62 /* MainView.swift */; };
 		8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85F82562FE07006144ED /* CrewSheet.swift */; };
 		8BEB85FD25631B56006144ED /* AstronautSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEB85FC25631B56006144ED /* AstronautSheet.swift */; };
-		8BF143E525F10C370045B95D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BF143D925F10C370045B95D /* Secrets.plist */; };
-		8BF143E625F10C370045B95D /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BF143D925F10C370045B95D /* Secrets.plist */; };
 		8BF143E725F10C370045B95D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DA25F10C370045B95D /* Secrets.swift */; };
 		8BF143E825F10C370045B95D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DA25F10C370045B95D /* Secrets.swift */; };
 		8BF143E925F10C370045B95D /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DC25F10C370045B95D /* WeatherAPI.swift */; };
@@ -209,6 +213,8 @@
 		8B29D0C92610EF8E00FBA0C5 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		8B29D0CB2611178800FBA0C5 /* LaunchOrderingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOrderingControls.swift; sourceTree = "<group>"; };
 		8B29D0CD26111D3D00FBA0C5 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		8B32865D264C8F930039ADE8 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		8B328661264C91A60039ADE8 /* RocketInstanceSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketInstanceSheet.swift; sourceTree = "<group>"; };
 		8B46A57D2530CE740084E52D /* Norminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Norminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B46A5802530CE740084E52D /* NorminalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorminalApp.swift; sourceTree = "<group>"; };
 		8B46A5822530CE740084E52D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -276,7 +282,6 @@
 		8BE268432610A031003B0C62 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8BEB85F82562FE07006144ED /* CrewSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewSheet.swift; sourceTree = "<group>"; };
 		8BEB85FC25631B56006144ED /* AstronautSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautSheet.swift; sourceTree = "<group>"; };
-		8BF143D925F10C370045B95D /* Secrets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		8BF143DA25F10C370045B95D /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		8BF143DC25F10C370045B95D /* WeatherAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		8BF143DE25F10C370045B95D /* Launchpad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Launchpad.swift; sourceTree = "<group>"; };
@@ -557,6 +562,7 @@
 				8BA63E89263D91BB00E019BC /* LaunchFilterSheet.swift */,
 				8BE09FC22641EEED0001C9D9 /* LaunchpadSheet.swift */,
 				8BBEEBCD257FFDEF00EA168A /* PhotoSheet.swift */,
+				8B328661264C91A60039ADE8 /* RocketInstanceSheet.swift */,
 				8BE09FC02641EA0B0001C9D9 /* RootSheet.swift */,
 				8BC7E6CC25672966005E4304 /* WebcastSheet.swift */,
 			);
@@ -568,7 +574,7 @@
 			children = (
 				8B29D0CD26111D3D00FBA0C5 /* Filter.swift */,
 				8BF5F6EC2611211B00060A0E /* GlobalSettings.swift */,
-				8BF143D925F10C370045B95D /* Secrets.plist */,
+				8B32865D264C8F930039ADE8 /* Secrets.plist */,
 				8BF143DA25F10C370045B95D /* Secrets.swift */,
 				8BF143DB25F10C370045B95D /* Weather */,
 				8BDF3D9A260D4D3500DE48DD /* Other */,
@@ -736,7 +742,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BF143E625F10C370045B95D /* Secrets.plist in Resources */,
+				8B32865F264C8F930039ADE8 /* Secrets.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,8 +750,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B32865E264C8F930039ADE8 /* Secrets.plist in Resources */,
 				8BF5D53626431E6600309466 /* Media.xcassets in Resources */,
-				8BF143E525F10C370045B95D /* Secrets.plist in Resources */,
 				8B46A5852530CE760084E52D /* Assets.xcassets in Resources */,
 				8BA63E88263CC2D600E019BC /* GoogleService-Info.plist in Resources */,
 			);
@@ -755,6 +761,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B328660264C8F930039ADE8 /* Secrets.plist in Resources */,
 				8B98C945261C966A00FDF70E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -794,6 +801,7 @@
 				8BE09FC6264201DC0001C9D9 /* Launchpad.swift in Sources */,
 				8BF143E825F10C370045B95D /* Secrets.swift in Sources */,
 				8BB72031260E30C200B8433C /* Rocket.swift in Sources */,
+				8B328663264C91A60039ADE8 /* RocketInstanceSheet.swift in Sources */,
 				8BF143EA25F10C370045B95D /* WeatherAPI.swift in Sources */,
 				8B7F8D3D2607A90E008A226B /* FaceCropper.swift in Sources */,
 				8B7C68C926408A870075116B /* Starlink.swift in Sources */,
@@ -856,6 +864,7 @@
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
 				8BC7E6CD25672966005E4304 /* WebcastSheet.swift in Sources */,
 				8B87DFBA260659DB009C13D0 /* FeedbackView.swift in Sources */,
+				8B328662264C91A60039ADE8 /* RocketInstanceSheet.swift in Sources */,
 				8BEB85F92562FE07006144ED /* CrewSheet.swift in Sources */,
 				8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */,
 				8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */,
@@ -891,6 +900,7 @@
 				8B29D0932610B80C00FBA0C5 /* Capsule.swift in Sources */,
 				8B29D0BF2610BBA800FBA0C5 /* Color.swift in Sources */,
 				8B29D0A32610B80C00FBA0C5 /* Dragon.swift in Sources */,
+				8B328664264C91A60039ADE8 /* RocketInstanceSheet.swift in Sources */,
 				8B29D0A42610B80C00FBA0C5 /* Fairing.swift in Sources */,
 				8B29D0B72610BAF200FBA0C5 /* LaunchListTile.swift in Sources */,
 				8B29D0A82610B80C00FBA0C5 /* Payload.swift in Sources */,

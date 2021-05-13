@@ -51,7 +51,7 @@ struct LaunchpadDetailsSection: View {
                 Text("Details")
                     .font(.title.bold())
 
-                Text(launchpad.fullName)
+                Text("\(launchpad.fullName) • \(launchpad.status.rawValue.capitalizingFirstLetter())")
                     .font(.subheadline)
                     .foregroundColor(.gray)
 

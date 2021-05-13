@@ -12,7 +12,7 @@ class Payload: ObservableObject, Decodable {
         private var capsuleID: String?
         public var capsule: Capsule? {
             SpaceXData.shared.capsules.first(where: {
-                $0.idstring == capsuleID
+                $0.stringID == capsuleID
             })
         }
 
@@ -38,7 +38,7 @@ class Payload: ObservableObject, Decodable {
     private var launchID: String?
     public var launch: Launch? {
         SpaceXData.shared.launches.first(where: {
-            $0.idstring == launchID
+            $0.stringID == launchID
         })
     }
 
@@ -64,7 +64,7 @@ class Payload: ObservableObject, Decodable {
     public var argumentOfPericenter: Measurement<UnitAngle>?
     public var meanAnomaly: Measurement<UnitAngle>?
     public var dragon: Payload.Dragon?
-    public var idstring: String
+    public var stringID: String
 
     enum CodingKeys: String, CodingKey {
         case name, type, reused
@@ -90,7 +90,7 @@ class Payload: ObservableObject, Decodable {
         case argumentOfPericenterDegrees = "arg_of_pericenter"
         case meanAnomalyDegrees = "mean_anomaly"
         case dragon
-        case idstring = "id"
+        case stringID = "id"
     }
 
     required init(from decoder: Decoder) throws {
@@ -156,7 +156,7 @@ class Payload: ObservableObject, Decodable {
         }
 
         dragon = try? values.decodeIfPresent(Dragon.self, forKey: .dragon)
-        idstring = try values.decode(String.self, forKey: .idstring)
+        stringID = try values.decode(String.self, forKey: .stringID)
     }
 }
 

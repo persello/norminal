@@ -36,7 +36,7 @@ class Fairing: ObservableObject, Decodable {
     public var launches: [Launch]? {
         launchIDs?.compactMap({ id in
             SpaceXData.shared.launches.first(where: { launch in
-                launch.idstring == id
+                launch.stringID == id
             })
         })
     }
