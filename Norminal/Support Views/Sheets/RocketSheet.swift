@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RocketInstanceSheet: View {
+struct RocketSheet: View {
     var launch: Launch
 
     var body: some View {
@@ -39,7 +39,15 @@ struct RocketInstanceSheet: View {
                             .font(.callout)
                     }
                     
-                    Text("\(rocket.company ?? "Unknown manufacturer") (\(rocket.country ?? "Unknown country"))")
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(rocket.company ?? "Unknown manufacturer")
+
+                        }
+                        Text(rocket.country ?? "Unknown country")
+                            .foregroundColor(.gray)
+                            .font(.callout)
+                    }
                 }
                 .padding(.vertical, 8)
                 
@@ -69,6 +77,6 @@ struct RocketInstanceSheet: View {
 
 struct RocketSheet_Previews: PreviewProvider {
     static var previews: some View {
-        RocketInstanceSheet(launch: FakeData.shared.trailblazer!)
+        RocketSheet(launch: FakeData.shared.trailblazer!)
     }
 }
