@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8B03EF5326507969006FCC35 /* RocketSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCBC1C264DDCEF00937206 /* RocketSheet.swift */; };
+		8B03EF5526507C4C006FCC35 /* InformationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03EF5426507C4C006FCC35 /* InformationRow.swift */; };
+		8B03EF5626507C4C006FCC35 /* InformationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03EF5426507C4C006FCC35 /* InformationRow.swift */; };
 		8B07905225F2FC41006CD9BE /* PayloadCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B07905125F2FC41006CD9BE /* PayloadCard.swift */; };
 		8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */ = {isa = PBXBuildFile; productRef = 8B0D1D6E253351EA0056FACA /* VisualEffects */; };
 		8B0D1D76253363BF0056FACA /* MissionRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D1D75253363BF0056FACA /* MissionRecapView.swift */; };
@@ -197,6 +199,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B03EF5426507C4C006FCC35 /* InformationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRow.swift; sourceTree = "<group>"; };
 		8B07905125F2FC41006CD9BE /* PayloadCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadCard.swift; sourceTree = "<group>"; };
 		8B0D1D75253363BF0056FACA /* MissionRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapView.swift; sourceTree = "<group>"; };
 		8B0D1D78253365660056FACA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -600,6 +603,7 @@
 				8B29D0BE2610BBA800FBA0C5 /* Color.swift */,
 				8B29D0C12610BE8600FBA0C5 /* ColorfulShadow.swift */,
 				8B29D0AF2610B88A00FBA0C5 /* CrossPlatformImage.swift */,
+				8B03EF5426507C4C006FCC35 /* InformationRow.swift */,
 				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
 				8B29D08E2610B3F700FBA0C5 /* LaunchNotSelectedView.swift */,
 				8B5459F92641469800373B8B /* MapMarkers.swift */,
@@ -919,6 +923,7 @@
 				8BF5D53226431DE000309466 /* GlobeView.swift in Sources */,
 				8BBCBC30264DDCEF00937206 /* LaunchMapSection.swift in Sources */,
 				8BBCBC31264DDCEF00937206 /* LaunchDetailsSection.swift in Sources */,
+				8B03EF5526507C4C006FCC35 /* InformationRow.swift in Sources */,
 				8B29D0C02610BC7300FBA0C5 /* Color.swift in Sources */,
 				8BF143EB25F10C370045B95D /* Launchpad.swift in Sources */,
 				8BBCBC3A264DDCEF00937206 /* LaunchpadDetailsSection.swift in Sources */,
@@ -965,6 +970,7 @@
 				8B29D0CA2610EF8E00FBA0C5 /* SearchBar.swift in Sources */,
 				8B29D0942610B80C00FBA0C5 /* AdditionalCodingKeys.swift in Sources */,
 				8B29D0BD2610BB8000FBA0C5 /* LaunchCountdownView.swift in Sources */,
+				8B03EF5626507C4C006FCC35 /* InformationRow.swift in Sources */,
 				8B29D09A2610B80C00FBA0C5 /* UnitForce.swift in Sources */,
 				8BE09FC7264201DD0001C9D9 /* Launchpad.swift in Sources */,
 				8B29D0A22610B80C00FBA0C5 /* Ship.swift in Sources */,
@@ -1013,7 +1019,7 @@
 				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 141;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = Widget/Info.plist;
@@ -1044,7 +1050,7 @@
 				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 141;
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				INFOPLIST_FILE = Widget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -1196,7 +1202,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Norminal/Norminal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 141;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
@@ -1227,7 +1233,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Norminal/Norminal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 140;
+				CURRENT_PROJECT_VERSION = 141;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BZTVD28H6K;
 				ENABLE_PREVIEWS = YES;

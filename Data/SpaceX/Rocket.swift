@@ -389,18 +389,26 @@ extension Rocket.Engines: Decodable {
 
 extension Rocket {
     var stageCountDescription: String {
+        var result: String!
         if let stages = stages {
             switch stages {
             case 1:
-                return "Single-stage"
+                result = "Single-stage"
             case 2:
-                return "Two-stage"
+                result = "Two-stage"
             default:
-                return "\(stages)-stage"
+                result = "\(stages)-stage"
             }
         } else {
-            return "Unknown staging"
+            result = "Unknown staging"
         }
+        
+        if let boosters = boosters,
+           boosters > 0 {
+            result += " with \(boosters) boosters"
+        }
+        
+        return result
     }
 }
 
