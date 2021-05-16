@@ -402,12 +402,7 @@ extension Rocket {
         } else {
             result = "Unknown staging"
         }
-        
-        if let boosters = boosters,
-           boosters > 0 {
-            result += " with \(boosters) boosters"
-        }
-        
+       
         return result
     }
 }

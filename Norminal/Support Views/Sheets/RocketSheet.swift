@@ -45,9 +45,11 @@ struct RocketSheet: View {
                         VStack(alignment: .leading) {
                             Text(core.nameWithFlight)
 
-                            Text(core.recoveryStatus)
-                                .foregroundColor(.gray)
-                                .font(.callout)
+                            if !launch.upcoming {
+                                Text(core.recoveryStatus)
+                                    .foregroundColor(.gray)
+                                    .font(.callout)
+                            }
                         }
                     }
                 }
@@ -67,7 +69,7 @@ struct RocketSheet: View {
                             .font(.title)
                             .bold()
 
-                        Text("\(rocket.stageCountDescription) \(rocket.type ?? "vehicle")".uppercased())
+                        Text("\(rocket.stageCountDescription) \(rocket.type ?? "vehicle")\((rocket.boosters ?? 0) > 0 ? " with \(rocket.boosters!) boosters" : "")".uppercased())
                             .foregroundColor(.gray)
                             .fontWeight(.semibold)
                             .font(.callout)
@@ -97,7 +99,11 @@ struct RocketSheet: View {
                     }
 
                     if let diameter = rocket.diameter {
-                        InformationRow(label: "Diameter", value: measurementFormatter.string(from: diameter), imageName: "arrow.left.and.right.circle")
+                        if (rocket.boosters ?? 0) > 0 {
+                            InformationRow(label: "Width", value: measurementFormatter.string(from: diameter), imageName: "arrow.left.and.right")
+                        } else {
+                            InformationRow(label: "Diameter", value: measurementFormatter.string(from: diameter), imageName: "arrow.left.and.right.circle")
+                        }
                     }
 
                     if let mass = rocket.mass {
