@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/gavineadie/SatelliteKit.git",
         "state": {
           "branch": null,
-          "revision": "af37b2c5c05365e0749681f3ce99a0f028be9468",
-          "version": "1.0.27"
+          "revision": "64f7195fe74ba8c5168f2878a264a6cf09480612",
+          "version": "1.0.28"
         }
       },
       {
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/persello/telescope",
         "state": {
           "branch": "develop",
-          "revision": "587eb525742b0daa04109772ee4bf3c145e3fe5a",
+          "revision": "87b14dc612c0cffb061000a3a2bcf66a621b4adb",
           "version": null
         }
       },

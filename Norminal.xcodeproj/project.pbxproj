@@ -85,6 +85,16 @@
 		8B4E9605259671FD00F9668E /* FirebaseCrashlytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */; platformFilter = ios; };
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
+		8B75FBE826526B42001E7E1E /* GlobeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF5D53126431DE000309466 /* GlobeView.swift */; };
+		8B75FBE926526B45001E7E1E /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF5D53326431E3100309466 /* TestScene.swift */; };
+		8B75FBEC26527171001E7E1E /* RocketCoresSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBEB26527171001E7E1E /* RocketCoresSection.swift */; };
+		8B75FBEE265271FC001E7E1E /* RocketFairingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBED265271FB001E7E1E /* RocketFairingsSection.swift */; };
+		8B75FBF026527239001E7E1E /* UsefulFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBEF26527239001E7E1E /* UsefulFormatters.swift */; };
+		8B75FBF126527239001E7E1E /* UsefulFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBEF26527239001E7E1E /* UsefulFormatters.swift */; };
+		8B75FBF32652729A001E7E1E /* RocketModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF22652729A001E7E1E /* RocketModelSection.swift */; };
+		8B75FBF42652729A001E7E1E /* RocketModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF22652729A001E7E1E /* RocketModelSection.swift */; };
+		8B75FBF626527339001E7E1E /* RocketPhysicalSpecificationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF526527339001E7E1E /* RocketPhysicalSpecificationsSection.swift */; };
+		8B75FBF82652736F001E7E1E /* RocketPayloadWeightsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF72652736F001E7E1E /* RocketPayloadWeightsSection.swift */; };
 		8B7C68C826408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
 		8B7C68C926408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
 		8B7C68CA26408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
@@ -244,6 +254,12 @@
 		8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCrashlytics.xcframework; sourceTree = "<group>"; };
 		8B5459F92641469800373B8B /* MapMarkers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkers.swift; sourceTree = "<group>"; };
 		8B69255A253206E900D61C3F /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
+		8B75FBEB26527171001E7E1E /* RocketCoresSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCoresSection.swift; sourceTree = "<group>"; };
+		8B75FBED265271FB001E7E1E /* RocketFairingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketFairingsSection.swift; sourceTree = "<group>"; };
+		8B75FBEF26527239001E7E1E /* UsefulFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsefulFormatters.swift; sourceTree = "<group>"; };
+		8B75FBF22652729A001E7E1E /* RocketModelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModelSection.swift; sourceTree = "<group>"; };
+		8B75FBF526527339001E7E1E /* RocketPhysicalSpecificationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketPhysicalSpecificationsSection.swift; sourceTree = "<group>"; };
+		8B75FBF72652736F001E7E1E /* RocketPayloadWeightsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketPayloadWeightsSection.swift; sourceTree = "<group>"; };
 		8B7C68C726408A870075116B /* Starlink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Starlink.swift; sourceTree = "<group>"; };
 		8B7F8D3B2607A756008A226B /* FaceCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceCropper.swift; sourceTree = "<group>"; };
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
@@ -463,6 +479,19 @@
 			path = FirebaseCrashlytics;
 			sourceTree = "<group>";
 		};
+		8B75FBEA26527149001E7E1E /* Rocket Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				8B75FBEB26527171001E7E1E /* RocketCoresSection.swift */,
+				8B75FBED265271FB001E7E1E /* RocketFairingsSection.swift */,
+				8BBCBC1C264DDCEF00937206 /* RocketSheet.swift */,
+				8B75FBF22652729A001E7E1E /* RocketModelSection.swift */,
+				8B75FBF526527339001E7E1E /* RocketPhysicalSpecificationsSection.swift */,
+				8B75FBF72652736F001E7E1E /* RocketPayloadWeightsSection.swift */,
+			);
+			path = "Rocket Sheet";
+			sourceTree = "<group>";
+		};
 		8B83E8AB253769AE002AE62B /* Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,14 +542,13 @@
 		8BBCBC12264DDCEF00937206 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
+				8B75FBEA26527149001E7E1E /* Rocket Sheet */,
 				8BBCBC1E264DDCEF00937206 /* AstronautSheet.swift */,
 				8BBCBC15264DDCEF00937206 /* CrewSheet.swift */,
 				8BBCBC16264DDCEF00937206 /* Details Sheet */,
-				8BBCBC1F264DDCEF00937206 /* GallerySheet.swift */,
 				8BBCBC1D264DDCEF00937206 /* LaunchFilterSheet.swift */,
 				8BBCBC20264DDCEF00937206 /* Launchpad Sheet */,
-				8BBCBC24264DDCEF00937206 /* Photo Sheet */,
-				8BBCBC1C264DDCEF00937206 /* RocketSheet.swift */,
+				8BBCBC24264DDCEF00937206 /* Gallery Sheet */,
 				8BBCBC27264DDCEF00937206 /* RootSheet.swift */,
 				8BBCBC13264DDCEF00937206 /* Webcast Sheet */,
 			);
@@ -557,21 +585,26 @@
 			path = "Launchpad Sheet";
 			sourceTree = "<group>";
 		};
-		8BBCBC24264DDCEF00937206 /* Photo Sheet */ = {
+		8BBCBC24264DDCEF00937206 /* Gallery Sheet */ = {
 			isa = PBXGroup;
 			children = (
+				8BBCBC1F264DDCEF00937206 /* GallerySheet.swift */,
 				8BBCBC25264DDCEF00937206 /* PhotoSheet.swift */,
 				8BBCBC26264DDCEF00937206 /* ShareSheet.swift */,
 			);
-			path = "Photo Sheet";
+			path = "Gallery Sheet";
 			sourceTree = "<group>";
 		};
-		8BDF3D9A260D4D3500DE48DD /* Other */ = {
+		8BDF3D9A260D4D3500DE48DD /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				8B46A59F253118160084E52D /* FakeData.swift */,
+				8B29D0CD26111D3D00FBA0C5 /* Filter.swift */,
+				8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */,
 				8BDF3D98260D4D2400DE48DD /* UnitForce.swift */,
+				8B75FBEF26527239001E7E1E /* UsefulFormatters.swift */,
 			);
-			path = Other;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		8BE2683326109FB7003B0C62 /* NorminalMac */ = {
@@ -627,12 +660,10 @@
 		8BF143D725F10C370045B95D /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				8B29D0CD26111D3D00FBA0C5 /* Filter.swift */,
 				8BF5F6EC2611211B00060A0E /* GlobalSettings.swift */,
 				8B32865D264C8F930039ADE8 /* Secrets.plist */,
 				8BF143DA25F10C370045B95D /* Secrets.swift */,
-				8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */,
-				8BDF3D9A260D4D3500DE48DD /* Other */,
+				8BDF3D9A260D4D3500DE48DD /* Utilities */,
 				8BF143DD25F10C370045B95D /* SpaceX */,
 				8BF143DB25F10C370045B95D /* Weather */,
 			);
@@ -658,7 +689,6 @@
 				8BA4D6F3260E503C0096CE96 /* Dragon.swift */,
 				8B7F8D3B2607A756008A226B /* FaceCropper.swift */,
 				8BA4D6F9260E505B0096CE96 /* Fairing.swift */,
-				8B46A59F253118160084E52D /* FakeData.swift */,
 				8BA4D705260E50890096CE96 /* History.swift */,
 				8BF143E025F10C370045B95D /* Landpad.swift */,
 				8BF143DF25F10C370045B95D /* Launch.swift */,
@@ -862,6 +892,7 @@
 			files = (
 				8B7C68C826408A870075116B /* Starlink.swift in Sources */,
 				8BF143F325F10C370045B95D /* Astronaut.swift in Sources */,
+				8B75FBF626527339001E7E1E /* RocketPhysicalSpecificationsSection.swift in Sources */,
 				8BBCBC32264DDCEF00937206 /* PointOfInterest.swift in Sources */,
 				8BBCBC39264DDCEF00937206 /* LaunchpadMapSection.swift in Sources */,
 				8BA4D6FD260E50690096CE96 /* Roadster.swift in Sources */,
@@ -872,6 +903,7 @@
 				8BB7202F260E260F00B8433C /* AdditionalCodingKeys.swift in Sources */,
 				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
 				8BA4D6F4260E503C0096CE96 /* Dragon.swift in Sources */,
+				8B75FBEC26527171001E7E1E /* RocketCoresSection.swift in Sources */,
 				8BBCBC40264DDCEF00937206 /* LaunchDetailHeaderView.swift in Sources */,
 				8BBCBC2D264DDCEF00937206 /* WebcastSheet.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
@@ -886,6 +918,8 @@
 				8BDF3D99260D4D2400DE48DD /* UnitForce.swift in Sources */,
 				8BF143ED25F10C370045B95D /* Launch.swift in Sources */,
 				8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */,
+				8B75FBEE265271FC001E7E1E /* RocketFairingsSection.swift in Sources */,
+				8B75FBE926526B45001E7E1E /* TestScene.swift in Sources */,
 				8BBCBC2C264DDCEF00937206 /* PinchToZoom.swift in Sources */,
 				8B29D0C32610BE9900FBA0C5 /* ColorfulShadow.swift in Sources */,
 				8BA4D6FA260E505B0096CE96 /* Fairing.swift in Sources */,
@@ -901,10 +935,12 @@
 				8BBCBC3F264DDCEF00937206 /* LaunchDetailResourcesView.swift in Sources */,
 				8B29D08F2610B3F700FBA0C5 /* LaunchNotSelectedView.swift in Sources */,
 				8BBCBC30264DDCEF00937206 /* LaunchMapSection.swift in Sources */,
+				8B75FBF026527239001E7E1E /* UsefulFormatters.swift in Sources */,
 				8BBCBC31264DDCEF00937206 /* LaunchDetailsSection.swift in Sources */,
 				8B03EF5526507C4C006FCC35 /* InformationRow.swift in Sources */,
 				8B29D0C02610BC7300FBA0C5 /* Color.swift in Sources */,
 				8BF143EB25F10C370045B95D /* Launchpad.swift in Sources */,
+				8B75FBF32652729A001E7E1E /* RocketModelSection.swift in Sources */,
 				8BBCBC3A264DDCEF00937206 /* LaunchpadDetailsSection.swift in Sources */,
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,
 				8BBCBC3B264DDCEF00937206 /* PhotoSheet.swift in Sources */,
@@ -922,10 +958,12 @@
 				8B133206264164E500638038 /* MapMarkers.swift in Sources */,
 				8BBCBC35264DDCEF00937206 /* LaunchFilterSheet.swift in Sources */,
 				8BBCBC37264DDCEF00937206 /* GallerySheet.swift in Sources */,
+				8B75FBE826526B42001E7E1E /* GlobeView.swift in Sources */,
 				8BF143EF25F10C370045B95D /* Landpad.swift in Sources */,
 				8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */,
 				8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */,
 				8BBC5F262651CA2D00E4CA2B /* StringCapitalization.swift in Sources */,
+				8B75FBF82652736F001E7E1E /* RocketPayloadWeightsSection.swift in Sources */,
 				8BA4D6EB260E50150096CE96 /* Capsule.swift in Sources */,
 				8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */,
 				8BBCBC3D264DDCEF00937206 /* RootSheet.swift in Sources */,
@@ -940,6 +978,8 @@
 				8B29D0932610B80C00FBA0C5 /* Capsule.swift in Sources */,
 				8B29D0BF2610BBA800FBA0C5 /* Color.swift in Sources */,
 				8B29D0A32610B80C00FBA0C5 /* Dragon.swift in Sources */,
+				8B75FBF126527239001E7E1E /* UsefulFormatters.swift in Sources */,
+				8B75FBF42652729A001E7E1E /* RocketModelSection.swift in Sources */,
 				8B29D0A42610B80C00FBA0C5 /* Fairing.swift in Sources */,
 				8B29D0B72610BAF200FBA0C5 /* LaunchListTile.swift in Sources */,
 				8B29D0A82610B80C00FBA0C5 /* Payload.swift in Sources */,

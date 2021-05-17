@@ -56,13 +56,21 @@ class Launch: Decodable, ObservableObject {
         public var recovered: Bool?
 
         /// List of IDs of the ships used for the recovery actions as `String`s.
-        public var ships: [String]
+        private var shipIDs: [String]
+
+        public var ships: [Ship]? {
+            return shipIDs.compactMap({ id in
+                SpaceXData.shared.ships.first(where: { ship in
+                    ship.stringID == id
+                })
+            })
+        }
 
         enum CodingKeys: String, CodingKey {
             case reused
             case recoveryAttempt = "recovery_attempt"
             case recovered
-            case ships
+            case shipIDs = "ships"
         }
     }
 
@@ -103,7 +111,7 @@ class Launch: Decodable, ObservableObject {
             return SpaceXData.shared.cores.first(where: { $0.stringID == id })
         }
 
-        public var nameWithFlight: String {
+        public var nameDotFlight: String {
             if let flight = flight,
                let serial = realCore?.serial,
                let reused = reused,

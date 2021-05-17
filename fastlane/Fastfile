@@ -73,10 +73,6 @@ platform :ios do
     upload_symbols_to_crashlytics(gsp_path: "./GoogleService-Info.plist",
                                   binary_path: "Resources/Crashlytics/upload-symbols",
                                   dsym_path: "Norminal.app.dSYM.zip")
-    download_dsyms
-    upload_symbols_to_crashlytics(gsp_path: "./GoogleService-Info.plist",
-                                  binary_path: "Resources/Crashlytics/upload-symbols")
-    clean_build_artifacts
 
     notification(message: "The app has been distributed to the #{lane} testers.", subtitle: "Fastlane #{lane} lane complete")
   end
