@@ -7,21 +7,37 @@
 
 import SwiftUI
 
-struct InformationRow: View {
+struct InformationRow<Icon: View>: View {
+    public init(label: String, value: String? = nil, image: (() -> Icon)?, isSerial: Bool = false) {
+        self.label = label
+        self.value = value
+        self.image = image ?? { Image("") as! Icon }
+        self.isSerial = isSerial
+    }
+
     var label: String
     var value: String?
-    var imageName: String?
+    var image: () -> Icon?
     var isSerial = false
-    
+
     var body: some View {
         HStack {
-            Label(label, systemImage: imageName ?? "")
+            Label { Text(label) } icon: { image() }
             Spacer()
             Text(value ?? "")
                 .foregroundColor(.gray)
                 .font(.system(.body, design: isSerial ? .monospaced : .default))
                 .multilineTextAlignment(.trailing)
         }
+    }
+}
+
+extension InformationRow where Icon == Image {
+    init(label: String, value: String? = nil, imageName: String? = nil, isSerial: Bool = false) {
+        self.label = label
+        self.value = value
+        image = { Image(systemName: imageName ?? "") }
+        self.isSerial = isSerial
     }
 }
 

@@ -17,7 +17,8 @@ struct RocketSheet: View {
                 RocketCoresSection(cores: cores, upcoming: launch.upcoming)
             }
 
-            if let fairings = launch.fairings {
+            if let fairings = launch.fairings,
+               fairings.recoveryAttempt != nil {
                 RocketFairingsSection(fairings: fairings)
             }
 
@@ -26,16 +27,20 @@ struct RocketSheet: View {
                     RocketModelSection(rocket: rocket)
 
                     RocketPhysicalSpecificationsSection(rocket: rocket)
-                    
+
                     RocketPayloadWeightsSection(rocket: rocket)
 
-                    Section(header: Text("Stages")) {
+                    if let firstStage = rocket.firstStage {
+                        RocketFirstStageSection(firstStage: firstStage)
+                    }
+                    
+                    if let secondStage = rocket.secondStage {
+                        RocketSecondStageSection(secondStage: secondStage)
                     }
 
-                    Section(header: Text("Engines")) {
+                    if let engines = rocket.engines {
+                        RocketEnginesSection(engines: engines)
                     }
-
-                    // TODO: Images
                 }
                 .environmentObject(rocket)
             }

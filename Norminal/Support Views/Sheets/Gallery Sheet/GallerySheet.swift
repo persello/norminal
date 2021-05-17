@@ -9,7 +9,7 @@ import SwiftUI
 import Telescope
 
 struct GallerySheet: View {
-    var launch: Launch
+    var imageURLs: [URL]
 
     private let cols = [GridItem(.adaptive(minimum: 100, maximum: 200), spacing: 2)]
 
@@ -17,7 +17,7 @@ struct GallerySheet: View {
         ZStack {
             ScrollView {
                 LazyVGrid(columns: cols, alignment: .center, spacing: 2) {
-                    ForEach((launch.links?.flickr?.originalImages)!, id: \.absoluteString) { imageURL in
+                    ForEach(imageURLs, id: \.absoluteString) { imageURL in
                         GeometryReader { gr in
                             NavigationLink(destination: PhotoSheet(imageURL: imageURL)) {
                                 TImage(RemoteImage(imageURL: imageURL))
@@ -38,6 +38,6 @@ struct GallerySheet: View {
 
 struct GallerySheet_Previews: PreviewProvider {
     static var previews: some View {
-        GallerySheet(launch: FakeData.shared.crewDragon!)
+        GallerySheet(imageURLs: (FakeData.shared.crewDragon!.links?.flickr?.originalImages)!)
     }
 }

@@ -45,7 +45,7 @@ class Rocket: ObservableObject, Decodable {
             case reusable
             case engines
             case fuelAmountTons = "fuel_amount_tons"
-            case burnTime = "burn_time"
+            case burnTime = "burn_time_sec"
         }
     }
 
@@ -89,7 +89,7 @@ class Rocket: ObservableObject, Decodable {
             case reusable
             case engines
             case fuelAmountTons = "fuel_amount_tons"
-            case burnTime = "burn_time"
+            case burnTime = "burn_time_sec"
             case payloads
         }
     }

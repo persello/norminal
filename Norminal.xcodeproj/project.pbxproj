@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B01A0302653132C009E2CD9 /* RocketSecondStageSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B01A02F2653132C009E2CD9 /* RocketSecondStageSection.swift */; };
+		8B01A03226531680009E2CD9 /* RocketEnginesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B01A03126531680009E2CD9 /* RocketEnginesSection.swift */; };
 		8B03EF5326507969006FCC35 /* RocketSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCBC1C264DDCEF00937206 /* RocketSheet.swift */; };
 		8B03EF5526507C4C006FCC35 /* InformationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03EF5426507C4C006FCC35 /* InformationRow.swift */; };
 		8B03EF5626507C4C006FCC35 /* InformationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B03EF5426507C4C006FCC35 /* InformationRow.swift */; };
@@ -95,6 +97,7 @@
 		8B75FBF42652729A001E7E1E /* RocketModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF22652729A001E7E1E /* RocketModelSection.swift */; };
 		8B75FBF626527339001E7E1E /* RocketPhysicalSpecificationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF526527339001E7E1E /* RocketPhysicalSpecificationsSection.swift */; };
 		8B75FBF82652736F001E7E1E /* RocketPayloadWeightsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF72652736F001E7E1E /* RocketPayloadWeightsSection.swift */; };
+		8B75FBFA26527B7D001E7E1E /* RocketFirstStageSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF926527B7D001E7E1E /* RocketFirstStageSection.swift */; };
 		8B7C68C826408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
 		8B7C68C926408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
 		8B7C68CA26408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
@@ -209,6 +212,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B01A02F2653132C009E2CD9 /* RocketSecondStageSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketSecondStageSection.swift; sourceTree = "<group>"; };
+		8B01A03126531680009E2CD9 /* RocketEnginesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketEnginesSection.swift; sourceTree = "<group>"; };
 		8B03EF5426507C4C006FCC35 /* InformationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationRow.swift; sourceTree = "<group>"; };
 		8B07905125F2FC41006CD9BE /* PayloadCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadCard.swift; sourceTree = "<group>"; };
 		8B0D1D75253363BF0056FACA /* MissionRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapView.swift; sourceTree = "<group>"; };
@@ -260,6 +265,7 @@
 		8B75FBF22652729A001E7E1E /* RocketModelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketModelSection.swift; sourceTree = "<group>"; };
 		8B75FBF526527339001E7E1E /* RocketPhysicalSpecificationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketPhysicalSpecificationsSection.swift; sourceTree = "<group>"; };
 		8B75FBF72652736F001E7E1E /* RocketPayloadWeightsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketPayloadWeightsSection.swift; sourceTree = "<group>"; };
+		8B75FBF926527B7D001E7E1E /* RocketFirstStageSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketFirstStageSection.swift; sourceTree = "<group>"; };
 		8B7C68C726408A870075116B /* Starlink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Starlink.swift; sourceTree = "<group>"; };
 		8B7F8D3B2607A756008A226B /* FaceCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceCropper.swift; sourceTree = "<group>"; };
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
@@ -483,11 +489,14 @@
 			isa = PBXGroup;
 			children = (
 				8B75FBEB26527171001E7E1E /* RocketCoresSection.swift */,
+				8B01A03126531680009E2CD9 /* RocketEnginesSection.swift */,
 				8B75FBED265271FB001E7E1E /* RocketFairingsSection.swift */,
-				8BBCBC1C264DDCEF00937206 /* RocketSheet.swift */,
+				8B75FBF926527B7D001E7E1E /* RocketFirstStageSection.swift */,
 				8B75FBF22652729A001E7E1E /* RocketModelSection.swift */,
-				8B75FBF526527339001E7E1E /* RocketPhysicalSpecificationsSection.swift */,
 				8B75FBF72652736F001E7E1E /* RocketPayloadWeightsSection.swift */,
+				8B75FBF526527339001E7E1E /* RocketPhysicalSpecificationsSection.swift */,
+				8B01A02F2653132C009E2CD9 /* RocketSecondStageSection.swift */,
+				8BBCBC1C264DDCEF00937206 /* RocketSheet.swift */,
 			);
 			path = "Rocket Sheet";
 			sourceTree = "<group>";
@@ -901,6 +910,7 @@
 				8BBCBC2E264DDCEF00937206 /* CrewSheet.swift in Sources */,
 				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
 				8BB7202F260E260F00B8433C /* AdditionalCodingKeys.swift in Sources */,
+				8B01A03226531680009E2CD9 /* RocketEnginesSection.swift in Sources */,
 				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
 				8BA4D6F4260E503C0096CE96 /* Dragon.swift in Sources */,
 				8B75FBEC26527171001E7E1E /* RocketCoresSection.swift in Sources */,
@@ -950,6 +960,7 @@
 				8BBCBC33264DDCEF00937206 /* DetailsSheet.swift in Sources */,
 				8B0D1D76253363BF0056FACA /* MissionRecapView.swift in Sources */,
 				8BF143E725F10C370045B95D /* Secrets.swift in Sources */,
+				8B01A0302653132C009E2CD9 /* RocketSecondStageSection.swift in Sources */,
 				8BF143E925F10C370045B95D /* WeatherAPI.swift in Sources */,
 				8BF5F6ED2611211B00060A0E /* GlobalSettings.swift in Sources */,
 				8BBCBC41264DDCEF00937206 /* LaunchCountdownView.swift in Sources */,
@@ -961,6 +972,7 @@
 				8B75FBE826526B42001E7E1E /* GlobeView.swift in Sources */,
 				8BF143EF25F10C370045B95D /* Landpad.swift in Sources */,
 				8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */,
+				8B75FBFA26527B7D001E7E1E /* RocketFirstStageSection.swift in Sources */,
 				8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */,
 				8BBC5F262651CA2D00E4CA2B /* StringCapitalization.swift in Sources */,
 				8B75FBF82652736F001E7E1E /* RocketPayloadWeightsSection.swift in Sources */,
