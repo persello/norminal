@@ -54,8 +54,6 @@ struct LaunchMapSection: View {
 
     func generateDestinationView(poi: PointOfInterest) -> AnyView? {
         switch poi.kind {
-        case .droneship:
-            return nil
         case .launchpad:
             if let launchpad = poi.originalObject as? Launchpad {
                 return AnyView(LaunchpadSheet(launchpad: launchpad))
@@ -64,7 +62,11 @@ struct LaunchMapSection: View {
             return nil
         case .landpad:
             return nil
-        case .ship:
+        case .ship,
+             .droneship:
+            if let ship = poi.originalObject as? Ship {
+                return AnyView(ShipSheet(ship: ship))
+            }
             return nil
         }
     }
