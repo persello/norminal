@@ -9,20 +9,31 @@ import SwiftUI
 import Telescope
 
 struct RocketSheet: View {
-    var launch: Launch
+    
+    public init(launch: Launch) {
+        self.launch = launch
+        self.rocket = launch.rocket
+    }
+    
+    public init(rocket: Rocket) {
+        self.rocket = rocket
+    }
+    
+    var launch: Launch?
+    var rocket: Rocket?
 
     var body: some View {
         List {
-            if let cores = launch.cores {
-                RocketCoresSection(cores: cores, upcoming: launch.upcoming)
+            if let cores = launch?.cores {
+                RocketCoresSection(cores: cores, upcoming: launch?.upcoming ?? false)
             }
 
-            if let fairings = launch.fairings,
+            if let fairings = launch?.fairings,
                fairings.recoveryAttempt != nil {
                 RocketFairingsSection(fairings: fairings)
             }
 
-            if let rocket = launch.rocket {
+            if let rocket = rocket {
                 Group {
                     RocketModelSection(rocket: rocket)
 
@@ -46,12 +57,12 @@ struct RocketSheet: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .navigationTitle(Text(launch.rocket?.name ?? "Rocket"))
+        .navigationTitle(Text(launch?.rocket?.name ?? "Rocket"))
     }
 }
 
 struct RocketSheet_Previews: PreviewProvider {
     static var previews: some View {
-        RocketSheet(launch: FakeData.shared.nrol108!)
+        RocketSheet(rocket: FakeData.shared.falcon9!)
     }
 }

@@ -19,7 +19,7 @@ struct RocketModelSection: View {
                     TImage(RemoteImage(imageURL: imageURL))
                         .resizable()
                         .scaledToFill()
-                        .padding(.top, -8)
+                        .padding(.vertical, -6)
                 }
 
                 if let imageURLs = rocket.flickrImages {

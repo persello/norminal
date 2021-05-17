@@ -73,7 +73,7 @@ struct LaunchpadDetailsSection: View {
                     )
                 }
             }
-            .padding(.init(top: 10, leading: 5, bottom: 15, trailing: 0))
+            .padding(.init(top: 10, leading: 5, bottom: 12, trailing: 0))
         }
         .onAppear {
             launchpad.getForecast(for: Date(), completion: { forecast in
@@ -86,5 +86,15 @@ struct LaunchpadDetailsSection: View {
                 }
             })
         }
+    }
+}
+
+struct LaunchpadDetailsSection_Previews: PreviewProvider {
+    static var previews: some View {
+        List {
+            LaunchpadDetailsSection()
+        }
+        .environmentObject(FakeData.shared.slc40!)
+        .listStyle(InsetGroupedListStyle())
     }
 }

@@ -488,6 +488,86 @@ let falcon9JSON = """
 }
 """.data(using: .utf8)!
 
+let ocislyJSON = """
+{
+"legacy_id": "OCISLY",
+"model": "Marmac 304",
+"type": "Barge",
+"roles": [
+"ASDS barge"
+],
+"imo": null,
+"mmsi": null,
+"abs": null,
+"class": null,
+"mass_kg": null,
+"mass_lbs": null,
+"year_built": 2015,
+"home_port": "Port Canaveral",
+"status": null,
+"speed_kn": null,
+"course_deg": null,
+"latitude": 33.7291858,
+"longitude": -118.262015,
+"last_ais_update": null,
+"link": null,
+"image": "https://i.imgur.com/28dCx6G.jpg",
+"launches": [
+"5eb87cf2ffd86e000604b344",
+"5eb87cf3ffd86e000604b345",
+"5eb87cf6ffd86e000604b347",
+"5eb87cf8ffd86e000604b348",
+"5eb87cfaffd86e000604b34a",
+"5eb87d00ffd86e000604b34f",
+"5eb87d04ffd86e000604b353",
+"5eb87d0cffd86e000604b35a",
+"5eb87d0dffd86e000604b35b",
+"5eb87d13ffd86e000604b360",
+"5eb87d18ffd86e000604b365",
+"5eb87d19ffd86e000604b366",
+"5eb87d1effd86e000604b36a",
+"5eb87d20ffd86e000604b36c",
+"5eb87d22ffd86e000604b36d",
+"5eb87d24ffd86e000604b36f",
+"5eb87d2affd86e000604b374",
+"5eb87d2bffd86e000604b375",
+"5eb87d2dffd86e000604b376",
+"5eb87d2effd86e000604b377",
+"5eb87d30ffd86e000604b378",
+"5eb87d35ffd86e000604b37a",
+"5eb87d39ffd86e000604b37d",
+"5eb87d3bffd86e000604b37f",
+"5eb87d3cffd86e000604b380",
+"5eb87d3fffd86e000604b382",
+"5eb87d41ffd86e000604b383",
+"5eb87d43ffd86e000604b385",
+"5eb87d44ffd86e000604b386",
+"5eb87d46ffd86e000604b388",
+"5ed9819a1f30554030d45c29",
+"5ed981d91f30554030d45c2a",
+"5ef6a2090059c33cee4a828b",
+"5ef6a2bf0059c33cee4a828c",
+"5eb87d4cffd86e000604b38d",
+"5fb95b3f3a88ae63c954603c",
+"5eb87d4effd86e000604b391",
+"5fd386aa7faea57d297c86c1",
+"5ff6554f9257f579ee3a6c5f",
+"600f9a5e8f798e2a4d5f979c",
+"5fbfecfe54ceb10a5664c80b",
+"600f9a8d8f798e2a4d5f979e",
+"60428aafc041c16716f73cd7",
+"60428ac4c041c16716f73cd8",
+"5fe3af58b3467846b324215f",
+"605b4b7daa5433645e37d040",
+"6079bd1c9a06446e8c61bf76",
+"605b4b95aa5433645e37d041"
+],
+"name": "Of Course I Still Love You",
+"active": true,
+"id": "5ea6ed30080df4000697c913"
+}
+""".data(using: .utf8)!
+
 struct FakeData {
     static let shared = FakeData()
 
@@ -497,6 +577,7 @@ struct FakeData {
     var robertBehnken: Astronaut?
     var slc40: Launchpad?
     var falcon9: Rocket?
+    var ocisly: Ship?
 
     private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Fake data")
 
@@ -510,6 +591,7 @@ struct FakeData {
             trailblazer = try decoder.decode(Launch.self, from: trailblazerJSON)
             slc40 = try decoder.decode(Launchpad.self, from: slc40JSON)
             falcon9 = try decoder.decode(Rocket.self, from: falcon9JSON)
+            ocisly = try decoder.decode(Ship.self, from: ocislyJSON)
         } catch {
             logger.error("Unhandled error while initializing fake data: \"\(error.localizedDescription)\"")
         }

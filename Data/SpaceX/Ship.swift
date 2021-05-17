@@ -92,3 +92,7 @@ class Ship: ObservableObject, Decodable {
         stringID = try values.decode(String.self, forKey: .stringID)
     }
 }
+
+extension Ship: Identifiable {
+    var id: String { return stringID }
+}

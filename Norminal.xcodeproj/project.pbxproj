@@ -87,6 +87,9 @@
 		8B4E9605259671FD00F9668E /* FirebaseCrashlytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */; platformFilter = ios; };
 		8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */ = {isa = PBXBuildFile; productRef = 8B692557253205E800D61C3F /* NavigationSearchBar */; };
 		8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B69255A253206E900D61C3F /* LaunchDetailView.swift */; };
+		8B6A231C2653236900056726 /* ShipSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A231B2653236900056726 /* ShipSheet.swift */; };
+		8B6A231E2653246100056726 /* ShipDetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A231D2653246100056726 /* ShipDetailsSection.swift */; };
+		8B6A2320265328FF00056726 /* ShipLocationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A231F265328FF00056726 /* ShipLocationSection.swift */; };
 		8B75FBE826526B42001E7E1E /* GlobeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF5D53126431DE000309466 /* GlobeView.swift */; };
 		8B75FBE926526B45001E7E1E /* TestScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF5D53326431E3100309466 /* TestScene.swift */; };
 		8B75FBEC26527171001E7E1E /* RocketCoresSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBEB26527171001E7E1E /* RocketCoresSection.swift */; };
@@ -259,6 +262,9 @@
 		8B4E9602259671FD00F9668E /* FirebaseCrashlytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = FirebaseCrashlytics.xcframework; sourceTree = "<group>"; };
 		8B5459F92641469800373B8B /* MapMarkers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMarkers.swift; sourceTree = "<group>"; };
 		8B69255A253206E900D61C3F /* LaunchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchDetailView.swift; sourceTree = "<group>"; };
+		8B6A231B2653236900056726 /* ShipSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipSheet.swift; sourceTree = "<group>"; };
+		8B6A231D2653246100056726 /* ShipDetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipDetailsSection.swift; sourceTree = "<group>"; };
+		8B6A231F265328FF00056726 /* ShipLocationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipLocationSection.swift; sourceTree = "<group>"; };
 		8B75FBEB26527171001E7E1E /* RocketCoresSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCoresSection.swift; sourceTree = "<group>"; };
 		8B75FBED265271FB001E7E1E /* RocketFairingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketFairingsSection.swift; sourceTree = "<group>"; };
 		8B75FBEF26527239001E7E1E /* UsefulFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsefulFormatters.swift; sourceTree = "<group>"; };
@@ -485,6 +491,16 @@
 			path = FirebaseCrashlytics;
 			sourceTree = "<group>";
 		};
+		8B6A231A2653235400056726 /* ShipSheet */ = {
+			isa = PBXGroup;
+			children = (
+				8B6A231B2653236900056726 /* ShipSheet.swift */,
+				8B6A231D2653246100056726 /* ShipDetailsSection.swift */,
+				8B6A231F265328FF00056726 /* ShipLocationSection.swift */,
+			);
+			path = ShipSheet;
+			sourceTree = "<group>";
+		};
 		8B75FBEA26527149001E7E1E /* Rocket Sheet */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,14 +567,15 @@
 		8BBCBC12264DDCEF00937206 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				8B75FBEA26527149001E7E1E /* Rocket Sheet */,
 				8BBCBC1E264DDCEF00937206 /* AstronautSheet.swift */,
 				8BBCBC15264DDCEF00937206 /* CrewSheet.swift */,
 				8BBCBC16264DDCEF00937206 /* Details Sheet */,
 				8BBCBC1D264DDCEF00937206 /* LaunchFilterSheet.swift */,
 				8BBCBC20264DDCEF00937206 /* Launchpad Sheet */,
 				8BBCBC24264DDCEF00937206 /* Gallery Sheet */,
+				8B75FBEA26527149001E7E1E /* Rocket Sheet */,
 				8BBCBC27264DDCEF00937206 /* RootSheet.swift */,
+				8B6A231A2653235400056726 /* ShipSheet */,
 				8BBCBC13264DDCEF00937206 /* Webcast Sheet */,
 			);
 			path = Sheets;
@@ -905,6 +922,7 @@
 				8BBCBC32264DDCEF00937206 /* PointOfInterest.swift in Sources */,
 				8BBCBC39264DDCEF00937206 /* LaunchpadMapSection.swift in Sources */,
 				8BA4D6FD260E50690096CE96 /* Roadster.swift in Sources */,
+				8B6A231C2653236900056726 /* ShipSheet.swift in Sources */,
 				8BA4D6F7260E50500096CE96 /* Payload.swift in Sources */,
 				8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */,
 				8BBCBC2E264DDCEF00937206 /* CrewSheet.swift in Sources */,
@@ -938,6 +956,7 @@
 				8BBCBC3C264DDCEF00937206 /* ShareSheet.swift in Sources */,
 				8BBCBC38264DDCEF00937206 /* LaunchpadSheet.swift in Sources */,
 				8B87DFBA260659DB009C13D0 /* FeedbackView.swift in Sources */,
+				8B6A231E2653246100056726 /* ShipDetailsSection.swift in Sources */,
 				8BBCBC36264DDCEF00937206 /* AstronautSheet.swift in Sources */,
 				8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */,
 				8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */,
@@ -960,6 +979,7 @@
 				8BBCBC33264DDCEF00937206 /* DetailsSheet.swift in Sources */,
 				8B0D1D76253363BF0056FACA /* MissionRecapView.swift in Sources */,
 				8BF143E725F10C370045B95D /* Secrets.swift in Sources */,
+				8B6A2320265328FF00056726 /* ShipLocationSection.swift in Sources */,
 				8B01A0302653132C009E2CD9 /* RocketSecondStageSection.swift in Sources */,
 				8BF143E925F10C370045B95D /* WeatherAPI.swift in Sources */,
 				8BF5F6ED2611211B00060A0E /* GlobalSettings.swift in Sources */,
