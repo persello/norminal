@@ -21,10 +21,7 @@ struct LaunchMapSection: View {
             for ship in ships {
                 switch ship.type?.lowercased() {
                 case "barge":
-                    // Do nothing: it's a landpad!
-                    //                    result.append(InterestingPlace(
-                    //                                    coordintates: ship.location!.coordinate, kind: .droneship, name: ship.name))
-                    break
+                    result.append(PointOfInterest(coordinates: ship.location!.coordinate, kind: .droneship, name: ship.name, originalObject: ship))
                 default:
                     result.append(PointOfInterest(coordinates: ship.location?.coordinate, kind: .ship, name: ship.name, originalObject: ship))
                 }
@@ -41,7 +38,9 @@ struct LaunchMapSection: View {
 
                 switch _landpad?.type {
                 case .ASDS:
-                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .droneship, name: _landpad?.name, originalObject: _landpad))
+                    break
+                // Do nothing: it's a ship!
+//                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .droneship, name: _landpad?.name, originalObject: _landpad))
                 case .RTLS,
                      .none:
                     result.append(PointOfInterest(coordinates: _landpad?.location, kind: .landpad, name: _landpad?.name, originalObject: _landpad))
