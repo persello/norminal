@@ -111,6 +111,8 @@
 		8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B025376A5D002AE62B /* WebcastCard.swift */; };
 		8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */; };
 		8B83E8BE25379B60002AE62B /* AstronautPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8BD25379B60002AE62B /* AstronautPicture.swift */; };
+		8B8498D92653C30A0002505D /* LandpadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8498D82653C30A0002505D /* LandpadSheet.swift */; };
+		8B8498DB2653C3410002505D /* LandpadHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8498DA2653C3410002505D /* LandpadHeaderSection.swift */; };
 		8B87DFBA260659DB009C13D0 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B87DFB9260659DB009C13D0 /* FeedbackView.swift */; };
 		8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B919B0525F14F27007D992E /* MissionDetailsCard.swift */; };
 		8B9255B225F2DA810059CB2E /* RocketCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B125F2DA810059CB2E /* RocketCard.swift */; };
@@ -142,6 +144,7 @@
 		8BB72030260E30BF00B8433C /* AdditionalCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB7202E260E260F00B8433C /* AdditionalCodingKeys.swift */; };
 		8BB72031260E30C200B8433C /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
 		8BB72032260E30CA00B8433C /* UnitForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF3D98260D4D2400DE48DD /* UnitForce.swift */; };
+		8BB89E7B265428470026275E /* LandpadMapSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E7A265428470026275E /* LandpadMapSection.swift */; };
 		8BBC5F262651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
 		8BBC5F272651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
 		8BBC5F282651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
@@ -277,6 +280,8 @@
 		8B83E8B025376A5D002AE62B /* WebcastCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcastCard.swift; sourceTree = "<group>"; };
 		8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonStyle.swift; sourceTree = "<group>"; };
 		8B83E8BD25379B60002AE62B /* AstronautPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautPicture.swift; sourceTree = "<group>"; };
+		8B8498D82653C30A0002505D /* LandpadSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandpadSheet.swift; sourceTree = "<group>"; };
+		8B8498DA2653C3410002505D /* LandpadHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandpadHeaderSection.swift; sourceTree = "<group>"; };
 		8B87DFB9260659DB009C13D0 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		8B919B0525F14F27007D992E /* MissionDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsCard.swift; sourceTree = "<group>"; };
 		8B9255B125F2DA810059CB2E /* RocketCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCard.swift; sourceTree = "<group>"; };
@@ -297,6 +302,7 @@
 		8BB5232225489842006A9511 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		8BB5232A254A009B006A9511 /* CardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverlay.swift; sourceTree = "<group>"; };
 		8BB7202E260E260F00B8433C /* AdditionalCodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalCodingKeys.swift; sourceTree = "<group>"; };
+		8BB89E7A265428470026275E /* LandpadMapSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandpadMapSection.swift; sourceTree = "<group>"; };
 		8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCapitalization.swift; sourceTree = "<group>"; };
 		8BBCBC11264DDCEF00937206 /* PinchToZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
 		8BBCBC14264DDCEF00937206 /* WebcastSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcastSheet.swift; sourceTree = "<group>"; };
@@ -491,14 +497,14 @@
 			path = FirebaseCrashlytics;
 			sourceTree = "<group>";
 		};
-		8B6A231A2653235400056726 /* ShipSheet */ = {
+		8B6A231A2653235400056726 /* Ship Sheet */ = {
 			isa = PBXGroup;
 			children = (
 				8B6A231B2653236900056726 /* ShipSheet.swift */,
 				8B6A231D2653246100056726 /* ShipDetailsSection.swift */,
 				8B6A231F265328FF00056726 /* ShipLocationSection.swift */,
 			);
-			path = ShipSheet;
+			path = "Ship Sheet";
 			sourceTree = "<group>";
 		};
 		8B75FBEA26527149001E7E1E /* Rocket Sheet */ = {
@@ -543,6 +549,25 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8B8498D62653C2E40002505D /* Crew Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				8BBCBC1E264DDCEF00937206 /* AstronautSheet.swift */,
+				8BBCBC15264DDCEF00937206 /* CrewSheet.swift */,
+			);
+			path = "Crew Sheet";
+			sourceTree = "<group>";
+		};
+		8B8498D72653C2F90002505D /* Landpad Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				8B8498D82653C30A0002505D /* LandpadSheet.swift */,
+				8B8498DA2653C3410002505D /* LandpadHeaderSection.swift */,
+				8BB89E7A265428470026275E /* LandpadMapSection.swift */,
+			);
+			path = "Landpad Sheet";
+			sourceTree = "<group>";
+		};
 		8BB5232125489827006A9511 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,15 +592,15 @@
 		8BBCBC12264DDCEF00937206 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				8BBCBC1E264DDCEF00937206 /* AstronautSheet.swift */,
-				8BBCBC15264DDCEF00937206 /* CrewSheet.swift */,
-				8BBCBC16264DDCEF00937206 /* Details Sheet */,
+				8B8498D72653C2F90002505D /* Landpad Sheet */,
 				8BBCBC1D264DDCEF00937206 /* LaunchFilterSheet.swift */,
+				8BBCBC27264DDCEF00937206 /* RootSheet.swift */,
+				8B8498D62653C2E40002505D /* Crew Sheet */,
+				8BBCBC16264DDCEF00937206 /* Details Sheet */,
 				8BBCBC20264DDCEF00937206 /* Launchpad Sheet */,
 				8BBCBC24264DDCEF00937206 /* Gallery Sheet */,
 				8B75FBEA26527149001E7E1E /* Rocket Sheet */,
-				8BBCBC27264DDCEF00937206 /* RootSheet.swift */,
-				8B6A231A2653235400056726 /* ShipSheet */,
+				8B6A231A2653235400056726 /* Ship Sheet */,
 				8BBCBC13264DDCEF00937206 /* Webcast Sheet */,
 			);
 			path = Sheets;
@@ -933,6 +958,7 @@
 				8BA4D6F4260E503C0096CE96 /* Dragon.swift in Sources */,
 				8B75FBEC26527171001E7E1E /* RocketCoresSection.swift in Sources */,
 				8BBCBC40264DDCEF00937206 /* LaunchDetailHeaderView.swift in Sources */,
+				8BB89E7B265428470026275E /* LandpadMapSection.swift in Sources */,
 				8BBCBC2D264DDCEF00937206 /* WebcastSheet.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
 				8BA4D700260E50740096CE96 /* Ship.swift in Sources */,
@@ -974,6 +1000,8 @@
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,
 				8BBCBC3B264DDCEF00937206 /* PhotoSheet.swift in Sources */,
 				8B29D0CF26111D4200FBA0C5 /* Filter.swift in Sources */,
+				8B8498D92653C30A0002505D /* LandpadSheet.swift in Sources */,
+				8B8498DB2653C3410002505D /* LandpadHeaderSection.swift in Sources */,
 				8BA4D6EE260E50240096CE96 /* CompanyInfo.swift in Sources */,
 				8BBCBC2F264DDCEF00937206 /* PointOfInterestRow.swift in Sources */,
 				8BBCBC33264DDCEF00937206 /* DetailsSheet.swift in Sources */,

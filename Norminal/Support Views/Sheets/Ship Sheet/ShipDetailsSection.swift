@@ -41,11 +41,11 @@ struct ShipDetailsSection: View {
                 }
 
                 if let imo = ship.imo {
-                    InformationRow(label: "IMO", value: "\(imo)", imageName: "location.viewfinder")
+                    InformationRow(label: "IMO", value: "\(imo)", imageName: "location.viewfinder", isSerial: true)
                 }
 
                 if let mmsi = ship.mmsi {
-                    InformationRow(label: "MMSI", value: "\(mmsi)", imageName: "location.viewfinder")
+                    InformationRow(label: "MMSI", value: "\(mmsi)", imageName: "location.viewfinder", isSerial: true)
                 }
 
                 if let mass = ship.mass {

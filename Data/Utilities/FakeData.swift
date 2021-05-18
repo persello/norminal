@@ -568,6 +568,43 @@ let ocislyJSON = """
 }
 """.data(using: .utf8)!
 
+let lz1JSON = """
+{
+"name": "LZ-1",
+"full_name": "Landing Zone 1",
+"type": "RTLS",
+"locality": "Cape Canaveral",
+"region": "Florida",
+"latitude": 28.485833,
+"longitude": -80.544444,
+"landing_attempts": 17,
+"landing_successes": 16,
+"wikipedia": "https://en.wikipedia.org/wiki/Landing_Zones_1_and_2",
+"details": "SpaceX's first east coast landing pad is Landing Zone 1, where the historic first Falcon 9 landing occurred in December 2015. LC-13 was originally used as a launch pad for early Atlas missiles and rockets from Lockheed Martin. LC-1 was later expanded to include Landing Zone 2 for side booster RTLS Falcon Heavy missions, and it was first used in February 2018 for that purpose.",
+"launches": [
+"5eb87cefffd86e000604b342",
+"5eb87cf9ffd86e000604b349",
+"5eb87cfeffd86e000604b34d",
+"5eb87d01ffd86e000604b350",
+"5eb87d03ffd86e000604b352",
+"5eb87d07ffd86e000604b356",
+"5eb87d09ffd86e000604b358",
+"5eb87d0effd86e000604b35c",
+"5eb87d10ffd86e000604b35e",
+"5eb87d13ffd86e000604b360",
+"5eb87d26ffd86e000604b371",
+"5eb87d2dffd86e000604b376",
+"5eb87d35ffd86e000604b37a",
+"5eb87d36ffd86e000604b37b",
+"5eb87d42ffd86e000604b384",
+"5eb87d47ffd86e000604b38a",
+"5f8399fb818d8b59f5740d43"
+],
+"status": "active",
+"id": "5e9e3032383ecb267a34e7c7"
+}
+""".data(using: .utf8)!
+
 struct FakeData {
     static let shared = FakeData()
 
@@ -578,6 +615,7 @@ struct FakeData {
     var slc40: Launchpad?
     var falcon9: Rocket?
     var ocisly: Ship?
+    var lz1: Landpad?
 
     private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Fake data")
 
@@ -592,6 +630,7 @@ struct FakeData {
             slc40 = try decoder.decode(Launchpad.self, from: slc40JSON)
             falcon9 = try decoder.decode(Rocket.self, from: falcon9JSON)
             ocisly = try decoder.decode(Ship.self, from: ocislyJSON)
+            lz1 = try decoder.decode(Landpad.self, from: lz1JSON)
         } catch {
             logger.error("Unhandled error while initializing fake data: \"\(error.localizedDescription)\"")
         }

@@ -13,7 +13,7 @@ import Telescope
 // MARK: - Astronaut class
 
 /// Represents an astronaut
-class Astronaut: Decodable {
+class Astronaut: Decodable, ObservableObject {
     /// Name and surname of the astronaut
     public var name: String
 

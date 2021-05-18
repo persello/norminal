@@ -97,6 +97,7 @@ struct LaunchMapSection: View {
                         Text("Check back in a few days")
                             .foregroundColor(.gray)
                     }
+                    .frame(maxWidth: .infinity)
                     .padding(10)
                 }
             }
