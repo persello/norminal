@@ -145,6 +145,7 @@
 		8BB72031260E30C200B8433C /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
 		8BB72032260E30CA00B8433C /* UnitForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF3D98260D4D2400DE48DD /* UnitForce.swift */; };
 		8BB89E7B265428470026275E /* LandpadMapSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E7A265428470026275E /* LandpadMapSection.swift */; };
+		8BB89E7E26544A7D0026275E /* CoreSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E7D26544A7D0026275E /* CoreSheet.swift */; };
 		8BBC5F262651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
 		8BBC5F272651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
 		8BBC5F282651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
@@ -303,6 +304,7 @@
 		8BB5232A254A009B006A9511 /* CardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOverlay.swift; sourceTree = "<group>"; };
 		8BB7202E260E260F00B8433C /* AdditionalCodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalCodingKeys.swift; sourceTree = "<group>"; };
 		8BB89E7A265428470026275E /* LandpadMapSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandpadMapSection.swift; sourceTree = "<group>"; };
+		8BB89E7D26544A7D0026275E /* CoreSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreSheet.swift; sourceTree = "<group>"; };
 		8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCapitalization.swift; sourceTree = "<group>"; };
 		8BBCBC11264DDCEF00937206 /* PinchToZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
 		8BBCBC14264DDCEF00937206 /* WebcastSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcastSheet.swift; sourceTree = "<group>"; };
@@ -577,6 +579,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		8BB89E7C26544A6E0026275E /* Core Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				8BB89E7D26544A7D0026275E /* CoreSheet.swift */,
+			);
+			path = "Core Sheet";
+			sourceTree = "<group>";
+		};
 		8BBCBC10264DDCEF00937206 /* Support Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,11 +602,12 @@
 		8BBCBC12264DDCEF00937206 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				8B8498D72653C2F90002505D /* Landpad Sheet */,
 				8BBCBC1D264DDCEF00937206 /* LaunchFilterSheet.swift */,
 				8BBCBC27264DDCEF00937206 /* RootSheet.swift */,
+				8BB89E7C26544A6E0026275E /* Core Sheet */,
 				8B8498D62653C2E40002505D /* Crew Sheet */,
 				8BBCBC16264DDCEF00937206 /* Details Sheet */,
+				8B8498D72653C2F90002505D /* Landpad Sheet */,
 				8BBCBC20264DDCEF00937206 /* Launchpad Sheet */,
 				8BBCBC24264DDCEF00937206 /* Gallery Sheet */,
 				8B75FBEA26527149001E7E1E /* Rocket Sheet */,
@@ -991,6 +1002,7 @@
 				8B29D08F2610B3F700FBA0C5 /* LaunchNotSelectedView.swift in Sources */,
 				8BBCBC30264DDCEF00937206 /* LaunchMapSection.swift in Sources */,
 				8B75FBF026527239001E7E1E /* UsefulFormatters.swift in Sources */,
+				8BB89E7E26544A7D0026275E /* CoreSheet.swift in Sources */,
 				8BBCBC31264DDCEF00937206 /* LaunchDetailsSection.swift in Sources */,
 				8B03EF5526507C4C006FCC35 /* InformationRow.swift in Sources */,
 				8B29D0C02610BC7300FBA0C5 /* Color.swift in Sources */,

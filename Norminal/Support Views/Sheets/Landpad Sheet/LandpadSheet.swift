@@ -18,7 +18,7 @@ struct LandpadSheet: View {
 
             if let launches = landpad.launches,
                launches.count > 0 {
-                Section(header: Text("Launches")) {
+                Section(header: Text("\(launches.count) launches")) {
                     ForEach(launches) { launch in
                         LaunchListTile(launch: launch)
                     }

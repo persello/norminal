@@ -605,6 +605,32 @@ let lz1JSON = """
 }
 """.data(using: .utf8)!
 
+let b1051JSON = """
+    {
+    "block": 5,
+    "reuse_count": 8,
+    "rtls_attempts": 1,
+    "rtls_landings": 1,
+    "asds_attempts": 8,
+    "asds_landings": 8,
+    "last_update": "landed on OCISLY as of Mar 14, 2021. ",
+    "launches": [
+    "5eb87d2bffd86e000604b375",
+    "5eb87d31ffd86e000604b379",
+    "5eb87d3fffd86e000604b382",
+    "5eb87d44ffd86e000604b386",
+    "5ed9819a1f30554030d45c29",
+    "5ef6a2bf0059c33cee4a828c",
+    "5eb87d4bffd86e000604b38c",
+    "5fbfecce54ceb10a5664c80a",
+    "600f9a8d8f798e2a4d5f979e"
+    ],
+    "serial": "B1051",
+    "status": "unknown",
+    "id": "5e9e28a6f35918c0803b265c"
+    }
+    """.data(using: .utf8)!
+
 struct FakeData {
     static let shared = FakeData()
 
@@ -616,6 +642,7 @@ struct FakeData {
     var falcon9: Rocket?
     var ocisly: Ship?
     var lz1: Landpad?
+    var b1051: Core?
 
     private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Fake data")
 
@@ -631,6 +658,7 @@ struct FakeData {
             falcon9 = try decoder.decode(Rocket.self, from: falcon9JSON)
             ocisly = try decoder.decode(Ship.self, from: ocislyJSON)
             lz1 = try decoder.decode(Landpad.self, from: lz1JSON)
+            b1051 = try decoder.decode(Core.self, from: b1051JSON)
         } catch {
             logger.error("Unhandled error while initializing fake data: \"\(error.localizedDescription)\"")
         }
