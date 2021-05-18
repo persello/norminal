@@ -146,6 +146,8 @@
 		8BB72032260E30CA00B8433C /* UnitForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF3D98260D4D2400DE48DD /* UnitForce.swift */; };
 		8BB89E7B265428470026275E /* LandpadMapSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E7A265428470026275E /* LandpadMapSection.swift */; };
 		8BB89E7E26544A7D0026275E /* CoreSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E7D26544A7D0026275E /* CoreSheet.swift */; };
+		8BB89E812654545E0026275E /* PayloadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E802654545D0026275E /* PayloadSheet.swift */; };
+		8BB89E83265458150026275E /* SinglePayloadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E82265458150026275E /* SinglePayloadSheet.swift */; };
 		8BBC5F262651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
 		8BBC5F272651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
 		8BBC5F282651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
@@ -305,6 +307,8 @@
 		8BB7202E260E260F00B8433C /* AdditionalCodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalCodingKeys.swift; sourceTree = "<group>"; };
 		8BB89E7A265428470026275E /* LandpadMapSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandpadMapSection.swift; sourceTree = "<group>"; };
 		8BB89E7D26544A7D0026275E /* CoreSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreSheet.swift; sourceTree = "<group>"; };
+		8BB89E802654545D0026275E /* PayloadSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadSheet.swift; sourceTree = "<group>"; };
+		8BB89E82265458150026275E /* SinglePayloadSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePayloadSheet.swift; sourceTree = "<group>"; };
 		8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCapitalization.swift; sourceTree = "<group>"; };
 		8BBCBC11264DDCEF00937206 /* PinchToZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
 		8BBCBC14264DDCEF00937206 /* WebcastSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebcastSheet.swift; sourceTree = "<group>"; };
@@ -587,6 +591,15 @@
 			path = "Core Sheet";
 			sourceTree = "<group>";
 		};
+		8BB89E7F265454470026275E /* PayloadSheet */ = {
+			isa = PBXGroup;
+			children = (
+				8BB89E802654545D0026275E /* PayloadSheet.swift */,
+				8BB89E82265458150026275E /* SinglePayloadSheet.swift */,
+			);
+			path = PayloadSheet;
+			sourceTree = "<group>";
+		};
 		8BBCBC10264DDCEF00937206 /* Support Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,6 +623,7 @@
 				8B8498D72653C2F90002505D /* Landpad Sheet */,
 				8BBCBC20264DDCEF00937206 /* Launchpad Sheet */,
 				8BBCBC24264DDCEF00937206 /* Gallery Sheet */,
+				8BB89E7F265454470026275E /* PayloadSheet */,
 				8B75FBEA26527149001E7E1E /* Rocket Sheet */,
 				8B6A231A2653235400056726 /* Ship Sheet */,
 				8BBCBC13264DDCEF00937206 /* Webcast Sheet */,
@@ -960,6 +974,7 @@
 				8BA4D6FD260E50690096CE96 /* Roadster.swift in Sources */,
 				8B6A231C2653236900056726 /* ShipSheet.swift in Sources */,
 				8BA4D6F7260E50500096CE96 /* Payload.swift in Sources */,
+				8BB89E812654545E0026275E /* PayloadSheet.swift in Sources */,
 				8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */,
 				8BBCBC2E264DDCEF00937206 /* CrewSheet.swift in Sources */,
 				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
@@ -983,6 +998,7 @@
 				8BDF3D99260D4D2400DE48DD /* UnitForce.swift in Sources */,
 				8BF143ED25F10C370045B95D /* Launch.swift in Sources */,
 				8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */,
+				8BB89E83265458150026275E /* SinglePayloadSheet.swift in Sources */,
 				8B75FBEE265271FC001E7E1E /* RocketFairingsSection.swift in Sources */,
 				8B75FBE926526B45001E7E1E /* TestScene.swift in Sources */,
 				8BBCBC2C264DDCEF00937206 /* PinchToZoom.swift in Sources */,

@@ -606,30 +606,377 @@ let lz1JSON = """
 """.data(using: .utf8)!
 
 let b1051JSON = """
-    {
-    "block": 5,
-    "reuse_count": 8,
-    "rtls_attempts": 1,
-    "rtls_landings": 1,
-    "asds_attempts": 8,
-    "asds_landings": 8,
-    "last_update": "landed on OCISLY as of Mar 14, 2021. ",
-    "launches": [
-    "5eb87d2bffd86e000604b375",
-    "5eb87d31ffd86e000604b379",
-    "5eb87d3fffd86e000604b382",
-    "5eb87d44ffd86e000604b386",
-    "5ed9819a1f30554030d45c29",
-    "5ef6a2bf0059c33cee4a828c",
-    "5eb87d4bffd86e000604b38c",
-    "5fbfecce54ceb10a5664c80a",
-    "600f9a8d8f798e2a4d5f979e"
-    ],
-    "serial": "B1051",
-    "status": "unknown",
-    "id": "5e9e28a6f35918c0803b265c"
-    }
-    """.data(using: .utf8)!
+{
+"block": 5,
+"reuse_count": 8,
+"rtls_attempts": 1,
+"rtls_landings": 1,
+"asds_attempts": 8,
+"asds_landings": 8,
+"last_update": "landed on OCISLY as of Mar 14, 2021. ",
+"launches": [
+"5eb87d2bffd86e000604b375",
+"5eb87d31ffd86e000604b379",
+"5eb87d3fffd86e000604b382",
+"5eb87d44ffd86e000604b386",
+"5ed9819a1f30554030d45c29",
+"5ef6a2bf0059c33cee4a828c",
+"5eb87d4bffd86e000604b38c",
+"5fbfecce54ceb10a5664c80a",
+"600f9a8d8f798e2a4d5f979e"
+],
+"serial": "B1051",
+"status": "unknown",
+"id": "5e9e28a6f35918c0803b265c"
+}
+""".data(using: .utf8)!
+
+let roadsterPayloadJSON = """
+{
+"dragon": {
+"capsule": null,
+"mass_returned_kg": null,
+"mass_returned_lbs": null,
+"flight_time_sec": null,
+"manifest": null,
+"water_landing": null,
+"land_landing": null
+},
+"name": "Tesla Roadster",
+"type": "Satellite",
+"reused": false,
+"launch": "5eb87d13ffd86e000604b360",
+"customers": [
+"SpaceX"
+],
+"norad_ids": [
+43205
+],
+"nationalities": [
+"United States"
+],
+"manufacturers": [
+"Tesla"
+],
+"mass_kg": 1350,
+"mass_lbs": 2976.2,
+"orbit": "HCO",
+"reference_system": "heliocentric",
+"regime": null,
+"longitude": null,
+"semi_major_axis_km": 9943.766,
+"eccentricity": 0.3404246,
+"periapsis_km": 180.528,
+"apoapsis_km": 6950.733,
+"inclination_deg": 29.0185,
+"period_min": 164.469,
+"lifespan_years": 3500000,
+"epoch": "2018-02-06T22:36:19.000Z",
+"mean_motion": 8.75540848,
+"raan": 287.358,
+"arg_of_pericenter": 180.027,
+"mean_anomaly": 180.584,
+"id": "5eb0e4c6b6c3bb0006eeb21c"
+}
+""".data(using: .utf8)!
+
+var crew2PayloadJSON = """
+{
+"dragon": {
+"capsule": "5e9e2c5df359188aba3b2676",
+"mass_returned_kg": null,
+"mass_returned_lbs": null,
+"flight_time_sec": null,
+"manifest": null,
+"water_landing": null,
+"land_landing": null
+},
+"name": "Crew-2",
+"type": "Crew Dragon",
+"reused": true,
+"launch": "5fe3af58b3467846b324215f",
+"customers": [
+"NASA (CCtCap)"
+],
+"norad_ids": [
+48209
+],
+"nationalities": [
+"United States"
+],
+"manufacturers": [
+"SpaceX"
+],
+"mass_kg": null,
+"mass_lbs": null,
+"orbit": "ISS",
+"reference_system": "geocentric",
+"regime": "low-earth",
+"longitude": null,
+"semi_major_axis_km": 6797.87,
+"eccentricity": 0.0002608,
+"periapsis_km": 417.962,
+"apoapsis_km": 421.508,
+"inclination_deg": 51.644,
+"period_min": 92.965,
+"lifespan_years": null,
+"epoch": "2021-05-02T13:26:57.000Z",
+"mean_motion": 15.48971771,
+"raan": 208.406,
+"arg_of_pericenter": 308.669,
+"mean_anomaly": 182.6347,
+"id": "5fe3b3adb3467846b3242173"
+}
+""".data(using: .utf8)!
+
+let starlink22PayloadJSON = """
+{
+"dragon": {
+"capsule": null,
+"mass_returned_kg": null,
+"mass_returned_lbs": null,
+"flight_time_sec": null,
+"manifest": null,
+"water_landing": null,
+"land_landing": null
+},
+"name": "Starlink-22",
+"type": "Satellite",
+"reused": false,
+"launch": "60428aafc041c16716f73cd7",
+"customers": [
+"SpaceX"
+],
+"norad_ids": [],
+"nationalities": [
+"United States"
+],
+"manufacturers": [
+"SpaceX"
+],
+"mass_kg": 15600,
+"mass_lbs": 34392,
+"orbit": "VLEO",
+"reference_system": "geocentric",
+"regime": "very-low-earth",
+"longitude": null,
+"semi_major_axis_km": null,
+"eccentricity": null,
+"periapsis_km": null,
+"apoapsis_km": null,
+"inclination_deg": null,
+"period_min": null,
+"lifespan_years": null,
+"epoch": null,
+"mean_motion": null,
+"raan": null,
+"arg_of_pericenter": null,
+"mean_anomaly": null,
+"id": "60428afbc041c16716f73cdd"
+}
+""".data(using: .utf8)!
+
+let c207JSON = """
+{
+"reuse_count": 0,
+"water_landings": 0,
+"land_landings": 0,
+"last_update": "Docked to pressurized mating adapter PMA-2 on the Harmony module of the ISS on 17 Nov 2020",
+"launches": [
+"5eb87d4dffd86e000604b38e"
+],
+"serial": "C207",
+"status": "active",
+"type": "Dragon 2.0",
+"id": "5f6f99fddcfdf403df379709"
+}
+""".data(using: .utf8)!
+
+let dragon2JSON = """
+{
+"heat_shield": {
+"material": "PICA-X",
+"size_meters": 3.6,
+"temp_degrees": 3000,
+"dev_partner": "NASA"
+},
+"launch_payload_mass": {
+"kg": 6000,
+"lb": 13228
+},
+"launch_payload_vol": {
+"cubic_meters": 25,
+"cubic_feet": 883
+},
+"return_payload_mass": {
+"kg": 3000,
+"lb": 6614
+},
+"return_payload_vol": {
+"cubic_meters": 11,
+"cubic_feet": 388
+},
+"pressurized_capsule": {
+"payload_volume": {
+"cubic_meters": 11,
+"cubic_feet": 388
+}
+},
+"trunk": {
+"trunk_volume": {
+"cubic_meters": 14,
+"cubic_feet": 494
+},
+"cargo": {
+"solar_array": 2,
+"unpressurized_cargo": true
+}
+},
+"height_w_trunk": {
+"meters": 7.2,
+"feet": 23.6
+},
+"diameter": {
+"meters": 3.7,
+"feet": 12
+},
+"first_flight": "2019-03-02",
+"flickr_images": [
+"https://farm8.staticflickr.com/7647/16581815487_6d56cb32e1_b.jpg",
+"https://farm1.staticflickr.com/780/21119686299_c88f63e350_b.jpg",
+"https://farm9.staticflickr.com/8588/16661791299_a236e2f5dc_b.jpg"
+],
+"name": "Dragon 2",
+"type": "capsule",
+"active": true,
+"crew_capacity": 7,
+"sidewall_angle_deg": 15,
+"orbit_duration_yr": 2,
+"dry_mass_kg": 6350,
+"dry_mass_lb": 14000,
+"thrusters": [
+{
+"type": "Draco",
+"amount": 18,
+"pods": 4,
+"fuel_1": "nitrogen tetroxide",
+"fuel_2": "monomethylhydrazine",
+"isp": 300,
+"thrust": {
+"kN": 0.4,
+"lbf": 90
+}
+},
+{
+"type": "SuperDraco",
+"amount": 8,
+"pods": 4,
+"fuel_1": "dinitrogen tetroxide",
+"fuel_2": "monomethylhydrazine",
+"isp": 235,
+"thrust": {
+"kN": 71,
+"lbf": 16000
+}
+}
+],
+"wikipedia": "https://en.wikipedia.org/wiki/Dragon_2",
+"description": "Dragon 2 (also Crew Dragon, Dragon V2, or formerly DragonRider) is the second version of the SpaceX Dragon spacecraft, which will be a human-rated vehicle. It includes a set of four side-mounted thruster pods with two SuperDraco engines each, which can serve as a launch escape system or launch abort system (LAS). In addition, it has much larger windows, new flight computers and avionics, and redesigned solar arrays, and a modified outer mold line from the initial cargo Dragon that has been flying for several years.",
+"id": "5e9d058859b1ffd8e2ad5f90"
+}
+""".data(using: .utf8)!
+
+let firstStarlinkJSON = """
+{
+"spaceTrack": {
+"CCSDS_OMM_VERS": "2.0",
+"COMMENT": "GENERATED VIA SPACE-TRACK.ORG API",
+"CREATION_DATE": "2020-10-13T04:16:08",
+"ORIGINATOR": "18 SPCS",
+"OBJECT_NAME": "STARLINK-30",
+"OBJECT_ID": "2019-029K",
+"CENTER_NAME": "EARTH",
+"REF_FRAME": "TEME",
+"TIME_SYSTEM": "UTC",
+"MEAN_ELEMENT_THEORY": "SGP4",
+"EPOCH": "2020-10-13T02:56:59.566560",
+"MEAN_MOTION": 16.43170483,
+"ECCENTRICITY": 0.0003711,
+"INCLINATION": 52.9708,
+"RA_OF_ASC_NODE": 332.0356,
+"ARG_OF_PERICENTER": 120.7278,
+"MEAN_ANOMALY": 242.0157,
+"EPHEMERIS_TYPE": 0,
+"CLASSIFICATION_TYPE": "U",
+"NORAD_CAT_ID": 44244,
+"ELEMENT_SET_NO": 999,
+"REV_AT_EPOCH": 7775,
+"BSTAR": 0.0022139,
+"MEAN_MOTION_DOT": 0.47180237,
+"MEAN_MOTION_DDOT": 0.000012426,
+"SEMIMAJOR_AXIS": 6535.519,
+"PERIOD": 87.635,
+"APOAPSIS": 159.809,
+"PERIAPSIS": 154.958,
+"OBJECT_TYPE": "PAYLOAD",
+"RCS_SIZE": "LARGE",
+"COUNTRY_CODE": "US",
+"LAUNCH_DATE": "2019-05-24",
+"SITE": "AFETR",
+"DECAY_DATE": "2020-10-13",
+"DECAYED": 1,
+"FILE": 2850561,
+"GP_ID": 163365918,
+"TLE_LINE0": "0 STARLINK-30",
+"TLE_LINE1": "1 44244U 19029K   20287.12291165  .47180237  12426-4  22139-2 0  9995",
+"TLE_LINE2": "2 44244  52.9708 332.0356 0003711 120.7278 242.0157 16.43170483 77756"
+},
+"version": "v0.9",
+"launch": "5eb87d30ffd86e000604b378",
+"longitude": null,
+"latitude": null,
+"height_km": null,
+"velocity_kms": null,
+"id": "5eed770f096e59000698560d"
+}
+""".data(using: .utf8)!
+
+let roadsterJSON = """
+{
+"flickr_images": [
+"https://farm5.staticflickr.com/4615/40143096241_11128929df_b.jpg",
+"https://farm5.staticflickr.com/4702/40110298232_91b32d0cc0_b.jpg",
+"https://farm5.staticflickr.com/4676/40110297852_5e794b3258_b.jpg",
+"https://farm5.staticflickr.com/4745/40110304192_6e3e9a7a1b_b.jpg"
+],
+"name": "Elon Musk's Tesla Roadster",
+"launch_date_utc": "2018-02-06T20:45:00.000Z",
+"launch_date_unix": 1517949900,
+"launch_mass_kg": 1350,
+"launch_mass_lbs": 2976,
+"norad_id": 43205,
+"epoch_jd": 2459337.941215278,
+"orbit_type": "heliocentric",
+"apoapsis_au": 1.664449048153271,
+"periapsis_au": 0.9857710972751846,
+"semi_major_axis_au": 45.43124479617391,
+"eccentricity": 0.25608361329861,
+"inclination": 1.075789467632119,
+"longitude": 316.9264658561093,
+"periapsis_arg": 177.6835102337537,
+"period_days": 557.1554200660054,
+"speed_kph": 6650.582710078296,
+"speed_mph": 4132.479229144061,
+"earth_distance_km": 51664571.57285332,
+"earth_distance_mi": 32102866.50279544,
+"mars_distance_km": 276365099.3763419,
+"mars_distance_mi": 171725258.16457692,
+"wikipedia": "https://en.wikipedia.org/wiki/Elon_Musk%27s_Tesla_Roadster",
+"video": "https://youtu.be/wbSwFU6tY1c",
+"details": "Elon Musk's Tesla Roadster is an electric sports car that served as the dummy payload for the February 2018 Falcon Heavy test flight and is now an artificial satellite of the Sun. Starman, a mannequin dressed in a spacesuit, occupies the driver's seat. The car and rocket are products of Tesla and SpaceX. This 2008-model Roadster was previously used by Musk for commuting, and is the only consumer car sent into space.",
+"id": "5eb75f0842fea42237d7f3f4"
+}
+""".data(using: .utf8)!
 
 struct FakeData {
     static let shared = FakeData()
@@ -643,6 +990,13 @@ struct FakeData {
     var ocisly: Ship?
     var lz1: Landpad?
     var b1051: Core?
+    var roadsterPayload: Payload?
+    var crew2Payload: Payload?
+    var starlink22Payload: Payload?
+    var c207: Capsule?
+    var dragon2: Dragon?
+    var firstStarlink: Starlink?
+    var roadster: Roadster?
 
     private var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Fake data")
 
@@ -659,8 +1013,15 @@ struct FakeData {
             ocisly = try decoder.decode(Ship.self, from: ocislyJSON)
             lz1 = try decoder.decode(Landpad.self, from: lz1JSON)
             b1051 = try decoder.decode(Core.self, from: b1051JSON)
+            roadsterPayload = try decoder.decode(Payload.self, from: roadsterPayloadJSON)
+            crew2Payload = try decoder.decode(Payload.self, from: crew2PayloadJSON)
+            starlink22Payload = try decoder.decode(Payload.self, from: starlink22PayloadJSON)
+            c207 = try decoder.decode(Capsule.self, from: c207JSON)
+            dragon2 = try decoder.decode(Dragon.self, from: dragon2JSON)
+            firstStarlink = try decoder.decode(Starlink.self, from: firstStarlinkJSON)
+            roadster = try decoder.decode(Roadster.self, from: roadsterJSON)
         } catch {
-            logger.error("Unhandled error while initializing fake data: \"\(error.localizedDescription)\"")
+            fatalError("Unhandled error while initializing fake data: \"\(error.localizedDescription)\"")
         }
     }
 }

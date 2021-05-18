@@ -90,6 +90,7 @@ class Dragon: Decodable, ObservableObject {
     public var diameter: Measurement<UnitLength>?
     public var flickrImages: [URL]?
     public var description: String?
+    public var stringID: String
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -112,6 +113,7 @@ class Dragon: Decodable, ObservableObject {
         case diameter
         case flickrImages = "flickr_images"
         case description
+        case stringID = "id"
     }
 
     required init(from decoder: Decoder) throws {
@@ -179,6 +181,7 @@ class Dragon: Decodable, ObservableObject {
 
         flickrImages = try? values.decodeIfPresent([URL].self, forKey: .flickrImages)
         description = try? values.decodeIfPresent(String.self, forKey: .description)
+        stringID = try! values.decode(String.self, forKey: .stringID)
     }
 }
 
