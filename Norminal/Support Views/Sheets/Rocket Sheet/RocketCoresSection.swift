@@ -13,12 +13,14 @@ struct RocketCoresSection: View {
     var body: some View {
         Section(header: Text("Cores used in this mission")) {
             ForEach(cores) { core in
-                VStack(alignment: .leading) {
-                    Text(core.nameDotFlight)
-                    if !upcoming {
-                        Text(core.recoveryStatus)
-                            .foregroundColor(.gray)
-                            .font(.callout)
+                NavigationLink(destination: core.realCore != nil ? CoreSheet(core: core.realCore!) : nil) {
+                    VStack(alignment: .leading) {
+                        Text(core.nameDotFlight)
+                        if !upcoming {
+                            Text(core.recoveryStatus)
+                                .foregroundColor(.gray)
+                                .font(.callout)
+                        }
                     }
                 }
             }
