@@ -51,18 +51,37 @@ struct SinglePayloadSheet: View {
     }
 
     var body: some View {
-        VStack {
-            Text(payload.name ?? "")
-            Text(intrinsicStarlink?.version ?? "NO STARLINK")
-            Text(intrinsicCapsule?.serial ?? "NO CAPSULE")
-            Text(intrinsicDragon?.name ?? "NO DRAGON")
-            Text(intrinsicRoadster?.name ?? "NO ROADSTER")
+        List {
+            PayloadSection(payload: payload)
+
+            if let noradIDs = payload.noradIDs,
+               noradIDs.count > 0 {
+                PayloadNORADSection(ids: noradIDs)
+            }
+
+            if let starlink = intrinsicStarlink {
+                Text("Starlink \(starlink.version ?? "")")
+            }
+
+            if let capsule = intrinsicCapsule {
+                Text(capsule.serial)
+            }
+
+            if let dragon = intrinsicDragon {
+                Text(dragon.name)
+            }
+
+            if let roadster = intrinsicRoadster {
+                Text(roadster.name ?? "Roadster")
+            }
         }
+        .listStyle(InsetGroupedListStyle())
+        .navigationTitle(payload.name ?? intrinsicCapsule?.serial ?? intrinsicRoadster?.name ?? "Payload")
     }
 }
 
 struct SinglePayloadSheet_Previews: PreviewProvider {
     static var previews: some View {
-        SinglePayloadSheet(payload: FakeData.shared.starlink22Payload!)
+        SinglePayloadSheet(payload: FakeData.shared.crew2Payload!)
     }
 }

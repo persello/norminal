@@ -9,22 +9,22 @@ import SwiftUI
 import Telescope
 
 struct RocketSheet: View {
-    
     public init(launch: Launch) {
         self.launch = launch
-        self.rocket = launch.rocket
+        rocket = launch.rocket
     }
-    
+
     public init(rocket: Rocket) {
         self.rocket = rocket
     }
-    
+
     var launch: Launch?
     var rocket: Rocket?
 
     var body: some View {
         List {
-            if let cores = launch?.cores {
+            if let cores = launch?.cores,
+               cores.count > 0 {
                 RocketCoresSection(cores: cores, upcoming: launch?.upcoming ?? false)
             }
 
@@ -44,7 +44,7 @@ struct RocketSheet: View {
                     if let firstStage = rocket.firstStage {
                         RocketFirstStageSection(firstStage: firstStage)
                     }
-                    
+
                     if let secondStage = rocket.secondStage {
                         RocketSecondStageSection(secondStage: secondStage)
                     }

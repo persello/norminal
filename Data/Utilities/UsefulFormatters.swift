@@ -35,4 +35,11 @@ struct UsefulFormatters {
         
         return f
     }
+    
+    static var plainNumberFormatter: NumberFormatter {
+        let f = NumberFormatter()
+        f.groupingSeparator = ""
+        
+        return f
+    }
 }
