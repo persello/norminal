@@ -59,13 +59,20 @@ struct LaunchMapSection: View {
             }
 
             return nil
+
         case .landpad:
+            if let landpad = poi.originalObject as? Landpad {
+                return AnyView(LandpadSheet(landpad: landpad))
+            }
+
             return nil
+
         case .ship,
              .droneship:
             if let ship = poi.originalObject as? Ship {
                 return AnyView(ShipSheet(ship: ship))
             }
+
             return nil
         }
     }
