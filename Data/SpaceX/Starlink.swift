@@ -31,7 +31,7 @@ class Starlink: ObservableObject, Decodable {
            let height = heightKilometers {
             return CLLocation(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon),
                               altitude: height * 1000,
-                              horizontalAccuracy: 1000, verticalAccuracy: 1000, timestamp: Date())
+                              horizontalAccuracy: 0, verticalAccuracy: 0, timestamp: Date())
         }
 
         return nil

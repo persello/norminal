@@ -69,6 +69,10 @@
 		8B32865E264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
 		8B32865F264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
 		8B328660264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
+		8B32E6E02655093000AD854E /* OrbitMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32E6DF2655093000AD854E /* OrbitMap.swift */; };
+		8B32E6E12655093000AD854E /* OrbitMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32E6DF2655093000AD854E /* OrbitMap.swift */; };
+		8B32E6E326550BA600AD854E /* SatelliteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32E6E226550BA600AD854E /* SatelliteKitExtensions.swift */; };
+		8B32E6E426550BA600AD854E /* SatelliteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32E6E226550BA600AD854E /* SatelliteKitExtensions.swift */; };
 		8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5802530CE740084E52D /* NorminalApp.swift */; };
 		8B46A5832530CE740084E52D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5822530CE740084E52D /* MainView.swift */; };
 		8B46A5852530CE760084E52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
@@ -247,6 +251,8 @@
 		8B29D0CB2611178800FBA0C5 /* LaunchOrderingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOrderingControls.swift; sourceTree = "<group>"; };
 		8B29D0CD26111D3D00FBA0C5 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		8B32865D264C8F930039ADE8 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		8B32E6DF2655093000AD854E /* OrbitMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitMap.swift; sourceTree = "<group>"; };
+		8B32E6E226550BA600AD854E /* SatelliteKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatelliteKitExtensions.swift; sourceTree = "<group>"; };
 		8B46A57D2530CE740084E52D /* Norminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Norminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B46A5802530CE740084E52D /* NorminalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorminalApp.swift; sourceTree = "<group>"; };
 		8B46A5822530CE740084E52D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -597,7 +603,7 @@
 			path = "Core Sheet";
 			sourceTree = "<group>";
 		};
-		8BB89E7F265454470026275E /* PayloadSheet */ = {
+		8BB89E7F265454470026275E /* Payload Sheet */ = {
 			isa = PBXGroup;
 			children = (
 				8BB89E86265468DD0026275E /* PayloadNORADSection.swift */,
@@ -606,7 +612,7 @@
 				8BB89E802654545D0026275E /* PayloadSheet.swift */,
 				8BB89E82265458150026275E /* SinglePayloadSheet.swift */,
 			);
-			path = PayloadSheet;
+			path = "Payload Sheet";
 			sourceTree = "<group>";
 		};
 		8BBCBC10264DDCEF00937206 /* Support Views */ = {
@@ -632,7 +638,7 @@
 				8B8498D72653C2F90002505D /* Landpad Sheet */,
 				8BBCBC20264DDCEF00937206 /* Launchpad Sheet */,
 				8BBCBC24264DDCEF00937206 /* Gallery Sheet */,
-				8BB89E7F265454470026275E /* PayloadSheet */,
+				8BB89E7F265454470026275E /* Payload Sheet */,
 				8B75FBEA26527149001E7E1E /* Rocket Sheet */,
 				8B6A231A2653235400056726 /* Ship Sheet */,
 				8BBCBC13264DDCEF00937206 /* Webcast Sheet */,
@@ -685,6 +691,7 @@
 			children = (
 				8B46A59F253118160084E52D /* FakeData.swift */,
 				8B29D0CD26111D3D00FBA0C5 /* Filter.swift */,
+				8B32E6E226550BA600AD854E /* SatelliteKitExtensions.swift */,
 				8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */,
 				8BDF3D98260D4D2400DE48DD /* UnitForce.swift */,
 				8B75FBEF26527239001E7E1E /* UsefulFormatters.swift */,
@@ -727,6 +734,7 @@
 				8B29D08E2610B3F700FBA0C5 /* LaunchNotSelectedView.swift */,
 				8B5459F92641469800373B8B /* MapMarkers.swift */,
 				8B0D1D75253363BF0056FACA /* MissionRecapView.swift */,
+				8B32E6DF2655093000AD854E /* OrbitMap.swift */,
 				8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */,
 			);
 			path = "Common Views";
@@ -989,6 +997,7 @@
 				8B46A5832530CE740084E52D /* MainView.swift in Sources */,
 				8BB7202F260E260F00B8433C /* AdditionalCodingKeys.swift in Sources */,
 				8B01A03226531680009E2CD9 /* RocketEnginesSection.swift in Sources */,
+				8B32E6E326550BA600AD854E /* SatelliteKitExtensions.swift in Sources */,
 				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
 				8BA4D6F4260E503C0096CE96 /* Dragon.swift in Sources */,
 				8B75FBEC26527171001E7E1E /* RocketCoresSection.swift in Sources */,
@@ -997,6 +1006,7 @@
 				8BBCBC2D264DDCEF00937206 /* WebcastSheet.swift in Sources */,
 				8B69255B253206E900D61C3F /* LaunchDetailView.swift in Sources */,
 				8BA4D700260E50740096CE96 /* Ship.swift in Sources */,
+				8B32E6E02655093000AD854E /* OrbitMap.swift in Sources */,
 				8B46A5922530CF4D0084E52D /* LaunchListView.swift in Sources */,
 				8B29D0B12610B8B900FBA0C5 /* CrossPlatformImage.swift in Sources */,
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
@@ -1078,6 +1088,7 @@
 				8B29D0932610B80C00FBA0C5 /* Capsule.swift in Sources */,
 				8B29D0BF2610BBA800FBA0C5 /* Color.swift in Sources */,
 				8B29D0A32610B80C00FBA0C5 /* Dragon.swift in Sources */,
+				8B32E6E426550BA600AD854E /* SatelliteKitExtensions.swift in Sources */,
 				8B75FBF126527239001E7E1E /* UsefulFormatters.swift in Sources */,
 				8B75FBF42652729A001E7E1E /* RocketModelSection.swift in Sources */,
 				8B29D0A42610B80C00FBA0C5 /* Fairing.swift in Sources */,
@@ -1093,6 +1104,7 @@
 				8B29D09A2610B80C00FBA0C5 /* UnitForce.swift in Sources */,
 				8BE09FC7264201DD0001C9D9 /* Launchpad.swift in Sources */,
 				8B29D0A22610B80C00FBA0C5 /* Ship.swift in Sources */,
+				8B32E6E12655093000AD854E /* OrbitMap.swift in Sources */,
 				8B29D09F2610B80C00FBA0C5 /* Astronaut.swift in Sources */,
 				8B29D0922610B78500FBA0C5 /* LaunchListView.swift in Sources */,
 				8B29D0A52610B80C00FBA0C5 /* Roadster.swift in Sources */,

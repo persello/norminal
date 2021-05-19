@@ -30,8 +30,8 @@ struct SinglePayloadSheet: View {
         }
     }
 
-    var intrinsicStarlink: Starlink? {
-        return SpaceXData.shared.starlinks.first(where: { starlink in
+    var intrinsicStarlinks: [Starlink]? {
+        return SpaceXData.shared.starlinks.filter({ starlink in
             if let sl = starlink.launch,
                let pl = payload.launch {
                 return sl == pl
@@ -59,8 +59,12 @@ struct SinglePayloadSheet: View {
                 PayloadNORADSection(ids: noradIDs)
             }
 
-            if let starlink = intrinsicStarlink {
-                Text("Starlink \(starlink.version ?? "")")
+            
+            // Choose the right TLE sources!
+//            PayloadOrbitSection(payload: payload)
+
+            if let starlinks = intrinsicStarlinks {
+//                Text("Starlink \(starlink.version ?? "")")
             }
 
             if let capsule = intrinsicCapsule {
