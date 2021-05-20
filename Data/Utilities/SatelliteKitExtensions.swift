@@ -16,6 +16,12 @@ extension Satellite: Identifiable {
     }
 }
 
+extension Satellite: Equatable {
+    public static func == (lhs: Satellite, rhs: Satellite) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 // Support for Date
 extension Satellite {
     private func jdFromDate(date: Date) -> Double {

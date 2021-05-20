@@ -24,58 +24,105 @@ struct OrbitMap: View {
     }
 
     struct SatelliteMarker: Identifiable {
-        public init(satellite: Satellite, location: CLLocation) {
-            self.satellite = satellite
+        internal init(location: CLLocation, satellite: Satellite, kind: Kind = .satellite) {
             self.location = location
+            self.satellite = satellite
+            self.kind = kind
         }
 
-        var location: CLLocation
+        enum Kind {
+            case satellite
+            case trackPoint(offset: Double)
+        }
+
+        let location: CLLocation
         let satellite: Satellite
+        let kind: Kind
         let id = UUID()
     }
 
     var satellites: [Satellite]
+    @Binding var selectedSatellite: Satellite?
     @State private var satelliteMarkers: [SatelliteMarker] = []
     @State private var region: MKCoordinateRegion = MKCoordinateRegion(.world)
 
-    let timer = Timer.publish(every: 1.0 / 10, on: .main, in: .common)
+    @State var cachedTrackPoints: (Satellite, [SatelliteMarker])? = nil
+
+    var trackPoints: [SatelliteMarker]? {
+        if let selected = selectedSatellite {
+            if let cache = cachedTrackPoints,
+               cache.0 == selectedSatellite {
+                return cache.1
+            }
+
+            let result = stride(from: -90.0, to: 90.0, by: 0.1).compactMap({ (offset) -> SatelliteMarker? in
+                SatelliteMarker(location: selected.location(date: Date().addingTimeInterval(60 * Double(offset))), satellite: selected, kind: .trackPoint(offset: offset))
+            })
+
+            cachedTrackPoints = (selected, result)
+            return result
+        }
+
+        return nil
+    }
+
+    let timer = Timer.publish(every: 1.0 / 5, on: .main, in: .common)
         .autoconnect()
 
     var body: some View {
         Map(coordinateRegion: $region, annotationItems: satelliteMarkers) { marker in
             MapAnnotation(coordinate: marker.location.coordinate) {
-                DirectionalMarkerShape()
-                    .foregroundColor(.blue)
-                    .frame(width: 10, height: 10, alignment: .center)
-                    .background(
-                        DirectionalMarkerShape()
-                            .foregroundColor(.white)
-                            .frame(width: 16, height: 16, alignment: .center)
-                    )
-                    .rotationEffect(Angle(degrees: marker.location.course))
-                    .shadow(color: .black.opacity(0.4),
-                            radius: 4,
-                            x: -CGFloat(Double(marker.location.altitude) / 50000.0),
-                            y: CGFloat(Double(marker.location.altitude) / 50000.0))
+                switch marker.kind {
+                case .satellite:
+                    DirectionalMarkerShape()
+                        .foregroundColor(.blue)
+                        .frame(width: 10, height: 10, alignment: .center)
+                        .background(
+                            DirectionalMarkerShape()
+                                .foregroundColor(.white)
+                                .frame(width: 16, height: 16, alignment: .center)
+                        )
+                        .scaleEffect(marker.satellite == selectedSatellite ? 2 : 1)
+                        .rotationEffect(Angle(degrees: marker.location.course))
+                        .shadow(color: .black.opacity(0.4),
+                                radius: 4,
+                                x: -CGFloat(Double(marker.location.altitude) / 50000.0),
+                                y: CGFloat(Double(marker.location.altitude) / 50000.0))
+                case let .trackPoint(offset):
+                    Circle()
+                        .frame(width: 4, height: 4, alignment: .center)
+                        .foregroundColor(.blue.opacity(1 - abs(offset / 40)))
+                        .shadow(color: .blue, radius: 4, x: 0, y: 0)
+                }
             }
         }
         .onReceive(timer) { date in
-            satelliteMarkers = satellites.compactMap({
-                SatelliteMarker(satellite: $0, location: $0.location(date: date))
-            })
+            if let points = trackPoints {
+                satelliteMarkers = points
+            } else {
+                satelliteMarkers = []
+            }
+
+            satelliteMarkers.append(contentsOf: satellites.compactMap({
+                SatelliteMarker(location: $0.location(date: date), satellite: $0)
+            }))
         }
     }
 }
 
 struct OrbitMap_Previews: PreviewProvider {
-    static var previews: some View {
-        OrbitMap(satellites: FakeData.shared.bunchOfStarlinks!
+    static var satellites: [Satellite] {
+        return FakeData.shared.bunchOfStarlinks!
             .filter({ $0.spaceTrack?.decayed ?? false == false })
             .compactMap({
                 if let tle = $0.spaceTrack?.tle {
                     return Satellite(withTLE: tle)
                 }
                 return nil
-            }))
+            })
+    }
+
+    static var previews: some View {
+        OrbitMap(satellites: satellites, selectedSatellite: .constant(satellites.last))
     }
 }

@@ -22,7 +22,7 @@ struct PayloadOrbitSection: View {
     
     var body: some View {
         Section(header: Text("Orbit")) {
-            OrbitMap(satellites: satellites)
+            OrbitMap(satellites: satellites, selectedSatellite: .constant(nil))
         }
     }
 }
