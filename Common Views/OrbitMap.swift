@@ -10,6 +10,19 @@ import SatelliteKit
 import SwiftUI
 
 struct OrbitMap: View {
+    struct DirectionalMarkerShape: Shape {
+        func path(in rect: CGRect) -> Path {
+            var path = Path()
+
+            path.addArc(
+                center: CGPoint(x: rect.midX, y: rect.midY),
+                radius: rect.width / 2, startAngle: Angle(degrees: 225), endAngle: Angle(degrees: -45), clockwise: true)
+            path.addLine(to: CGPoint(x: rect.midX, y: rect.minY - rect.height / 4))
+
+            return path
+        }
+    }
+
     struct SatelliteMarker: Identifiable {
         public init(satellite: Satellite, location: CLLocation) {
             self.satellite = satellite
@@ -31,20 +44,24 @@ struct OrbitMap: View {
     var body: some View {
         Map(coordinateRegion: $region, annotationItems: satelliteMarkers) { marker in
             MapAnnotation(coordinate: marker.location.coordinate) {
-                Circle()
+                DirectionalMarkerShape()
                     .foregroundColor(.blue)
                     .frame(width: 10, height: 10, alignment: .center)
                     .background(
-                        Circle()
+                        DirectionalMarkerShape()
                             .foregroundColor(.white)
                             .frame(width: 16, height: 16, alignment: .center)
-                            .shadow(radius: 4)
                     )
+                    .rotationEffect(Angle(degrees: marker.location.course))
+                    .shadow(color: .black.opacity(0.4),
+                            radius: 4,
+                            x: -CGFloat(Double(marker.location.altitude) / 50000.0),
+                            y: CGFloat(Double(marker.location.altitude) / 50000.0))
             }
         }
         .onReceive(timer) { date in
             satelliteMarkers = satellites.compactMap({
-                SatelliteMarker(satellite: $0, location: $0.coordinates(date: date))
+                SatelliteMarker(satellite: $0, location: $0.location(date: date))
             })
         }
     }

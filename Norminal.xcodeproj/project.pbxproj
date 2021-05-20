@@ -79,6 +79,7 @@
 		8B46A5922530CF4D0084E52D /* LaunchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5912530CF4D0084E52D /* LaunchListView.swift */; };
 		8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59A2530D87F0084E52D /* LaunchListTile.swift */; };
 		8B46A5A0253118160084E52D /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
+		8B4AEFF72656981800675E88 /* LASwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4AEFF62656981800675E88 /* LASwift */; };
 		8B4E95ED259671F000F9668E /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E4259671F000F9668E /* nanopb.xcframework */; platformFilter = ios; };
 		8B4E95EF259671F000F9668E /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E5259671F000F9668E /* PromisesObjC.xcframework */; platformFilter = ios; };
 		8B4E95F1259671F000F9668E /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E6259671F000F9668E /* FirebaseAnalytics.xcframework */; platformFilter = ios; };
@@ -379,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */,
+				8B4AEFF72656981800675E88 /* LASwift in Frameworks */,
 				8B4E95F7259671F000F9668E /* FirebaseCore.xcframework in Frameworks */,
 				8B4E95F3259671F000F9668E /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
 				8B4E95FB259671F000F9668E /* GoogleAppMeasurement.xcframework in Frameworks */,
@@ -841,6 +843,7 @@
 				8B83E8A825375B10002AE62B /* SatelliteKit */,
 				8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */,
 				8BD13FB525FF762C003AB69C /* Telescope */,
+				8B4AEFF62656981800675E88 /* LASwift */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -903,6 +906,7 @@
 				8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */,
 				8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */,
 				8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */,
+				8B4AEFF52656981800675E88 /* XCRemoteSwiftPackageReference "LASwift" */,
 			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
@@ -1491,6 +1495,14 @@
 				minimumVersion = 1.0.3;
 			};
 		};
+		8B4AEFF52656981800675E88 /* XCRemoteSwiftPackageReference "LASwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AlexanderTar/LASwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.5;
+			};
+		};
 		8B692556253205E800D61C3F /* XCRemoteSwiftPackageReference "NavigationSearchBar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/markvanwijnen/NavigationSearchBar.git";
@@ -1545,6 +1557,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */;
 			productName = Telescope;
+		};
+		8B4AEFF62656981800675E88 /* LASwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B4AEFF52656981800675E88 /* XCRemoteSwiftPackageReference "LASwift" */;
+			productName = LASwift;
 		};
 		8B692557253205E800D61C3F /* NavigationSearchBar */ = {
 			isa = XCSwiftPackageProductDependency;
