@@ -80,6 +80,8 @@
 		8B46A59B2530D87F0084E52D /* LaunchListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59A2530D87F0084E52D /* LaunchListTile.swift */; };
 		8B46A5A0253118160084E52D /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
 		8B4AEFF72656981800675E88 /* LASwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4AEFF62656981800675E88 /* LASwift */; };
+		8B4AEFFA26571E0300675E88 /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 8B4AEFF926571E0300675E88 /* BottomSheet */; };
+		8B4AEFFC26571E2700675E88 /* FullscreenMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4AEFFB26571E2600675E88 /* FullscreenMapView.swift */; };
 		8B4E95ED259671F000F9668E /* nanopb.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E4259671F000F9668E /* nanopb.xcframework */; platformFilter = ios; };
 		8B4E95EF259671F000F9668E /* PromisesObjC.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E5259671F000F9668E /* PromisesObjC.xcframework */; platformFilter = ios; };
 		8B4E95F1259671F000F9668E /* FirebaseAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B4E95E6259671F000F9668E /* FirebaseAnalytics.xcframework */; platformFilter = ios; };
@@ -262,6 +264,7 @@
 		8B46A5912530CF4D0084E52D /* LaunchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListView.swift; sourceTree = "<group>"; };
 		8B46A59A2530D87F0084E52D /* LaunchListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListTile.swift; sourceTree = "<group>"; };
 		8B46A59F253118160084E52D /* FakeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
+		8B4AEFFB26571E2600675E88 /* FullscreenMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenMapView.swift; sourceTree = "<group>"; };
 		8B4E95BD25966B8C00F9668E /* run */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = run; sourceTree = "<group>"; };
 		8B4E95BE25966B8C00F9668E /* upload-symbols */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "upload-symbols"; sourceTree = "<group>"; };
 		8B4E95C325966CED00F9668E /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
@@ -391,6 +394,7 @@
 				8B4E95FD259671F000F9668E /* GoogleUtilities.xcframework in Frameworks */,
 				8BD13FB625FF762C003AB69C /* Telescope in Frameworks */,
 				8B4E95F5259671F000F9668E /* FirebaseInstallations.xcframework in Frameworks */,
+				8B4AEFFA26571E0300675E88 /* BottomSheet in Frameworks */,
 				8B4E9605259671FD00F9668E /* FirebaseCrashlytics.xcframework in Frameworks */,
 				8B4E95F1259671F000F9668E /* FirebaseAnalytics.xcframework in Frameworks */,
 				8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */,
@@ -613,6 +617,7 @@
 				8BB89E842654603F0026275E /* PayloadSection.swift */,
 				8BB89E802654545D0026275E /* PayloadSheet.swift */,
 				8BB89E82265458150026275E /* SinglePayloadSheet.swift */,
+				8B4AEFFB26571E2600675E88 /* FullscreenMapView.swift */,
 			);
 			path = "Payload Sheet";
 			sourceTree = "<group>";
@@ -844,6 +849,7 @@
 				8BC7E6C9256728FA005E4304 /* XCDYouTubeKit */,
 				8BD13FB525FF762C003AB69C /* Telescope */,
 				8B4AEFF62656981800675E88 /* LASwift */,
+				8B4AEFF926571E0300675E88 /* BottomSheet */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -907,6 +913,7 @@
 				8BC7E6C8256728FA005E4304 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */,
 				8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */,
 				8B4AEFF52656981800675E88 /* XCRemoteSwiftPackageReference "LASwift" */,
+				8B4AEFF826571E0200675E88 /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
@@ -1067,6 +1074,7 @@
 				8BBCBC41264DDCEF00937206 /* LaunchCountdownView.swift in Sources */,
 				8BA4D706260E50890096CE96 /* History.swift in Sources */,
 				8B03EF5326507969006FCC35 /* RocketSheet.swift in Sources */,
+				8B4AEFFC26571E2700675E88 /* FullscreenMapView.swift in Sources */,
 				8B133206264164E500638038 /* MapMarkers.swift in Sources */,
 				8BB89E8926546FF10026275E /* PayloadOrbitSection.swift in Sources */,
 				8BBCBC35264DDCEF00937206 /* LaunchFilterSheet.swift in Sources */,
@@ -1503,6 +1511,14 @@
 				minimumVersion = 0.2.5;
 			};
 		};
+		8B4AEFF826571E0200675E88 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LucasMucGH/BottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.7;
+			};
+		};
 		8B692556253205E800D61C3F /* XCRemoteSwiftPackageReference "NavigationSearchBar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/markvanwijnen/NavigationSearchBar.git";
@@ -1562,6 +1578,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B4AEFF52656981800675E88 /* XCRemoteSwiftPackageReference "LASwift" */;
 			productName = LASwift;
+		};
+		8B4AEFF926571E0300675E88 /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B4AEFF826571E0200675E88 /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
 		};
 		8B692557253205E800D61C3F /* NavigationSearchBar */ = {
 			isa = XCSwiftPackageProductDependency;

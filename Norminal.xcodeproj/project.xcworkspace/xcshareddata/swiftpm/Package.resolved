@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "BottomSheet",
+        "repositoryURL": "https://github.com/LucasMucGH/BottomSheet",
+        "state": {
+          "branch": null,
+          "revision": "ca3f66101a86ffc5ae814903b102133e34f672e6",
+          "version": "1.0.7"
+        }
+      },
+      {
         "package": "LASwift",
         "repositoryURL": "https://github.com/AlexanderTar/LASwift",
         "state": {

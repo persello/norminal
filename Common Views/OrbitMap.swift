@@ -43,8 +43,8 @@ struct OrbitMap: View {
 
     var satellites: [Satellite]
     @Binding var selectedSatellite: Satellite?
+    @Binding var region: MKCoordinateRegion
     @State private var satelliteMarkers: [SatelliteMarker] = []
-    @State private var region: MKCoordinateRegion = MKCoordinateRegion(.world)
 
     @State var cachedTrackPoints: (Satellite, [SatelliteMarker])? = nil
 
@@ -66,7 +66,7 @@ struct OrbitMap: View {
         return nil
     }
 
-    let timer = Timer.publish(every: 1.0 / 5, on: .main, in: .common)
+    let timer = Timer.publish(every: 1, on: .main, in: .common)
         .autoconnect()
 
     var body: some View {
@@ -123,6 +123,6 @@ struct OrbitMap_Previews: PreviewProvider {
     }
 
     static var previews: some View {
-        OrbitMap(satellites: satellites, selectedSatellite: .constant(satellites.last))
+        OrbitMap(satellites: satellites, selectedSatellite: .constant(satellites.last), region: .constant(MKCoordinateRegion(.world)))
     }
 }
