@@ -3,4 +3,22 @@
    uuid = "33C59BCA-84C8-4E2C-8141-1D0A125661F4"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBF815F7-F10A-4110-B897-A1FB981B5D90"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Library/Developer/Xcode/DerivedData/Norminal-gpnnegqewfdqchdrfufqsusrefbm/SourcePackages/checkouts/SatelliteKit/Sources/SatelliteKit/SGP/SGP4.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "sxpPropagate(minsAfterEpoch:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

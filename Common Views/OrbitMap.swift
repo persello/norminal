@@ -9,89 +9,56 @@ import MapKit
 import SatelliteKit
 import SwiftUI
 
-extension CLLocationCoordinate2D {
-    func addingLongitude(_ longitude: Double) -> Self {
-        var a = self
-        a.longitude += longitude
-        return a
-    }
-}
-
 struct OrbitMap: View {
-    struct TestMarker: Identifiable {
+    struct SatelliteMarker: Identifiable {
+        public init(satellite: Satellite, location: CLLocation) {
+            self.satellite = satellite
+            self.location = location
+        }
+
+        var location: CLLocation
+        let satellite: Satellite
         let id = UUID()
-        let coordinate: CLLocationCoordinate2D
     }
 
-    @State var toggleOn: Bool = false
-    @State var timeOffset: Double = 0
-    @State var longitudeOffset: Double = 0
+    var satellites: [Satellite]
+    @State private var satelliteMarkers: [SatelliteMarker] = []
+    @State private var region: MKCoordinateRegion = MKCoordinateRegion(.world)
 
-    var testMarkers: [TestMarker] {
-        let starlinks = SpaceXData.shared.starlinks.filter({ $0.launch == FakeData.shared.starlink22Payload?.launch })
-
-        return starlinks.compactMap({
-            if let coord = $0.location?.coordinate {
-                return TestMarker(coordinate: coord)
-            }
-
-            return nil
-        })
-    }
-
-    var satellites: [Satellite] {
-        let starlinks = SpaceXData.shared.starlinks.filter({ $0.launch == FakeData.shared.starlink22Payload?.launch })
-
-        print("\(starlinks.count)")
-
-        return starlinks.compactMap({
-            print("BBB")
-            if let tle = $0.spaceTrack?.tle {
-                print("AAA")
-                return Satellite(withTLE: tle)
-            }
-            return nil
-        })
-    }
-
-    @State var mapRect: MKMapRect = .world
+    let timer = Timer.publish(every: 1.0 / 10, on: .main, in: .common)
+        .autoconnect()
 
     var body: some View {
-        VStack {
-            Text("timeOffset: \(timeOffset), longitudeOffset: \(longitudeOffset)")
-            
-            Toggle(isOn: $toggleOn, label: {
-                Text(toggleOn ? "TLE data" : "Precomputed data")
+        Map(coordinateRegion: $region, annotationItems: satelliteMarkers) { marker in
+            MapAnnotation(coordinate: marker.location.coordinate) {
+                Circle()
+                    .foregroundColor(.blue)
+                    .frame(width: 10, height: 10, alignment: .center)
+                    .background(
+                        Circle()
+                            .foregroundColor(.white)
+                            .frame(width: 16, height: 16, alignment: .center)
+                            .shadow(radius: 4)
+                    )
+            }
+        }
+        .onReceive(timer) { date in
+            satelliteMarkers = satellites.compactMap({
+                SatelliteMarker(satellite: $0, location: $0.coordinates(date: date))
             })
-            
-            Slider(value: $timeOffset, in: -10...10)
-            Slider(value: $longitudeOffset, in: -60...30)
-
-            toggleOn ?
-                AnyView(Map(mapRect: $mapRect, annotationItems: satellites) { item in
-                    MapAnnotation(coordinate: item.coordinates().coordinate.addingLongitude(longitudeOffset)) {
-                        Circle()
-                            .frame(width: 12, height: 12, alignment: .center)
-                    }
-                })
-                :
-                AnyView(Map(mapRect: $mapRect, annotationItems: testMarkers) { item in
-                    MapAnnotation(coordinate: item.coordinate) {
-                        Circle()
-                            .foregroundColor(.blue)
-                            .frame(width: 12, height: 12, alignment: .center)
-                    }
-                })
         }
     }
 }
 
 struct OrbitMap_Previews: PreviewProvider {
-    static func fakeSatellites() -> [Satellite] {
-        return []
-    }
-
     static var previews: some View {
-        OrbitMap()
+        OrbitMap(satellites: FakeData.shared.bunchOfStarlinks!
+            .filter({ $0.spaceTrack?.decayed ?? false == false })
+            .compactMap({
+                if let tle = $0.spaceTrack?.tle {
+                    return Satellite(withTLE: tle)
+                }
+                return nil
+            }))
     }
 }

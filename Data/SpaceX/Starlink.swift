@@ -14,6 +14,8 @@ class Starlink: ObservableObject, Decodable {
         private var TLE_LINE0: String?
         private var TLE_LINE1: String?
         private var TLE_LINE2: String?
+        private var DECAYED: Int?
+        private var DECAY_DATE: String?
     }
 
     public var version: String?
@@ -47,6 +49,7 @@ class Starlink: ObservableObject, Decodable {
     }
 
     public var spaceTrack: SpaceTrack?
+    
 
     enum CodingKeys: String, CodingKey {
         case version
@@ -81,5 +84,13 @@ extension Starlink.SpaceTrack {
         }
 
         return nil
+    }
+    
+    var decayed: Bool {
+        return DECAYED ?? 0 > 0
+    }
+    
+    var decayDate: String? {
+        return DECAY_DATE
     }
 }

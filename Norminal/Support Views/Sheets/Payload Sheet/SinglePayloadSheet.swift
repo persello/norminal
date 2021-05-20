@@ -61,10 +61,12 @@ struct SinglePayloadSheet: View {
 
             
             // Choose the right TLE sources!
+            // Check for decayed satellites!
 //            PayloadOrbitSection(payload: payload)
 
             if let starlinks = intrinsicStarlinks {
 //                Text("Starlink \(starlink.version ?? "")")
+                PayloadOrbitSection(tle: starlinks.filter({$0.spaceTrack?.decayed ?? false == false}).compactMap({$0.spaceTrack?.tle}))
             }
 
             if let capsule = intrinsicCapsule {
