@@ -9,6 +9,27 @@ import MapKit
 import SatelliteKit
 import SwiftUI
 
+extension CLLocationCoordinate2D {
+    func isIncludedInRegion(region: MKCoordinateRegion) -> Bool {
+        let latMin = (region.center.latitude - region.span.latitudeDelta)
+        let latMax = (region.center.latitude + region.span.latitudeDelta)
+        let lonMin = (region.center.longitude - region.span.longitudeDelta).remainder(dividingBy: 360) + 180
+        let lonMax = (region.center.longitude + region.span.longitudeDelta).remainder(dividingBy: 360) + 180
+
+        let longitude = self.longitude.remainder(dividingBy: 360) + 180
+        
+        if (latMin ... latMax).contains(latitude) {
+            if lonMin < lonMax {
+                return (lonMin ... lonMax).contains(longitude)
+            } else {
+                return (lonMin ... 360).contains(longitude) || (0 ... lonMax).contains(longitude)
+            }
+        }
+
+        return false
+    }
+}
+
 struct OrbitMap: View {
     struct DirectionalMarkerShape: Shape {
         func path(in rect: CGRect) -> Path {
@@ -55,7 +76,7 @@ struct OrbitMap: View {
                 return cache.1
             }
 
-            let result = stride(from: -90.0, to: 90.0, by: 0.1).compactMap({ (offset) -> SatelliteMarker? in
+            let result = stride(from: -90.0, to: 90.0, by: 1.0).compactMap({ (offset) -> SatelliteMarker? in
                 SatelliteMarker(location: selected.location(date: Date().addingTimeInterval(60 * Double(offset))), satellite: selected, kind: .trackPoint(offset: offset))
             })
 
@@ -66,7 +87,7 @@ struct OrbitMap: View {
         return nil
     }
 
-    let timer = Timer.publish(every: 1, on: .main, in: .common)
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common)
         .autoconnect()
 
     var body: some View {
@@ -84,28 +105,40 @@ struct OrbitMap: View {
                         )
                         .scaleEffect(marker.satellite == selectedSatellite ? 2 : 1)
                         .rotationEffect(Angle(degrees: marker.location.course))
-                        .shadow(color: .black.opacity(0.4),
-                                radius: 4,
-                                x: -CGFloat(Double(marker.location.altitude) / 50000.0),
-                                y: CGFloat(Double(marker.location.altitude) / 50000.0))
+//                        .shadow(color: .black.opacity(0.2),
+//                                radius: 4,
+//                                x: -CGFloat(Double(marker.location.altitude) / 50000.0),
+//                                y: CGFloat(Double(marker.location.altitude) / 50000.0))
                 case let .trackPoint(offset):
                     Circle()
-                        .frame(width: 4, height: 4, alignment: .center)
+                        .frame(width: 6, height: 6, alignment: .center)
                         .foregroundColor(.blue.opacity(1 - abs(offset / 40)))
                         .shadow(color: .blue, radius: 4, x: 0, y: 0)
                 }
             }
         }
         .onReceive(timer) { date in
-            if let points = trackPoints {
-                satelliteMarkers = points
-            } else {
-                satelliteMarkers = []
-            }
+            DispatchQueue.global(qos: .userInteractive).async {
+                var markers: [SatelliteMarker]!
+                if let points = trackPoints {
+                    markers = points
+                } else {
+                    markers = []
+                }
 
-            satelliteMarkers.append(contentsOf: satellites.compactMap({
-                SatelliteMarker(location: $0.location(date: date), satellite: $0)
-            }))
+                markers.append(contentsOf: satellites.compactMap({
+                    let location = $0.location(date: date)
+                    if location.coordinate.isIncludedInRegion(region: region) {
+                        return SatelliteMarker(location: location, satellite: $0)
+                    } else {
+                        return nil
+                    }
+                }))
+
+                DispatchQueue.main.async {
+                    satelliteMarkers = markers
+                }
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ struct PayloadOrbitSection: View {
                 .aspectRatio(1.618, contentMode: .fit)
                 .padding(.horizontal, -20)
                 .padding(.vertical, -6)
-            Button(action: {fullscreenMapPresented.toggle()}) {
+            Button(action: { fullscreenMapPresented.toggle() }) {
                 InformationRow(label: "View full map", imageName: "map")
             }
             .fullScreenCover(isPresented: $fullscreenMapPresented, content: {

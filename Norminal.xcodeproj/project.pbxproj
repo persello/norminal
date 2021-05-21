@@ -612,12 +612,12 @@
 		8BB89E7F265454470026275E /* Payload Sheet */ = {
 			isa = PBXGroup;
 			children = (
+				8B4AEFFB26571E2600675E88 /* FullscreenMapView.swift */,
 				8BB89E86265468DD0026275E /* PayloadNORADSection.swift */,
 				8BB89E8826546FF10026275E /* PayloadOrbitSection.swift */,
 				8BB89E842654603F0026275E /* PayloadSection.swift */,
 				8BB89E802654545D0026275E /* PayloadSheet.swift */,
 				8BB89E82265458150026275E /* SinglePayloadSheet.swift */,
-				8B4AEFFB26571E2600675E88 /* FullscreenMapView.swift */,
 			);
 			path = "Payload Sheet";
 			sourceTree = "<group>";
