@@ -45,6 +45,15 @@
           "revision": "8ff7f90f9650d9db5774275d0b1f07ef642ecf4d",
           "version": "1.0.3"
         }
+      },
+      {
+        "package": "XCDYouTubeKit",
+        "repositoryURL": "https://github.com/jatin19121990/XCDYouTubeKit",
+        "state": {
+          "branch": "hotfix/Can-Not-Play-video-any-more---XCDYouTubeVideoErrorDomain-Code=-3-#525",
+          "revision": "8389cd3a1beab8bba76649ff870125b580d9a049",
+          "version": null
+        }
       }
     ]
   },
