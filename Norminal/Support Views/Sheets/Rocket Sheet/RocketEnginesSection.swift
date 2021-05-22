@@ -17,10 +17,21 @@ struct RocketEnginesSection: View {
                     .font(.title)
                     .bold()
 
-                Text("\(engines.layout ?? "unknown") layout".uppercased())
-                    .foregroundColor(.gray)
-                    .fontWeight(.semibold)
-                    .font(.callout)
+                HStack(alignment: .lastTextBaseline) {
+                    Group {
+                        if engines.layout?.lowercased() == "octaweb" {
+                            Image(systemName: "circles.hexagongrid")
+                        } else if engines.layout?.lowercased() == "single" {
+                            Image(systemName: "circle")
+                        }
+                    }
+                    .foregroundColor(.blue)
+
+                    Text("\(engines.layout ?? "unknown") layout".uppercased())
+                        .foregroundColor(.gray)
+                        .fontWeight(.semibold)
+                        .font(.callout)
+                }
             }
             .padding(.vertical, 4)
 
@@ -35,27 +46,27 @@ struct RocketEnginesSection: View {
             if let vacuumISP = engines.ispVacuum {
                 InformationRow(label: "Vacuum ISP", value: "\(vacuumISP)", imageName: "stopwatch")
             }
-            
+
             if let maxEngineLoss = engines.maxEngineLoss {
                 InformationRow(label: "Tolerated engine loss", value: "\(maxEngineLoss) engines", imageName: "xmark.octagon")
             }
-            
+
             if let propellant1 = engines.propellant1 {
                 InformationRow(label: "Propellant 1", value: propellant1.capitalizingFirstLetter(), imageName: "drop")
             }
-            
+
             if let propellant2 = engines.propellant2 {
                 InformationRow(label: "Propellant 2", value: propellant2.capitalizingFirstLetter(), imageName: "drop.triangle")
             }
-            
+
             if let seaLevelThrust = engines.seaLevelThrust {
                 InformationRow(label: "Sea level thrust", value: "\(seaLevelThrust)", imageName: "chevron.compact.up")
             }
-            
+
             if let vacuumThrust = engines.vacuumThrust {
                 InformationRow(label: "Vacuum thrust", value: "\(vacuumThrust)", imageName: "chevron.up")
             }
-            
+
             if let twr = engines.thrustWeightRatio {
                 InformationRow(label: "Thrust/weight ratio", value: "\(twr)", imageName: "scalemass")
             }

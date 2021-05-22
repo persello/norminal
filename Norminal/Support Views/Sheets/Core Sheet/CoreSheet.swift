@@ -35,7 +35,7 @@ struct CoreSheet: View {
 
                 InformationRow(label: "Status",
                                value: core.status.rawValue.capitalizingFirstLetter(),
-                               imageName: "gear")
+                               imageName: "questionmark")
 
                 if let reuseCount = core.reuseCount {
                     InformationRow(label: "Reuse count",

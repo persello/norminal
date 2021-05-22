@@ -109,7 +109,7 @@ class Dragon: Decodable, ObservableObject {
         case returnPayloadVolumeStruct = "return_payload_vol"
         case pressurizedCapsule = "pressurized_capsule"
         case trunk
-        case heightWithTrunkStruct = "height_with_trunk"
+        case heightWithTrunkStruct = "height_w_trunk"
         case diameter
         case flickrImages = "flickr_images"
         case description

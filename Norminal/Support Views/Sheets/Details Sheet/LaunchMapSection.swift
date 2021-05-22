@@ -134,9 +134,6 @@ struct LaunchMapSection_Previews: PreviewProvider {
         List {
             LaunchMapSection()
         }
-        .onAppear {
-            SpaceXData.shared.loadAllData()
-        }
         .listStyle(InsetGroupedListStyle())
         .environmentObject(FakeData.shared.crewDragon!)
         .previewLayout(.sizeThatFits)

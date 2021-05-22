@@ -12,15 +12,36 @@ class Payload: ObservableObject, Decodable {
         private var capsuleID: String?
         public var capsule: Capsule? {
             SpaceXData.shared.capsules.first(where: {
-                $0.stringID == capsuleID
+                $0.id == capsuleID
             })
         }
 
         public var massReturned: Measurement<UnitMass>?
         public var flightTime: Measurement<UnitDuration>?
         public var manifest: URL?
-        public var waterLanding: Bool?
-        public var landLanding: Bool?
+        private var waterLanding: Bool?
+        private var landLanding: Bool?
+
+        public var status: Status {
+            
+            if let wl = waterLanding,
+               wl == true {
+                return .waterLanded
+            }
+            
+            if let ll = landLanding,
+               ll == true {
+                return .landLanded
+            }
+            
+            return .unknown
+        }
+
+        enum Status: String {
+            case unknown = "Unknown"
+            case waterLanded = "Landed (water)"
+            case landLanded = "Landed (land)"
+        }
 
         enum CodingKeys: String, CodingKey {
             case capsuleID = "capsule"

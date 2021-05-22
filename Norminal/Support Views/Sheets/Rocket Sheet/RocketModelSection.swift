@@ -10,29 +10,12 @@ import Telescope
 
 struct RocketModelSection: View {
     var rocket: Rocket
-    @State var galleryModalPresented: Bool = false
 
     var body: some View {
         Section(header: Text("Vehicle")) {
-            ZStack(alignment: .topLeading) {
-                if let imageURL = rocket.flickrImages?.first {
-                    TImage(RemoteImage(imageURL: imageURL))
-                        .resizable()
-                        .scaledToFill()
-                        .padding(.vertical, -6)
-                }
-
-                if let imageURLs = rocket.flickrImages {
-                    Button(action: { galleryModalPresented.toggle() }, label: {
-                        Image(systemName: "photo.on.rectangle.angled")
-                            .foregroundColor(.white)
-                    })
-                        .frame(width: 40, height: 40, alignment: .leading)
-                        .shadow(radius: 4)
-                        .sheet(isPresented: $galleryModalPresented, content: {
-                            RootSheet(modalShown: $galleryModalPresented) { GallerySheet(imageURLs: imageURLs) }
-                        })
-                }
+            if let images = rocket.flickrImages,
+               images.count > 0 {
+                TImageWithGalleryButton(imageURLs: images)
             }
 
             VStack(alignment: .leading) {

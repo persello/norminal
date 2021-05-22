@@ -11,39 +11,12 @@
         }
       },
       {
-        "package": "LASwift",
-        "repositoryURL": "https://github.com/AlexanderTar/LASwift",
-        "state": {
-          "branch": null,
-          "revision": "34bba6eaac5c030aa065f255e4392d2d8cc41ba5",
-          "version": "0.2.5"
-        }
-      },
-      {
         "package": "NavigationSearchBar",
         "repositoryURL": "https://github.com/markvanwijnen/NavigationSearchBar.git",
         "state": {
           "branch": null,
           "revision": "3404a8d18b3a73d56f59036d8af0b3c55d860c63",
           "version": "1.3.0"
-        }
-      },
-      {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble.git",
-        "state": {
-          "branch": null,
-          "revision": "7a46a5fc86cb917f69e3daf79fcb045283d8f008",
-          "version": "8.1.2"
-        }
-      },
-      {
-        "package": "Quick",
-        "repositoryURL": "https://github.com/Quick/Quick.git",
-        "state": {
-          "branch": null,
-          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
-          "version": "2.2.1"
         }
       },
       {
@@ -60,7 +33,7 @@
         "repositoryURL": "https://github.com/persello/telescope",
         "state": {
           "branch": "develop",
-          "revision": "87b14dc612c0cffb061000a3a2bcf66a621b4adb",
+          "revision": "a3800046d6820cd09c7e896de1bd1453dfc13ac7",
           "version": null
         }
       },
@@ -71,15 +44,6 @@
           "branch": null,
           "revision": "8ff7f90f9650d9db5774275d0b1f07ef642ecf4d",
           "version": "1.0.3"
-        }
-      },
-      {
-        "package": "XCDYouTubeKit",
-        "repositoryURL": "https://github.com/0xced/XCDYouTubeKit.git",
-        "state": {
-          "branch": null,
-          "revision": "23f765941b36d6d28215ab81a37af1039d29138b",
-          "version": "2.15.2"
         }
       }
     ]

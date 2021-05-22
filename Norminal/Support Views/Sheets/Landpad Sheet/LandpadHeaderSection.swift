@@ -46,14 +46,14 @@ struct LandpadHeaderSection: View {
                             )
                         
                         Text("Wikipedia")
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                     }
                 }
             }
 
             InformationRow(label: "Landings", value: "\(landpad.landingSuccesses)/\(landpad.landingAttempts)", imageName: "arrow.down.to.line")
             
-            InformationRow(label: "Status", value: "\(landpad.status)".capitalizingFirstLetter(), imageName: "gear")
+            InformationRow(label: "Status", value: "\(landpad.status)".capitalizingFirstLetter(), imageName: "questionmark")
         }
     }
 }

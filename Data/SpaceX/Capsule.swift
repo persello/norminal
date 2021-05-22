@@ -18,7 +18,23 @@ class Capsule: ObservableObject, Decodable {
 
     public var type: String
 
-    public var dragon: String?
+    private var dragonID: String?
+
+    public var dragonModel: Dragon? {
+        if let dragonID = self.dragonID {
+            // Not supported now, but might be when API gets fixed
+            return SpaceXData.shared.dragons.first(where: { dragon in
+                dragon.stringID == dragonID
+            })
+        } else {
+            // Type matching
+            // Ex. "Dragon 1" Dragon name matches with both "Dragon 1.1" and "Dragon 1.0" capsule types.
+
+            return SpaceXData.shared.dragons.first(where: { dragon in
+                self.type.starts(with: dragon.name) 
+            })
+        }
+    }
 
     public var reuseCount: Int?
 
@@ -46,7 +62,7 @@ class Capsule: ObservableObject, Decodable {
         case serial
         case status
         case type
-        case dragon
+        case dragonID = "dragon"
         case reuseCount = "reuse_count"
         case waterLandings = "water_landings"
         case landLandings = "land_landings"
