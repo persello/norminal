@@ -7,7 +7,6 @@
 
 import CoreLocation
 import Foundation
-import LASwift
 import SatelliteKit
 
 extension Satellite: Identifiable {

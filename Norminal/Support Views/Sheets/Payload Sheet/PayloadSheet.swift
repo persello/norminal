@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import Telescope
 
 struct PayloadSheet: View {
     var payloads: [Payload]
+    var showPatches: Bool = false
 
     var title: String {
         if payloads.count == 1 {
@@ -27,13 +29,22 @@ struct PayloadSheet: View {
             List {
                 ForEach(payloads, id: \.stringID) { payload in
                     NavigationLink(destination: SinglePayloadSheet(payload: payload)) {
-                        VStack(alignment: .leading) {
-                            Text(payload.name ?? "Unknown payload")
-                                .bold()
-                            
-                            Text(payload.type?.uppercased() ?? "")
-                                .foregroundColor(.gray)
-                                .font(.caption)
+                        HStack {
+                            if showPatches,
+                               let patch = payload.launch?.getPatch() {
+                                TImage(patch)
+                                    .resizable()
+                                    .frame(width: 24, height: 24, alignment: .center)
+                            }
+
+                            VStack(alignment: .leading) {
+                                Text(payload.name ?? "Unknown payload")
+                                    .bold()
+
+                                Text(payload.type?.uppercased() ?? "")
+                                    .foregroundColor(.gray)
+                                    .font(.caption)
+                            }
                         }
                     }
                 }

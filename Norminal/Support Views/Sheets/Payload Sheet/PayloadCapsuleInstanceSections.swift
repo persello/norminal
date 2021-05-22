@@ -1,5 +1,5 @@
 //
-//  PayloadCapsuleSections.swift
+//  PayloadCapsuleInstanceSections.swift
 //  Norminal
 //
 //  Created by Riccardo Persello on 21/05/21.
@@ -7,24 +7,24 @@
 
 import SwiftUI
 
-struct PayloadCapsuleSections: View {
-    internal init(payload: Payload) {
+struct PayloadCapsuleInstanceSections: View {
+    public init(payload: Payload) {
         self.payload = payload
+        self.dragonInstance = payload.dragon
+        self.capsule = dragonInstance?.capsule
+        self.dragonModel = capsule?.dragonModel
+    }
+    
+    public init(capsule: Capsule) {
+        self.capsule = capsule
+        self.dragonModel = capsule.dragonModel
     }
 
-    var payload: Payload
-    var dragonInstance: Payload.Dragon? {
-        payload.dragon
-    }
-
-    var capsule: Capsule? {
-        dragonInstance?.capsule
-    }
-
-    var dragonModel: Dragon? {
-        capsule?.dragonModel
-    }
-
+    var payload: Payload?
+    var dragonInstance: Payload.Dragon?
+    var capsule: Capsule?
+    var dragonModel: Dragon?
+    
     var body: some View {
         Section(header: Text("Capsule")) {
             if let images = dragonModel?.flickrImages {
@@ -75,8 +75,8 @@ struct PayloadCapsuleSections: View {
                                    imageName: "scalemass")
                 }
 
-                if dragonInstance.status != .unknown {
-                    InformationRow(label: "Last landing", value: dragonInstance.status.rawValue, imageName: "arrow.down.to.line")
+                if dragonInstance.landingStatus != .unknown {
+                    InformationRow(label: "Last landing", value: dragonInstance.landingStatus.rawValue, imageName: "arrow.down.to.line")
                 }
 
                 if let flightTime = dragonInstance.flightTime {
@@ -298,7 +298,7 @@ struct PayloadCapsuleSections: View {
 struct CapsuleSections_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            PayloadCapsuleSections(payload: FakeData.shared.crewDragon?.payloads?.first ??
+            PayloadCapsuleInstanceSections(payload: FakeData.shared.crewDragon?.payloads?.first ??
                 FakeData.shared.crew2Payload!)
         }
         .listStyle(InsetGroupedListStyle())

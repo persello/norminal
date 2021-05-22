@@ -69,7 +69,7 @@ struct SinglePayloadSheet: View {
 
             // Capsule
             if payload.dragon?.capsule != nil {
-                PayloadCapsuleSections(payload: payload)
+                PayloadCapsuleInstanceSections(payload: payload)
             }
 
             // Roadster

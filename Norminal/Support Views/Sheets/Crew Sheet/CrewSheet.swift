@@ -34,7 +34,7 @@ struct CrewSheet: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .navigationTitle(Text("Mission crew"))
+        .navigationTitle(Text("Astronauts"))
     }
 }
 

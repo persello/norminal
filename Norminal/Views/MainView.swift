@@ -29,11 +29,11 @@ struct CompactMainView: View {
                 Image(systemName: "flame")
                 Text("Launches")
             }
-            
-            FeedbackView()
+
+            ArchiveView()
                 .tabItem {
-                    Image(systemName: "exclamationmark.bubble.fill")
-                    Text("Feedback")
+                    Image(systemName: "books.vertical")
+                    Text("Archive")
                 }
         }
     }
@@ -41,22 +41,109 @@ struct CompactMainView: View {
 
 enum Screens: Equatable, Identifiable {
     case launches
-    case feedback
-    
+    case archive
+
+    case astronauts
+    case starlink
+    case cores
+    case capsules
+    case payloads
+//    case roadster
+    case ships
+//    case fairings
+    case vehicles // Rockets and dragons
+    case pads
+    case company
+
+    case about
+
     var id: Screens { self }
 }
 
 struct SidebarView: View {
     @State var selectedView: Screens? = .launches
-    
+
     var body: some View {
         List {
-            Group{
-                NavigationLink(destination: LaunchListView(), tag: Screens.launches, selection: $selectedView) {
-                    Label("Launches", systemImage: "flame")
+            Group {
+                NavigationLink(
+                    destination: LaunchListView(),
+                    tag: Screens.launches,
+                    selection: $selectedView) {
+                    Label("Launches", systemImage: "calendar")
                 }
-                NavigationLink(destination: FeedbackView(), tag: Screens.feedback, selection: $selectedView) {
-                    Label("Feedback", systemImage: "exclamationmark.bubble")
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.astronauts,
+                    selection: $selectedView) {
+                    Label("Astronauts", systemImage: "person.2")
+                }
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.starlink,
+                    selection: $selectedView) {
+                    Label("Starlink", systemImage: "network")
+                }
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.cores,
+                    selection: $selectedView) {
+                    Label("Cores", systemImage: "flame")
+                }
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.capsules,
+                    selection: $selectedView) {
+                    Label("Capsules", systemImage: "arrowtriangle.up.circle")
+                }
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.payloads,
+                    selection: $selectedView) {
+                    Label("Payloads", systemImage: "shippingbox")
+                }
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.ships,
+                    selection: $selectedView) {
+                    Label("Support ships", systemImage: "lifepreserver")
+                }
+            }
+
+            Group {
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.vehicles,
+                    selection: $selectedView) {
+                    Label("Vehicles", systemImage: "car")
+                }
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.pads,
+                    selection: $selectedView) {
+                    Label("Pads", systemImage: "arrow.up.arrow.down")
+                }
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.company,
+                    selection: $selectedView) {
+                    Label("Company", systemImage: "building.2")
+                }
+
+                NavigationLink(
+                    destination: EmptyView(),
+                    tag: Screens.about,
+                    selection: $selectedView) {
+                    Label("About", systemImage: "info.circle")
                 }
             }
         }
@@ -66,15 +153,14 @@ struct SidebarView: View {
 
 struct RegularMainView: View {
     @EnvironmentObject var globalData: SpaceXData
-    
+
     var body: some View {
-        
         NavigationView {
             SidebarView()
                 .navigationTitle("Norminal")
-            
+
             LaunchListView()
-            
+
             LaunchNotSelectedView()
         }
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
@@ -83,7 +169,7 @@ struct RegularMainView: View {
 
 struct MainView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    
+
     var body: some View {
         Group {
             if horizontalSizeClass == .compact {
@@ -99,8 +185,12 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             MainView()
-                .environmentObject(SpaceXData.shared)
                 .previewDevice("iPad Air (3rd generation)")
+            
+            
+            CompactMainView()
+                .previewDevice("iPhone 12 Pro")
         }
+        .environmentObject(SpaceXData.shared)
     }
 }
