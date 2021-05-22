@@ -1,5 +1,5 @@
 //
-//  CapsuleSections.swift
+//  PayloadCapsuleSections.swift
 //  Norminal
 //
 //  Created by Riccardo Persello on 21/05/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CapsuleSections: View {
+struct PayloadCapsuleSections: View {
     internal init(payload: Payload) {
         self.payload = payload
     }
@@ -76,7 +76,7 @@ struct CapsuleSections: View {
                 }
 
                 if dragonInstance.status != .unknown {
-                    InformationRow(label: "Status", value: dragonInstance.status.rawValue, imageName: "questionmark")
+                    InformationRow(label: "Last landing", value: dragonInstance.status.rawValue, imageName: "arrow.down.to.line")
                 }
 
                 if let flightTime = dragonInstance.flightTime {
@@ -87,7 +87,7 @@ struct CapsuleSections: View {
 
                 if let manifest = dragonInstance.manifest {
                     Link(destination: manifest, label: {
-                        Text("Mission manifest")
+                        Label("Mission manifest", systemImage: "newspaper")
                     })
                 }
             }
@@ -298,7 +298,7 @@ struct CapsuleSections: View {
 struct CapsuleSections_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            CapsuleSections(payload: FakeData.shared.crewDragon?.payloads?.first ??
+            PayloadCapsuleSections(payload: FakeData.shared.crewDragon?.payloads?.first ??
                 FakeData.shared.crew2Payload!)
         }
         .listStyle(InsetGroupedListStyle())

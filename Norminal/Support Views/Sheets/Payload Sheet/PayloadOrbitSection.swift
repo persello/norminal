@@ -34,7 +34,7 @@ struct PayloadOrbitSection: View {
     var body: some View {
         Section(header: Text("Orbit")) {
             if satellites.count > 0 {
-                OrbitMap(satellites: satellites, selectedSatellite: .constant(nil), region: .constant(MKCoordinateRegion(.world)))
+                OrbitMap(satellites: satellites, selectedSatellite: .constant(nil), region: $region)
                     .aspectRatio(1.618, contentMode: .fit)
                     .padding(.horizontal, -20)
                     .padding(.vertical, -6)

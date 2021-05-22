@@ -143,7 +143,7 @@
 		8BA4D707260E50890096CE96 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D705260E50890096CE96 /* History.swift */; };
 		8BA63E88263CC2D600E019BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BA63E87263CC2D600E019BC /* GoogleService-Info.plist */; };
 		8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA90E12257D9AA200168722 /* GalleryCard.swift */; };
-		8BB288AF2658224A00A441A7 /* CapsuleSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288AE2658224A00A441A7 /* CapsuleSections.swift */; };
+		8BB288AF2658224A00A441A7 /* PayloadCapsuleSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288AE2658224A00A441A7 /* PayloadCapsuleSections.swift */; };
 		8BB288B1265827A800A441A7 /* TImageWithGalleryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288B0265827A800A441A7 /* TImageWithGalleryButton.swift */; };
 		8BB288B32659187800A441A7 /* PayloadStarlinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288B22659187800A441A7 /* PayloadStarlinkSection.swift */; };
 		8BB288B526591A5A00A441A7 /* PayloadRoadsterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288B426591A5A00A441A7 /* PayloadRoadsterSection.swift */; };
@@ -315,7 +315,7 @@
 		8BA4D705260E50890096CE96 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		8BA63E87263CC2D600E019BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8BA90E12257D9AA200168722 /* GalleryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCard.swift; sourceTree = "<group>"; };
-		8BB288AE2658224A00A441A7 /* CapsuleSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleSections.swift; sourceTree = "<group>"; };
+		8BB288AE2658224A00A441A7 /* PayloadCapsuleSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadCapsuleSections.swift; sourceTree = "<group>"; };
 		8BB288B0265827A800A441A7 /* TImageWithGalleryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TImageWithGalleryButton.swift; sourceTree = "<group>"; };
 		8BB288B22659187800A441A7 /* PayloadStarlinkSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadStarlinkSection.swift; sourceTree = "<group>"; };
 		8BB288B426591A5A00A441A7 /* PayloadRoadsterSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadRoadsterSection.swift; sourceTree = "<group>"; };
@@ -616,15 +616,15 @@
 		8BB89E7F265454470026275E /* Payload Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				8BB288AE2658224A00A441A7 /* CapsuleSections.swift */,
+				8BB288AE2658224A00A441A7 /* PayloadCapsuleSections.swift */,
 				8B4AEFFB26571E2600675E88 /* FullscreenMapView.swift */,
 				8BB89E86265468DD0026275E /* PayloadNORADSection.swift */,
 				8BB89E8826546FF10026275E /* PayloadOrbitSection.swift */,
+				8BB288B426591A5A00A441A7 /* PayloadRoadsterSection.swift */,
 				8BB89E842654603F0026275E /* PayloadSection.swift */,
 				8BB89E802654545D0026275E /* PayloadSheet.swift */,
 				8BB288B22659187800A441A7 /* PayloadStarlinkSection.swift */,
 				8BB89E82265458150026275E /* SinglePayloadSheet.swift */,
-				8BB288B426591A5A00A441A7 /* PayloadRoadsterSection.swift */,
 			);
 			path = "Payload Sheet";
 			sourceTree = "<group>";
@@ -1063,7 +1063,7 @@
 				8BF143EB25F10C370045B95D /* Launchpad.swift in Sources */,
 				8B75FBF32652729A001E7E1E /* RocketModelSection.swift in Sources */,
 				8BB89E87265468DD0026275E /* PayloadNORADSection.swift in Sources */,
-				8BB288AF2658224A00A441A7 /* CapsuleSections.swift in Sources */,
+				8BB288AF2658224A00A441A7 /* PayloadCapsuleSections.swift in Sources */,
 				8BBCBC3A264DDCEF00937206 /* LaunchpadDetailsSection.swift in Sources */,
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,
 				8BBCBC3B264DDCEF00937206 /* PhotoSheet.swift in Sources */,

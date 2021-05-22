@@ -22,7 +22,7 @@ class Payload: ObservableObject, Decodable {
         private var waterLanding: Bool?
         private var landLanding: Bool?
 
-        public var status: Status {
+        public var landingStatus: LandingStatus {
             
             if let wl = waterLanding,
                wl == true {
@@ -37,10 +37,10 @@ class Payload: ObservableObject, Decodable {
             return .unknown
         }
 
-        enum Status: String {
+        enum LandingStatus: String {
             case unknown = "Unknown"
-            case waterLanded = "Landed (water)"
-            case landLanded = "Landed (land)"
+            case waterLanded = "Water"
+            case landLanded = "Land"
         }
 
         enum CodingKeys: String, CodingKey {

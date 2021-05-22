@@ -24,7 +24,7 @@ struct SinglePayloadSheet: View {
 
     var intrinsicRoadster: Roadster? {
         if payload.name?.lowercased().contains("roadster") ?? false,
-           (payload.manufacturers == ["Tesla"]) ?? false {
+           payload.manufacturers == ["Tesla"] {
             return SpaceXData.shared.roadster
         }
 
@@ -69,7 +69,7 @@ struct SinglePayloadSheet: View {
 
             // Capsule
             if payload.dragon?.capsule != nil {
-                CapsuleSections(payload: payload)
+                PayloadCapsuleSections(payload: payload)
             }
 
             // Roadster
