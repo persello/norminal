@@ -17,23 +17,22 @@ struct PayloadOrbitSection: View {
         })
 
         self.payload = payload
-        
-        if let center = satellites.first?.location().coordinate {
-            self.region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 40, longitudeDelta: 40))
-        } else {
-            self.region = MKCoordinateRegion(.world)
+
+        if let center = satellites?.first?.location().coordinate {
+            region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 40, longitudeDelta: 40))
         }
     }
 
     var tle: [TLE]
-    var satellites: [Satellite]
+    var satellites: [Satellite]?
     var payload: Payload?
     @State var fullscreenMapPresented = false
-    @State var region: MKCoordinateRegion
-    
+    @State var region: MKCoordinateRegion = MKCoordinateRegion(.world)
+
     var body: some View {
         Section(header: Text("Orbit")) {
-            if satellites.count > 0 {
+            if let satellites = satellites,
+               satellites.count > 0 {
                 OrbitMap(satellites: satellites, selectedSatellite: .constant(nil), region: $region)
                     .aspectRatio(1.618, contentMode: .fit)
                     .padding(.horizontal, -20)
@@ -53,7 +52,7 @@ struct PayloadOrbitSection: View {
                         Text(payload.orbit ?? "Orbit")
                             .font(.largeTitle)
                             .bold()
-                        
+
                         if let regime = payload.regime {
                             Text("(\(regime) regime)")
                                 .foregroundColor(.lightGray)
@@ -74,37 +73,37 @@ struct PayloadOrbitSection: View {
                                    value: UsefulFormatters.measurementFormatter.string(from: semiMajorAxis),
                                    imageName: "arrow.left.and.right")
                 }
-                
+
                 if let eccentricity = payload.eccentricity {
                     InformationRow(label: "Eccentricity",
                                    value: UsefulFormatters.nDecimalsNumberFormatter(3).string(from: NSNumber(value: eccentricity)),
                                    imageName: "oval")
                 }
-                
+
                 if let periapsis = payload.periapsis {
                     InformationRow(label: "Periapsis",
                                    value: UsefulFormatters.measurementFormatter.string(from: periapsis),
                                    imageName: "arrow.right.to.line")
                 }
-                
+
                 if let apoapsis = payload.apoapsis {
                     InformationRow(label: "Apoapsis",
                                    value: UsefulFormatters.measurementFormatter.string(from: apoapsis),
                                    imageName: "arrow.right.to.line.alt")
                 }
-                
+
                 if let inclination = payload.inclination {
                     InformationRow(label: "Inclination",
                                    value: UsefulFormatters.measurementFormatter.string(from: inclination),
                                    imageName: "line.diagonal")
                 }
-                
+
                 if let period = payload.period {
                     InformationRow(label: "Period",
                                    value: UsefulFormatters.measurementFormatter.string(from: period),
                                    imageName: "stopwatch")
                 }
-                
+
                 if let lifespan = payload.lifespanYears {
                     InformationRow(label: "Lifespan",
                                    value: "\(lifespan) years",

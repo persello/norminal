@@ -25,6 +25,7 @@ struct CompactMainView: View {
             NavigationView {
                 LaunchListView()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem {
                 Image(systemName: "flame")
                 Text("Launches")
@@ -117,7 +118,6 @@ struct SidebarView: View {
             }
 
             Group {
-
                 NavigationLink(
                     destination: EmptyView(),
                     tag: Screens.vehicles,
@@ -186,8 +186,7 @@ struct MainView_Previews: PreviewProvider {
         Group {
             MainView()
                 .previewDevice("iPad Air (3rd generation)")
-            
-            
+
             CompactMainView()
                 .previewDevice("iPhone 12 Pro")
         }

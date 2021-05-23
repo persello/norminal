@@ -11,14 +11,30 @@ struct PayloadListView: View {
     var payloads: [Payload]
 
     var body: some View {
-        List {
-            ForEach(payloads) { payload in
-                NavigationLink(destination: SinglePayloadSheet(payload: payload)) {
-                    PayloadListTile(payload: payload, showPatch: true)
+        Group {
+            if payloads.count > 0 {
+                List {
+                    ForEach(payloads) { payload in
+                        NavigationLink(destination: SinglePayloadSheet(payload: payload)) {
+                            PayloadListTile(payload: payload, showPatch: true)
+                        }
+                    }
+                }
+                .listStyle(GroupedListStyle())
+            } else {
+                VStack {
+                    Image(systemName: "shippingbox")
+                        .resizable()
+                        .frame(width: 100, height: 100, alignment: .center)
+                        .foregroundColor(.lightGray)
+                        .padding()
+
+                    Text("No payloads available")
+                        .foregroundColor(.gray)
                 }
             }
         }
-        .listStyle(GroupedListStyle())
+        .navigationTitle(Text("Payloads"))
     }
 }
 
