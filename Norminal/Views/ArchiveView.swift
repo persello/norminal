@@ -98,7 +98,7 @@ struct ArchiveView: View {
 
                     ArchiveCard(title: "About",
                                 image: Image("norminal.code"),
-                                destination: EmptyView())
+                                destination: AboutView())
                 }
                 .padding()
             }

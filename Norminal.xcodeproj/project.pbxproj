@@ -72,6 +72,8 @@
 		8B2E86F6265A9F0D0072735B /* PadListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86F5265A9F0D0072735B /* PadListView.swift */; };
 		8B2E86F9265AA0260072735B /* CompanySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86F8265AA0260072735B /* CompanySheet.swift */; };
 		8B2E86FB265AA56E0072735B /* HistoryEntryTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86FA265AA56E0072735B /* HistoryEntryTile.swift */; };
+		8B2E86FD265AA9560072735B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86FC265AA9560072735B /* AboutView.swift */; };
+		8B2E86FF265AABC80072735B /* WhereAmIRunning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86FE265AABC80072735B /* WhereAmIRunning.swift */; };
 		8B32865E264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
 		8B32865F264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
 		8B328660264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
@@ -279,6 +281,8 @@
 		8B2E86F5265A9F0D0072735B /* PadListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadListView.swift; sourceTree = "<group>"; };
 		8B2E86F8265AA0260072735B /* CompanySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanySheet.swift; sourceTree = "<group>"; };
 		8B2E86FA265AA56E0072735B /* HistoryEntryTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntryTile.swift; sourceTree = "<group>"; };
+		8B2E86FC265AA9560072735B /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		8B2E86FE265AABC80072735B /* WhereAmIRunning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereAmIRunning.swift; sourceTree = "<group>"; };
 		8B32865D264C8F930039ADE8 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		8B32E6DF2655093000AD854E /* OrbitMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitMap.swift; sourceTree = "<group>"; };
 		8B32E6E226550BA600AD854E /* SatelliteKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatelliteKitExtensions.swift; sourceTree = "<group>"; };
@@ -717,6 +721,7 @@
 		8BBCBC12264DDCEF00937206 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
+				8B2E86FC265AA9560072735B /* AboutView.swift */,
 				8BBCBC1D264DDCEF00937206 /* LaunchFilterSheet.swift */,
 				8BBCBC27264DDCEF00937206 /* RootSheet.swift */,
 				8B2E86F7265AA0170072735B /* Company Sheet */,
@@ -783,6 +788,7 @@
 				8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */,
 				8BDF3D98260D4D2400DE48DD /* UnitForce.swift */,
 				8B75FBEF26527239001E7E1E /* UsefulFormatters.swift */,
+				8B2E86FE265AABC80072735B /* WhereAmIRunning.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1106,6 +1112,7 @@
 				8B32E6E02655093000AD854E /* OrbitMap.swift in Sources */,
 				8B46A5922530CF4D0084E52D /* LaunchListView.swift in Sources */,
 				8B29D0B12610B8B900FBA0C5 /* CrossPlatformImage.swift in Sources */,
+				8B2E86FD265AA9560072735B /* AboutView.swift in Sources */,
 				8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */,
 				8BA4D6F1260E502F0096CE96 /* Core.swift in Sources */,
 				8B07905225F2FC41006CD9BE /* PayloadCard.swift in Sources */,
@@ -1175,6 +1182,7 @@
 				8B4AEFFC26571E2700675E88 /* FullscreenMapView.swift in Sources */,
 				8B133206264164E500638038 /* MapMarkers.swift in Sources */,
 				8BB89E8926546FF10026275E /* PayloadOrbitSection.swift in Sources */,
+				8B2E86FF265AABC80072735B /* WhereAmIRunning.swift in Sources */,
 				8BBCBC35264DDCEF00937206 /* LaunchFilterSheet.swift in Sources */,
 				8BBCBC37264DDCEF00937206 /* GallerySheet.swift in Sources */,
 				8B75FBE826526B42001E7E1E /* GlobeView.swift in Sources */,
