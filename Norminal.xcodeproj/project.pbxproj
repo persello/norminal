@@ -52,7 +52,6 @@
 		8B29D0B02610B88A00FBA0C5 /* CrossPlatformImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0AF2610B88A00FBA0C5 /* CrossPlatformImage.swift */; };
 		8B29D0B12610B8B900FBA0C5 /* CrossPlatformImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0AF2610B88A00FBA0C5 /* CrossPlatformImage.swift */; };
 		8B29D0B62610BAF200FBA0C5 /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */; };
-		8B29D0B72610BAF200FBA0C5 /* LaunchListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59A2530D87F0084E52D /* LaunchListTile.swift */; };
 		8B29D0B82610BAF200FBA0C5 /* LaunchNotSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D08E2610B3F700FBA0C5 /* LaunchNotSelectedView.swift */; };
 		8B29D0B92610BAF200FBA0C5 /* AstronautPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8BD25379B60002AE62B /* AstronautPicture.swift */; };
 		8B29D0BA2610BAF200FBA0C5 /* MissionRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D1D75253363BF0056FACA /* MissionRecapView.swift */; };
@@ -65,6 +64,14 @@
 		8B29D0CC2611178800FBA0C5 /* LaunchOrderingControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0CB2611178800FBA0C5 /* LaunchOrderingControls.swift */; };
 		8B29D0CE26111D3D00FBA0C5 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0CD26111D3D00FBA0C5 /* Filter.swift */; };
 		8B29D0CF26111D4200FBA0C5 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0CD26111D3D00FBA0C5 /* Filter.swift */; };
+		8B2E86EC265A96900072735B /* AstronautListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86EB265A96900072735B /* AstronautListTile.swift */; };
+		8B2E86EE265A97D60072735B /* PayloadListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86ED265A97D60072735B /* PayloadListView.swift */; };
+		8B2E86F0265A984D0072735B /* PayloadListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86EF265A984D0072735B /* PayloadListTile.swift */; };
+		8B2E86F2265A99AD0072735B /* VehicleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86F1265A99AD0072735B /* VehicleListView.swift */; };
+		8B2E86F4265A9B770072735B /* RocketListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86F3265A9B770072735B /* RocketListTile.swift */; };
+		8B2E86F6265A9F0D0072735B /* PadListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86F5265A9F0D0072735B /* PadListView.swift */; };
+		8B2E86F9265AA0260072735B /* CompanySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86F8265AA0260072735B /* CompanySheet.swift */; };
+		8B2E86FB265AA56E0072735B /* HistoryEntryTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86FA265AA56E0072735B /* HistoryEntryTile.swift */; };
 		8B32865E264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
 		8B32865F264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
 		8B328660264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
@@ -76,6 +83,11 @@
 		8B44B2B3265A54DA0047DD49 /* CapsuleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44B2B2265A54DA0047DD49 /* CapsuleListView.swift */; };
 		8B44B2B5265A55160047DD49 /* CoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44B2B4265A55160047DD49 /* CoreListView.swift */; };
 		8B44B2B7265A553F0047DD49 /* StarlinkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44B2B6265A553F0047DD49 /* StarlinkListView.swift */; };
+		8B44B2BA265A5C830047DD49 /* CoreListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44B2B9265A5C830047DD49 /* CoreListTile.swift */; };
+		8B44B2BC265A5CD40047DD49 /* CapsuleListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44B2BB265A5CD40047DD49 /* CapsuleListTile.swift */; };
+		8B44B2BE265A63B80047DD49 /* ShipListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44B2BD265A63B80047DD49 /* ShipListView.swift */; };
+		8B44B2C0265A69C60047DD49 /* ShipListTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44B2BF265A69C60047DD49 /* ShipListTile.swift */; };
+		8B44B2C2265A6A920047DD49 /* AstronautListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44B2C1265A6A920047DD49 /* AstronautListView.swift */; };
 		8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5802530CE740084E52D /* NorminalApp.swift */; };
 		8B46A5832530CE740084E52D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5822530CE740084E52D /* MainView.swift */; };
 		8B46A5852530CE760084E52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
@@ -259,12 +271,25 @@
 		8B29D0C92610EF8E00FBA0C5 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		8B29D0CB2611178800FBA0C5 /* LaunchOrderingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOrderingControls.swift; sourceTree = "<group>"; };
 		8B29D0CD26111D3D00FBA0C5 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		8B2E86EB265A96900072735B /* AstronautListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautListTile.swift; sourceTree = "<group>"; };
+		8B2E86ED265A97D60072735B /* PayloadListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadListView.swift; sourceTree = "<group>"; };
+		8B2E86EF265A984D0072735B /* PayloadListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadListTile.swift; sourceTree = "<group>"; };
+		8B2E86F1265A99AD0072735B /* VehicleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleListView.swift; sourceTree = "<group>"; };
+		8B2E86F3265A9B770072735B /* RocketListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketListTile.swift; sourceTree = "<group>"; };
+		8B2E86F5265A9F0D0072735B /* PadListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadListView.swift; sourceTree = "<group>"; };
+		8B2E86F8265AA0260072735B /* CompanySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanySheet.swift; sourceTree = "<group>"; };
+		8B2E86FA265AA56E0072735B /* HistoryEntryTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntryTile.swift; sourceTree = "<group>"; };
 		8B32865D264C8F930039ADE8 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		8B32E6DF2655093000AD854E /* OrbitMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitMap.swift; sourceTree = "<group>"; };
 		8B32E6E226550BA600AD854E /* SatelliteKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatelliteKitExtensions.swift; sourceTree = "<group>"; };
 		8B44B2B2265A54DA0047DD49 /* CapsuleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleListView.swift; sourceTree = "<group>"; };
 		8B44B2B4265A55160047DD49 /* CoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreListView.swift; sourceTree = "<group>"; };
 		8B44B2B6265A553F0047DD49 /* StarlinkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarlinkListView.swift; sourceTree = "<group>"; };
+		8B44B2B9265A5C830047DD49 /* CoreListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreListTile.swift; sourceTree = "<group>"; };
+		8B44B2BB265A5CD40047DD49 /* CapsuleListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleListTile.swift; sourceTree = "<group>"; };
+		8B44B2BD265A63B80047DD49 /* ShipListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipListView.swift; sourceTree = "<group>"; };
+		8B44B2BF265A69C60047DD49 /* ShipListTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipListTile.swift; sourceTree = "<group>"; };
+		8B44B2C1265A6A920047DD49 /* AstronautListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautListView.swift; sourceTree = "<group>"; };
 		8B46A57D2530CE740084E52D /* Norminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Norminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B46A5802530CE740084E52D /* NorminalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NorminalApp.swift; sourceTree = "<group>"; };
 		8B46A5822530CE740084E52D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -460,15 +485,44 @@
 			path = Widget;
 			sourceTree = "<group>";
 		};
+		8B2E86F7265AA0170072735B /* Company Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				8B2E86F8265AA0260072735B /* CompanySheet.swift */,
+			);
+			path = "Company Sheet";
+			sourceTree = "<group>";
+		};
 		8B44B2B1265A54C30047DD49 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
+				8B44B2B8265A5C560047DD49 /* Tiles */,
+				8B44B2C1265A6A920047DD49 /* AstronautListView.swift */,
 				8B44B2B2265A54DA0047DD49 /* CapsuleListView.swift */,
 				8B44B2B4265A55160047DD49 /* CoreListView.swift */,
 				8B46A5912530CF4D0084E52D /* LaunchListView.swift */,
+				8B2E86ED265A97D60072735B /* PayloadListView.swift */,
+				8B44B2BD265A63B80047DD49 /* ShipListView.swift */,
 				8B44B2B6265A553F0047DD49 /* StarlinkListView.swift */,
+				8B2E86F1265A99AD0072735B /* VehicleListView.swift */,
+				8B2E86F5265A9F0D0072735B /* PadListView.swift */,
 			);
 			path = Lists;
+			sourceTree = "<group>";
+		};
+		8B44B2B8265A5C560047DD49 /* Tiles */ = {
+			isa = PBXGroup;
+			children = (
+				8B2E86EB265A96900072735B /* AstronautListTile.swift */,
+				8B44B2BB265A5CD40047DD49 /* CapsuleListTile.swift */,
+				8B44B2B9265A5C830047DD49 /* CoreListTile.swift */,
+				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
+				8B2E86EF265A984D0072735B /* PayloadListTile.swift */,
+				8B2E86F3265A9B770072735B /* RocketListTile.swift */,
+				8B44B2BF265A69C60047DD49 /* ShipListTile.swift */,
+				8B2E86FA265AA56E0072735B /* HistoryEntryTile.swift */,
+			);
+			path = Tiles;
 			sourceTree = "<group>";
 		};
 		8B46A5742530CE740084E52D = {
@@ -655,7 +709,6 @@
 				8BBCBC2A264DDCEF00937206 /* LaunchDetailHeaderView.swift */,
 				8BBCBC29264DDCEF00937206 /* LaunchDetailResourcesView.swift */,
 				8BBCBC11264DDCEF00937206 /* PinchToZoom.swift */,
-				8B44B2B1265A54C30047DD49 /* Lists */,
 				8BBCBC12264DDCEF00937206 /* Sheets */,
 			);
 			path = "Support Views";
@@ -666,6 +719,7 @@
 			children = (
 				8BBCBC1D264DDCEF00937206 /* LaunchFilterSheet.swift */,
 				8BBCBC27264DDCEF00937206 /* RootSheet.swift */,
+				8B2E86F7265AA0170072735B /* Company Sheet */,
 				8BB89E7C26544A6E0026275E /* Core Sheet */,
 				8B8498D62653C2E40002505D /* Crew Sheet */,
 				8BBCBC16264DDCEF00937206 /* Details Sheet */,
@@ -759,12 +813,12 @@
 			children = (
 				8B01B15226428D3A0012833E /* Globe */,
 				8B83E8AB253769AE002AE62B /* Cards */,
+				8B44B2B1265A54C30047DD49 /* Lists */,
 				8B83E8BD25379B60002AE62B /* AstronautPicture.swift */,
 				8B29D0BE2610BBA800FBA0C5 /* Color.swift */,
 				8B29D0C12610BE8600FBA0C5 /* ColorfulShadow.swift */,
 				8B29D0AF2610B88A00FBA0C5 /* CrossPlatformImage.swift */,
 				8B03EF5426507C4C006FCC35 /* InformationRow.swift */,
-				8B46A59A2530D87F0084E52D /* LaunchListTile.swift */,
 				8B29D08E2610B3F700FBA0C5 /* LaunchNotSelectedView.swift */,
 				8B5459F92641469800373B8B /* MapMarkers.swift */,
 				8B0D1D75253363BF0056FACA /* MissionRecapView.swift */,
@@ -1021,13 +1075,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B7C68C826408A870075116B /* Starlink.swift in Sources */,
+				8B2E86F4265A9B770072735B /* RocketListTile.swift in Sources */,
 				8BF143F325F10C370045B95D /* Astronaut.swift in Sources */,
+				8B2E86F9265AA0260072735B /* CompanySheet.swift in Sources */,
 				8B75FBF626527339001E7E1E /* RocketPhysicalSpecificationsSection.swift in Sources */,
 				8BBCBC32264DDCEF00937206 /* PointOfInterest.swift in Sources */,
 				8BBCBC39264DDCEF00937206 /* LaunchpadMapSection.swift in Sources */,
 				8BA4D6FD260E50690096CE96 /* Roadster.swift in Sources */,
 				8B6A231C2653236900056726 /* ShipSheet.swift in Sources */,
 				8BA4D6F7260E50500096CE96 /* Payload.swift in Sources */,
+				8B2E86F2265A99AD0072735B /* VehicleListView.swift in Sources */,
 				8BB89E812654545E0026275E /* PayloadSheet.swift in Sources */,
 				8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */,
 				8BBCBC2E264DDCEF00937206 /* CrewSheet.swift in Sources */,
@@ -1037,6 +1094,8 @@
 				8B32E6E326550BA600AD854E /* SatelliteKitExtensions.swift in Sources */,
 				8BB5231825478833006A9511 /* CrewCard.swift in Sources */,
 				8BA4D6F4260E503C0096CE96 /* Dragon.swift in Sources */,
+				8B2E86FB265AA56E0072735B /* HistoryEntryTile.swift in Sources */,
+				8B44B2C2265A6A920047DD49 /* AstronautListView.swift in Sources */,
 				8B75FBEC26527171001E7E1E /* RocketCoresSection.swift in Sources */,
 				8BBCBC40264DDCEF00937206 /* LaunchDetailHeaderView.swift in Sources */,
 				8BB89E7B265428470026275E /* LandpadMapSection.swift in Sources */,
@@ -1066,6 +1125,10 @@
 				8B46A5A0253118160084E52D /* FakeData.swift in Sources */,
 				8B44B2B3265A54DA0047DD49 /* CapsuleListView.swift in Sources */,
 				8BBCBC3C264DDCEF00937206 /* ShareSheet.swift in Sources */,
+				8B44B2BA265A5C830047DD49 /* CoreListTile.swift in Sources */,
+				8B2E86F0265A984D0072735B /* PayloadListTile.swift in Sources */,
+				8B44B2BC265A5CD40047DD49 /* CapsuleListTile.swift in Sources */,
+				8B2E86EC265A96900072735B /* AstronautListTile.swift in Sources */,
 				8BBCBC38264DDCEF00937206 /* LaunchpadSheet.swift in Sources */,
 				8B6A231E2653246100056726 /* ShipDetailsSection.swift in Sources */,
 				8BBCBC36264DDCEF00937206 /* AstronautSheet.swift in Sources */,
@@ -1075,6 +1138,7 @@
 				8BBCBC3F264DDCEF00937206 /* LaunchDetailResourcesView.swift in Sources */,
 				8B29D08F2610B3F700FBA0C5 /* LaunchNotSelectedView.swift in Sources */,
 				8BBCBC30264DDCEF00937206 /* LaunchMapSection.swift in Sources */,
+				8B2E86EE265A97D60072735B /* PayloadListView.swift in Sources */,
 				8B75FBF026527239001E7E1E /* UsefulFormatters.swift in Sources */,
 				8BB89E7E26544A7D0026275E /* CoreSheet.swift in Sources */,
 				8BBCBC31264DDCEF00937206 /* LaunchDetailsSection.swift in Sources */,
@@ -1083,8 +1147,11 @@
 				8B29D0C02610BC7300FBA0C5 /* Color.swift in Sources */,
 				8BF143EB25F10C370045B95D /* Launchpad.swift in Sources */,
 				8B75FBF32652729A001E7E1E /* RocketModelSection.swift in Sources */,
+				8B2E86F6265A9F0D0072735B /* PadListView.swift in Sources */,
+				8B44B2C0265A69C60047DD49 /* ShipListTile.swift in Sources */,
 				8BB89E87265468DD0026275E /* PayloadNORADSection.swift in Sources */,
 				8BB288AF2658224A00A441A7 /* PayloadCapsuleInstanceSections.swift in Sources */,
+				8B44B2BE265A63B80047DD49 /* ShipListView.swift in Sources */,
 				8BBCBC3A264DDCEF00937206 /* LaunchpadDetailsSection.swift in Sources */,
 				8B0D1D79253365660056FACA /* Card.swift in Sources */,
 				8BBCBC3B264DDCEF00937206 /* PhotoSheet.swift in Sources */,
@@ -1137,7 +1204,6 @@
 				8B75FBF126527239001E7E1E /* UsefulFormatters.swift in Sources */,
 				8B75FBF42652729A001E7E1E /* RocketModelSection.swift in Sources */,
 				8B29D0A42610B80C00FBA0C5 /* Fairing.swift in Sources */,
-				8B29D0B72610BAF200FBA0C5 /* LaunchListTile.swift in Sources */,
 				8B29D0A82610B80C00FBA0C5 /* Payload.swift in Sources */,
 				8B29D0B62610BAF200FBA0C5 /* RoundedButtonStyle.swift in Sources */,
 				8B29D0972610B80C00FBA0C5 /* History.swift in Sources */,

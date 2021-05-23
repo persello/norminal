@@ -16,25 +16,13 @@ struct CrewSheet: View {
                 ForEach(crew) { astronaut in
 
                     NavigationLink(destination: AstronautSheet(astronaut: astronaut)) {
-                        HStack {
-                            AstronautPicture(astronaut: astronaut)
-                                .frame(width: 70, height: 70)
-                                .padding(.vertical, 8)
-                                .padding(.trailing, 8)
-
-                            VStack(alignment: .leading) {
-                                Text(astronaut.name).bold()
-                                Text(astronaut.agency)
-                                    .font(.subheadline)
-                                    .foregroundColor(Color.gray)
-                            }
-                        }
+                        AstronautListTile(astronaut: astronaut)
                     }
                 }
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .navigationTitle(Text("Astronauts"))
+        .navigationTitle(Text("Crew"))
     }
 }
 

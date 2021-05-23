@@ -47,7 +47,7 @@ struct AstronautSheet: View {
 
                     if let launches = astronaut.getLaunches(),
                        launches.count > 0 {
-                        Section(header: Text("\(launches.count) launches")) {
+                        Section(header: Text("Missions")) {
                             ForEach(launches) { launch in
                                 LaunchListTile(launch: launch)
                                     .padding(.vertical, 8)

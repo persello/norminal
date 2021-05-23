@@ -27,19 +27,11 @@ struct CapsuleListView: View {
                 List {
                     ForEach(capsules) { capsule in
                         NavigationLink(destination: CapsuleView(capsule: capsule)) {
-                            VStack(alignment: .leading) {
-                                Text(capsule.serial)
-                                    .bold()
-
-                                if let model = capsule.dragonModel?.name {
-                                    Text(model)
-                                        .foregroundColor(.gray)
-                                }
-                            }
+                            CapsuleListTile(capsule: capsule)
                         }
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
+                .listStyle(GroupedListStyle())
             } else {
                 VStack {
                     Image(systemName: "questionmark")

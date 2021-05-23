@@ -24,9 +24,7 @@ struct StarlinkListView: View {
         }
     }
 
-    var starlinks: [Starlink]
-
-    var launches: [Launch] {
+    func getLaunches() -> [Launch] {
         let unfiltered = starlinks.compactMap({ $0.launch })
 
         var unique: [Launch] = []
@@ -35,10 +33,22 @@ struct StarlinkListView: View {
             if !unique.contains(launch) {
                 unique.append(launch)
             }
+
+            withAnimation {
+                processedStarlinks += 1
+            }
+        }
+
+        withAnimation {
+            processedStarlinks = starlinks.count
         }
 
         return unique
     }
+
+    @State var launches: [Launch] = []
+    @State var processedStarlinks: Int = 0
+    var starlinks: [Starlink]
 
     var body: some View {
         Group {
@@ -50,21 +60,33 @@ struct StarlinkListView: View {
                         }
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
+                .listStyle(GroupedListStyle())
             } else {
-                VStack {
-                    Image(systemName: "network")
-                        .resizable()
-                        .frame(width: 100, height: 100, alignment: .center)
-                        .foregroundColor(.lightGray)
-                        .padding()
+                if processedStarlinks == starlinks.count {
+                    VStack {
+                        Image(systemName: "network")
+                            .resizable()
+                            .frame(width: 100, height: 100, alignment: .center)
+                            .foregroundColor(.lightGray)
+                            .padding()
 
-                    Text("No Starlink launches available")
-                        .foregroundColor(.gray)
+                        Text("No Starlink launches available")
+                            .foregroundColor(.gray)
+                    }
+                } else {
+                    ProgressView("Grouping launches...", value: Double(processedStarlinks), total: Double(starlinks.count))
+                        .padding()
                 }
             }
         }
         .navigationTitle(Text("Starlink launches"))
+        .onAppear {
+            if launches.count == 0 {
+                DispatchQueue.global(qos: .background).async {
+                    launches = getLaunches()
+                }
+            }
+        }
     }
 }
 

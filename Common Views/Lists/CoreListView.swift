@@ -16,19 +16,11 @@ struct CoreListView: View {
                 List {
                     ForEach(cores) { core in
                         NavigationLink(destination: CoreSheet(core: core)) {
-                            VStack(alignment: .leading) {
-                                Text(core.serial)
-                                    .bold()
-
-                                if let block = core.block {
-                                    Text("Block \(block)")
-                                        .foregroundColor(.gray)
-                                }
-                            }
+                            CoreListTile(core: core)
                         }
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
+                .listStyle(GroupedListStyle())
             } else {
                 VStack {
                     Image(systemName: "flame")

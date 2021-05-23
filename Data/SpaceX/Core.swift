@@ -25,6 +25,15 @@ class Core: Decodable, ObservableObject {
     public var rtlsLandings: Int?
     public var asdsAttempts: Int?
     public var asdsLandings: Int?
+    
+    public var landings: Int {
+        return (rtlsLandings ?? 0) + (asdsLandings ?? 0)
+    }
+    
+    public var landingAttempts: Int {
+        return (rtlsAttempts ?? 0) + (asdsAttempts ?? 0)
+    }
+    
     public var lastUpdate: String?
     private var launchIDs: [String]?
     public var stringID: String

@@ -246,3 +246,9 @@ extension Dragon.Trunk: Decodable {
         cargo = try? values.decodeIfPresent(Cargo.self, forKey: .cargo)
     }
 }
+
+extension Dragon: Identifiable {
+    var id: String {
+        return stringID
+    }
+}

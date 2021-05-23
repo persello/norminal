@@ -23,17 +23,16 @@ class Payload: ObservableObject, Decodable {
         private var landLanding: Bool?
 
         public var landingStatus: LandingStatus {
-            
             if let wl = waterLanding,
                wl == true {
                 return .waterLanded
             }
-            
+
             if let ll = landLanding,
                ll == true {
                 return .landLanded
             }
-            
+
             return .unknown
         }
 
@@ -198,5 +197,11 @@ extension Payload.Dragon: Decodable {
         manifest = try? values.decodeIfPresent(URL.self, forKey: .manifest)
         waterLanding = try? values.decodeIfPresent(Bool.self, forKey: .waterLanding)
         landLanding = try? values.decodeIfPresent(Bool.self, forKey: .landLanding)
+    }
+}
+
+extension Payload: Identifiable {
+    var id: String {
+        return stringID
     }
 }

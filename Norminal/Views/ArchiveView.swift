@@ -13,7 +13,7 @@ struct ArchiveCard<Destination: View>: View {
     var imageURL: URL? = nil
     var image: Image? = nil
     var destination: Destination
-    
+
     @State var navigationActive: Bool = false
 
     var body: some View {
@@ -61,42 +61,43 @@ struct ArchiveView: View {
                 VStack(alignment: .center, spacing: 28) {
                     ArchiveCard(title: "Astronauts",
                                 image: Image("dragon.human.photo"),
-                                destination: CrewSheet(crew: globalData.crew))
-                    
+                                destination: AstronautListView(astronauts: globalData.crew))
+
                     ArchiveCard(title: "Starlink",
                                 image: Image("starlink.space"),
                                 destination: StarlinkListView(starlinks: globalData.starlinks))
-                    
+
                     ArchiveCard(title: "Cores",
                                 imageURL: FakeData.shared.falcon9?.flickrImages?[3],
                                 destination: CoreListView(cores: globalData.cores))
-                    
+
                     ArchiveCard(title: "Capsules",
                                 imageURL: FakeData.shared.dragon2?.flickrImages?[1],
                                 destination: CapsuleListView(capsules: globalData.capsules))
-                    
+
                     ArchiveCard(title: "Payloads",
                                 imageURL: FakeData.shared.dragon2?.flickrImages?[2],
-                                destination: PayloadSheet(payloads: globalData.payloads, showPatches: true))
-                    
+                                destination: PayloadListView(payloads: globalData.payloads))
+
                     ArchiveCard(title: "Ships",
                                 imageURL: FakeData.shared.ocisly?.image,
-                                destination: EmptyView())
-                    
+                                destination: ShipListView(ships: globalData.ships))
+
                     ArchiveCard(title: "Vehicles",
                                 image: Image("starship.marslanding.render"),
-                                destination: EmptyView())
-                    
+                                destination: VehicleListView(rockets: globalData.rockets))
+
                     ArchiveCard(title: "Pads",
                                 imageURL: FakeData.shared.falcon9?.flickrImages?[1],
-                                destination: EmptyView())
-                    
+                                destination: PadListView(launchpads: globalData.launchpads,
+                                                         landpads: globalData.landpads))
+
                     ArchiveCard(title: "Company",
-                                image: nil,
-                                destination: EmptyView())
-                    
+                                image: Image("rocket.generic"),
+                                destination: CompanySheet(company: globalData.companyInfo, history: globalData.history))
+
                     ArchiveCard(title: "About",
-                                image: nil,
+                                image: Image("norminal.code"),
                                 destination: EmptyView())
                 }
                 .padding()

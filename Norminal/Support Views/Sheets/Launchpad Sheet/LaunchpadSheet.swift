@@ -30,7 +30,7 @@ struct LaunchpadSheet: View {
 
             if let launches = launchpad.launches,
                launches.count > 0 {
-                Section(header: Text("\(launches.count) launches")) {
+                Section(header: Text("Launches")) {
                     ForEach(launches) { launch in
                         LaunchListTile(launch: launch, showDetails: false)
                     }
