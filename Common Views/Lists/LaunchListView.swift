@@ -74,7 +74,7 @@ struct LaunchListView: View {
                                 }
                             }
                         }
-                        
+
                         // Repeat for reordering
                         if upcomingLaunches.count > 0 && globalSettings.launchOrderSelection == .oldest {
                             Section(header: Text("\(GlobalSettings.Filters.upcoming.rawValue) launches")) {

@@ -43,26 +43,23 @@ struct CompactMainView: View {
 enum Screens: Equatable, Identifiable {
     case launches
     case archive
-
     case astronauts
     case starlink
     case cores
     case capsules
     case payloads
-//    case roadster
     case ships
-//    case fairings
-    case vehicles // Rockets and dragons
+    case vehicles
     case pads
     case company
-
     case about
 
     var id: Screens { self }
 }
 
 struct SidebarView: View {
-    @State var selectedView: Screens? = .launches
+    @Binding var selectedView: Screens?
+    @EnvironmentObject var globalData: SpaceXData
 
     var body: some View {
         List {
@@ -75,42 +72,42 @@ struct SidebarView: View {
                 }
 
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: AstronautListView(astronauts: globalData.crew),
                     tag: Screens.astronauts,
                     selection: $selectedView) {
                     Label("Astronauts", systemImage: "person.2")
                 }
 
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: StarlinkListView(starlinks: globalData.starlinks),
                     tag: Screens.starlink,
                     selection: $selectedView) {
                     Label("Starlink", systemImage: "network")
                 }
 
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: CoreListView(cores: globalData.cores),
                     tag: Screens.cores,
                     selection: $selectedView) {
                     Label("Cores", systemImage: "flame")
                 }
 
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: CapsuleListView(capsules: globalData.capsules),
                     tag: Screens.capsules,
                     selection: $selectedView) {
                     Label("Capsules", systemImage: "arrowtriangle.up.circle")
                 }
 
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: PayloadListView(payloads: globalData.payloads),
                     tag: Screens.payloads,
                     selection: $selectedView) {
                     Label("Payloads", systemImage: "shippingbox")
                 }
 
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: ShipListView(ships: globalData.ships),
                     tag: Screens.ships,
                     selection: $selectedView) {
                     Label("Support ships", systemImage: "lifepreserver")
@@ -119,28 +116,28 @@ struct SidebarView: View {
 
             Group {
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: VehicleListView(rockets: globalData.rockets),
                     tag: Screens.vehicles,
                     selection: $selectedView) {
                     Label("Vehicles", systemImage: "car")
                 }
 
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: PadListView(launchpads: globalData.launchpads, landpads: globalData.landpads),
                     tag: Screens.pads,
                     selection: $selectedView) {
                     Label("Pads", systemImage: "arrow.up.arrow.down")
                 }
 
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: CompanySheet(company: globalData.companyInfo, history: globalData.history),
                     tag: Screens.company,
                     selection: $selectedView) {
                     Label("Company", systemImage: "building.2")
                 }
 
                 NavigationLink(
-                    destination: EmptyView(),
+                    destination: AboutView(),
                     tag: Screens.about,
                     selection: $selectedView) {
                     Label("About", systemImage: "info.circle")
@@ -153,17 +150,49 @@ struct SidebarView: View {
 
 struct RegularMainView: View {
     @EnvironmentObject var globalData: SpaceXData
+    @State var selectedScreen: Screens? = .launches
 
     var body: some View {
-        NavigationView {
-            SidebarView()
-                .navigationTitle("Norminal")
+        if selectedScreen == .about || selectedScreen == .company {
+            NavigationView {
+                SidebarView(selectedView: $selectedScreen)
+                    .navigationTitle("Norminal")
 
-            LaunchListView()
+                EmptyView()
+            }
+            .navigationViewStyle(DoubleColumnNavigationViewStyle())
+        } else {
+            NavigationView {
+                SidebarView(selectedView: $selectedScreen)
+                    .navigationTitle("Norminal")
 
-            LaunchNotSelectedView()
+                switch selectedScreen {
+                case .launches:
+                        LaunchListView()
+                case .astronauts:
+                    AstronautListView(astronauts: globalData.crew)
+                case .starlink:
+                    StarlinkListView(starlinks: globalData.starlinks)
+                case .cores:
+                    CoreListView(cores: globalData.cores)
+                case .capsules:
+                    CapsuleListView(capsules: globalData.capsules)
+                case .payloads:
+                    PayloadListView(payloads: globalData.payloads)
+                case .ships:
+                    ShipListView(ships: globalData.ships)
+                case .vehicles:
+                    VehicleListView(rockets: globalData.rockets)
+                case .pads:
+                    PadListView(launchpads: globalData.launchpads, landpads: globalData.landpads)
+                default:
+                    EmptyView()
+                }
+                
+                NotSelectedView()
+            }
+            .navigationViewStyle(DoubleColumnNavigationViewStyle())
         }
-        .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
 }
 
