@@ -18,7 +18,23 @@ class Capsule: ObservableObject, Decodable {
 
     public var type: String
 
-    public var dragon: String?
+    private var dragonID: String?
+
+    public var dragonModel: Dragon? {
+        if let dragonID = self.dragonID {
+            // Not supported now, but might be when API gets fixed
+            return SpaceXData.shared.dragons.first(where: { dragon in
+                dragon.stringID == dragonID
+            })
+        } else {
+            // Type matching
+            // Ex. "Dragon 1" Dragon name matches with both "Dragon 1.1" and "Dragon 1.0" capsule types.
+
+            return SpaceXData.shared.dragons.first(where: { dragon in
+                self.type.starts(with: dragon.name) 
+            })
+        }
+    }
 
     public var reuseCount: Int?
 
@@ -30,11 +46,11 @@ class Capsule: ObservableObject, Decodable {
 
     private var launchIDs: [String]?
 
-    public var idstring: String
+    public var stringID: String
 
     public var launches: [Launch] {
         return SpaceXData.shared.launches.filter({
-            if let id = $0.idstring {
+            if let id = $0.stringID {
                 return (launchIDs?.contains(id)) ?? false
             } else {
                 return false
@@ -46,22 +62,22 @@ class Capsule: ObservableObject, Decodable {
         case serial
         case status
         case type
-        case dragon
+        case dragonID = "dragon"
         case reuseCount = "reuse_count"
         case waterLandings = "water_landings"
         case landLandings = "land_landings"
         case lastUpdate = "last_update"
         case launchIDs = "launches"
-        case idstring = "id"
+        case stringID = "id"
     }
 }
 
 extension Capsule: Identifiable {
-    var id: String { return idstring }
+    var id: String { return stringID }
 }
 
 extension Capsule: Equatable {
     static func == (rhs: Capsule, lhs: Capsule) -> Bool {
-        rhs.idstring == lhs.idstring
+        rhs.stringID == lhs.stringID
     }
 }

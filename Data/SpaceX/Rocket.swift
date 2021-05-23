@@ -45,7 +45,7 @@ class Rocket: ObservableObject, Decodable {
             case reusable
             case engines
             case fuelAmountTons = "fuel_amount_tons"
-            case burnTime = "burn_time"
+            case burnTime = "burn_time_sec"
         }
     }
 
@@ -89,7 +89,7 @@ class Rocket: ObservableObject, Decodable {
             case reusable
             case engines
             case fuelAmountTons = "fuel_amount_tons"
-            case burnTime = "burn_time"
+            case burnTime = "burn_time_sec"
             case payloads
         }
     }
@@ -180,7 +180,7 @@ class Rocket: ObservableObject, Decodable {
 
     public var description: String?
 
-    public var idString: String
+    public var stringID: String
 
     // MARK: - Decoding
 
@@ -206,7 +206,7 @@ class Rocket: ObservableObject, Decodable {
         case flickrImages = "flickr_images"
         case wikipedia
         case description
-        case idString = "id"
+        case stringID = "id"
     }
 
     required init(from decoder: Decoder) throws {
@@ -255,7 +255,7 @@ class Rocket: ObservableObject, Decodable {
         description = try? values.decodeIfPresent(String.self, forKey: .description)
 
         // Must have an ID
-        idString = try values.decode(String.self, forKey: .idString)
+        stringID = try values.decode(String.self, forKey: .stringID)
     }
 }
 
@@ -387,8 +387,28 @@ extension Rocket.Engines: Decodable {
     }
 }
 
+extension Rocket {
+    var stageCountDescription: String {
+        var result: String!
+        if let stages = stages {
+            switch stages {
+            case 1:
+                result = "Single-stage"
+            case 2:
+                result = "Two-stage"
+            default:
+                result = "\(stages)-stage"
+            }
+        } else {
+            result = "Unknown staging"
+        }
+       
+        return result
+    }
+}
+
 extension Rocket: Identifiable {
-    var id: String { return idString }
+    var id: String { return stringID }
 }
 
 extension Rocket: Equatable {

@@ -62,12 +62,17 @@ platform :ios do
   after_all do |lane, options|
     # After
     add_git_tag(
-      grouping: "testflight",
-      prefix: "#{lane}-",
+      grouping: "build",
+      prefix: "#{get_version_number(xcodeproj: "Norminal.xcodeproj", target: "Norminal")}.",
       includes_lane: false
     )
 
     push_to_git_remote
+
+    # Crashlytics
+    upload_symbols_to_crashlytics(gsp_path: "./GoogleService-Info.plist",
+                                  binary_path: "Resources/Crashlytics/upload-symbols",
+                                  dsym_path: "Norminal.app.dSYM.zip")
 
     notification(message: "The app has been distributed to the #{lane} testers.", subtitle: "Fastlane #{lane} lane complete")
   end

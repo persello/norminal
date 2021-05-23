@@ -1,10 +1,11 @@
 //
-//  LaunchpadDetailsSection.swift
+//  LaunchpadSheet.swift
 //  Norminal
 //
-//  Created by Riccardo Persello on 05/05/21.
+//  Created by Riccardo Persello on 04/05/21.
 //
 
+import MapKit
 import SwiftUI
 
 struct LaunchpadDetailsSection: View {
@@ -19,8 +20,7 @@ struct LaunchpadDetailsSection: View {
                 Text("Details")
                     .font(.title.bold())
 
-                Text(launchpad.fullName)
-                    .lineLimit(4)
+                Text("\(launchpad.fullName) • \(launchpad.status.rawValue.capitalizingFirstLetter())")
                     .font(.subheadline)
                     .foregroundColor(.gray)
 
@@ -46,11 +46,7 @@ struct LaunchpadDetailsSection: View {
                             }
                         )
                     } else {
-                        HStack {
-                            Spacer()
-                            ProgressView()
-                            Spacer()
-                        }
+                        ProgressView()
                     }
                 }
 
@@ -77,7 +73,7 @@ struct LaunchpadDetailsSection: View {
                     )
                 }
             }
-            .padding(.init(top: 10, leading: 5, bottom: 15, trailing: 0))
+            .padding(.init(top: 10, leading: 5, bottom: 12, trailing: 0))
         }
         .onAppear {
             launchpad.getForecast(for: Date(), completion: { forecast in
@@ -100,6 +96,5 @@ struct LaunchpadDetailsSection_Previews: PreviewProvider {
         }
         .environmentObject(FakeData.shared.slc40!)
         .listStyle(InsetGroupedListStyle())
-        .previewLayout(.sizeThatFits)
     }
 }

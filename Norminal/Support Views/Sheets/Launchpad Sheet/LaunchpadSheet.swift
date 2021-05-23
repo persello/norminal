@@ -14,9 +14,22 @@ struct LaunchpadSheet: View {
     var body: some View {
         List {
             LaunchpadDetailsSection()
+
+            if let rockets = launchpad.rockets,
+               rockets.count > 0 {
+                Section(header: Text("Supported rockets")) {
+                    ForEach(rockets) { rocket in
+                        NavigationLink(destination: RocketSheet(rocket: rocket)) {
+                            Text(rocket.name ?? "Unknown rocket")
+                        }
+                    }
+                }
+            }
+
             LaunchpadMapSection()
 
-            if let launches = launchpad.launches {
+            if let launches = launchpad.launches,
+               launches.count > 0 {
                 Section(header: Text("Launches")) {
                     ForEach(launches) { launch in
                         LaunchListTile(launch: launch, showDetails: false)

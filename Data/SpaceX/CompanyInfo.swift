@@ -8,12 +8,16 @@
 import Foundation
 
 class CompanyInfo: Decodable, ObservableObject {
-    struct Headquarters: Decodable {
+    struct Headquarters: Decodable, CustomStringConvertible {
         public var address: String?
 
         public var city: String?
 
         public var state: String?
+        
+        var description: String {
+            return "\(address ?? "Unknown address"), \(city ?? "Unknown city") (\(state ?? "Unknown state"))"
+        }
     }
 
     struct Links: Decodable {

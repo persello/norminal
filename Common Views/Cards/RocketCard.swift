@@ -47,6 +47,11 @@ struct RocketCard: View {
                         })
         })
             .padding()
+            .sheet(isPresented: $modalPresented, content: {
+                RootSheet(modalShown: $modalPresented) {
+                    RocketSheet(launch: launch)
+                }
+            })
     }
 }
 

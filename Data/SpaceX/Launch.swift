@@ -56,18 +56,26 @@ class Launch: Decodable, ObservableObject {
         public var recovered: Bool?
 
         /// List of IDs of the ships used for the recovery actions as `String`s.
-        public var ships: [String]
+        private var shipIDs: [String]
+
+        public var ships: [Ship]? {
+            return shipIDs.compactMap({ id in
+                SpaceXData.shared.ships.first(where: { ship in
+                    ship.stringID == id
+                })
+            })
+        }
 
         enum CodingKeys: String, CodingKey {
             case reused
             case recoveryAttempt = "recovery_attempt"
             case recovered
-            case ships
+            case shipIDs = "ships"
         }
     }
 
     /// Represents the instance of a core in a launch.
-    struct Core: Decodable, Identifiable {
+    struct CoreInstance: Decodable, Identifiable {
         /// The ID of this core as a `String`.
         public var id: String?
 
@@ -93,7 +101,38 @@ class Launch: Decodable, ObservableObject {
         public var landingType: LandingType?
 
         /// The id of the landing pad as a `String`.
-        public var landPad: String?
+        private var landpadID: String?
+
+        public var landpad: Landpad? {
+            return SpaceXData.shared.landpads.first(where: { $0.stringID == landpadID })
+        }
+
+        public var realCore: Core? {
+            return SpaceXData.shared.cores.first(where: { $0.stringID == id })
+        }
+
+        public var nameDotFlight: String {
+            if let flight = flight,
+               let serial = realCore?.serial,
+               let reused = reused,
+               reused {
+                return "\(serial).\(flight)"
+            } else {
+                return realCore?.serial ?? "Unknown core"
+            }
+        }
+
+        public var recoveryStatus: String {
+            if landingAttempt ?? false {
+                if landingSuccess ?? false {
+                    return "Recovered (\(landpad?.name ?? landingType?.rawValue ?? "Unknown landing site"))"
+                } else {
+                    return "Recovery failed"
+                }
+            } else {
+                return "Expendable\((gridFins ?? false) ? "" : ", no fins")\((gridFins ?? false) ? "" : ", no legs")"
+            }
+        }
 
         enum CodingKeys: String, CodingKey {
             case id = "core"
@@ -104,7 +143,7 @@ class Launch: Decodable, ObservableObject {
             case landingAttempt = "landing_attempt"
             case landingSuccess = "landing_success"
             case landingType = "landing_type"
-            case landPad = "landpad"
+            case landpadID = "landpad"
         }
     }
 
@@ -243,7 +282,7 @@ class Launch: Decodable, ObservableObject {
         guard let unfiltered = unfilteredDetails else {
             return nil
         }
-        
+
         let pattern = #"\[\w*\]"#
         let regex = try! NSRegularExpression(pattern: pattern, options: [])
         let mString = NSMutableString(string: unfiltered)
@@ -271,7 +310,7 @@ class Launch: Decodable, ObservableObject {
     private var launchpadID: String?
 
     /// List of cores.
-    public var cores: [Core]?
+    public var cores: [CoreInstance]?
 
     /// Internet resources for this launch.
     public var links: Links?
@@ -280,7 +319,7 @@ class Launch: Decodable, ObservableObject {
     public var autoUpdate: Bool = true
 
     /// UUID string
-    public var idstring: String?
+    public var stringID: String?
 
     enum CodingKeys: String, CodingKey {
         case flightNumber = "flight_number"
@@ -308,7 +347,7 @@ class Launch: Decodable, ObservableObject {
         case cores
         case links
         case autoUpdate = "auto_update"
-        case idstring = "id"
+        case stringID = "id"
     }
 }
 
@@ -360,16 +399,16 @@ extension Launch {
 
     var launchpad: Launchpad? {
         if launchpadID != nil {
-            return SpaceXData.shared.launchpads.first(where: { $0.idstring == launchpadID! })
+            return SpaceXData.shared.launchpads.first(where: { $0.stringID == launchpadID! })
         }
 
         return nil
     }
 
-    var landpads: [(Core, Landpad?)]? {
+    var landpads: [(CoreInstance, Landpad?)]? {
         if cores != nil {
             return cores!.map { core in
-                (core, SpaceXData.shared.landpads.first(where: { $0.idstring == core.landPad }))
+                (core, core.landpad)
             }
         }
 
@@ -380,7 +419,7 @@ extension Launch {
         if let crewIdList = crewIDs {
             var astronauts: [Astronaut] = []
             for astronautID in crewIdList {
-                if let astronaut = SpaceXData.shared.crew.first(where: { $0.idstring == astronautID }) {
+                if let astronaut = SpaceXData.shared.crew.first(where: { $0.stringID == astronautID }) {
                     astronauts.append(astronaut)
                 }
             }
@@ -395,7 +434,7 @@ extension Launch {
     var payloads: [Payload]? {
         payloadIDs?.compactMap({ id in
             SpaceXData.shared.payloads.first(where: { payload in
-                payload.idstring == id
+                payload.stringID == id
             })
         })
     }
@@ -403,7 +442,7 @@ extension Launch {
     var ships: [Ship]? {
         shipIDs?.compactMap({ id in
             SpaceXData.shared.ships.first(where: { ship in
-                ship.idstring == id
+                ship.stringID == id
             })
         })
     }

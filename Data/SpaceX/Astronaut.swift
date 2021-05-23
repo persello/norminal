@@ -13,7 +13,7 @@ import Telescope
 // MARK: - Astronaut class
 
 /// Represents an astronaut
-class Astronaut: Decodable {
+class Astronaut: Decodable, ObservableObject {
     /// Name and surname of the astronaut
     public var name: String
 
@@ -33,7 +33,7 @@ class Astronaut: Decodable {
     public var status: String
 
     /// Astronaut ID
-    public var idstring: String
+    public var stringID: String
 
     private var cachedImage: UIImage?
     private static var cropper = FaceCropper()
@@ -45,7 +45,7 @@ class Astronaut: Decodable {
         case wikipedia
         case launches
         case status
-        case idstring = "id"
+        case stringID = "id"
     }
 }
 
@@ -92,7 +92,7 @@ extension Astronaut {
         if let launchIdList = launches {
             var launches: [Launch] = []
             for launchID in launchIdList {
-                if let launch = SpaceXData.shared.launches.first(where: { $0.idstring ?? "" == launchID }) {
+                if let launch = SpaceXData.shared.launches.first(where: { $0.stringID ?? "" == launchID }) {
                     launches.append(launch)
                 }
             }
@@ -108,5 +108,5 @@ extension Astronaut {
 // MARK: - Protocol extension
 
 extension Astronaut: Identifiable {
-    var id: UUID { return UUID(stringWithoutDashes: idstring)! }
+    var id: UUID { return UUID(stringWithoutDashes: stringID)! }
 }

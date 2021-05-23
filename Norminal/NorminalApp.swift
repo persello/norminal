@@ -6,29 +6,29 @@
 //
 
 import Firebase
-import SwiftUI
 import os
+import SwiftUI
 import WidgetKit
 
 // MARK: - UI
 
 @main
 struct NorminalApp: App {
+    init() {
+        // Widget
+        DispatchQueue.global(qos: .background).async {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+
+        // Firebase
+        FirebaseApp.configure()
+    }
+
     @ObservedObject var globalData = SpaceXData.shared
-    
+
     var body: some Scene {
         WindowGroup {
             MainView()
-                .onAppear {
-                    
-                    // Widget
-                    DispatchQueue.global(qos: .background).async {
-                        WidgetCenter.shared.reloadAllTimelines()
-                    }
-                    
-                    // Firebase
-                    FirebaseApp.configure()
-                }
                 .environmentObject(globalData)
         }
     }

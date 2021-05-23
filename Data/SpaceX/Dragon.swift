@@ -90,6 +90,7 @@ class Dragon: Decodable, ObservableObject {
     public var diameter: Measurement<UnitLength>?
     public var flickrImages: [URL]?
     public var description: String?
+    public var stringID: String
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -108,10 +109,11 @@ class Dragon: Decodable, ObservableObject {
         case returnPayloadVolumeStruct = "return_payload_vol"
         case pressurizedCapsule = "pressurized_capsule"
         case trunk
-        case heightWithTrunkStruct = "height_with_trunk"
+        case heightWithTrunkStruct = "height_w_trunk"
         case diameter
         case flickrImages = "flickr_images"
         case description
+        case stringID = "id"
     }
 
     required init(from decoder: Decoder) throws {
@@ -179,6 +181,7 @@ class Dragon: Decodable, ObservableObject {
 
         flickrImages = try? values.decodeIfPresent([URL].self, forKey: .flickrImages)
         description = try? values.decodeIfPresent(String.self, forKey: .description)
+        stringID = try! values.decode(String.self, forKey: .stringID)
     }
 }
 
@@ -241,5 +244,11 @@ extension Dragon.Trunk: Decodable {
         volume = Measurement<UnitVolume>(value: volumeCubicMeters, unit: .cubicMeters)
 
         cargo = try? values.decodeIfPresent(Cargo.self, forKey: .cargo)
+    }
+}
+
+extension Dragon: Identifiable {
+    var id: String {
+        return stringID
     }
 }

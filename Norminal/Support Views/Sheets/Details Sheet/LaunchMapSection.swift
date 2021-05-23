@@ -21,10 +21,7 @@ struct LaunchMapSection: View {
             for ship in ships {
                 switch ship.type?.lowercased() {
                 case "barge":
-                    // Do nothing: it's a landpad!
-                    //                    result.append(InterestingPlace(
-                    //                                    coordintates: ship.location!.coordinate, kind: .droneship, name: ship.name))
-                    break
+                    result.append(PointOfInterest(coordinates: ship.location!.coordinate, kind: .droneship, name: ship.name, originalObject: ship))
                 default:
                     result.append(PointOfInterest(coordinates: ship.location?.coordinate, kind: .ship, name: ship.name, originalObject: ship))
                 }
@@ -36,12 +33,14 @@ struct LaunchMapSection: View {
         }
 
         if let landpads = launch.landpads {
-            for landpad in landpads.filter({ $0.1?.idstring != nil }) {
+            for landpad in landpads.filter({ $0.1?.stringID != nil }) {
                 let _landpad = landpad.1
 
                 switch _landpad?.type {
                 case .ASDS:
-                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .droneship, name: _landpad?.name, originalObject: _landpad))
+                    break
+                // Do nothing: it's a ship!
+//                    result.append(PointOfInterest(coordinates: _landpad?.location, kind: .droneship, name: _landpad?.name, originalObject: _landpad))
                 case .RTLS,
                      .none:
                     result.append(PointOfInterest(coordinates: _landpad?.location, kind: .landpad, name: _landpad?.name, originalObject: _landpad))
@@ -54,17 +53,26 @@ struct LaunchMapSection: View {
 
     func generateDestinationView(poi: PointOfInterest) -> AnyView? {
         switch poi.kind {
-        case .droneship:
-            return nil
         case .launchpad:
             if let launchpad = poi.originalObject as? Launchpad {
                 return AnyView(LaunchpadSheet(launchpad: launchpad))
             }
 
             return nil
+
         case .landpad:
+            if let landpad = poi.originalObject as? Landpad {
+                return AnyView(LandpadSheet(landpad: landpad))
+            }
+
             return nil
-        case .ship:
+
+        case .ship,
+             .droneship:
+            if let ship = poi.originalObject as? Ship {
+                return AnyView(ShipSheet(ship: ship))
+            }
+
             return nil
         }
     }
@@ -96,6 +104,7 @@ struct LaunchMapSection: View {
                         Text("Check back in a few days")
                             .foregroundColor(.gray)
                     }
+                    .frame(maxWidth: .infinity)
                     .padding(10)
                 }
             }
@@ -124,9 +133,6 @@ struct LaunchMapSection_Previews: PreviewProvider {
     static var previews: some View {
         List {
             LaunchMapSection()
-        }
-        .onAppear {
-            SpaceXData.shared.loadAllData()
         }
         .listStyle(InsetGroupedListStyle())
         .environmentObject(FakeData.shared.crewDragon!)

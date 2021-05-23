@@ -78,6 +78,11 @@ struct PayloadCard: View {
                             self.modalPresented = true
                         })
         })
+            .sheet(isPresented: $modalPresented, content: {
+                RootSheet(modalShown: $modalPresented) {
+                    PayloadSheet(payloads: launch.payloads!)
+                }
+            })
             .padding()
     }
 }

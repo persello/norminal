@@ -11,7 +11,7 @@ import CoreLocation
 // MARK: - Landpad class
 
 /// Represents a rocket Landpad
-class Landpad: Decodable {
+class Landpad: Decodable, ObservableObject {
     
     // MARK: - Enums
     
@@ -57,7 +57,15 @@ class Landpad: Decodable {
     public var wikipedia: URL?
 
     /// List of launch IDs that have landed on this Landpad
-    public var launches: [String]?
+    private var launchIDs: [String]?
+    
+    public var launches: [Launch]? {
+        launchIDs?.compactMap({id in
+            SpaceXData.shared.launches.first(where: { launch in
+                launch.stringID == id
+            })
+        })
+    }
 
     /// Brief description of the Landpad
     public var details: String?
@@ -66,7 +74,7 @@ class Landpad: Decodable {
     public var status: Status
 
     /// Landpad ID string
-    public var idstring: String
+    public var stringID: String
 
     enum CodingKeys: String, CodingKey {
         case name = "name"
@@ -80,9 +88,9 @@ class Landpad: Decodable {
         case landingSuccesses = "landing_successes"
         case wikipedia = "wikipedia"
         case details = "details"
-        case launches = "launches"
+        case launchIDs = "launches"
         case status = "status"
-        case idstring = "id"
+        case stringID = "id"
     }
 }
 
@@ -90,7 +98,7 @@ class Landpad: Decodable {
 
 extension Landpad: Identifiable {
     /// Landpad ID
-    var id: UUID { return UUID(stringWithoutDashes: self.idstring)! }
+    var id: UUID { return UUID(stringWithoutDashes: self.stringID)! }
 }
 
 extension Landpad {

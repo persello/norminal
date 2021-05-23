@@ -45,7 +45,7 @@ struct GalleryCard: View {
         })
             .padding()
             .sheet(isPresented: $modalPresented, content: {
-                RootSheet(modalShown: $modalPresented) { GallerySheet(launch: launch) }
+                RootSheet(modalShown: $modalPresented) { GallerySheet(imageURLs: (launch.links?.flickr?.originalImages)!) }
             })
     }
 }

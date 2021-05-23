@@ -17,7 +17,7 @@ struct AstronautPicture: View, Equatable {
     var astronaut: Astronaut
     
     static func == (lhs: AstronautPicture, rhs: AstronautPicture) -> Bool {
-        return lhs.astronaut.idstring == rhs.astronaut.idstring
+        return lhs.astronaut.stringID == rhs.astronaut.stringID
     }
         
     var logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Astronaut picture")

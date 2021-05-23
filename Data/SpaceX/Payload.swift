@@ -12,15 +12,35 @@ class Payload: ObservableObject, Decodable {
         private var capsuleID: String?
         public var capsule: Capsule? {
             SpaceXData.shared.capsules.first(where: {
-                $0.idstring == capsuleID
+                $0.id == capsuleID
             })
         }
 
         public var massReturned: Measurement<UnitMass>?
         public var flightTime: Measurement<UnitDuration>?
         public var manifest: URL?
-        public var waterLanding: Bool?
-        public var landLanding: Bool?
+        private var waterLanding: Bool?
+        private var landLanding: Bool?
+
+        public var landingStatus: LandingStatus {
+            if let wl = waterLanding,
+               wl == true {
+                return .waterLanded
+            }
+
+            if let ll = landLanding,
+               ll == true {
+                return .landLanded
+            }
+
+            return .unknown
+        }
+
+        enum LandingStatus: String {
+            case unknown = "Unknown"
+            case waterLanded = "Water"
+            case landLanded = "Land"
+        }
 
         enum CodingKeys: String, CodingKey {
             case capsuleID = "capsule"
@@ -38,7 +58,7 @@ class Payload: ObservableObject, Decodable {
     private var launchID: String?
     public var launch: Launch? {
         SpaceXData.shared.launches.first(where: {
-            $0.idstring == launchID
+            $0.stringID == launchID
         })
     }
 
@@ -64,7 +84,7 @@ class Payload: ObservableObject, Decodable {
     public var argumentOfPericenter: Measurement<UnitAngle>?
     public var meanAnomaly: Measurement<UnitAngle>?
     public var dragon: Payload.Dragon?
-    public var idstring: String
+    public var stringID: String
 
     enum CodingKeys: String, CodingKey {
         case name, type, reused
@@ -90,7 +110,7 @@ class Payload: ObservableObject, Decodable {
         case argumentOfPericenterDegrees = "arg_of_pericenter"
         case meanAnomalyDegrees = "mean_anomaly"
         case dragon
-        case idstring = "id"
+        case stringID = "id"
     }
 
     required init(from decoder: Decoder) throws {
@@ -156,7 +176,7 @@ class Payload: ObservableObject, Decodable {
         }
 
         dragon = try? values.decodeIfPresent(Dragon.self, forKey: .dragon)
-        idstring = try values.decode(String.self, forKey: .idstring)
+        stringID = try values.decode(String.self, forKey: .stringID)
     }
 }
 
@@ -177,5 +197,11 @@ extension Payload.Dragon: Decodable {
         manifest = try? values.decodeIfPresent(URL.self, forKey: .manifest)
         waterLanding = try? values.decodeIfPresent(Bool.self, forKey: .waterLanding)
         landLanding = try? values.decodeIfPresent(Bool.self, forKey: .landLanding)
+    }
+}
+
+extension Payload: Identifiable {
+    var id: String {
+        return stringID
     }
 }
