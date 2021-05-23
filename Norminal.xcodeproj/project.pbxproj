@@ -72,6 +72,7 @@
 		8B32E6E12655093000AD854E /* OrbitMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32E6DF2655093000AD854E /* OrbitMap.swift */; };
 		8B32E6E326550BA600AD854E /* SatelliteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32E6E226550BA600AD854E /* SatelliteKitExtensions.swift */; };
 		8B32E6E426550BA600AD854E /* SatelliteKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32E6E226550BA600AD854E /* SatelliteKitExtensions.swift */; };
+		8B44B2B0265A4D310047DD49 /* XCDYouTubeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B44B2AF265A4D310047DD49 /* XCDYouTubeKit */; };
 		8B46A5812530CE740084E52D /* NorminalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5802530CE740084E52D /* NorminalApp.swift */; };
 		8B46A5832530CE740084E52D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A5822530CE740084E52D /* MainView.swift */; };
 		8B46A5852530CE760084E52D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
@@ -146,7 +147,6 @@
 		8BB288B1265827A800A441A7 /* TImageWithGalleryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288B0265827A800A441A7 /* TImageWithGalleryButton.swift */; };
 		8BB288B32659187800A441A7 /* PayloadStarlinkSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288B22659187800A441A7 /* PayloadStarlinkSection.swift */; };
 		8BB288B526591A5A00A441A7 /* PayloadRoadsterSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288B426591A5A00A441A7 /* PayloadRoadsterSection.swift */; };
-		8BB288B82659363300A441A7 /* XCDYouTubeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8BB288B72659363300A441A7 /* XCDYouTubeKit */; };
 		8BB288BA26593E3500A441A7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8BB288B926593E3500A441A7 /* Settings.bundle */; };
 		8BB288BC265940BE00A441A7 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288BB265940BE00A441A7 /* ArchiveView.swift */; };
 		8BB288BE265960EA00A441A7 /* ArchiveListViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288BD265960EA00A441A7 /* ArchiveListViews.swift */; };
@@ -393,7 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */,
-				8BB288B82659363300A441A7 /* XCDYouTubeKit in Frameworks */,
+				8B44B2B0265A4D310047DD49 /* XCDYouTubeKit in Frameworks */,
 				8B4E95F7259671F000F9668E /* FirebaseCore.xcframework in Frameworks */,
 				8B4E95F3259671F000F9668E /* FirebaseCoreDiagnostics.xcframework in Frameworks */,
 				8B4E95FB259671F000F9668E /* GoogleAppMeasurement.xcframework in Frameworks */,
@@ -862,7 +862,7 @@
 				8B83E8A825375B10002AE62B /* SatelliteKit */,
 				8BD13FB525FF762C003AB69C /* Telescope */,
 				8B4AEFF926571E0300675E88 /* BottomSheet */,
-				8BB288B72659363300A441A7 /* XCDYouTubeKit */,
+				8B44B2AF265A4D310047DD49 /* XCDYouTubeKit */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -924,7 +924,7 @@
 				8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */,
 				8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */,
 				8B4AEFF826571E0200675E88 /* XCRemoteSwiftPackageReference "BottomSheet" */,
-				8BB288B62659363300A441A7 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */,
+				8B44B2AE265A4D310047DD49 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */,
 			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
@@ -1520,6 +1520,14 @@
 				minimumVersion = 1.0.3;
 			};
 		};
+		8B44B2AE265A4D310047DD49 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/persello/XCDYouTubeKit";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		8B4AEFF826571E0200675E88 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LucasMucGH/BottomSheet";
@@ -1542,14 +1550,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.25;
-			};
-		};
-		8BB288B62659363300A441A7 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jatin19121990/XCDYouTubeKit";
-			requirement = {
-				branch = "hotfix/Can-Not-Play-video-any-more---XCDYouTubeVideoErrorDomain-Code=-3-#525";
-				kind = branch;
 			};
 		};
 		8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */ = {
@@ -1578,6 +1578,11 @@
 			package = 8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */;
 			productName = Telescope;
 		};
+		8B44B2AF265A4D310047DD49 /* XCDYouTubeKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B44B2AE265A4D310047DD49 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */;
+			productName = XCDYouTubeKit;
+		};
 		8B4AEFF926571E0300675E88 /* BottomSheet */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8B4AEFF826571E0200675E88 /* XCRemoteSwiftPackageReference "BottomSheet" */;
@@ -1597,11 +1602,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */;
 			productName = SatelliteKit;
-		};
-		8BB288B72659363300A441A7 /* XCDYouTubeKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BB288B62659363300A441A7 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */;
-			productName = XCDYouTubeKit;
 		};
 		8BD13FB525FF762C003AB69C /* Telescope */ = {
 			isa = XCSwiftPackageProductDependency;

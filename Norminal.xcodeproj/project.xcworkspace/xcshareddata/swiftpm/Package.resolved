@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/persello/telescope",
         "state": {
           "branch": "develop",
-          "revision": "a3800046d6820cd09c7e896de1bd1453dfc13ac7",
+          "revision": "da181615361955dae1e705b64356165b19bba5b7",
           "version": null
         }
       },
@@ -48,10 +48,10 @@
       },
       {
         "package": "XCDYouTubeKit",
-        "repositoryURL": "https://github.com/jatin19121990/XCDYouTubeKit",
+        "repositoryURL": "https://github.com/persello/XCDYouTubeKit",
         "state": {
-          "branch": "hotfix/Can-Not-Play-video-any-more---XCDYouTubeVideoErrorDomain-Code=-3-#525",
-          "revision": "8389cd3a1beab8bba76649ff870125b580d9a049",
+          "branch": "master",
+          "revision": "9ed33a8ff93684301cd06ab15e714fd66f60c99a",
           "version": null
         }
       }
