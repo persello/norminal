@@ -1,0 +1,15 @@
+name: BottomSheet, nameSpecified: BottomSheet, owner: LucasMucGH, version: 1.0.7
+
+name: NavigationSearchBar, nameSpecified: NavigationSearchBar, owner: markvanwijnen, version: 1.3.0
+
+name: SatelliteKit, nameSpecified: SatelliteKit, owner: gavineadie, version: 1.0.28
+
+name: telescope, nameSpecified: Telescope, owner: persello, version: 
+
+name: VisualEffects, nameSpecified: VisualEffects, owner: twostraws, version: 1.0.3
+
+name: XCDYouTubeKit, nameSpecified: XCDYouTubeKit, owner: jatin19121990, version: 
+
+add-version-numbers: false
+
+LicensePlist Version: 3.0.7

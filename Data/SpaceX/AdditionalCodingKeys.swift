@@ -8,18 +8,23 @@
 import Foundation
 
 enum LengthStructCodingKeys: String, CodingKey {
-    case meters = "meters"
-    case feet = "feet"
+    case meters
+    case feet
 }
 
 enum MassStructCodingKeys: String, CodingKey {
-    case kg = "kg"
-    case lb = "lb"
+    case kg
+    case lb
 }
 
 enum ForceStructCodingKeys: String, CodingKey {
-    case kN = "kN"
-    case lbf = "lbf"
+    case kN
+    case lbf
+}
+
+enum VolumeStructCodingKeys: String, CodingKey {
+    case cubicMeters = "cubic_meters"
+    case cubicFeed = "cubic_feet"
 }
 
 enum ISPStructCodingKeys: String, CodingKey {

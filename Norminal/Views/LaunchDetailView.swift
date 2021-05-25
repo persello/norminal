@@ -58,14 +58,21 @@ struct LaunchDetailView: View {
             }, saliency: 900))
         }
         
+<<<<<<< HEAD
         // TODO: Implement
+=======
+>>>>>>> main
         if true {
             cardList.append(CardDescriptor(cardBuilder: {
                 MissionDetailsCard()
             }, saliency: 800))
         }
         
+<<<<<<< HEAD
         if true { // launch.payloads?.count ?? 0 > 0 {
+=======
+        if launch.payloads?.count ?? 0 > 0 {
+>>>>>>> main
             cardList.append(CardDescriptor(cardBuilder: {
                 PayloadCard()
             }, saliency: 700))

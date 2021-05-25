@@ -8,57 +8,61 @@
 import Foundation
 
 class CompanyInfo: Decodable, ObservableObject {
-    struct Headquarters: Decodable {
+    struct Headquarters: Decodable, CustomStringConvertible {
         public var address: String?
-        
+
         public var city: String?
-        
+
         public var state: String?
+        
+        var description: String {
+            return "\(address ?? "Unknown address"), \(city ?? "Unknown city") (\(state ?? "Unknown state"))"
+        }
     }
-    
+
     struct Links: Decodable {
         public var website: URL?
-        
+
         public var flickr: URL?
-        
+
         public var twitter: URL?
-        
+
         public var elonTwitter: URL?
-        
+
         enum CodingKeys: String, CodingKey {
             case website, flickr, twitter
             case elonTwitter = "elon_twitter"
         }
     }
-    
+
     public var name: String?
-    
+
     public var founder: String?
-    
+
     public var foundationYear: Int?
-    
+
     public var employees: Int?
-    
+
     public var vehicles: Int?
-    
+
     public var launchSites: Int?
-    
+
     public var testSites: Int?
-    
+
     public var ceo: String?
-    
+
     public var cto: String?
-    
+
     public var coo: String?
-    
+
     public var propulsionCTO: String?
-    
+
     public var valuation: Int?
-    
+
     public var headquarters: Headquarters?
-    
+
     public var links: Links?
-    
+
     public var summary: String?
 
     enum CodingKeys: String, CodingKey {

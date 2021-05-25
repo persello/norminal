@@ -1,0 +1,15 @@
+{
+<<<<<<< HEAD:Assets.xcassets/Images/Falcon 9/Contents.json
+=======
+  "data" : [
+    {
+      "filename" : "moonmap4k.tiff",
+      "idiom" : "universal"
+    }
+  ],
+>>>>>>> main:Common Views/Globe/Media.xcassets/Moon textures/moonmap4k.dataset/Contents.json
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

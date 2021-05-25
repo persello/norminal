@@ -26,6 +26,10 @@ extension Color {
     static var systemGray: Color {
         return Color(NSColor.systemGray)
     }
+    
+    static var background: Color {
+        return Color(NSColor.systemBackground)
+    }
 }
 
 #elseif canImport(UIKit)
@@ -46,6 +50,10 @@ extension Color {
     
     static var systemGray: Color {
         return Color(UIColor.systemGray)
+    }
+    
+    static var background: Color {
+        return Color(UIColor.systemBackground)
     }
 }
 #endif

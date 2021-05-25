@@ -45,7 +45,7 @@ class Rocket: ObservableObject, Decodable {
             case reusable
             case engines
             case fuelAmountTons = "fuel_amount_tons"
-            case burnTime = "burn_time"
+            case burnTime = "burn_time_sec"
         }
     }
 
@@ -89,36 +89,36 @@ class Rocket: ObservableObject, Decodable {
             case reusable
             case engines
             case fuelAmountTons = "fuel_amount_tons"
-            case burnTime = "burn_time"
+            case burnTime = "burn_time_sec"
             case payloads
         }
     }
-    
+
     struct Engines {
         public var number: Int?
-        
+
         public var type: String?
-        
+
         public var version: String?
-        
+
         public var layout: String?
-        
+
         public var ispSeaLevel: Measurement<UnitDuration>?
-        
+
         public var ispVacuum: Measurement<UnitDuration>?
-        
+
         public var maxEngineLoss: Int?
-        
+
         public var propellant1: String?
-        
+
         public var propellant2: String?
-        
+
         public var seaLevelThrust: Measurement<UnitForce>?
-        
+
         public var vacuumThrust: Measurement<UnitForce>?
-        
+
         public var thrustWeightRatio: Double?
-        
+
         enum CodingKeys: String, CodingKey {
             case number
             case type
@@ -171,16 +171,16 @@ class Rocket: ObservableObject, Decodable {
     public var engines: Engines?
 
     public var landingLegsCount: Int?
-    
+
     public var landingLegsMaterial: String?
 
     public var flickrImages: [URL]?
-    
+
     public var wikipedia: URL?
-    
+
     public var description: String?
-    
-    public var idString: String
+
+    public var stringID: String
 
     // MARK: - Decoding
 
@@ -206,7 +206,7 @@ class Rocket: ObservableObject, Decodable {
         case flickrImages = "flickr_images"
         case wikipedia
         case description
-        case idString = "id"
+        case stringID = "id"
     }
 
     required init(from decoder: Decoder) throws {
@@ -244,18 +244,18 @@ class Rocket: ObservableObject, Decodable {
         firstStage = try? values.decodeIfPresent(FirstStage.self, forKey: .firstStage)
         secondStage = try? values.decodeIfPresent(SecondStage.self, forKey: .secondStage)
         engines = try? values.decodeIfPresent(Engines.self, forKey: .engines)
-        
+
         if let ll = try? values.nestedContainer(keyedBy: LandingLegsCodingKeys.self, forKey: .landingLegsStruct) {
             landingLegsCount = try? ll.decodeIfPresent(Int.self, forKey: .number)
             landingLegsMaterial = try? ll.decodeIfPresent(String.self, forKey: .material)
         }
-        
+
         flickrImages = try? values.decodeIfPresent([URL].self, forKey: .flickrImages)
         wikipedia = try? values.decodeIfPresent(URL.self, forKey: .wikipedia)
         description = try? values.decodeIfPresent(String.self, forKey: .description)
-        
+
         // Must have an ID
-        idString = try values.decode(String.self, forKey: .idString)
+        stringID = try values.decode(String.self, forKey: .stringID)
     }
 }
 
@@ -297,7 +297,7 @@ extension Rocket.FirstStage: Decodable {
         if let bt = try? values.decodeIfPresent(Double.self, forKey: .burnTime) {
             burnTime = Measurement<UnitDuration>(value: bt, unit: .seconds)
         }
-        
+
         if let slt = try? values.nestedContainer(keyedBy: ForceStructCodingKeys.self, forKey: .seaLevelThrustStruct).decodeIfPresent(Double.self, forKey: .kN) {
             seaLevelThrust = Measurement<UnitForce>(value: slt, unit: .kiloNewton)
         }
@@ -321,7 +321,7 @@ extension Rocket.SecondStage: Decodable {
         if let bt = try? values.decodeIfPresent(Double.self, forKey: .burnTime) {
             burnTime = Measurement<UnitDuration>(value: bt, unit: .seconds)
         }
-        
+
         if let t = try? values.nestedContainer(keyedBy: ForceStructCodingKeys.self, forKey: .thrustStruct).decodeIfPresent(Double.self, forKey: .kN) {
             thrust = Measurement<UnitForce>(value: t, unit: .kiloNewton)
         }
@@ -356,7 +356,7 @@ extension Rocket.SecondStage.Payloads.CompositeFairing: Decodable {
 extension Rocket.Engines: Decodable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        
+
         number = try? values.decodeIfPresent(Int.self, forKey: .number)
         type = try? values.decodeIfPresent(String.self, forKey: .type)
         version = try? values.decodeIfPresent(String.self, forKey: .version)
@@ -365,16 +365,16 @@ extension Rocket.Engines: Decodable {
             if let isl = try isp.decodeIfPresent(Double.self, forKey: .seaLevel) {
                 ispSeaLevel = Measurement<UnitDuration>(value: isl, unit: .seconds)
             }
-            
+
             if let isv = try isp.decodeIfPresent(Double.self, forKey: .vacuum) {
                 ispVacuum = Measurement<UnitDuration>(value: isv, unit: .seconds)
             }
         }
-        
+
         maxEngineLoss = try? values.decodeIfPresent(Int.self, forKey: .maxEngineLoss)
         propellant1 = try? values.decodeIfPresent(String.self, forKey: .propellant1)
         propellant2 = try? values.decodeIfPresent(String.self, forKey: .propellant2)
-        
+
         if let slt = try? values.nestedContainer(keyedBy: ForceStructCodingKeys.self, forKey: .seaLevelThrustStruct).decodeIfPresent(Double.self, forKey: .kN) {
             seaLevelThrust = Measurement<UnitForce>(value: slt, unit: .kiloNewton)
         }
@@ -382,13 +382,33 @@ extension Rocket.Engines: Decodable {
         if let vt = try? values.nestedContainer(keyedBy: ForceStructCodingKeys.self, forKey: .vacuumThrustStruct).decodeIfPresent(Double.self, forKey: .kN) {
             vacuumThrust = Measurement<UnitForce>(value: vt, unit: .kiloNewton)
         }
-        
+
         thrustWeightRatio = try? values.decodeIfPresent(Double.self, forKey: .thrustToWeightRatio)
     }
 }
 
+extension Rocket {
+    var stageCountDescription: String {
+        var result: String!
+        if let stages = stages {
+            switch stages {
+            case 1:
+                result = "Single-stage"
+            case 2:
+                result = "Two-stage"
+            default:
+                result = "\(stages)-stage"
+            }
+        } else {
+            result = "Unknown staging"
+        }
+       
+        return result
+    }
+}
+
 extension Rocket: Identifiable {
-    var id: String { return idString }
+    var id: String { return stringID }
 }
 
 extension Rocket: Equatable {
