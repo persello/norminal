@@ -1,7 +1,7 @@
 # Norminal
 An app for everything about SpaceX.
 
-Made with **SwiftUI**.
+Made with **SwiftUI**. You can follow the development [here](https://github.com/persello/norminal/projects/2).
 
 ![](Resources/Screenshots/iPad/App%20Store/01.png)
 |                                                      |                                                      |                                                      |                                                      |
