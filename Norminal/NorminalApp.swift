@@ -21,7 +21,9 @@ struct NorminalApp: App {
         }
 
         // Firebase
-        FirebaseApp.configure()
+        #if !DEBUG
+            FirebaseApp.configure()
+        #endif
     }
 
     @ObservedObject var globalData = SpaceXData.shared
