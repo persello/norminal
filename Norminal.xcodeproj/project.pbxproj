@@ -139,6 +139,7 @@
 		8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B919B0525F14F27007D992E /* MissionDetailsCard.swift */; };
 		8B9255B225F2DA810059CB2E /* RocketCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B125F2DA810059CB2E /* RocketCard.swift */; };
 		8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
+		8B9524C4265D073000816574 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9524C3265D073000816574 /* Alamofire */; };
 		8B98C945261C966A00FDF70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
 		8BA4D6EB260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
 		8BA4D6EC260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
@@ -437,6 +438,7 @@
 				8BD13FB625FF762C003AB69C /* Telescope in Frameworks */,
 				8B4E95F5259671F000F9668E /* FirebaseInstallations.xcframework in Frameworks */,
 				8B4AEFFA26571E0300675E88 /* BottomSheet in Frameworks */,
+				8B9524C4265D073000816574 /* Alamofire in Frameworks */,
 				8B4E9605259671FD00F9668E /* FirebaseCrashlytics.xcframework in Frameworks */,
 				8B4E95F1259671F000F9668E /* FirebaseAnalytics.xcframework in Frameworks */,
 				8B692558253205E800D61C3F /* NavigationSearchBar in Frameworks */,
@@ -937,6 +939,7 @@
 				8BD13FB525FF762C003AB69C /* Telescope */,
 				8B4AEFF926571E0300675E88 /* BottomSheet */,
 				8B44B2AF265A4D310047DD49 /* XCDYouTubeKit */,
+				8B9524C3265D073000816574 /* Alamofire */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -999,6 +1002,7 @@
 				8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */,
 				8B4AEFF826571E0200675E88 /* XCRemoteSwiftPackageReference "BottomSheet" */,
 				8B44B2AE265A4D310047DD49 /* XCRemoteSwiftPackageReference "XCDYouTubeKit" */,
+				8B9524C2265D073000816574 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8B46A57E2530CE740084E52D /* Products */;
 			projectDirPath = "";
@@ -1280,6 +1284,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1310,6 +1315,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1464,6 +1470,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1494,6 +1501,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1526,6 +1534,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1553,6 +1562,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1642,6 +1652,14 @@
 				minimumVersion = 1.0.25;
 			};
 		};
+		8B9524C2265D073000816574 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.3;
+			};
+		};
 		8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/persello/telescope";
@@ -1692,6 +1710,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */;
 			productName = SatelliteKit;
+		};
+		8B9524C3265D073000816574 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B9524C2265D073000816574 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		8BD13FB525FF762C003AB69C /* Telescope */ = {
 			isa = XCSwiftPackageProductDependency;
