@@ -7,7 +7,9 @@
 
 import Foundation
 
-class Roadster: ObservableObject, Decodable {
+final class Roadster: ObservableObject, Decodable, Fetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/roadster")!
+
     public var name: String?
     public var launchDate: Date?
     public var launchMass: Measurement<UnitMass>?

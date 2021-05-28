@@ -10,7 +10,9 @@ import Foundation
 // MARK: - Rocket class
 
 /// Represents a rocket launchpad
-class Rocket: ObservableObject, Decodable {
+final class Rocket: ObservableObject, Decodable, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/rockets")!
+
     // MARK: - Internal structs
 
     struct PayloadWeight {

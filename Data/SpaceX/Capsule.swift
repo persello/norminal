@@ -7,7 +7,9 @@
 
 import Foundation
 
-class Capsule: ObservableObject, Decodable {
+final class Capsule: ObservableObject, Decodable, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/capsules")!
+    
     enum Status: String, Decodable {
         case unknown, active, retired, destroyed
     }

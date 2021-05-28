@@ -7,7 +7,9 @@
 
 import Foundation
 
-class HistoryEntry: ObservableObject, Decodable {
+final class HistoryEntry: ObservableObject, Decodable, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/history")!
+
     struct Links: Decodable {
         public var article: URL?
     }

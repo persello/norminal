@@ -7,7 +7,9 @@
 
 import Foundation
 
-class CompanyInfo: Decodable, ObservableObject {
+final class CompanyInfo: Decodable, ObservableObject, Fetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/company")!
+
     struct Headquarters: Decodable, CustomStringConvertible {
         public var address: String?
 

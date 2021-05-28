@@ -7,13 +7,13 @@
 
 import Foundation
 
-class Payload: ObservableObject, Decodable {
+final class Payload: ObservableObject, Decodable, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/payloads")!
+
     struct Dragon {
         private var capsuleID: String?
-        public var capsule: Capsule? {
-            SpaceXData.shared.capsules.first(where: {
-                $0.id == capsuleID
-            })
+        public func getCapsule(_ completion: @escaping (Capsule?) -> Void) {
+            Capsule.get(id: capsuleID, completion)
         }
 
         public var massReturned: Measurement<UnitMass>?
@@ -56,10 +56,8 @@ class Payload: ObservableObject, Decodable {
     public var type: String?
     public var reused: Bool?
     private var launchID: String?
-    public var launch: Launch? {
-        SpaceXData.shared.launches.first(where: {
-            $0.stringID == launchID
-        })
+    public func getLaunch(_ completion: @escaping (Launch?) -> ()) {
+        Launch.get(id: launchID, completion)
     }
 
     public var customers: [String]?

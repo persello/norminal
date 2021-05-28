@@ -8,7 +8,9 @@
 import CoreLocation
 import Foundation
 
-class Ship: ObservableObject, Decodable {
+final class Ship: ObservableObject, Decodable, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/ships")!
+    
     public var name: String
     public var legacyID: String?
     public var model: String?

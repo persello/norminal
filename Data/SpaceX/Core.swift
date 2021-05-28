@@ -7,7 +7,9 @@
 
 import Foundation
 
-class Core: Decodable, ObservableObject {
+final class Core: Decodable, ObservableObject, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/cores")!
+
     enum Status: String, Decodable {
         case active
         case inactive

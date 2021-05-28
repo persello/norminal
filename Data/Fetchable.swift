@@ -1,5 +1,5 @@
 //
-//  GlobalDataStore.swift
+//  Fetchable.swift
 //  Norminal
 //
 //  Created by Riccardo Persello on 25/05/21.
@@ -62,14 +62,18 @@ class CustomDecoder: JSONDecoder {
     }
 }
 
+// MARK: - Fetchable protocols
+
 protocol ArrayFetchable {
     static var baseURL: URL { get }
     static func load(id: String, completion handler: @escaping (Result<Self, Error>) -> Void)
+    static func get(id: String?, _ completion: @escaping (Self?) -> Void)
     static func loadAll(completion handler: @escaping (Result<[Self], Error>) -> Void)
 }
 
 protocol Fetchable {
     static var baseURL: URL { get }
+    static func get(_ completion: @escaping (Self?) -> Void)
     static func load(completion handler: @escaping (Result<Self, Error>) -> Void)
 }
 
@@ -77,7 +81,25 @@ class NilDataError: Error {
     var localizedDescription = "Request was successful, but returned data was nil."
 }
 
+// MARK: - Fetchable implementations
+
 extension ArrayFetchable where Self: Decodable {
+    static func get(id: String?, _ completion: @escaping (Self?) -> Void) {
+        guard id != nil else {
+            completion(nil)
+            return
+        }
+
+        load(id: id!, completion: { result in
+            switch result {
+            case .failure:
+                completion(nil)
+            case let .success(data):
+                completion(data)
+            }
+        })
+    }
+
     static func loadAll(completion handler: @escaping (Result<[Self], Error>) -> Void) {
         AF.request(baseURL)
             .validate(statusCode: 200 ..< 300)
@@ -133,6 +155,17 @@ extension ArrayFetchable where Self: Decodable {
 }
 
 extension Fetchable where Self: Decodable {
+    static func get(_ completion: @escaping (Self?) -> Void) {
+        load(completion: { result in
+            switch result {
+            case .failure:
+                completion(nil)
+            case let .success(data):
+                completion(data)
+            }
+        })
+    }
+
     static func load(completion handler: @escaping (Result<Self, Error>) -> Void) {
         AF.request(baseURL)
             .validate(statusCode: 200 ..< 300)

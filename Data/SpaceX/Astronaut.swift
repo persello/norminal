@@ -13,7 +13,9 @@ import Telescope
 // MARK: - Astronaut class
 
 /// Represents an astronaut
-class Astronaut: Decodable, ObservableObject {
+final class Astronaut: Decodable, ObservableObject, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/crew")!
+
     /// Name and surname of the astronaut
     public var name: String
 
@@ -88,20 +90,23 @@ extension Astronaut {
     }
 
     /// Returns the launches in which this astronaut participated
-    func getLaunches() -> [Launch]? {
+    func getLaunches(_ completion: @escaping ([Launch]?) -> Void) {
         if let launchIdList = launches {
-            var launches: [Launch] = []
-            for launchID in launchIdList {
-                if let launch = SpaceXData.shared.launches.first(where: { $0.stringID ?? "" == launchID }) {
-                    launches.append(launch)
+            Launch.loadAll { launches in
+                switch launches {
+                case .failure:
+                    completion(nil)
+                case let .success(launches):
+                    let filtered = launches.filter({
+                        launchIdList.contains($0.stringID ?? "invalidID")
+                    })
+
+                    completion(filtered)
                 }
             }
-
-            if launches.count > 0 {
-                return launches
-            }
+        } else {
+            completion(nil)
         }
-        return nil
     }
 }
 

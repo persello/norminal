@@ -9,7 +9,9 @@ import CoreLocation
 import Foundation
 import SatelliteKit
 
-class Starlink: ObservableObject, Decodable {
+final class Starlink: ObservableObject, Decodable, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/starlink")!
+
     struct SpaceTrack: Decodable {
         private var TLE_LINE0: String?
         private var TLE_LINE1: String?

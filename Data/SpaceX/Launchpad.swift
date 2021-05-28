@@ -8,18 +8,18 @@
 import CoreLocation
 import Foundation
 
-// MARK: - Enums
-
-enum LaunchpadStatus: String, Decodable {
-    case retired
-    case active
-    case underConstruction = "under construction"
-}
-
 // MARK: - Launchpad class
 
 /// Represents a rocket launchpad
-class Launchpad: Decodable, ObservableObject {
+final class Launchpad: Decodable, ObservableObject, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/launchpads")!
+    
+    enum Status: String, Decodable {
+        case retired
+        case active
+        case underConstruction = "under construction"
+    }
+
     /// Launchpad official name
     public var name: String
 
@@ -72,7 +72,7 @@ class Launchpad: Decodable, ObservableObject {
     public var details: String?
 
     /// Actual status of the launchpad
-    public var status: LaunchpadStatus
+    public var status: Launchpad.Status
 
     /// Launchpad ID string
     public var stringID: String

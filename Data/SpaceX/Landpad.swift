@@ -11,7 +11,8 @@ import CoreLocation
 // MARK: - Landpad class
 
 /// Represents a rocket Landpad
-class Landpad: Decodable, ObservableObject {
+final class Landpad: Decodable, ObservableObject, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/landpads")!
     
     // MARK: - Enums
     

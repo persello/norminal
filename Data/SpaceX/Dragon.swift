@@ -7,7 +7,9 @@
 
 import Foundation
 
-class Dragon: Decodable, ObservableObject {
+final class Dragon: Decodable, ObservableObject, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/dragons")!
+
     struct HeatShield {
         public var material: String
         public var size: Measurement<UnitLength>

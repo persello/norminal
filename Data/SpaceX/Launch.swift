@@ -12,7 +12,9 @@ import Telescope
 // MARK: - Launch class
 
 /// Represents a SpaceX launch.
-class Launch: Decodable, ObservableObject {
+final class Launch: Decodable, ObservableObject, ArrayFetchable {
+    static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/launches")!
+
     // MARK: Enums
 
     enum DatePrecision: String, Decodable {
