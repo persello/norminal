@@ -11,58 +11,6 @@ import os
 import SwiftUI
 import WidgetKit
 
-// MARK: - Utility extension for initializing UUID from string with no dashes
-
-extension UUID {
-    init?(stringWithoutDashes input: String) {
-        var dashed = input
-        while dashed.count < 32 {
-            dashed.append("0")
-        }
-
-        dashed.insert("-", at: input.index(input.startIndex, offsetBy: 20))
-        dashed.insert("-", at: input.index(input.startIndex, offsetBy: 16))
-        dashed.insert("-", at: input.index(input.startIndex, offsetBy: 12))
-        dashed.insert("-", at: input.index(input.startIndex, offsetBy: 8))
-
-        self.init(uuidString: dashed.uppercased())
-    }
-}
-
-// MARK: - Custom date formatter for extended ISO8601 support.
-
-extension DateFormatter {
-    static let iso8601Full: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter
-    }()
-}
-
-// MARK: - Custom JSON date format decoder
-
-class CustomDecoder: JSONDecoder {
-    override init() {
-        super.init()
-        dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-        dateDecodingStrategy = .custom({ (decoder) -> Date in
-            let container = try decoder.singleValueContainer()
-            let dateStr = try container.decode(String.self)
-
-            if let date = DateFormatter.iso8601Full.date(from: dateStr) {
-                return date
-            } else if let date = ISO8601DateFormatter().date(from: dateStr) {
-                return date
-            } else {
-                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Cannot decode date string \(dateStr).")
-            }
-        })
-    }
-}
-
 // MARK: - SpaceXData main class
 
 /// Contains data obtained from the SpaceX API

@@ -140,6 +140,9 @@
 		8B9255B225F2DA810059CB2E /* RocketCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B125F2DA810059CB2E /* RocketCard.swift */; };
 		8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
 		8B9524C4265D073000816574 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9524C3265D073000816574 /* Alamofire */; };
+		8B9524C6265D091500816574 /* GlobalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9524C5265D091500816574 /* GlobalDataStore.swift */; };
+		8B9524C7265D091500816574 /* GlobalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9524C5265D091500816574 /* GlobalDataStore.swift */; };
+		8B9524C8265D091500816574 /* GlobalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9524C5265D091500816574 /* GlobalDataStore.swift */; };
 		8B98C945261C966A00FDF70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
 		8BA4D6EB260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
 		8BA4D6EC260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
@@ -340,6 +343,7 @@
 		8B919B0525F14F27007D992E /* MissionDetailsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailsCard.swift; sourceTree = "<group>"; };
 		8B9255B125F2DA810059CB2E /* RocketCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCard.swift; sourceTree = "<group>"; };
 		8B9255B725F2DB4E0059CB2E /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
+		8B9524C5265D091500816574 /* GlobalDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataStore.swift; sourceTree = "<group>"; };
 		8BA4D6EA260E50150096CE96 /* Capsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Capsule.swift; sourceTree = "<group>"; };
 		8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyInfo.swift; sourceTree = "<group>"; };
 		8BA4D6F0260E502F0096CE96 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
@@ -850,6 +854,7 @@
 		8BF143D725F10C370045B95D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				8B9524C5265D091500816574 /* GlobalDataStore.swift */,
 				8BF5F6EC2611211B00060A0E /* GlobalSettings.swift */,
 				8B32865D264C8F930039ADE8 /* Secrets.plist */,
 				8BF143DA25F10C370045B95D /* Secrets.swift */,
@@ -1054,6 +1059,7 @@
 				8BA4D6FB260E505B0096CE96 /* Fairing.swift in Sources */,
 				8B1332072641653600638038 /* MapMarkers.swift in Sources */,
 				8BA4D6EF260E50240096CE96 /* CompanyInfo.swift in Sources */,
+				8B9524C7265D091500816574 /* GlobalDataStore.swift in Sources */,
 				8BF143F225F10C370045B95D /* SpaceXData.swift in Sources */,
 				8BE09FC6264201DC0001C9D9 /* Launchpad.swift in Sources */,
 				8BF143E825F10C370045B95D /* Secrets.swift in Sources */,
@@ -1094,6 +1100,7 @@
 				8BA4D6FD260E50690096CE96 /* Roadster.swift in Sources */,
 				8B6A231C2653236900056726 /* ShipSheet.swift in Sources */,
 				8BA4D6F7260E50500096CE96 /* Payload.swift in Sources */,
+				8B9524C6265D091500816574 /* GlobalDataStore.swift in Sources */,
 				8B2E86F2265A99AD0072735B /* VehicleListView.swift in Sources */,
 				8BB89E812654545E0026275E /* PayloadSheet.swift in Sources */,
 				8B919B0625F14F27007D992E /* MissionDetailsCard.swift in Sources */,
@@ -1247,6 +1254,7 @@
 				8B29D0952610B80C00FBA0C5 /* SpaceXData.swift in Sources */,
 				8B29D0A12610B80C00FBA0C5 /* Core.swift in Sources */,
 				8B29D0CE26111D3D00FBA0C5 /* Filter.swift in Sources */,
+				8B9524C8265D091500816574 /* GlobalDataStore.swift in Sources */,
 				8B29D0992610B80C00FBA0C5 /* Landpad.swift in Sources */,
 				8B29D0B92610BAF200FBA0C5 /* AstronautPicture.swift in Sources */,
 				8B7C68CA26408A870075116B /* Starlink.swift in Sources */,
