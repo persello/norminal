@@ -70,9 +70,7 @@ platform :ios do
     push_to_git_remote
 
     # Crashlytics
-    upload_symbols_to_crashlytics(gsp_path: "./GoogleService-Info.plist",
-                                  binary_path: "Resources/Crashlytics/upload-symbols",
-                                  dsym_path: "Norminal.app.dSYM.zip")
+    # Moved to Xcode
 
     notification(message: "The app has been distributed to the #{lane} testers.", subtitle: "Fastlane #{lane} lane complete")
   end
