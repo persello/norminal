@@ -29,12 +29,16 @@ final class Ship: ObservableObject, Decodable, ArrayFetchable {
     public var link: URL?
     public var image: URL?
     private var launchIDs: [String]?
-    public var launches: [Launch]? {
-        launchIDs?.compactMap({ id in
-            SpaceXData.shared.launches.first(where: { launch in
-                launch.stringID == id
-            })
-        })
+    
+    public func getLaunches(_ completion: @escaping ([Launch]?) -> ()) {
+        Launch.loadFromArrayOfIdentifiers(ids: launchIDs) { result in
+            switch result {
+                case .failure:
+                    completion(nil)
+                case let .success(launches):
+                    completion(launches)
+            }
+        }
     }
 
     public var stringID: String

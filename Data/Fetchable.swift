@@ -65,6 +65,7 @@ class CustomDecoder: JSONDecoder {
 // MARK: - Fetchable protocols
 
 protocol ArrayFetchable {
+    var stringID: String { get }
     static var baseURL: URL { get }
     static func load(id: String, completion handler: @escaping (Result<Self, Error>) -> Void)
     static func get(id: String?, _ completion: @escaping (Self?) -> Void)
@@ -72,6 +73,7 @@ protocol ArrayFetchable {
 }
 
 protocol Fetchable {
+    var stringID: String { get }
     static var baseURL: URL { get }
     static func get(_ completion: @escaping (Self?) -> Void)
     static func load(completion handler: @escaping (Result<Self, Error>) -> Void)
@@ -79,6 +81,10 @@ protocol Fetchable {
 
 class NilDataError: Error {
     var localizedDescription = "Request was successful, but returned data was nil."
+}
+
+class EmptyIDError: Error {
+    var localizedDescription = "The passed ID array was nil or empty."
 }
 
 // MARK: - Fetchable implementations
@@ -98,6 +104,22 @@ extension ArrayFetchable where Self: Decodable {
                 completion(data)
             }
         })
+    }
+
+    static func loadFromArrayOfIdentifiers(ids: [String]?, completion handler: @escaping (Result<[Self], Error>) -> Void) {
+        guard ids?.count ?? 0 > 0 else {
+            handler(.failure(EmptyIDError()))
+            return
+        }
+
+        loadAll { result in
+            switch result {
+            case let .failure(error):
+                handler(.failure(error))
+            case let .success(items):
+                handler(.success(items.filter({ ids?.contains($0.stringID) ?? false })))
+            }
+        }
     }
 
     static func loadAll(completion handler: @escaping (Result<[Self], Error>) -> Void) {

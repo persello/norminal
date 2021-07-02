@@ -9,13 +9,14 @@ import SwiftUI
 
 struct ShipSheet: View {
     var ship: Ship
+    @State var launches: [Launch]?
 
     var body: some View {
         List {
             ShipDetailsSection()
             ShipLocationSection()
-
-            if let launches = ship.launches,
+            
+            if let launches = launches,
                launches.count > 0 {
                 Section(header: Text("Missions")) {
                     ForEach(launches) { launch in
@@ -27,6 +28,11 @@ struct ShipSheet: View {
         .environmentObject(ship)
         .listStyle(InsetGroupedListStyle())
         .navigationTitle(Text(ship.name))
+        .onAppear {
+            ship.getLaunches { launches in
+                self.launches = launches
+            }
+        }
     }
 }
 

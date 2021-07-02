@@ -11,9 +11,10 @@ import Telescope
 struct RocketCard: View {
     @EnvironmentObject var launch: Launch
     @State var modalPresented: Bool = false
+    @State var rocket: Rocket?
 
     var imageName: String {
-        let name = launch.rocket?.name ?? ""
+        let name = rocket?.name ?? ""
         if name.lowercased().contains("falcon 9") {
             return "f9.fairings.render"
         } else if name.lowercased().contains("falcon heavy") {
@@ -27,7 +28,7 @@ struct RocketCard: View {
 
     var body: some View {
         Card(background: {
-            if let imageURL = launch.rocket?.flickrImages?.first {
+            if let imageURL = rocket?.flickrImages?.first {
                 TImage(RemoteImage(imageURL: imageURL))
                     .resizable()
                     .scaledToFill()
@@ -39,7 +40,7 @@ struct RocketCard: View {
 
         }, content: {
             CardOverlay(preamble: "Vehicle",
-                        title: launch.rocket?.name ?? "Rocket",
+                        title: rocket?.name ?? "Rocket",
                         bottomText: "Read details",
                         buttonText: "Open",
                         buttonAction: {
@@ -52,6 +53,11 @@ struct RocketCard: View {
                     RocketSheet(launch: launch)
                 }
             })
+        .onAppear {
+            launch.getRocket {rocket in
+                self.rocket = rocket
+            }
+        }
     }
 }
 

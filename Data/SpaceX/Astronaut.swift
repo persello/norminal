@@ -29,7 +29,7 @@ final class Astronaut: Decodable, ObservableObject, ArrayFetchable {
     public var wikipedia: URL?
 
     /// List of launch IDs
-    public var launches: [String]?
+    public var launchIDs: [String]?
 
     /// Whether this astronaut is active or not
     public var status: String
@@ -45,7 +45,7 @@ final class Astronaut: Decodable, ObservableObject, ArrayFetchable {
         case agency
         case image
         case wikipedia
-        case launches
+        case launchIDs = "launches"
         case status
         case stringID = "id"
     }
@@ -91,21 +91,13 @@ extension Astronaut {
 
     /// Returns the launches in which this astronaut participated
     func getLaunches(_ completion: @escaping ([Launch]?) -> Void) {
-        if let launchIdList = launches {
-            Launch.loadAll { launches in
-                switch launches {
-                case .failure:
-                    completion(nil)
-                case let .success(launches):
-                    let filtered = launches.filter({
-                        launchIdList.contains($0.stringID ?? "invalidID")
-                    })
-
-                    completion(filtered)
-                }
+        Launch.loadFromArrayOfIdentifiers(ids: launchIDs) { result in
+            switch result {
+            case .failure:
+                completion(nil)
+            case let .success(launches):
+                completion(launches)
             }
-        } else {
-            completion(nil)
         }
     }
 }

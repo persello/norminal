@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CoreListTile: View {
     var core: Core
+    @State var launches: [Launch] = []
+    
     var body: some View {
         HStack {
             Group {
@@ -27,7 +29,7 @@ struct CoreListTile: View {
                     .font(Font.largeTitle.weight(.light))
             )
             .padding()
-            .foregroundColor(core.landings > 0 ? .green : core.launches.filter({ !$0.upcoming }).count > 0 ? .red : .lightGray)
+            .foregroundColor(core.landings > 0 ? .green : launches.filter({ !$0.upcoming }).count > 0 ? .red : .lightGray)
 
             VStack(alignment: .leading) {
                 HStack {
@@ -47,6 +49,11 @@ struct CoreListTile: View {
                     Text("Block \(block)")
                         .foregroundColor(.gray)
                 }
+            }
+        }
+        .onAppear {
+            core.getLaunches {launches in
+                self.launches = launches ?? []
             }
         }
     }

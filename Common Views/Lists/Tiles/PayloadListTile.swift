@@ -11,11 +11,12 @@ import Telescope
 struct PayloadListTile: View {
     var payload: Payload
     var showPatch: Bool = false
+    @State var launch: Launch?
 
     var body: some View {
         HStack {
             if showPatch {
-                if let patch = payload.launch?.getPatch() {
+                if let patch = launch?.getPatch() {
                     TImage(patch)
                         .resizable()
                         .frame(width: 24, height: 24, alignment: .center)
@@ -23,6 +24,11 @@ struct PayloadListTile: View {
                     Image(systemName: "seal")
                         .frame(width: 24, height: 24, alignment: .center)
                         .foregroundColor(.gray)
+                        .onAppear {
+                            payload.getLaunch { launch in
+                                self.launch = launch
+                            }
+                        }
                 }
             }
 

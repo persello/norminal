@@ -9,7 +9,7 @@ import Foundation
 
 final class Capsule: ObservableObject, Decodable, ArrayFetchable {
     static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/capsules")!
-    
+
     enum Status: String, Decodable {
         case unknown, active, retired, destroyed
     }
@@ -22,19 +22,22 @@ final class Capsule: ObservableObject, Decodable, ArrayFetchable {
 
     private var dragonID: String?
 
-    public var dragonModel: Dragon? {
+    public func getDragonModel(_ completion: @escaping (Dragon?) -> Void) {
         if let dragonID = self.dragonID {
             // Not supported now, but might be when API gets fixed
-            return SpaceXData.shared.dragons.first(where: { dragon in
-                dragon.stringID == dragonID
-            })
+            Dragon.get(id: dragonID, completion)
         } else {
             // Type matching
             // Ex. "Dragon 1" Dragon name matches with both "Dragon 1.1" and "Dragon 1.0" capsule types.
 
-            return SpaceXData.shared.dragons.first(where: { dragon in
-                self.type.starts(with: dragon.name) 
-            })
+            Dragon.loadAll { result in
+                switch result {
+                case .failure:
+                    completion(nil)
+                case let .success(dragons):
+                    completion(dragons.first(where: { self.type.starts(with: $0.name) }))
+                }
+            }
         }
     }
 
@@ -50,14 +53,15 @@ final class Capsule: ObservableObject, Decodable, ArrayFetchable {
 
     public var stringID: String
 
-    public var launches: [Launch] {
-        return SpaceXData.shared.launches.filter({
-            if let id = $0.stringID {
-                return (launchIDs?.contains(id)) ?? false
-            } else {
-                return false
+    public func getLaunches(_ completion: @escaping ([Launch]?) -> Void) {
+        Launch.loadOrdered { result in
+            switch result {
+            case .failure:
+                completion(nil)
+            case let .success(launches):
+                completion(launches.filter({ self.launchIDs?.contains($0.stringID) ?? false }))
             }
-        })
+        }
     }
 
     enum CodingKeys: String, CodingKey {

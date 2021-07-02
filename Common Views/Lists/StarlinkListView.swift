@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StarlinkListView: View {
+    
     struct StarlinkView: View {
         var starlinks: [Starlink]
         var body: some View {

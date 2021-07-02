@@ -11,9 +11,9 @@ import Telescope
 struct PayloadCard: View {
     @EnvironmentObject var launch: Launch
     @State var modalPresented: Bool = false
+    @State var payloads: [Payload]?
 
     var payloadString: String {
-        let payloads = launch.payloads
         let count = payloads?.count ?? 0
         if count == 0 {
             return "More information"
@@ -25,7 +25,6 @@ struct PayloadCard: View {
     }
 
     var payloadTypeString: String {
-        let payloads = launch.payloads
         let count = payloads?.count ?? 0
         let type = payloads?.first?.type
 
@@ -41,7 +40,7 @@ struct PayloadCard: View {
     }
 
     var imageName: String {
-        if (launch.payloads?.first?.type?.lowercased() ?? "").contains("dragon") {
+        if (payloads?.first?.type?.lowercased() ?? "").contains("dragon") {
             return "dragon.space"
         } else {
             return "starlink.space"
@@ -49,7 +48,7 @@ struct PayloadCard: View {
     }
 
     var isRoadster: Bool {
-        if let name = launch.payloads?.first?.name {
+        if let name = payloads?.first?.name {
             if name.lowercased().contains("tesla roadster") {
                 return true
             }
@@ -61,7 +60,7 @@ struct PayloadCard: View {
     var body: some View {
         Card(background: {
             if isRoadster,
-               let url = SpaceXData.shared.roadster?.flickrImages?.first {
+               let url = FakeData.shared.roadster?.flickrImages?.first {
                 TImage(RemoteImage(imageURL: url))
             } else {
                 Image(imageName)
@@ -80,10 +79,15 @@ struct PayloadCard: View {
         })
             .sheet(isPresented: $modalPresented, content: {
                 RootSheet(modalShown: $modalPresented) {
-                    PayloadSheet(payloads: launch.payloads!)
+                    PayloadSheet(payloads: payloads ?? [])
                 }
             })
             .padding()
+            .onAppear {
+                launch.getPayloads { payloads in
+                    self.payloads = payloads
+                }
+            }
     }
 }
 

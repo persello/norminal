@@ -11,19 +11,16 @@ struct PayloadCapsuleInstanceSections: View {
     public init(payload: Payload) {
         self.payload = payload
         self.dragonInstance = payload.dragon
-        self.capsule = dragonInstance?.capsule
-        self.dragonModel = capsule?.dragonModel
     }
     
     public init(capsule: Capsule) {
         self.capsule = capsule
-        self.dragonModel = capsule.dragonModel
     }
 
     var payload: Payload?
     var dragonInstance: Payload.Dragon?
-    var capsule: Capsule?
-    var dragonModel: Dragon?
+    @State var capsule: Capsule?
+    @State var dragonModel: Dragon?
     
     var body: some View {
         Section(header: Text("Capsule")) {
@@ -92,7 +89,16 @@ struct PayloadCapsuleInstanceSections: View {
                 }
             }
         }
-
+        .onAppear {
+            dragonInstance?.getCapsule { capsule in
+                self.capsule = capsule
+                
+                self.capsule?.getDragonModel { model in
+                    self.dragonModel = model
+                }
+            }
+        }
+        
         if let dragonModel = dragonModel {
             Section(header: Text("Dragon model")) {
                 VStack(alignment: .leading) {

@@ -22,8 +22,14 @@ final class Starlink: ObservableObject, Decodable, ArrayFetchable {
 
     public var version: String?
     private var launchID: String?
-    public var launch: Launch? {
-        SpaceXData.shared.launches.first(where: { $0.stringID == launchID })
+    
+    public func getLaunch(_ completion: @escaping (Launch?) -> ()) {
+        guard launchID != nil else {
+            completion(nil)
+            return
+        }
+        
+        Launch.get(id: launchID!, completion)
     }
 
     private var latitude: Double?
@@ -51,6 +57,7 @@ final class Starlink: ObservableObject, Decodable, ArrayFetchable {
     }
 
     public var spaceTrack: SpaceTrack?
+    public var stringID: String
     
 
     enum CodingKeys: String, CodingKey {
@@ -60,6 +67,7 @@ final class Starlink: ObservableObject, Decodable, ArrayFetchable {
         case heightKilometers = "height_km"
         case velocityKps = "velocity_kps"
         case spaceTrack
+        case stringID = "id"
     }
 }
 

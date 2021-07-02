@@ -53,7 +53,6 @@ struct ArchiveCard<Destination: View>: View {
 }
 
 struct ArchiveView: View {
-    @EnvironmentObject private var globalData: SpaceXData
 
     var body: some View {
         NavigationView {

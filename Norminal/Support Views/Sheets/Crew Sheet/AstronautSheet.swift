@@ -10,6 +10,8 @@ import SwiftUI
 struct AstronautSheet: View {
     @State var astronaut: Astronaut
 
+    @State var launches: [Launch]?
+
     var body: some View {
         Color(.systemGray6)
             .ignoresSafeArea(edges: .all)
@@ -33,7 +35,7 @@ struct AstronautSheet: View {
                                     .padding(.vertical, -4)
                                 Text(astronaut.status.capitalized)
                             }
-                            .foregroundColor(/*@START_MENU_TOKEN@*/.gray/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/ .gray/*@END_MENU_TOKEN@*/)
                         }
                         .padding(.bottom, 16)
                         Spacer()
@@ -45,7 +47,7 @@ struct AstronautSheet: View {
                         })
                     }
 
-                    if let launches = astronaut.getLaunches(),
+                    if let launches = self.launches,
                        launches.count > 0 {
                         Section(header: Text("Missions")) {
                             ForEach(launches) { launch in
@@ -59,6 +61,11 @@ struct AstronautSheet: View {
             )
             .navigationTitle("Details")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                astronaut.getLaunches { launches in
+                    self.launches = launches
+                }
+            }
     }
 }
 

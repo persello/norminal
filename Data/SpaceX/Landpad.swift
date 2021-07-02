@@ -5,23 +5,23 @@
 //  Created by Riccardo Persello on 27/10/2020.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 
 // MARK: - Landpad class
 
 /// Represents a rocket Landpad
 final class Landpad: Decodable, ObservableObject, ArrayFetchable {
     static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/landpads")!
-    
+
     // MARK: - Enums
-    
+
     enum Status: String, Decodable {
-        case retired = "retired"
-        case active = "active"
+        case retired
+        case active
         case underConstruction = "under construction"
     }
-    
+
     enum `Type`: String, Decodable {
         case RTLS
         case ASDS
@@ -59,13 +59,18 @@ final class Landpad: Decodable, ObservableObject, ArrayFetchable {
 
     /// List of launch IDs that have landed on this Landpad
     private var launchIDs: [String]?
-    
-    public var launches: [Launch]? {
-        launchIDs?.compactMap({id in
-            SpaceXData.shared.launches.first(where: { launch in
-                launch.stringID == id
-            })
-        })
+
+    public func getLaunches(_ completion: @escaping ([Launch]?) -> Void) {
+        
+        // Can't use load from ids because we need this to be ordered
+        Launch.loadOrdered { result in
+            switch result {
+            case .failure:
+                completion(nil)
+            case let .success(launches):
+                completion(launches.filter({ self.launchIDs?.contains($0.stringID) ?? false }))
+            }
+        }
     }
 
     /// Brief description of the Landpad
@@ -78,19 +83,19 @@ final class Landpad: Decodable, ObservableObject, ArrayFetchable {
     public var stringID: String
 
     enum CodingKeys: String, CodingKey {
-        case name = "name"
+        case name
         case fullName = "full_name"
-        case type = "type"
-        case locality = "locality"
-        case region = "region"
-        case latitude = "latitude"
-        case longitude = "longitude"
+        case type
+        case locality
+        case region
+        case latitude
+        case longitude
         case landingAttempts = "landing_attempts"
         case landingSuccesses = "landing_successes"
-        case wikipedia = "wikipedia"
-        case details = "details"
+        case wikipedia
+        case details
         case launchIDs = "launches"
-        case status = "status"
+        case status
         case stringID = "id"
     }
 }
@@ -99,12 +104,12 @@ final class Landpad: Decodable, ObservableObject, ArrayFetchable {
 
 extension Landpad: Identifiable {
     /// Landpad ID
-    var id: UUID { return UUID(stringWithoutDashes: self.stringID)! }
+    var id: UUID { return UUID(stringWithoutDashes: stringID)! }
 }
 
 extension Landpad {
     /// Landpad coordinates
     public var location: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }

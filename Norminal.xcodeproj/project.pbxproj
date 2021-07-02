@@ -18,11 +18,6 @@
 		8B0D1D79253365660056FACA /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D1D78253365660056FACA /* Card.swift */; };
 		8B133205264164E400638038 /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
 		8B133206264164E500638038 /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
-		8B1332072641653600638038 /* MapMarkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5459F92641469800373B8B /* MapMarkers.swift */; };
-		8B1332082641655700638038 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0BE2610BBA800FBA0C5 /* Color.swift */; };
-		8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B208B8C258EBC6A009107EC /* NextLaunches.swift */; };
-		8B208B93258EBC6C009107EC /* NorminalWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8B208B85258EBC6A009107EC /* NorminalWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8B208B9A258ECBDB009107EC /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46A59F253118160084E52D /* FakeData.swift */; };
 		8B29D08F2610B3F700FBA0C5 /* NotSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D08E2610B3F700FBA0C5 /* NotSelectedView.swift */; };
 		8B29D0922610B78500FBA0C5 /* LaunchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B29D0912610B78500FBA0C5 /* LaunchListView.swift */; };
 		8B29D0932610B80C00FBA0C5 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
@@ -72,7 +67,6 @@
 		8B2E86FD265AA9560072735B /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86FC265AA9560072735B /* AboutView.swift */; };
 		8B2E86FF265AABC80072735B /* WhereAmIRunning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E86FE265AABC80072735B /* WhereAmIRunning.swift */; };
 		8B32865E264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
-		8B32865F264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
 		8B328660264C8F930039ADE8 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B32865D264C8F930039ADE8 /* Secrets.plist */; };
 		8B32E6E02655093000AD854E /* OrbitMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32E6DF2655093000AD854E /* OrbitMap.swift */; };
 		8B32E6E12655093000AD854E /* OrbitMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B32E6DF2655093000AD854E /* OrbitMap.swift */; };
@@ -111,12 +105,10 @@
 		8B75FBF626527339001E7E1E /* RocketPhysicalSpecificationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF526527339001E7E1E /* RocketPhysicalSpecificationsSection.swift */; };
 		8B75FBF82652736F001E7E1E /* RocketPayloadWeightsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF72652736F001E7E1E /* RocketPayloadWeightsSection.swift */; };
 		8B75FBFA26527B7D001E7E1E /* RocketFirstStageSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B75FBF926527B7D001E7E1E /* RocketFirstStageSection.swift */; };
+		8B76C257268CD2B500C121EF /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8B76C256268CD2B500C121EF /* FirebaseCrashlytics */; };
 		8B7C68C826408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
-		8B7C68C926408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
 		8B7C68CA26408A870075116B /* Starlink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7C68C726408A870075116B /* Starlink.swift */; };
-		8B7C68CC26408AD90075116B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B7C68CB26408AD90075116B /* SatelliteKit */; };
 		8B7F8D3C2607A756008A226B /* FaceCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F8D3B2607A756008A226B /* FaceCropper.swift */; };
-		8B7F8D3D2607A90E008A226B /* FaceCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F8D3B2607A756008A226B /* FaceCropper.swift */; };
 		8B83E8A925375B10002AE62B /* SatelliteKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8B83E8A825375B10002AE62B /* SatelliteKit */; };
 		8B83E8B125376A5D002AE62B /* WebcastCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B025376A5D002AE62B /* WebcastCard.swift */; };
 		8B83E8B425377270002AE62B /* RoundedButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B83E8B325377270002AE62B /* RoundedButtonStyle.swift */; };
@@ -128,27 +120,17 @@
 		8B9255B825F2DB4E0059CB2E /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
 		8B9524C4265D073000816574 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8B9524C3265D073000816574 /* Alamofire */; };
 		8B9524C6265D091500816574 /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9524C5265D091500816574 /* Fetchable.swift */; };
-		8B9524C7265D091500816574 /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9524C5265D091500816574 /* Fetchable.swift */; };
 		8B9524C8265D091500816574 /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9524C5265D091500816574 /* Fetchable.swift */; };
 		8B98C945261C966A00FDF70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B46A5842530CE760084E52D /* Assets.xcassets */; };
 		8BA4D6EB260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
-		8BA4D6EC260E50150096CE96 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6EA260E50150096CE96 /* Capsule.swift */; };
 		8BA4D6EE260E50240096CE96 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */; };
-		8BA4D6EF260E50240096CE96 /* CompanyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6ED260E50240096CE96 /* CompanyInfo.swift */; };
 		8BA4D6F1260E502F0096CE96 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.swift */; };
-		8BA4D6F2260E502F0096CE96 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F0260E502F0096CE96 /* Core.swift */; };
 		8BA4D6F4260E503C0096CE96 /* Dragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.swift */; };
-		8BA4D6F5260E503C0096CE96 /* Dragon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F3260E503C0096CE96 /* Dragon.swift */; };
 		8BA4D6F7260E50500096CE96 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F6260E50500096CE96 /* Payload.swift */; };
-		8BA4D6F8260E50500096CE96 /* Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F6260E50500096CE96 /* Payload.swift */; };
 		8BA4D6FA260E505B0096CE96 /* Fairing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F9260E505B0096CE96 /* Fairing.swift */; };
-		8BA4D6FB260E505B0096CE96 /* Fairing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6F9260E505B0096CE96 /* Fairing.swift */; };
 		8BA4D6FD260E50690096CE96 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.swift */; };
-		8BA4D6FE260E50690096CE96 /* Roadster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FC260E50690096CE96 /* Roadster.swift */; };
 		8BA4D700260E50740096CE96 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.swift */; };
-		8BA4D701260E50740096CE96 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D6FF260E50740096CE96 /* Ship.swift */; };
 		8BA4D706260E50890096CE96 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D705260E50890096CE96 /* History.swift */; };
-		8BA4D707260E50890096CE96 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA4D705260E50890096CE96 /* History.swift */; };
 		8BA63E88263CC2D600E019BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BA63E87263CC2D600E019BC /* GoogleService-Info.plist */; };
 		8BA90E13257D9AA200168722 /* GalleryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA90E12257D9AA200168722 /* GalleryCard.swift */; };
 		8BB288AF2658224A00A441A7 /* PayloadCapsuleInstanceSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB288AE2658224A00A441A7 /* PayloadCapsuleInstanceSections.swift */; };
@@ -160,9 +142,6 @@
 		8BB5231825478833006A9511 /* CrewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5231725478833006A9511 /* CrewCard.swift */; };
 		8BB5232B254A009B006A9511 /* CardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5232A254A009B006A9511 /* CardOverlay.swift */; };
 		8BB7202F260E260F00B8433C /* AdditionalCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB7202E260E260F00B8433C /* AdditionalCodingKeys.swift */; };
-		8BB72030260E30BF00B8433C /* AdditionalCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB7202E260E260F00B8433C /* AdditionalCodingKeys.swift */; };
-		8BB72031260E30C200B8433C /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9255B725F2DB4E0059CB2E /* Rocket.swift */; };
-		8BB72032260E30CA00B8433C /* UnitForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF3D98260D4D2400DE48DD /* UnitForce.swift */; };
 		8BB89E7B265428470026275E /* LandpadMapSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E7A265428470026275E /* LandpadMapSection.swift */; };
 		8BB89E7E26544A7D0026275E /* CoreSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E7D26544A7D0026275E /* CoreSheet.swift */; };
 		8BB89E812654545E0026275E /* PayloadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E802654545D0026275E /* PayloadSheet.swift */; };
@@ -171,7 +150,6 @@
 		8BB89E87265468DD0026275E /* PayloadNORADSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E86265468DD0026275E /* PayloadNORADSection.swift */; };
 		8BB89E8926546FF10026275E /* PayloadOrbitSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB89E8826546FF10026275E /* PayloadOrbitSection.swift */; };
 		8BBC5F262651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
-		8BBC5F272651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
 		8BBC5F282651CA2D00E4CA2B /* StringCapitalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC5F252651CA2D00E4CA2B /* StringCapitalization.swift */; };
 		8BBCBC2C264DDCEF00937206 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCBC11264DDCEF00937206 /* PinchToZoom.swift */; };
 		8BBCBC2D264DDCEF00937206 /* WebcastSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCBC14264DDCEF00937206 /* WebcastSheet.swift */; };
@@ -194,36 +172,19 @@
 		8BBCBC40264DDCEF00937206 /* LaunchDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCBC2A264DDCEF00937206 /* LaunchDetailHeaderView.swift */; };
 		8BBCBC41264DDCEF00937206 /* LaunchCountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBCBC2B264DDCEF00937206 /* LaunchCountdownView.swift */; };
 		8BD13FB625FF762C003AB69C /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD13FB525FF762C003AB69C /* Telescope */; };
-		8BD13FBC25FF79CD003AB69C /* Telescope in Frameworks */ = {isa = PBXBuildFile; productRef = 8BD13FBB25FF79CD003AB69C /* Telescope */; };
 		8BDF3D99260D4D2400DE48DD /* UnitForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDF3D98260D4D2400DE48DD /* UnitForce.swift */; };
-		8BE09FC6264201DC0001C9D9 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DE25F10C370045B95D /* Launchpad.swift */; };
 		8BE09FC7264201DD0001C9D9 /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DE25F10C370045B95D /* Launchpad.swift */; };
 		8BE2683526109FB7003B0C62 /* NorminalMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE2683426109FB7003B0C62 /* NorminalMacApp.swift */; };
 		8BE268442610A031003B0C62 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE268432610A031003B0C62 /* MainView.swift */; };
 		8BF143E725F10C370045B95D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DA25F10C370045B95D /* Secrets.swift */; };
-		8BF143E825F10C370045B95D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DA25F10C370045B95D /* Secrets.swift */; };
 		8BF143E925F10C370045B95D /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DC25F10C370045B95D /* WeatherAPI.swift */; };
-		8BF143EA25F10C370045B95D /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DC25F10C370045B95D /* WeatherAPI.swift */; };
 		8BF143EB25F10C370045B95D /* Launchpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DE25F10C370045B95D /* Launchpad.swift */; };
 		8BF143ED25F10C370045B95D /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DF25F10C370045B95D /* Launch.swift */; };
-		8BF143EE25F10C370045B95D /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143DF25F10C370045B95D /* Launch.swift */; };
 		8BF143EF25F10C370045B95D /* Landpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143E025F10C370045B95D /* Landpad.swift */; };
-		8BF143F025F10C370045B95D /* Landpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143E025F10C370045B95D /* Landpad.swift */; };
 		8BF143F325F10C370045B95D /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143E225F10C370045B95D /* Astronaut.swift */; };
-		8BF143F425F10C370045B95D /* Astronaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF143E225F10C370045B95D /* Astronaut.swift */; };
 		8BF5F6ED2611211B00060A0E /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF5F6EC2611211B00060A0E /* GlobalSettings.swift */; };
 		8BF5F6EF2611211B00060A0E /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF5F6EC2611211B00060A0E /* GlobalSettings.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8B208B91258EBC6C009107EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8B46A5752530CE740084E52D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8B208B84258EBC6A009107EC;
-			remoteInfo = nextlaunchesExtension;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		8B208B94258EBC6C009107EC /* Embed App Extensions */ = {
@@ -232,7 +193,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8B208B93258EBC6C009107EC /* NorminalWidget.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,10 +207,6 @@
 		8B0D1D75253363BF0056FACA /* MissionRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionRecapView.swift; sourceTree = "<group>"; };
 		8B0D1D78253365660056FACA /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		8B17527525EDA8A300A760C5 /* Norminal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Norminal.entitlements; sourceTree = "<group>"; };
-		8B17527625EDA8A300A760C5 /* NorminalWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NorminalWidget.entitlements; path = ../NorminalWidget.entitlements; sourceTree = "<group>"; };
-		8B208B85258EBC6A009107EC /* NorminalWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NorminalWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B208B8C258EBC6A009107EC /* NextLaunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLaunches.swift; sourceTree = "<group>"; };
-		8B208B90258EBC6C009107EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B29D08E2610B3F700FBA0C5 /* NotSelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSelectedView.swift; sourceTree = "<group>"; };
 		8B29D0912610B78500FBA0C5 /* LaunchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListView.swift; sourceTree = "<group>"; };
 		8B29D0AF2610B88A00FBA0C5 /* CrossPlatformImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPlatformImage.swift; sourceTree = "<group>"; };
@@ -383,21 +339,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8B208B82258EBC6A009107EC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BD13FBC25FF79CD003AB69C /* Telescope in Frameworks */,
-				8B7C68CC26408AD90075116B /* SatelliteKit in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8B46A57A2530CE740084E52D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8B0D1D6F253351EA0056FACA /* VisualEffects in Frameworks */,
 				8B44B2B0265A4D310047DD49 /* XCDYouTubeKit in Frameworks */,
+				8B76C257268CD2B500C121EF /* FirebaseCrashlytics in Frameworks */,
 				8BD13FB625FF762C003AB69C /* Telescope in Frameworks */,
 				8B4AEFFA26571E0300675E88 /* BottomSheet in Frameworks */,
 				8B9524C4265D073000816574 /* Alamofire in Frameworks */,
@@ -426,16 +374,6 @@
 				8BF5D53526431E6600309466 /* Media.xcassets */,
 			);
 			path = Globe;
-			sourceTree = "<group>";
-		};
-		8B208B8B258EBC6A009107EC /* Widget */ = {
-			isa = PBXGroup;
-			children = (
-				8B17527625EDA8A300A760C5 /* NorminalWidget.entitlements */,
-				8B208B8C258EBC6A009107EC /* NextLaunches.swift */,
-				8B208B90258EBC6C009107EC /* Info.plist */,
-			);
-			path = Widget;
 			sourceTree = "<group>";
 		};
 		8B2E86F7265AA0170072735B /* Company Sheet */ = {
@@ -486,7 +424,6 @@
 				8B46A57F2530CE740084E52D /* Norminal */,
 				8BE2683326109FB7003B0C62 /* NorminalMac */,
 				8BB5232125489827006A9511 /* Resources */,
-				8B208B8B258EBC6A009107EC /* Widget */,
 				8B46A5842530CE760084E52D /* Assets.xcassets */,
 				8BB5232025489817006A9511 /* README.md */,
 				8BA63E87263CC2D600E019BC /* GoogleService-Info.plist */,
@@ -497,7 +434,6 @@
 			isa = PBXGroup;
 			children = (
 				8B46A57D2530CE740084E52D /* Norminal.app */,
-				8B208B85258EBC6A009107EC /* NorminalWidget.appex */,
 				8BE2683226109FB7003B0C62 /* Norminal for Mac.app */,
 			);
 			name = Products;
@@ -808,27 +744,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8B208B84258EBC6A009107EC /* NorminalWidget */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8B208B97258EBC6C009107EC /* Build configuration list for PBXNativeTarget "NorminalWidget" */;
-			buildPhases = (
-				8B208B81258EBC6A009107EC /* Sources */,
-				8B208B82258EBC6A009107EC /* Frameworks */,
-				8B208B83258EBC6A009107EC /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = NorminalWidget;
-			packageProductDependencies = (
-				8BD13FBB25FF79CD003AB69C /* Telescope */,
-				8B7C68CB26408AD90075116B /* SatelliteKit */,
-			);
-			productName = nextlaunchesExtension;
-			productReference = 8B208B85258EBC6A009107EC /* NorminalWidget.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		8B46A57C2530CE740084E52D /* Norminal */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B46A58C2530CE760084E52D /* Build configuration list for PBXNativeTarget "Norminal" */;
@@ -842,7 +757,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				8B208B92258EBC6C009107EC /* PBXTargetDependency */,
 			);
 			name = Norminal;
 			packageProductDependencies = (
@@ -853,6 +767,7 @@
 				8B4AEFF926571E0300675E88 /* BottomSheet */,
 				8B44B2AF265A4D310047DD49 /* XCDYouTubeKit */,
 				8B9524C3265D073000816574 /* Alamofire */,
+				8B76C256268CD2B500C121EF /* FirebaseCrashlytics */,
 			);
 			productName = Norminal;
 			productReference = 8B46A57D2530CE740084E52D /* Norminal.app */;
@@ -888,9 +803,6 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
-					8B208B84258EBC6A009107EC = {
-						CreatedOnToolsVersion = 12.3;
-					};
 					8B46A57C2530CE740084E52D = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
@@ -923,21 +835,12 @@
 			projectRoot = "";
 			targets = (
 				8B46A57C2530CE740084E52D /* Norminal */,
-				8B208B84258EBC6A009107EC /* NorminalWidget */,
 				8BE2683126109FB7003B0C62 /* Norminal for Mac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8B208B83258EBC6A009107EC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8B32865F264C8F930039ADE8 /* Secrets.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8B46A57B2530CE740084E52D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -983,39 +886,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8B208B81258EBC6A009107EC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BA4D6FB260E505B0096CE96 /* Fairing.swift in Sources */,
-				8B1332072641653600638038 /* MapMarkers.swift in Sources */,
-				8BA4D6EF260E50240096CE96 /* CompanyInfo.swift in Sources */,
-				8B9524C7265D091500816574 /* Fetchable.swift in Sources */,
-				8BE09FC6264201DC0001C9D9 /* Launchpad.swift in Sources */,
-				8BF143E825F10C370045B95D /* Secrets.swift in Sources */,
-				8BBC5F272651CA2D00E4CA2B /* StringCapitalization.swift in Sources */,
-				8BB72031260E30C200B8433C /* Rocket.swift in Sources */,
-				8BF143EA25F10C370045B95D /* WeatherAPI.swift in Sources */,
-				8B7F8D3D2607A90E008A226B /* FaceCropper.swift in Sources */,
-				8B7C68C926408A870075116B /* Starlink.swift in Sources */,
-				8BF143F025F10C370045B95D /* Landpad.swift in Sources */,
-				8BF143EE25F10C370045B95D /* Launch.swift in Sources */,
-				8BF143F425F10C370045B95D /* Astronaut.swift in Sources */,
-				8BA4D6EC260E50150096CE96 /* Capsule.swift in Sources */,
-				8B208B9A258ECBDB009107EC /* FakeData.swift in Sources */,
-				8BA4D707260E50890096CE96 /* History.swift in Sources */,
-				8BA4D6F8260E50500096CE96 /* Payload.swift in Sources */,
-				8B1332082641655700638038 /* Color.swift in Sources */,
-				8BA4D6F5260E503C0096CE96 /* Dragon.swift in Sources */,
-				8BB72032260E30CA00B8433C /* UnitForce.swift in Sources */,
-				8BB72030260E30BF00B8433C /* AdditionalCodingKeys.swift in Sources */,
-				8BA4D6FE260E50690096CE96 /* Roadster.swift in Sources */,
-				8BA4D6F2260E502F0096CE96 /* Core.swift in Sources */,
-				8BA4D701260E50740096CE96 /* Ship.swift in Sources */,
-				8B208B8D258EBC6A009107EC /* NextLaunches.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8B46A5792530CE740084E52D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1193,78 +1063,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		8B208B92258EBC6C009107EC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8B208B84258EBC6A009107EC /* NorminalWidget */;
-			targetProxy = 8B208B91258EBC6C009107EC /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		8B208B95258EBC6C009107EC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 149;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = BZTVD28H6K;
-				INFOPLIST_FILE = Widget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
-			};
-			name = Debug;
-		};
-		8B208B96258EBC6C009107EC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = NorminalWidget.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 149;
-				DEVELOPMENT_TEAM = BZTVD28H6K;
-				INFOPLIST_FILE = Widget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.persello.norminal.widget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)";
-			};
-			name = Release;
-		};
 		8B46A58A2530CE760084E52D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1509,15 +1308,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8B208B97258EBC6C009107EC /* Build configuration list for PBXNativeTarget "NorminalWidget" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8B208B95258EBC6C009107EC /* Debug */,
-				8B208B96258EBC6C009107EC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		8B46A5782530CE740084E52D /* Build configuration list for PBXProject "Norminal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1645,10 +1435,10 @@
 			package = 8B692556253205E800D61C3F /* XCRemoteSwiftPackageReference "NavigationSearchBar" */;
 			productName = NavigationSearchBar;
 		};
-		8B7C68CB26408AD90075116B /* SatelliteKit */ = {
+		8B76C256268CD2B500C121EF /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8B83E8A725375B10002AE62B /* XCRemoteSwiftPackageReference "SatelliteKit" */;
-			productName = SatelliteKit;
+			package = 8B76C244268C735C00C121EF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		8B83E8A825375B10002AE62B /* SatelliteKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1661,11 +1451,6 @@
 			productName = Alamofire;
 		};
 		8BD13FB525FF762C003AB69C /* Telescope */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */;
-			productName = Telescope;
-		};
-		8BD13FBB25FF79CD003AB69C /* Telescope */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8BD13FB425FF762C003AB69C /* XCRemoteSwiftPackageReference "telescope" */;
 			productName = Telescope;

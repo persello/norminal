@@ -66,6 +66,8 @@ final class CompanyInfo: Decodable, ObservableObject, Fetchable {
     public var links: Links?
 
     public var summary: String?
+    
+    public var stringID = "SpaceX"
 
     enum CodingKeys: String, CodingKey {
         case name, founder

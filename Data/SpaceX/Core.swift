@@ -27,27 +27,27 @@ final class Core: Decodable, ObservableObject, ArrayFetchable {
     public var rtlsLandings: Int?
     public var asdsAttempts: Int?
     public var asdsLandings: Int?
-    
+
     public var landings: Int {
         return (rtlsLandings ?? 0) + (asdsLandings ?? 0)
     }
-    
+
     public var landingAttempts: Int {
         return (rtlsAttempts ?? 0) + (asdsAttempts ?? 0)
     }
-    
+
     public var lastUpdate: String?
     private var launchIDs: [String]?
     public var stringID: String
-    public var launches: [Launch] {
-        if let launches = launchIDs?.compactMap({ id in
-            SpaceXData.shared.launches.first(where: { launch in
-                id == launch.stringID
-            })
-        }) {
-            return launches
-        } else {
-            return []
+
+    public func getLaunches(_ completion: @escaping ([Launch]?) -> Void) {
+        Launch.loadFromArrayOfIdentifiers(ids: launchIDs) { result in
+            switch result {
+            case .failure:
+                completion(nil)
+            case let .success(launches):
+                completion(launches)
+            }
         }
     }
 

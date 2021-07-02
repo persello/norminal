@@ -56,8 +56,13 @@ final class Payload: ObservableObject, Decodable, ArrayFetchable {
     public var type: String?
     public var reused: Bool?
     private var launchID: String?
-    public func getLaunch(_ completion: @escaping (Launch?) -> ()) {
-        Launch.get(id: launchID, completion)
+    public func getLaunch(_ completion: @escaping (Launch?) -> Void) {
+        guard launchID != nil else {
+            completion(nil)
+            return
+        }
+
+        Launch.get(id: launchID!, completion)
     }
 
     public var customers: [String]?

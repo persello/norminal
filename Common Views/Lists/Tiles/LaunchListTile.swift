@@ -45,14 +45,14 @@ struct LaunchListTile: View {
 struct LaunchListTile_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LaunchListTile(launch: SpaceXData.shared.getNextLaunch() ?? FakeData.shared.crewDragon!, showDetails: true)
+            LaunchListTile(FakeData.shared.crewDragon!, showDetails: true)
                 .frame(width: 350, height: 150, alignment: .center)
                 .previewLayout(.fixed(width: 350, height: 400))
-            LaunchListTile(launch: SpaceXData.shared.getNextLaunch() ?? FakeData.shared.crewDragon!, showDetails: true)
+            LaunchListTile(FakeData.shared.crewDragon!, showDetails: true)
                 .preferredColorScheme(.dark)
                 .frame(width: 350, height: 150, alignment: .center)
                 .previewLayout(.fixed(width: 350, height: 400))
-            LaunchListTile(launch: SpaceXData.shared.getNextLaunch() ?? FakeData.shared.crewDragon!, showDetails: false)
+            LaunchListTile(FakeData.shared.crewDragon!, showDetails: false)
                 .preferredColorScheme(.light)
                 .previewLayout(.sizeThatFits)
         }

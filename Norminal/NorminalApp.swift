@@ -5,7 +5,7 @@
 //  Created by Riccardo Persello on 09/10/2020.
 //
 
-import Firebase
+import FirebaseCrashlytics
 import os
 import SwiftUI
 import WidgetKit
@@ -26,12 +26,9 @@ struct NorminalApp: App {
         #endif
     }
 
-    @ObservedObject var globalData = SpaceXData.shared
-
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(globalData)
         }
     }
 }

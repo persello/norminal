@@ -8,17 +8,41 @@
 import SwiftUI
 
 struct AstronautListView: View {
-    var astronauts: [Astronaut]
+    @State var astronauts: [Astronaut]?
+    @State var loadingError: Bool = false
+
+    func loadAstronauts() {
+        Astronaut.loadAll { result in
+            switch result {
+            case .failure:
+                loadingError = true
+            case let .success(astronauts):
+                self.astronauts = astronauts
+            }
+        }
+    }
+
     var body: some View {
         List {
-            ForEach(astronauts) { astronaut in
-                NavigationLink(destination: AstronautSheet(astronaut: astronaut)) {
-                    AstronautListTile(astronaut: astronaut)
+            if let astronauts = astronauts {
+                ForEach(astronauts) { astronaut in
+                    NavigationLink(destination: AstronautSheet(astronaut: astronaut)) {
+                        AstronautListTile(astronaut: astronaut)
+                    }
+                }
+            } else {
+                if loadingError {
+                    LoadingErrorView(reloadAction: loadAstronauts)
+                } else {
+                    ProgressView()
                 }
             }
         }
         .listStyle(GroupedListStyle())
         .navigationTitle(Text("Astronauts"))
+        .onAppear {
+            loadAstronauts()
+        }
     }
 }
 

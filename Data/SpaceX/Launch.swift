@@ -15,6 +15,62 @@ import Telescope
 final class Launch: Decodable, ObservableObject, ArrayFetchable {
     static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/launches")!
 
+    static func loadOrdered(completion handler: @escaping (Result<[Launch], Error>) -> Void) {
+        Launch.loadAll { result in
+            switch result {
+            case let .failure(error):
+                handler(.failure(error))
+            case let .success(launches):
+                let orderedLaunches = launches.sorted(by: {
+                    // $0 not launched and $1 launched
+                    if $0.upcoming && !$1.upcoming {
+                        return false
+                    } else if !$0.upcoming && $1.upcoming {
+                        return true
+                    } else {
+                        // Considering tolerance
+                        if let d0 = $0.dateAfterTolerance,
+                           let d1 = $1.dateAfterTolerance {
+                            return d0.compare(d1) == .orderedAscending
+                        }
+
+                        return $0.dateUTC.compare($1.dateUTC) == .orderedAscending
+                    }
+                })
+
+                handler(.success(orderedLaunches))
+            }
+        }
+    }
+
+    static func getNext(_ completion: @escaping (Launch?) -> Void) {
+        loadOrdered { result in
+            switch result {
+            case .failure:
+                completion(nil)
+            case let .success(launches):
+                completion(launches.first(where: { $0.upcoming }))
+            }
+        }
+    }
+    
+    static var next: Launch? {
+        let group = DispatchGroup()
+        var result: Launch?
+        
+        group.enter()
+        getNext { launch in
+            result = launch
+            group.leave()
+        }
+        
+        if group.wait(timeout: .now() + 15) == .timedOut {
+            return nil
+        }
+        
+        return result
+    }
+
     // MARK: Enums
 
     enum DatePrecision: String, Decodable {
@@ -60,12 +116,15 @@ final class Launch: Decodable, ObservableObject, ArrayFetchable {
         /// List of IDs of the ships used for the recovery actions as `String`s.
         private var shipIDs: [String]
 
-        public var ships: [Ship]? {
-            return shipIDs.compactMap({ id in
-                SpaceXData.shared.ships.first(where: { ship in
-                    ship.stringID == id
-                })
-            })
+        public func getShips(_ completion: @escaping ([Ship]?) -> Void) {
+            Ship.loadFromArrayOfIdentifiers(ids: shipIDs) { result in
+                switch result {
+                    case .failure:
+                        completion(nil)
+                    case .success(let ships):
+                        completion(ships)
+                }
+            }
         }
 
         enum CodingKeys: String, CodingKey {
@@ -105,34 +164,58 @@ final class Launch: Decodable, ObservableObject, ArrayFetchable {
         /// The id of the landing pad as a `String`.
         private var landpadID: String?
 
-        public var landpad: Landpad? {
-            return SpaceXData.shared.landpads.first(where: { $0.stringID == landpadID })
+        public func getLandpad(_ completion: @escaping (Landpad?) -> Void) {
+            guard landpadID != nil else {
+                completion(nil)
+                return
+            }
+
+            Landpad.get(id: landpadID!, completion)
         }
 
-        public var realCore: Core? {
-            return SpaceXData.shared.cores.first(where: { $0.stringID == id })
+        public func getRealCore(_ completion: @escaping (Core?) -> Void) {
+            guard id != nil else {
+                completion(nil)
+                return
+            }
+
+            Core.get(id: id!, completion)
         }
 
-        public var nameDotFlight: String {
-            if let flight = flight,
-               let serial = realCore?.serial,
-               let reused = reused,
-               reused {
-                return "\(serial).\(flight)"
-            } else {
-                return realCore?.serial ?? "Unknown core"
+        public func getNameDotFlight(_ completion: @escaping (String?) -> Void) {
+            getRealCore { core in
+                guard core != nil else {
+                    completion(nil)
+                    return
+                }
+
+                if let flight = flight,
+                   let serial = core?.serial,
+                   let reused = reused,
+                   reused {
+                    completion("\(serial).\(flight)")
+                } else {
+                    completion(core?.serial ?? "Unknown core")
+                }
             }
         }
 
-        public var recoveryStatus: String {
-            if landingAttempt ?? false {
-                if landingSuccess ?? false {
-                    return "Recovered (\(landpad?.name ?? landingType?.rawValue ?? "Unknown landing site"))"
-                } else {
-                    return "Recovery failed"
+        public func getRecoveryStatus(_ completion: @escaping (String?) -> Void) {
+            getLandpad { landpad in
+                guard landpad != nil else {
+                    completion(nil)
+                    return
                 }
-            } else {
-                return "Expendable\((gridFins ?? false) ? "" : ", no fins")\((gridFins ?? false) ? "" : ", no legs")"
+
+                if landingAttempt ?? false {
+                    if landingSuccess ?? false {
+                        completion("Recovered (\(landpad?.name ?? landingType?.rawValue ?? "Unknown landing site"))")
+                    } else {
+                        completion("Recovery failed")
+                    }
+                } else {
+                    completion("Expendable\((gridFins ?? false) ? "" : ", no fins")\((gridFins ?? false) ? "" : ", no legs")")
+                }
             }
         }
 
@@ -321,7 +404,7 @@ final class Launch: Decodable, ObservableObject, ArrayFetchable {
     public var autoUpdate: Bool = true
 
     /// UUID string
-    public var stringID: String?
+    public var stringID: String
 
     enum CodingKeys: String, CodingKey {
         case flightNumber = "flight_number"
@@ -364,11 +447,16 @@ extension Launch {
         cores?.filter({ ($0.landingSuccess ?? false) }).count ?? 0
     }
 
-    var isNextLaunch: Bool {
-        if let nl = SpaceXData.shared.getNextLaunch() {
-            return self == nl
+    public func isNextLaunch(_ completion: @escaping (Bool) -> Void) {
+        Launch.getNext { launch in
+            if let nl = launch {
+                completion(self == nl)
+                return
+            }
+
+            completion(false)
+            return
         }
-        return false
     }
 
     /// Use only for ordering! Returns a wrong date useful only for setting the launch order
@@ -389,64 +477,86 @@ extension Launch {
         }
     }
 
-    // MARK: - Computed properties obtained from UUID
+    // MARK: - Properties obtained from UUIDs
 
-    var rocket: Rocket? {
-        if rocketID != nil {
-            return SpaceXData.shared.rockets.first(where: { $0.id == rocketID! })
+    public func getRocket(_ completion: @escaping (Rocket?) -> Void) {
+        guard rocketID != nil else {
+            completion(nil)
+            return
         }
 
-        return nil
+        Rocket.get(id: rocketID!, completion)
     }
 
-    var launchpad: Launchpad? {
-        if launchpadID != nil {
-            return SpaceXData.shared.launchpads.first(where: { $0.stringID == launchpadID! })
+    public func getLaunchpad(_ completion: @escaping (Launchpad?) -> Void) {
+        guard launchpadID != nil else {
+            completion(nil)
+            return
         }
 
-        return nil
+        Launchpad.get(id: launchpadID!, completion)
     }
 
-    var landpads: [(CoreInstance, Landpad?)]? {
-        if cores != nil {
-            return cores!.map { core in
-                (core, core.landpad)
-            }
+    public func getLandpads(_ completion: @escaping ([(CoreInstance, Landpad?)]?) -> Void) {
+        guard cores?.count ?? 0 > 0 else {
+            completion(nil)
+            return
         }
 
-        return nil
-    }
+        DispatchQueue.global(qos: .background).async {
+            let group = DispatchGroup()
+            var result: [(CoreInstance, Landpad?)] = []
 
-    var crew: [Astronaut]? {
-        if let crewIdList = crewIDs {
-            var astronauts: [Astronaut] = []
-            for astronautID in crewIdList {
-                if let astronaut = SpaceXData.shared.crew.first(where: { $0.stringID == astronautID }) {
-                    astronauts.append(astronaut)
+            for core in self.cores! {
+                group.enter()
+                core.getLandpad { landpad in
+                    result.append((core, landpad))
+                    group.leave()
                 }
             }
 
-            if astronauts.count > 0 {
-                return astronauts
+            group.notify(queue: .main) {
+                completion(result)
             }
         }
-        return nil
     }
 
-    var payloads: [Payload]? {
-        payloadIDs?.compactMap({ id in
-            SpaceXData.shared.payloads.first(where: { payload in
-                payload.stringID == id
-            })
-        })
+    public func getCrew(_ completion: @escaping ([Astronaut]?) -> Void) {
+        guard crewIDs?.count ?? 0 > 0 else {
+            completion(nil)
+            return
+        }
+
+        Astronaut.loadAll { [self] result in
+            switch result {
+            case .failure:
+                completion(nil)
+            case let .success(astronauts):
+                completion(astronauts.filter({ crewIDs?.contains($0.stringID) ?? false }))
+            }
+        }
     }
 
-    var ships: [Ship]? {
-        shipIDs?.compactMap({ id in
-            SpaceXData.shared.ships.first(where: { ship in
-                ship.stringID == id
-            })
-        })
+    public func getPayloads(_ completion: @escaping ([Payload]?) -> Void) {
+        Payload.loadFromArrayOfIdentifiers(ids: payloadIDs) { result in
+            switch result {
+                case .failure:
+                    completion(nil)
+                case .success(let payloads):
+                    completion(payloads)
+            }
+        }
+    }
+
+    public func getShips(_ completion: @escaping ([Ship]?) -> Void) {
+        Ship.loadFromArrayOfIdentifiers(ids: shipIDs) { result in
+            switch result {
+                case .failure:
+                    completion(nil)
+                case .success(let ships):
+                    completion(ships)
+            }
+        }
     }
 }
 

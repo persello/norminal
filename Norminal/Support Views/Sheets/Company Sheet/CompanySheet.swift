@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CompanySheet: View {
-    var company: CompanyInfo?
-    var history: [HistoryEntry]
+    @State var company: CompanyInfo? = nil
+    @State var history: [HistoryEntry] = []
+    @State var error: Error?
 
     var body: some View {
         List {
@@ -88,11 +89,30 @@ struct CompanySheet: View {
         }
         .listStyle(InsetGroupedListStyle())
         .navigationTitle(Text(company?.name ?? "Company"))
+        .onAppear {
+            HistoryEntry.loadAll { result in
+                switch result {
+                    case .failure(let error):
+                        self.error = error
+                    case .success(let history):
+                        self.history = history
+                }
+            }
+            
+            CompanyInfo.load { result in
+                switch result {
+                    case .failure(let error):
+                        self.error = error
+                    case .success(let companyInfo):
+                        company = companyInfo
+                }
+            }
+        }
     }
 }
 
 struct CompanySheet_Previews: PreviewProvider {
     static var previews: some View {
-        CompanySheet(company: SpaceXData.shared.companyInfo, history: SpaceXData.shared.history)
+        CompanySheet()
     }
 }

@@ -59,7 +59,6 @@ enum Screens: Equatable, Identifiable {
 
 struct SidebarView: View {
     @Binding var selectedView: Screens?
-    @EnvironmentObject var globalData: SpaceXData
 
     var body: some View {
         List {
@@ -149,7 +148,6 @@ struct SidebarView: View {
 }
 
 struct RegularMainView: View {
-    @EnvironmentObject var globalData: SpaceXData
     @State var selectedScreen: Screens? = .launches
 
     var body: some View {

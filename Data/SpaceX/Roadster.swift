@@ -31,6 +31,7 @@ final class Roadster: ObservableObject, Decodable, Fetchable {
     public var wikipedia: URL?
     public var video: URL?
     public var details: String?
+    public var stringID = "Roadster"
 
     enum CodingKeys: String, CodingKey {
         case name

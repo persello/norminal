@@ -12,9 +12,7 @@ struct CrewCard: View {
     @EnvironmentObject var launch: Launch
     @State var modalPresented: Bool = false
     
-    var crew: [Astronaut] {
-        return launch.crew ?? []
-    }
+    @State var crew: [Astronaut] = []
 
     let spacing: CGFloat = 28
     let size: CGFloat = 130
@@ -43,6 +41,11 @@ struct CrewCard: View {
         .sheet(isPresented: $modalPresented, content: {
             RootSheet(modalShown: $modalPresented) { CrewSheet(crew: crew) }
         })
+        .onAppear {
+            launch.getCrew { crew in
+                self.crew = crew ?? []
+            }
+        }
     }
 }
 

@@ -13,7 +13,7 @@ import Foundation
 /// Represents a rocket launchpad
 final class Launchpad: Decodable, ObservableObject, ArrayFetchable {
     static var baseURL: URL = URL(string: "https://api.spacexdata.com/v4/launchpads")!
-    
+
     enum Status: String, Decodable {
         case retired
         case active
@@ -50,22 +50,29 @@ final class Launchpad: Decodable, ObservableObject, ArrayFetchable {
     /// List of rocket IDs that have been on this launchpad
     private var rocketIDs: [String]?
 
-    public var rockets: [Rocket]? {
-        return rocketIDs?.compactMap({ id in
-            SpaceXData.shared.rockets.first(where: { rocket in
-                rocket.stringID == id
-            })
-        })
+    public func getRockets(_ completion: @escaping ([Rocket]?) -> Void) {
+        Rocket.loadFromArrayOfIdentifiers(ids: rocketIDs) { result in
+            switch result {
+                case .failure:
+                    completion(nil)
+                case .success(let rockets):
+                    completion(rockets)
+            }
+        }
     }
 
     /// List of launch IDs that have started from this launchpad
     private var launchIDs: [String]?
-    public var launches: [Launch]? {
-        launchIDs?.compactMap({ id in
-            SpaceXData.shared.launches.first(where: { launch in
-                launch.stringID == id
-            })
-        })
+
+    public func getLaunches(_ completion: @escaping ([Launch]?) -> Void) {
+        Launch.loadFromArrayOfIdentifiers(ids: launchIDs) { result in
+            switch result {
+                case .failure:
+                    completion(nil)
+                case .success(let launches):
+                    completion(launches)
+            }
+        }
     }
 
     /// Brief description of the launchpad

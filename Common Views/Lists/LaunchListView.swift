@@ -12,12 +12,25 @@ import SwiftUI
 struct LaunchListView: View {
     var selectedLaunch: Binding<Launch?>?
     @StateObject private var filter = LaunchFilter()
-    @EnvironmentObject private var globalData: SpaceXData
     @ObservedObject private var globalSettings = GlobalSettings.shared
     @State private var popoverPresented: Bool = false
 
+    @State var allLaunches: [Launch]?
+    @State var loadingError: Bool = false
+
+    func loadLaunches() {
+        Launch.loadOrdered { result in
+            switch result {
+            case .failure:
+                loadingError = true
+            case let .success(launches):
+                allLaunches = launches
+            }
+        }
+    }
+
     var launches: [Launch] {
-        return filter.filterLaunches(globalData.launches) ?? []
+        return filter.filterLaunches(allLaunches ?? []) ?? []
     }
 
     var pastLaunches: [Launch] {
@@ -29,7 +42,7 @@ struct LaunchListView: View {
     }
 
     var body: some View {
-        if globalData.launches.count > 0 {
+        if launches.count > 0 {
             // We have data in the globalData
 
             /*
@@ -41,7 +54,7 @@ struct LaunchListView: View {
                     // The current filter is valid
                     List {
                         // Show first big tile?
-                        if let nl = globalData.getNextLaunch(), filter.text.count == 0, globalSettings.launchFilterSelection == .all {
+                        if let nl = Launch.next, filter.text.count == 0, globalSettings.launchFilterSelection == .all {
                             Section(header: Text("Next launch")) {
                                 ZStack {
                                     LaunchListTile(launch: nl, showDetails: true)
@@ -113,9 +126,9 @@ struct LaunchListView: View {
             .navigationSearchBar(text: $filter.text)
         } else {
             // We don't have data in the globalData
-            if globalData.loadingError {
+            if loadingError {
                 // Error occurred during data load
-                LoadingErrorView()
+                LoadingErrorView(reloadAction: loadLaunches)
             } else {
                 // We are loading data
                 LoadingView()
@@ -135,6 +148,8 @@ struct LoadingView: View {
 }
 
 struct LoadingErrorView: View {
+    var reloadAction: () -> ()
+    
     var body: some View {
         VStack {
             Text("Loading error")
@@ -142,7 +157,7 @@ struct LoadingErrorView: View {
             Text("Please check your connection and try again.")
                 .foregroundColor(.secondary)
                 .font(.subheadline)
-            Button("Retry", action: { SpaceXData.shared.loadAllData() })
+            Button("Retry", action: reloadAction)
                 .buttonStyle(FilledButtonStyle())
                 .padding()
         }

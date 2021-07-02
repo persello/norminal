@@ -19,7 +19,18 @@ struct CapsuleListView: View {
         }
     }
 
-    var capsules: [Capsule]
+    @State var capsules: [Capsule]
+
+    func loadAstronauts() {
+        Capsule.loadAll { result in
+            switch result {
+            case .failure:
+                loadingError = true
+            case let .success(astronauts):
+                self.astronauts = astronauts
+            }
+        }
+    }
 
     var body: some View {
         Group {
